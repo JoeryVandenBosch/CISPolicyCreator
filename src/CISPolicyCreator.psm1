@@ -87,12 +87,18 @@ function Normalize-CpcCspPath {
 }
 
 function Get-CpcSettingDefinition {
-    param([Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions)
+    param([Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions,[hashtable]$Cache)
 
     if ($Spec.resolve.definitionId) {
-        $encodedDefinitionId=[Uri]::EscapeDataString([string]$Spec.resolve.definitionId)
-        try { $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$encodedDefinitionId" }
-        catch { throw "Could not read explicit Settings Catalog definition '$($Spec.resolve.definitionId)' for '$($Spec.displayName)': $(Get-CpcGraphErrorDetail $_)" }
+        $reviewedId=[string]$Spec.resolve.definitionId
+        if($Cache -and $Cache.ContainsKey($reviewedId)){
+            $def=$Cache[$reviewedId]
+        }else{
+            $encodedDefinitionId=[Uri]::EscapeDataString($reviewedId)
+            try { $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$encodedDefinitionId" }
+            catch { throw "Could not read explicit Settings Catalog definition '$reviewedId' for '$($Spec.displayName)': $(Get-CpcGraphErrorDetail $_)" }
+            if($Cache){$Cache[$reviewedId]=$def}
+        }
         if ([string]$def.id -cne [string]$Spec.resolve.definitionId) { throw "Graph returned definition '$($def.id)' instead of reviewed definition '$($Spec.resolve.definitionId)' for '$($Spec.displayName)'." }
     } else {
         $base = Normalize-CpcCspPath $Spec.resolve.baseUri
@@ -105,6 +111,7 @@ function Get-CpcSettingDefinition {
         })
         if ($matches.Count -ne 1) { throw "Could not uniquely resolve Settings Catalog definition for '$($Spec.displayName)' by exact baseUri + offsetUri. Matches=$($matches.Count)." }
         $def = $matches[0]
+        if($Cache){$Cache[[string]$def.id]=$def}
     }
     $definitionBaseUriProperty=$def.PSObject.Properties['baseUri']
     $definitionOffsetUriProperty=$def.PSObject.Properties['offsetUri']
@@ -125,75 +132,150 @@ function Get-CpcSettingDefinition {
         $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$encodedResolvedId"
         if ($Spec.resolve.definitionId -and [string]$def.id -cne [string]$Spec.resolve.definitionId) { throw "Graph returned a different definition while loading choice options for '$($Spec.displayName)'." }
         if ([string]$def.'@odata.type' -cne [string]$Spec.resolve.expectedType) { throw "Graph definition type changed while loading choice options for '$($Spec.displayName)'." }
+        if($Cache){$Cache[[string]$def.id]=$def}
     }
     return $def
 }
 
-function New-CpcConfigurationSettingBody {
-    param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)]$Spec)
+function Assert-CpcLiveSimpleValue {
+    param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)][string]$Kind,$Value,[Parameter(Mandatory)][string]$DisplayName)
+    if($Kind -eq 'integer'){
+        if($Value -isnot [byte] -and $Value -isnot [int16] -and $Value -isnot [int32] -and $Value -isnot [int64]){throw "Value for '$DisplayName' must be an integer."}
+    }elseif($Kind -eq 'string'){
+        if($Value -isnot [string]){throw "Value for '$DisplayName' must be a string."}
+    }else{throw "Unsupported simple value kind '$Kind' for '$DisplayName'."}
 
-    $type = [string]$Definition.'@odata.type'
-    $valueSpec = $Spec.value
+    $valueDefinitionProperty=$Definition.PSObject.Properties['valueDefinition']
+    $valueDefinition=if($valueDefinitionProperty){$valueDefinitionProperty.Value}else{$null}
+    if(-not $valueDefinition){return}
+    $definitionValueTypeProperty=$valueDefinition.PSObject.Properties['@odata.type']
+    $definitionValueType=if($definitionValueTypeProperty){[string]$definitionValueTypeProperty.Value}else{''}
+    if($definitionValueType -match 'IntegerSettingValueDefinition$' -and $Kind -ne 'integer'){throw "Value kind for '$DisplayName' does not match the live integer definition."}
+    if($definitionValueType -match 'StringSettingValueDefinition$' -and $Kind -ne 'string'){throw "Value kind for '$DisplayName' does not match the live string definition."}
+    if($Kind -eq 'integer'){
+        $minimumProperty=$valueDefinition.PSObject.Properties['minimumValue']
+        $maximumProperty=$valueDefinition.PSObject.Properties['maximumValue']
+        if($minimumProperty -and [int64]$Value -lt [int64]$minimumProperty.Value){throw "Value for '$DisplayName' is below the live definition minimum."}
+        if($maximumProperty -and [int64]$Value -gt [int64]$maximumProperty.Value){throw "Value for '$DisplayName' is above the live definition maximum."}
+    }else{
+        $minimumLengthProperty=$valueDefinition.PSObject.Properties['minimumLength']
+        $maximumLengthProperty=$valueDefinition.PSObject.Properties['maximumLength']
+        if($minimumLengthProperty -and ([string]$Value).Length -lt [int]$minimumLengthProperty.Value){throw "Value for '$DisplayName' is shorter than the live definition minimumLength."}
+        if($maximumLengthProperty -and ([string]$Value).Length -gt [int]$maximumLengthProperty.Value){throw "Value for '$DisplayName' is longer than the live definition maximumLength."}
+    }
+}
 
-    if ($type -match 'ChoiceSettingDefinition') {
-        if ([string]$valueSpec.kind -ne 'choice') { throw "Value kind '$($valueSpec.kind)' does not match choice definition '$($Spec.displayName)'." }
-        $options = @($Definition.options)
-        if ($options.Count -eq 0) { throw "No choice options returned for '$($Spec.displayName)'." }
-        if (-not $valueSpec.optionId) { throw "An exact reviewed optionId is required for choice setting '$($Spec.displayName)'." }
-        $candidate = @($options | Where-Object { [string]$_.itemId -ceq [string]$valueSpec.optionId })
-        if ($candidate.Count -ne 1) {
-            $available = ($options | ForEach-Object { "$($_.itemId) [$($_.displayName)]" }) -join '; '
+function New-CpcSimpleSettingValue {
+    param([Parameter(Mandatory)][string]$Kind,$Value)
+    if($Kind -eq 'integer'){
+        return @{'@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue';value=[int64]$Value}
+    }
+    return @{'@odata.type'='#microsoft.graph.deviceManagementConfigurationStringSettingValue';value=[string]$Value}
+}
+
+function New-CpcConfigurationSettingInstances {
+    param([Parameter(Mandatory)]$Specs,[Parameter(Mandatory)]$Definitions,[hashtable]$DefinitionCache,[Parameter(Mandatory)][int]$Depth,[Parameter(Mandatory)][string]$Context)
+    $instances=[System.Collections.Generic.List[object]]::new()
+    $ids=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    $index=0
+    foreach($childSpec in @($Specs)){
+        $index++
+        $childDefinition=Get-CpcSettingDefinition -Spec $childSpec -Definitions $Definitions -Cache $DefinitionCache
+        if(-not $ids.Add([string]$childDefinition.id)){throw "$Context contains duplicate child definition '$($childDefinition.id)' in one value."}
+        $instances.Add((New-CpcConfigurationSettingInstance -Definition $childDefinition -Spec $childSpec -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth $Depth)) | Out-Null
+    }
+    return @($instances)
+}
+
+function New-CpcConfigurationSettingInstance {
+    param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions,[hashtable]$DefinitionCache,[int]$Depth=0)
+    if($Depth -gt 16){throw "'$($Spec.displayName)' exceeds the maximum nested Settings Catalog depth."}
+    $type=[string]$Definition.'@odata.type'
+    $valueSpec=$Spec.value
+    $kind=[string]$valueSpec.kind
+
+    if($type -match 'ChoiceSettingDefinition$'){
+        if($kind -ne 'choice'){throw "Value kind '$kind' does not match choice definition '$($Spec.displayName)'."}
+        $options=@($Definition.options)
+        if($options.Count -eq 0){throw "No choice options returned for '$($Spec.displayName)'."}
+        if(-not $valueSpec.optionId){throw "An exact reviewed optionId is required for choice setting '$($Spec.displayName)'."}
+        $candidate=@($options | Where-Object { [string]$_.itemId -ceq [string]$valueSpec.optionId })
+        if($candidate.Count -ne 1){
+            $available=($options | ForEach-Object { "$($_.itemId) [$($_.displayName)]" }) -join '; '
             throw "Exact choice optionId '$($valueSpec.optionId)' was not uniquely present for '$($Spec.displayName)'. Available: $available"
         }
-        $choice = $candidate[0]
+        $childrenProperty=$valueSpec.PSObject.Properties['children']
+        $children=if($childrenProperty){@(New-CpcConfigurationSettingInstances -Specs @($childrenProperty.Value) -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Choice '$($Spec.displayName)'")}else{@()}
         return @{
-            '@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting'
-            settingInstance=@{
-                '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance'
-                settingDefinitionId=$Definition.id
-                choiceSettingValue=@{
-                    '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue'
-                    value=$choice.itemId
-                    children=@()
-                }
-            }
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance'
+            settingDefinitionId=[string]$Definition.id
+            choiceSettingValue=@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue';value=[string]$candidate[0].itemId;children=@($children)}
         }
     }
 
-    if ($type -match 'SimpleSettingDefinition') {
-        $kind = [string]$valueSpec.kind
-        if ($kind -notin @('integer','string')) { throw "Value kind '$kind' is unsupported for simple definition '$($Spec.displayName)'." }
-        if ($null -eq $valueSpec.value) { throw "No simple value supplied for '$($Spec.displayName)'." }
-        $valueDefinitionProperty=$Definition.PSObject.Properties['valueDefinition']
-        $valueDefinition=if ($valueDefinitionProperty) { $valueDefinitionProperty.Value } else { $null }
-        if ($kind -eq 'integer' -and $valueDefinition) {
-            $minimumProperty=$valueDefinition.PSObject.Properties['minimumValue']
-            $maximumProperty=$valueDefinition.PSObject.Properties['maximumValue']
-            if ($minimumProperty -and [int64]$valueSpec.value -lt [int64]$minimumProperty.Value) { throw "Value for '$($Spec.displayName)' is below the live definition minimum." }
-            if ($maximumProperty -and [int64]$valueSpec.value -gt [int64]$maximumProperty.Value) { throw "Value for '$($Spec.displayName)' is above the live definition maximum." }
-        }
-        if ($kind -eq 'string' -and $valueDefinition) {
-            $minimumLengthProperty=$valueDefinition.PSObject.Properties['minimumLength']
-            $maximumLengthProperty=$valueDefinition.PSObject.Properties['maximumLength']
-            if ($minimumLengthProperty -and ([string]$valueSpec.value).Length -lt [int]$minimumLengthProperty.Value) { throw "Value for '$($Spec.displayName)' is shorter than the live definition minimumLength." }
-            if ($maximumLengthProperty -and ([string]$valueSpec.value).Length -gt [int]$maximumLengthProperty.Value) { throw "Value for '$($Spec.displayName)' is longer than the live definition maximumLength." }
-        }
-        $simpleValue = if ($kind -eq 'integer') {
-            @{ '@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue'; value=[int64]$valueSpec.value }
-        } else {
-            @{ '@odata.type'='#microsoft.graph.deviceManagementConfigurationStringSettingValue'; value=[string]$valueSpec.value }
+    if($type -match 'SimpleSettingCollectionDefinition$'){
+        if($kind -notin @('integer-collection','string-collection')){throw "Value kind '$kind' does not match simple collection definition '$($Spec.displayName)'."}
+        $valuesProperty=$valueSpec.PSObject.Properties['values']
+        $values=if($valuesProperty){@($valuesProperty.Value)}else{@()}
+        if($values.Count -eq 0){throw "At least one collection value is required for '$($Spec.displayName)'."}
+        $elementKind=if($kind -eq 'integer-collection'){'integer'}else{'string'}
+        $settingValues=[System.Collections.Generic.List[object]]::new()
+        $index=0
+        foreach($itemValue in $values){
+            $index++
+            Assert-CpcLiveSimpleValue -Definition $Definition -Kind $elementKind -Value $itemValue -DisplayName "$($Spec.displayName) value $index"
+            $settingValues.Add((New-CpcSimpleSettingValue -Kind $elementKind -Value $itemValue)) | Out-Null
         }
         return @{
-            '@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting'
-            settingInstance=@{
-                '@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance'
-                settingDefinitionId=$Definition.id
-                simpleSettingValue=$simpleValue
-            }
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance'
+            settingDefinitionId=[string]$Definition.id
+            simpleSettingCollectionValue=@($settingValues)
+        }
+    }
+
+    if($type -match 'SimpleSettingDefinition$'){
+        if($kind -notin @('integer','string')){throw "Value kind '$kind' is unsupported for simple definition '$($Spec.displayName)'."}
+        $valueProperty=$valueSpec.PSObject.Properties['value']
+        if(-not $valueProperty -or $null -eq $valueProperty.Value){throw "No simple value supplied for '$($Spec.displayName)'."}
+        Assert-CpcLiveSimpleValue -Definition $Definition -Kind $kind -Value $valueProperty.Value -DisplayName ([string]$Spec.displayName)
+        return @{
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance'
+            settingDefinitionId=[string]$Definition.id
+            simpleSettingValue=(New-CpcSimpleSettingValue -Kind $kind -Value $valueProperty.Value)
+        }
+    }
+
+    if($type -match 'SettingGroupCollectionDefinition$'){
+        if($kind -ne 'group-collection'){throw "Value kind '$kind' does not match group collection definition '$($Spec.displayName)'."}
+        $itemsProperty=$valueSpec.PSObject.Properties['items']
+        $items=if($itemsProperty){@($itemsProperty.Value)}else{@()}
+        if($items.Count -eq 0){throw "At least one group item is required for '$($Spec.displayName)'."}
+        $groupValues=[System.Collections.Generic.List[object]]::new()
+        $itemIndex=0
+        foreach($item in $items){
+            $itemIndex++
+            $childrenProperty=$item.PSObject.Properties['children']
+            $childSpecs=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+            if($childSpecs.Count -eq 0){throw "Group '$($Spec.displayName)' item $itemIndex requires at least one child."}
+            $children=@(New-CpcConfigurationSettingInstances -Specs $childSpecs -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Group '$($Spec.displayName)' item $itemIndex")
+            $groupValues.Add(@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationGroupSettingValue';children=@($children)}) | Out-Null
+        }
+        return @{
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance'
+            settingDefinitionId=[string]$Definition.id
+            groupSettingCollectionValue=@($groupValues)
         }
     }
 
     throw "Unsupported Settings Catalog definition type '$type' for '$($Spec.displayName)'. Leave the recommendation unresolved until this type is explicitly supported."
+}
+
+function New-CpcConfigurationSettingBody {
+    param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)]$Spec,$Definitions=@(),[hashtable]$DefinitionCache)
+    return @{
+        '@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting'
+        settingInstance=(New-CpcConfigurationSettingInstance -Definition $Definition -Spec $Spec -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth 0)
+    }
 }
 
 function Get-CpcTopLevelSettingDefinitionId {

@@ -82,6 +82,153 @@ function Resolve-DecisionMarkers($Node,$DecisionById) {
     return $out
 }
 
+function Get-SnapshotSettingDefinition($Resolve,[string]$Context) {
+    $definitionMatches=@()
+    $reviewedDefinitionId=Get-OptionalProperty $Resolve 'definitionId'
+    if($reviewedDefinitionId){
+        $definitionMatches=@($snapshot.definitions | Where-Object { [string]$_.id -ceq [string]$reviewedDefinitionId })
+    }else{
+        $base=Normalize-CspPath (Get-OptionalProperty $Resolve 'baseUri')
+        $offset=([string](Get-OptionalProperty $Resolve 'offsetUri')).Trim().ToLowerInvariant()
+        if(-not $base -or -not $offset){throw "$Context lacks an exact Settings Catalog resolver."}
+        $definitionMatches=@($snapshot.definitions | Where-Object { (Normalize-CspPath $_.baseUri) -eq $base -and ([string]$_.offsetUri).Trim().ToLowerInvariant() -eq $offset })
+    }
+    if($definitionMatches.Count -ne 1){throw "$Context did not resolve exactly once in the pinned snapshot; matches=$($definitionMatches.Count)."}
+    $definition=$definitionMatches[0]
+    if([string]$definition.'@odata.type' -cne [string]$Resolve.expectedType){throw "$Context definition type does not match the reviewed expectedType."}
+    return $definition
+}
+
+function Assert-SnapshotSimpleValue($Definition,[string]$Kind,$RawValue,[string]$Context) {
+    if($Kind -eq 'integer'){
+        if($RawValue -isnot [byte] -and $RawValue -isnot [int16] -and $RawValue -isnot [int32] -and $RawValue -isnot [int64]){throw "$Context requires an integer value."}
+    }elseif($Kind -eq 'string'){
+        if($RawValue -isnot [string]){throw "$Context requires a string value."}
+    }else{throw "$Context has unsupported simple value kind '$Kind'."}
+
+    $valueDefinition=Get-OptionalProperty $Definition 'valueDefinition'
+    if(-not $valueDefinition){return}
+    $valueType=[string](Get-OptionalProperty $valueDefinition '@odata.type')
+    if($valueType -match 'IntegerSettingValueDefinition$' -and $Kind -ne 'integer'){throw "$Context kind does not match the snapshot integer value definition."}
+    if($valueType -match 'StringSettingValueDefinition$' -and $Kind -ne 'string'){throw "$Context kind does not match the snapshot string value definition."}
+    if($Kind -eq 'integer'){
+        $minimum=Get-OptionalProperty $valueDefinition 'minimumValue'
+        $maximum=Get-OptionalProperty $valueDefinition 'maximumValue'
+        if($null -ne $minimum -and [int64]$RawValue -lt [int64]$minimum){throw "$Context is below the snapshot minimum."}
+        if($null -ne $maximum -and [int64]$RawValue -gt [int64]$maximum){throw "$Context is above the snapshot maximum."}
+    }else{
+        $minimumLength=Get-OptionalProperty $valueDefinition 'minimumLength'
+        $maximumLength=Get-OptionalProperty $valueDefinition 'maximumLength'
+        if($null -ne $minimumLength -and ([string]$RawValue).Length -lt [int]$minimumLength){throw "$Context is shorter than the snapshot minimumLength."}
+        if($null -ne $maximumLength -and ([string]$RawValue).Length -gt [int]$maximumLength){throw "$Context is longer than the snapshot maximumLength."}
+    }
+}
+
+function Resolve-CatalogSettingNodes($Nodes,[string]$Context,[int]$Depth) {
+    $resolved=[System.Collections.Generic.List[object]]::new()
+    $childIds=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    $index=0
+    foreach($node in @($Nodes)){
+        $index++
+        $child=Resolve-CatalogSettingNode $node "$Context child $index" $Depth
+        if(-not $childIds.Add([string]$child.resolve.definitionId)){throw "$Context contains duplicate child definition '$($child.resolve.definitionId)' in one value."}
+        $resolved.Add($child) | Out-Null
+    }
+    return @($resolved)
+}
+
+function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
+    if($Depth -gt 16){throw "$Context exceeds the maximum nested Settings Catalog depth."}
+    if(-not $snapshot){throw "A Settings Catalog snapshot is required to validate $Context."}
+    $definition=Get-SnapshotSettingDefinition $Node.resolve $Context
+    $definitionType=[string]$definition.'@odata.type'
+    $kind=[string]$Node.value.kind
+
+    if($definitionType -match 'ChoiceSettingDefinition$'){
+        if($kind -ne 'choice'){throw "$Context value kind does not match its choice definition."}
+    }elseif($definitionType -match 'SimpleSettingCollectionDefinition$'){
+        if($kind -notin @('integer-collection','string-collection')){throw "$Context value kind does not match its simple collection definition."}
+    }elseif($definitionType -match 'SimpleSettingDefinition$'){
+        if($kind -notin @('integer','string')){throw "$Context value kind does not match its simple definition."}
+    }elseif($definitionType -match 'SettingGroupCollectionDefinition$'){
+        if($kind -ne 'group-collection'){throw "$Context value kind does not match its group collection definition."}
+    }else{throw "$Context uses unsupported definition type '$definitionType'."}
+
+    $value=$Node.value
+    $decisionRef=Get-OptionalProperty $value 'decisionRef'
+    if($decisionRef -and $kind -notin @('choice','integer','string')){throw "$Context cannot use an administrator decision for collection or group values."}
+    $allowedValueProperties=switch($kind){
+        'choice' {@('kind','optionId','children','decisionRef')}
+        {$_ -in @('integer','string')} {@('kind','value','decisionRef')}
+        {$_ -in @('integer-collection','string-collection')} {@('kind','values','decisionRef')}
+        'group-collection' {@('kind','items','decisionRef')}
+        default {@('kind')}
+    }
+    $unexpectedValueProperties=@($value.PSObject.Properties.Name | Where-Object { $allowedValueProperties -notcontains [string]$_ })
+    if($unexpectedValueProperties.Count -gt 0){throw "$Context value kind '$kind' contains incompatible properties: $($unexpectedValueProperties -join ', ')."}
+    $outputValue=[ordered]@{kind=$kind}
+
+    switch($kind){
+        'choice' {
+            $resolvedValue=if($decisionRef){
+                if(-not $decisionById.ContainsKey([string]$decisionRef)){throw "$Context requires missing decision '$decisionRef'."}
+                $decisionById[[string]$decisionRef].value
+            }else{Get-OptionalProperty $value 'optionId'}
+            if(-not $resolvedValue){throw "$Context lacks an exact optionId."}
+            $options=@($definition.options | Where-Object { [string]$_.itemId -ceq [string]$resolvedValue })
+            if($options.Count -ne 1){throw "$Context optionId '$resolvedValue' was not uniquely present in the pinned snapshot."}
+            $outputValue.optionId=[string]$resolvedValue
+            $children=@(Get-OptionalProperty $value 'children' @())
+            if($children.Count -gt 0){$outputValue.children=@(Resolve-CatalogSettingNodes $children $Context ($Depth+1))}
+        }
+        {$_ -in @('integer','string')} {
+            $resolvedValue=if($decisionRef){
+                if(-not $decisionById.ContainsKey([string]$decisionRef)){throw "$Context requires missing decision '$decisionRef'."}
+                $decisionById[[string]$decisionRef].value
+            }else{Get-OptionalProperty $value 'value'}
+            if($null -eq $resolvedValue){throw "$Context lacks a simple value."}
+            Assert-SnapshotSimpleValue $definition $kind $resolvedValue $Context
+            $outputValue.value=if($kind -eq 'integer'){[int64]$resolvedValue}else{[string]$resolvedValue}
+        }
+        {$_ -in @('integer-collection','string-collection')} {
+            $elementKind=if($kind -eq 'integer-collection'){'integer'}else{'string'}
+            $values=@(Get-OptionalProperty $value 'values' @())
+            if($values.Count -eq 0){throw "$Context requires at least one collection value."}
+            $outputValues=[System.Collections.Generic.List[object]]::new()
+            $valueIndex=0
+            foreach($itemValue in $values){
+                $valueIndex++
+                Assert-SnapshotSimpleValue $definition $elementKind $itemValue "$Context value $valueIndex"
+                $normalizedValue=if($elementKind -eq 'integer'){[int64]$itemValue}else{[string]$itemValue}
+                $outputValues.Add($normalizedValue) | Out-Null
+            }
+            $outputValue.values=@($outputValues)
+        }
+        'group-collection' {
+            $items=@(Get-OptionalProperty $value 'items' @())
+            if($items.Count -eq 0){throw "$Context requires at least one group item."}
+            $outputItems=[System.Collections.Generic.List[object]]::new()
+            $itemIndex=0
+            foreach($item in $items){
+                $itemIndex++
+                $children=@(Get-OptionalProperty $item 'children' @())
+                if($children.Count -eq 0){throw "$Context group item $itemIndex requires at least one child."}
+                $outputItems.Add([pscustomobject][ordered]@{children=@(Resolve-CatalogSettingNodes $children "$Context group item $itemIndex" ($Depth+1))}) | Out-Null
+            }
+            $outputValue.items=@($outputItems)
+        }
+        default {throw "$Context has unsupported value kind '$kind'."}
+    }
+
+    $resolve=[ordered]@{
+        definitionId=[string]$definition.id
+        baseUri=(Get-OptionalProperty $definition 'baseUri')
+        offsetUri=(Get-OptionalProperty $definition 'offsetUri')
+        expectedType=$definitionType
+    }
+    return [pscustomobject][ordered]@{displayName=[string]$Node.displayName;resolve=[pscustomobject]$resolve;value=[pscustomobject]$outputValue}
+}
+
 $extractionInput = Read-ValidatedJson $ExtractionPath 'extraction.schema.json' 'Extraction'
 $catalogInput = Read-ValidatedJson $MappingCatalogPath 'mapping-catalog.schema.json' 'Mapping catalog'
 $extraction = $extractionInput.Value
@@ -195,63 +342,12 @@ foreach ($setting in @($catalog.settingsCatalogSettings)) {
     if (-not $policyById.ContainsKey([string]$setting.policyId)) { throw "Settings Catalog entry '$id' references unknown policy '$($setting.policyId)'." }
     if (-not $snapshot) { throw "A Settings Catalog snapshot is required to validate mapped setting '$id'." }
 
-    $definitionMatches = @()
-    $reviewedDefinitionId = Get-OptionalProperty $setting.resolve 'definitionId'
-    if ($reviewedDefinitionId) {
-        $definitionMatches = @($snapshot.definitions | Where-Object { [string]$_.id -ceq [string]$reviewedDefinitionId })
-    } else {
-        $base = Normalize-CspPath (Get-OptionalProperty $setting.resolve 'baseUri')
-        $offset = ([string](Get-OptionalProperty $setting.resolve 'offsetUri')).Trim().ToLowerInvariant()
-        if (-not $base -or -not $offset) { throw "Settings Catalog entry '$id' lacks an exact resolver." }
-        $definitionMatches = @($snapshot.definitions | Where-Object { (Normalize-CspPath $_.baseUri) -eq $base -and ([string]$_.offsetUri).Trim().ToLowerInvariant() -eq $offset })
-    }
-    if ($definitionMatches.Count -ne 1) { throw "Settings Catalog entry '$id' did not resolve exactly once in the pinned snapshot; matches=$($definitionMatches.Count)." }
-    $definition = $definitionMatches[0]
-    $settingKey=([string]$setting.policyId)+"`n"+([string]$definition.id)
-    if (-not $settingKeys.Add($settingKey)) { throw "Policy '$($setting.policyId)' contains multiple mappings for definition '$($definition.id)'." }
-    if ([string]$definition.'@odata.type' -cne [string]$setting.resolve.expectedType) { throw "Settings Catalog entry '$id' definition type does not match the reviewed expectedType." }
-    $definitionType=[string]$definition.'@odata.type'
-    if ($definitionType -match 'ChoiceSettingDefinition' -and [string]$setting.value.kind -ne 'choice') { throw "Settings Catalog entry '$id' value kind does not match its choice definition." }
-    if ($definitionType -match 'SimpleSettingDefinition' -and [string]$setting.value.kind -notin @('integer','string')) { throw "Settings Catalog entry '$id' value kind does not match its simple definition." }
-    if ($definitionType -notmatch '(Choice|Simple)SettingDefinition') { throw "Settings Catalog entry '$id' uses unsupported definition type '$definitionType'." }
-
-    $value = $setting.value
-    $valueDecisionRef = Get-OptionalProperty $value 'decisionRef'
-    $resolvedValue = if ($valueDecisionRef) {
-        if (-not $decisionById.ContainsKey([string]$valueDecisionRef)) { throw "Mapped setting '$id' requires missing decision '$valueDecisionRef'." }
-        $decisionById[[string]$valueDecisionRef].value
-    } elseif ($value.kind -eq 'choice') { Get-OptionalProperty $value 'optionId' } else { Get-OptionalProperty $value 'value' }
-    $outputValue = [ordered]@{ kind=[string]$value.kind }
-    if ([string]$value.kind -eq 'choice') {
-        if (-not $resolvedValue) { throw "Choice setting '$id' lacks an exact optionId." }
-        $options = @($definition.options | Where-Object { [string]$_.itemId -ceq [string]$resolvedValue })
-        if ($options.Count -ne 1) { throw "Choice setting '$id' optionId '$resolvedValue' was not uniquely present in the pinned snapshot." }
-        $outputValue.optionId = [string]$resolvedValue
-    } elseif ([string]$value.kind -eq 'integer') {
-        if ($resolvedValue -isnot [byte] -and $resolvedValue -isnot [int16] -and $resolvedValue -isnot [int32] -and $resolvedValue -isnot [int64]) { throw "Simple setting '$id' requires an integer value." }
-        $valueDefinition=Get-OptionalProperty $definition 'valueDefinition'
-        if ($valueDefinition) {
-            $minimum=Get-OptionalProperty $valueDefinition 'minimumValue'
-            $maximum=Get-OptionalProperty $valueDefinition 'maximumValue'
-            if ($null -ne $minimum -and [int64]$resolvedValue -lt [int64]$minimum) { throw "Simple setting '$id' is below the snapshot minimum." }
-            if ($null -ne $maximum -and [int64]$resolvedValue -gt [int64]$maximum) { throw "Simple setting '$id' is above the snapshot maximum." }
-        }
-        $outputValue.value = [int64]$resolvedValue
-    } else {
-        if ($resolvedValue -isnot [string]) { throw "Simple setting '$id' requires a string value." }
-        $valueDefinition=Get-OptionalProperty $definition 'valueDefinition'
-        if ($valueDefinition) {
-            $minimumLength=Get-OptionalProperty $valueDefinition 'minimumLength'
-            $maximumLength=Get-OptionalProperty $valueDefinition 'maximumLength'
-            if ($null -ne $minimumLength -and $resolvedValue.Length -lt [int]$minimumLength) { throw "Simple setting '$id' is shorter than the snapshot minimumLength." }
-            if ($null -ne $maximumLength -and $resolvedValue.Length -gt [int]$maximumLength) { throw "Simple setting '$id' is longer than the snapshot maximumLength." }
-        }
-        $outputValue.value = [string]$resolvedValue
-    }
-    $resolve = [ordered]@{ definitionId=[string]$definition.id; baseUri=(Get-OptionalProperty $definition 'baseUri'); offsetUri=(Get-OptionalProperty $definition 'offsetUri'); expectedType=[string]$definition.'@odata.type' }
+    $resolvedNode=Resolve-CatalogSettingNode $setting "Settings Catalog entry '$id'" 0
+    $settingKey=([string]$setting.policyId)+"`n"+([string]$resolvedNode.resolve.definitionId)
+    if (-not $settingKeys.Add($settingKey)) { throw "Policy '$($setting.policyId)' contains multiple mappings for definition '$($resolvedNode.resolve.definitionId)'." }
     $generated = [pscustomobject][ordered]@{
         recommendationId=$id; mappingStatus='mapped'; policy=[string]$policyById[[string]$setting.policyId].name
-        displayName=[string]$setting.displayName; profiles=@($setting.profiles); resolve=[pscustomobject]$resolve; value=[pscustomobject]$outputValue
+        displayName=[string]$resolvedNode.displayName; profiles=@($setting.profiles); resolve=$resolvedNode.resolve; value=$resolvedNode.value
     }
     $generatedSettings.Add($generated)
     if (-not $settingsByPolicy.ContainsKey([string]$setting.policyId)) { $settingsByPolicy[[string]$setting.policyId] = [System.Collections.Generic.List[string]]::new() }

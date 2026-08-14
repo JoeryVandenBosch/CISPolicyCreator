@@ -38,7 +38,7 @@ Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, dec
 
 ## Verification
 
-The repository contains copyright-safe tests for extraction, Manual+mapped semantics, missing and valid administrator decisions, exact choices, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
+The repository contains copyright-safe tests for extraction, Manual+mapped semantics, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
 
 ## Current benchmark state
 

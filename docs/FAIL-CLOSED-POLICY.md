@@ -32,6 +32,7 @@ Only final `mapped` recommendations are deployable. When an administrator suppli
 - Never use a display-name fallback to make a deployment decision.
 - Never guess or heuristically select a choice/value ID.
 - Choice settings require an exact reviewed `optionId` present exactly once in the pinned and live definition.
+- Simple collections validate every element's type and constraints; group collections and choice-dependent children validate every nested definition, type, choice, value, and bounded depth.
 - Ambiguous or missing definition/value matches fail closed.
 - Static embedded Settings Catalog settings are rejected because they bypass definition/value validation.
 - Organizational choices require an explicit acknowledged decision from the administrator.

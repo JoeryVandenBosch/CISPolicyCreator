@@ -129,6 +129,44 @@ Settings are assembled through the validated dynamic specification and embedded 
 
 The compiler obtains `definitionId` from the pinned snapshot using either a reviewed explicit ID or an exact unique CSP tuple. Choice `optionId` is always explicit. Display-name, substring, suffix, and constructed-ID fallback fields are not part of schema v2.
 
+Simple collections use an explicitly typed, ordered value list:
+
+```json
+{
+  "kind": "string-collection",
+  "values": ["reviewed-value-a", "reviewed-value-b"]
+}
+```
+
+Choice-dependent settings and group collections use recursive reviewed nodes. Every child has its own resolver and expected definition type:
+
+```json
+{
+  "kind": "group-collection",
+  "items": [
+    {
+      "children": [
+        {
+          "displayName": "Reviewed child",
+          "resolve": {
+            "definitionId": "reviewed_child_definition_id",
+            "baseUri": null,
+            "offsetUri": null,
+            "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+          },
+          "value": {
+            "kind": "choice",
+            "optionId": "reviewed_exact_child_option_id"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Supported value kinds are `choice`, `integer`, `string`, `integer-collection`, `string-collection`, and `group-collection`. A choice may contain `children`; group items contain `children` and may repeat the same child definitions in different rows. The compiler and live importer validate the complete tree to a bounded depth. Incompatible extra fields, duplicate children within one value, missing definitions, type mismatches, out-of-range values, and non-exact option IDs fail closed.
+
 ## Generic Graph objects
 
 Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Existing objects are skipped rather than updated.

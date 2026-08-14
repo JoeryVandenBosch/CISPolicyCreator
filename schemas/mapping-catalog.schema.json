@@ -3,6 +3,54 @@
   "$id": "https://cispolicycreator.local/schema/mapping-catalog.schema.json",
   "title": "CISPolicyCreator reviewed benchmark mapping catalog",
   "type": "object",
+  "$defs": {
+    "settingsCatalogResolver": {
+      "type": "object",
+      "properties": {
+        "definitionId": { "type": ["string", "null"] },
+        "baseUri": { "type": ["string", "null"] },
+        "offsetUri": { "type": ["string", "null"] },
+        "expectedType": { "type": "string", "minLength": 1 }
+      },
+      "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
+      "additionalProperties": false
+    },
+    "settingsCatalogNode": {
+      "type": "object",
+      "required": ["displayName", "resolve", "value"],
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1 },
+        "resolve": { "$ref": "#/$defs/settingsCatalogResolver" },
+        "value": { "$ref": "#/$defs/settingsCatalogValue" }
+      },
+      "additionalProperties": false
+    },
+    "settingsCatalogValue": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["choice", "integer", "string", "integer-collection", "string-collection", "group-collection"] },
+        "optionId": { "type": ["string", "null"] },
+        "value": {},
+        "values": { "type": "array", "minItems": 1, "items": { "type": ["integer", "string"] } },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/settingsCatalogNode" } },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["children"],
+            "properties": {
+              "children": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/settingsCatalogNode" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "decisionRef": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
   "required": ["schemaVersion", "id", "version", "benchmark", "pack", "sourceDocument", "recommendations", "administratorInputs", "settingsCatalogPolicies", "settingsCatalogSettings", "graphObjects"],
   "properties": {
     "schemaVersion": { "const": "1.0" },
@@ -99,28 +147,8 @@
           "policyId": { "type": "string", "minLength": 1 },
           "displayName": { "type": "string", "minLength": 1 },
           "profiles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
-          "resolve": {
-            "type": "object",
-            "properties": {
-              "definitionId": { "type": ["string", "null"] },
-              "baseUri": { "type": ["string", "null"] },
-              "offsetUri": { "type": ["string", "null"] },
-              "expectedType": { "type": "string", "minLength": 1 }
-            },
-            "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
-            "additionalProperties": false
-          },
-          "value": {
-            "type": "object",
-            "required": ["kind"],
-            "properties": {
-              "kind": { "enum": ["choice", "integer", "string"] },
-              "optionId": { "type": ["string", "null"] },
-              "value": {},
-              "decisionRef": { "type": ["string", "null"] }
-            },
-            "additionalProperties": false
-          }
+          "resolve": { "$ref": "#/$defs/settingsCatalogResolver" },
+          "value": { "$ref": "#/$defs/settingsCatalogValue" }
         },
         "additionalProperties": false
       }

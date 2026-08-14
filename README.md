@@ -25,6 +25,7 @@ The pipeline also enforces these invariants:
 - no guessed `settingDefinitionId` values;
 - no guessed choice/value IDs;
 - no display-name, substring, suffix, or constructed-ID resolution fallback;
+- nested choice, simple-collection, and group-collection nodes require exact definition/type/value validation at every level;
 - ambiguous matches remain unresolved or fail the build;
 - unvalidated static Settings Catalog payloads are rejected;
 - generic Graph endpoints are limited to Microsoft Graph `deviceManagement` resources;

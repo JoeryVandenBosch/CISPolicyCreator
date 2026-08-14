@@ -65,7 +65,16 @@ try {
     $unresolvedInput=@($withoutRecommendations | Where-Object recommendationId -eq '1.3')[0]
     Assert-True ($unresolvedInput.mappingStatus -ceq 'requires-input') 'Missing administrator input must remain nondeployable.'
     $withoutSettings=@(Read-Json (Join-Path $packWithoutDecision 'spec\settings-catalog.json'))
-    Assert-True ($withoutSettings.Count -eq 1) 'Setting that lacks required administrator input must not be emitted.'
+    Assert-True ($withoutSettings.Count -eq 4) 'Only the setting that lacks required administrator input must be omitted.'
+
+    $generatedSettings=@(Read-Json (Join-Path $packA 'spec\settings-catalog.json'))
+    Assert-True ($generatedSettings.Count -eq 5) 'Scalar, collection, group, nested-choice, and administrator-input settings must all compile.'
+    $collectionSpec=@($generatedSettings | Where-Object displayName -eq 'Synthetic string collection')[0]
+    Assert-True ([string]$collectionSpec.value.kind -ceq 'string-collection' -and @($collectionSpec.value.values).Count -eq 2) 'String collection values must remain explicit and ordered.'
+    $groupSpec=@($generatedSettings | Where-Object displayName -eq 'Synthetic group')[0]
+    Assert-True ([string]$groupSpec.value.kind -ceq 'group-collection' -and @($groupSpec.value.items[0].children).Count -eq 2) 'Group collections must retain their reviewed child tree.'
+    $nestedChoiceSpec=@($generatedSettings | Where-Object displayName -eq 'Synthetic parent choice')[0]
+    Assert-True (@($nestedChoiceSpec.value.children).Count -eq 1 -and @($nestedChoiceSpec.value.children[0].value.items).Count -eq 2) 'Choice-dependent nested group rows must compile deterministically.'
 
     $ambiguousSnapshot=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
     $ambiguousSnapshot.definitions=@($ambiguousSnapshot.definitions)+@($ambiguousSnapshot.definitions[0])
@@ -83,6 +92,24 @@ try {
     try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -SettingsCatalogSnapshotPath $countMismatchPath -OutputPath (Join-Path $testRoot 'count-mismatch-pack') } catch { $countMismatchFailed=$true }
     Assert-True $countMismatchFailed 'A snapshot with inconsistent retrieval evidence must fail closed.'
 
+    $badNestedChoiceCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
+    $badNestedGroup=@($badNestedChoiceCatalog.settingsCatalogSettings | Where-Object displayName -eq 'Synthetic group')[0]
+    $badNestedGroup.value.items[0].children[0].value.optionId='enabled'
+    $badNestedChoicePath=Join-Path $testRoot 'bad-nested-choice-catalog.json'
+    $badNestedChoiceCatalog | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $badNestedChoicePath -Encoding utf8
+    $badNestedChoiceFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -MappingCatalogPath $badNestedChoicePath -OutputPath (Join-Path $testRoot 'bad-nested-choice-pack') } catch { $badNestedChoiceFailed=$true }
+    Assert-True $badNestedChoiceFailed 'A plausible but non-exact nested choice ID must fail closed.'
+
+    $badCollectionCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
+    $badCollection=@($badCollectionCatalog.settingsCatalogSettings | Where-Object displayName -eq 'Synthetic string collection')[0]
+    $badCollection.value.values[0]=123
+    $badCollectionPath=Join-Path $testRoot 'bad-collection-catalog.json'
+    $badCollectionCatalog | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $badCollectionPath -Encoding utf8
+    $badCollectionFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -MappingCatalogPath $badCollectionPath -OutputPath (Join-Path $testRoot 'bad-collection-pack') } catch { $badCollectionFailed=$true }
+    Assert-True $badCollectionFailed 'A collection element whose type contradicts the snapshot must fail closed.'
+
     $incompleteCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
     $incompleteCatalog.recommendations=@($incompleteCatalog.recommendations | Where-Object recommendationId -ne '1.3')
     $incompletePath=Join-Path $testRoot 'incomplete-catalog.json'
@@ -97,6 +124,13 @@ try {
     ConvertTo-Json -InputObject $bundle -Depth 100 | Set-Content -LiteralPath $bundlePath -Encoding utf8
     $staticValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $packB -PassThru
     Assert-True (-not $staticValidation.IsValid) 'Unvalidated static Settings Catalog settings must be rejected.'
+
+    $incompatibleSpecPath=Join-Path $packA 'spec\settings-catalog.json'
+    $incompatibleSpecs=@(Read-Json $incompatibleSpecPath)
+    $incompatibleSpecs[0].value | Add-Member -NotePropertyName values -NotePropertyValue @('misleading-extra-value')
+    ConvertTo-Json -InputObject $incompatibleSpecs -Depth 100 | Set-Content -LiteralPath $incompatibleSpecPath -Encoding utf8
+    $incompatibleValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $packA -PassThru
+    Assert-True (-not $incompatibleValidation.IsValid) 'A value kind with incompatible extra fields must be rejected.'
 
     Import-Module (Join-Path $repoRoot 'src\CISPolicyCreator.psm1') -Force -DisableNameChecking
     Assert-True (-not (Get-Command Get-CpcCandidateSettingId -ErrorAction SilentlyContinue)) 'Constructed candidate definition-ID helper must not exist.'
@@ -176,6 +210,21 @@ try {
     }
     Assert-True $contradictoryPathFailed 'A live CSP path that contradicts reviewed metadata must fail closed.'
     $snapshotFixture=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
+    $definitionCache=@{}
+    foreach($fixtureDefinition in @($snapshotFixture.definitions)){$definitionCache[[string]$fixtureDefinition.id]=$fixtureDefinition}
+    $collectionDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_string_collection')[0]
+    $collectionBody=New-CpcConfigurationSettingBody -Definition $collectionDefinition -Spec $collectionSpec -Definitions @() -DefinitionCache $definitionCache
+    Assert-True ([string]$collectionBody.settingInstance.'@odata.type' -ceq '#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance') 'String collection must use the Graph collection instance type.'
+    Assert-True (@($collectionBody.settingInstance.simpleSettingCollectionValue).Count -eq 2 -and [string]$collectionBody.settingInstance.simpleSettingCollectionValue[0].value -ceq 'principal-a') 'String collection payload must preserve exact reviewed values.'
+    $groupDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_group')[0]
+    $groupBody=New-CpcConfigurationSettingBody -Definition $groupDefinition -Spec $groupSpec -Definitions @() -DefinitionCache $definitionCache
+    $groupChildren=@($groupBody.settingInstance.groupSettingCollectionValue[0].children)
+    Assert-True ([string]$groupBody.settingInstance.'@odata.type' -ceq '#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance' -and $groupChildren.Count -eq 2) 'Group collection must emit the exact Graph group instance tree.'
+    Assert-True ([int64]$groupChildren[1].simpleSettingValue.value -eq 90) 'Nested group integer must preserve its reviewed value.'
+    $parentDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_parent_choice')[0]
+    $parentBody=New-CpcConfigurationSettingBody -Definition $parentDefinition -Spec $nestedChoiceSpec -Definitions @() -DefinitionCache $definitionCache
+    $nestedGroupInstance=@($parentBody.settingInstance.choiceSettingValue.children)[0]
+    Assert-True ([string]$nestedGroupInstance.settingDefinitionId -ceq 'synthetic_nested_group' -and @($nestedGroupInstance.groupSettingCollectionValue).Count -eq 2) 'Choice-dependent nested group must emit all reviewed rows.'
     $choiceDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_choice')[0]
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
     $choiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $choiceSpec

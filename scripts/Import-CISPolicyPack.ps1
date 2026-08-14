@@ -99,7 +99,7 @@ try {
     Write-Host "Fail-closed    : enabled"
 
     # Phase 1: resolve every selected dynamic mapping before any create request.
-    $definitions=@(); $dynamicSpecs=@(); $dynamicByPolicy=@{}; $mappingFailures=[System.Collections.Generic.List[string]]::new()
+    $definitions=@(); $dynamicSpecs=@(); $dynamicByPolicy=@{}; $mappingFailures=[System.Collections.Generic.List[string]]::new(); $definitionCache=@{}
     if ($manifest.settingsCatalogSpec) {
         $specPath=Join-Path $PackRoot ([string]$manifest.settingsCatalogSpec)
         if (Test-Path -LiteralPath $specPath) {
@@ -121,13 +121,20 @@ try {
             continue
         }
         try {
-            $def=Get-CpcSettingDefinition -Spec $spec -Definitions $definitions
-            $body=New-CpcConfigurationSettingBody -Definition $def -Spec $spec
+            $def=Get-CpcSettingDefinition -Spec $spec -Definitions $definitions -Cache $definitionCache
+            $body=New-CpcConfigurationSettingBody -Definition $def -Spec $spec -Definitions $definitions -DefinitionCache $definitionCache
             $policyName=[string]$spec.policy
             if (-not $dynamicByPolicy.ContainsKey($policyName)) { $dynamicByPolicy[$policyName]=[System.Collections.Generic.List[object]]::new() }
             $dynamicByPolicy[$policyName].Add([pscustomobject]@{ spec=$spec; definition=$def; body=$body; label=$label })
-            $instance=$body.settingInstance
-            $preview=if ($instance.choiceSettingValue) { $instance.choiceSettingValue.value } else { $instance.simpleSettingValue.value }
+            $preview=switch([string]$spec.value.kind){
+                'choice' {[string]$spec.value.optionId}
+                'integer' {[string]$spec.value.value}
+                'string' {[string]$spec.value.value}
+                'integer-collection' {"$(@($spec.value.values).Count) integer values"}
+                'string-collection' {"$(@($spec.value.values).Count) string values"}
+                'group-collection' {"$(@($spec.value.items).Count) group values"}
+                default {'unsupported'}
+            }
             Add-CpcResult -Results $results -Stage 'dynamic-setting' -Name $label -Status 'validated' -Detail "$policyName :: $($def.id) :: value=$preview"
             if ($DryRun) { Write-Host "[DRY RUN] Validated $label -> $($def.id) :: payload value=$preview" }
         } catch {

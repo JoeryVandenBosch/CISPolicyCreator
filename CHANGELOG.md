@@ -2,6 +2,7 @@
 
 ## 0.2.1 - 2026-08-14
 
+- Add recursively validated Settings Catalog choice children, integer/string collections, and group collections with exact nested definitions, values, bounded depth, and live payload generation.
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.
 - Harden live Graph collection reads for missing continuation links, explicit skip fallback, duplicate IDs, and unbounded pagination.

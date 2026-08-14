@@ -7,7 +7,7 @@
     "collectionUri": "https://graph.microsoft.com/beta/deviceManagement/configurationSettings",
     "pageSize": 500,
     "pageCount": 1,
-    "definitionCount": 3,
+    "definitionCount": 10,
     "usedODataNextLink": false,
     "usedSkipFallback": false
   },
@@ -35,12 +35,97 @@
     },
     {
       "id": "synthetic_group",
-      "displayName": "",
-      "baseUri": null,
-      "offsetUri": null,
-      "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingDefinition",
+      "displayName": "Synthetic group",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Group",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition",
       "options": [],
       "valueDefinition": null
+    },
+    {
+      "id": "synthetic_string_collection",
+      "displayName": "Synthetic string collection",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Principals",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition",
+      "options": [],
+      "valueDefinition": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
+        "minimumLength": 1,
+        "maximumLength": 64
+      }
+    },
+    {
+      "id": "synthetic_group_enabled",
+      "displayName": "Synthetic group enabled",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Group/Enabled",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
+      "options": [
+        { "itemId": "synthetic_group_enabled_true", "displayName": "Enabled" },
+        { "itemId": "synthetic_group_enabled_false", "displayName": "Disabled" }
+      ],
+      "valueDefinition": null
+    },
+    {
+      "id": "synthetic_group_cadence",
+      "displayName": "Synthetic group cadence",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Group/Cadence",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
+      "options": [],
+      "valueDefinition": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition",
+        "minimumValue": 30,
+        "maximumValue": 1440
+      }
+    },
+    {
+      "id": "synthetic_parent_choice",
+      "displayName": "Synthetic parent choice",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "ParentChoice",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
+      "options": [
+        { "itemId": "synthetic_parent_choice_enabled", "displayName": "Enabled" },
+        { "itemId": "synthetic_parent_choice_disabled", "displayName": "Disabled" }
+      ],
+      "valueDefinition": null
+    },
+    {
+      "id": "synthetic_nested_group",
+      "displayName": "Synthetic nested group",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "ParentChoice/Entries",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition",
+      "options": [],
+      "valueDefinition": null
+    },
+    {
+      "id": "synthetic_nested_key",
+      "displayName": "Synthetic nested key",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "ParentChoice/Entries/Key",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
+      "options": [],
+      "valueDefinition": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
+        "minimumLength": 1,
+        "maximumLength": 64
+      }
+    },
+    {
+      "id": "synthetic_nested_value",
+      "displayName": "Synthetic nested value",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "ParentChoice/Entries/Value",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
+      "options": [],
+      "valueDefinition": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
+        "minimumLength": 1,
+        "maximumLength": 64
+      }
     }
   ]
 }

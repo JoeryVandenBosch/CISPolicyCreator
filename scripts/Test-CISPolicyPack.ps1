@@ -108,6 +108,67 @@ function Assert-MappedRecommendation([string]$Id,[string]$Where,$Profiles) {
     }
 }
 
+function Test-DynamicSettingNode($Node,[string]$Label,[int]$Depth=0) {
+    if($Depth -gt 16){$issues.Add("$Label exceeds the maximum nested Settings Catalog depth");return}
+    if(-not $Node){$issues.Add("$Label is missing");return}
+    if(-not $Node.displayName){$issues.Add("$Label missing displayName")}
+    if(-not $Node.resolve -or (-not $Node.resolve.definitionId -and (-not $Node.resolve.baseUri -or -not $Node.resolve.offsetUri))){$issues.Add("$Label must have an explicit definitionId or exact baseUri + offsetUri")}
+    if(-not $Node.resolve.expectedType){$issues.Add("$Label missing expectedType")}
+    if(-not $Node.value){$issues.Add("$Label missing value");return}
+    $kind=[string]$Node.value.kind
+    if($kind -notin @('choice','integer','string','integer-collection','string-collection','group-collection')){$issues.Add("$Label has unsupported or missing value kind");return}
+    $allowedValueProperties=switch($kind){
+        'choice' {@('kind','optionId','children')}
+        {$_ -in @('integer','string')} {@('kind','value')}
+        {$_ -in @('integer-collection','string-collection')} {@('kind','values')}
+        'group-collection' {@('kind','items')}
+        default {@('kind')}
+    }
+    $unexpectedValueProperties=@($Node.value.PSObject.Properties.Name | Where-Object { $allowedValueProperties -notcontains [string]$_ })
+    if($unexpectedValueProperties.Count -gt 0){$issues.Add("$Label value kind '$kind' contains incompatible properties: $($unexpectedValueProperties -join ', ')")}
+
+    switch($kind){
+        'choice' {
+            if(-not $Node.value.optionId){$issues.Add("$Label requires an exact reviewed optionId")}
+            $childrenProperty=$Node.value.PSObject.Properties['children']
+            $children=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+            $childIndex=0
+            foreach($child in $children){$childIndex++;Test-DynamicSettingNode $child "$Label choice child $childIndex" ($Depth+1)}
+        }
+        {$_ -in @('integer','string')} {
+            $valueProperty=$Node.value.PSObject.Properties['value']
+            if(-not $valueProperty -or $null -eq $valueProperty.Value){$issues.Add("$Label requires a simple value")}
+            elseif($kind -eq 'integer' -and $valueProperty.Value -isnot [byte] -and $valueProperty.Value -isnot [int16] -and $valueProperty.Value -isnot [int32] -and $valueProperty.Value -isnot [int64]){$issues.Add("$Label requires an integer value")}
+            elseif($kind -eq 'string' -and $valueProperty.Value -isnot [string]){$issues.Add("$Label requires a string value")}
+        }
+        {$_ -in @('integer-collection','string-collection')} {
+            $valuesProperty=$Node.value.PSObject.Properties['values']
+            $values=if($valuesProperty){@($valuesProperty.Value)}else{@()}
+            if($values.Count -eq 0){$issues.Add("$Label requires at least one collection value")}
+            $valueIndex=0
+            foreach($itemValue in $values){
+                $valueIndex++
+                if($kind -eq 'integer-collection' -and $itemValue -isnot [byte] -and $itemValue -isnot [int16] -and $itemValue -isnot [int32] -and $itemValue -isnot [int64]){$issues.Add("$Label collection value $valueIndex must be an integer")}
+                if($kind -eq 'string-collection' -and $itemValue -isnot [string]){$issues.Add("$Label collection value $valueIndex must be a string")}
+            }
+        }
+        'group-collection' {
+            $itemsProperty=$Node.value.PSObject.Properties['items']
+            $items=if($itemsProperty){@($itemsProperty.Value)}else{@()}
+            if($items.Count -eq 0){$issues.Add("$Label requires at least one group item")}
+            $itemIndex=0
+            foreach($item in $items){
+                $itemIndex++
+                $childrenProperty=$item.PSObject.Properties['children']
+                $children=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+                if($children.Count -eq 0){$issues.Add("$Label group item $itemIndex requires at least one child")}
+                $childIndex=0
+                foreach($child in $children){$childIndex++;Test-DynamicSettingNode $child "$Label group item $itemIndex child $childIndex" ($Depth+1)}
+            }
+        }
+    }
+}
+
 if ($manifest.settingsCatalogPolicyDirectory) {
     $policyDir=Resolve-PackPath ([string]$manifest.settingsCatalogPolicyDirectory) 'manifest.settingsCatalogPolicyDirectory'
     if (-not $policyDir) {}
@@ -150,9 +211,7 @@ if ($manifest.settingsCatalogSpec) {
                 $resolverKey=if($s.resolve.definitionId){'id:'+[string]$s.resolve.definitionId}else{'path:'+([string]$s.resolve.baseUri).TrimEnd('/')+'|'+[string]$s.resolve.offsetUri}
                 if(-not $dynamicKeys.Add(([string]$s.policy)+'|'+$resolverKey)){ $issues.Add("Dynamic setting '$label' duplicates a definition resolver within policy '$($s.policy)'") }
             }
-            if (-not $s.value -or [string]$s.value.kind -notin @('choice','integer','string')) { $issues.Add("Dynamic setting '$label' has unsupported or missing value kind") }
-            elseif ([string]$s.value.kind -eq 'choice' -and -not $s.value.optionId) { $issues.Add("Dynamic setting '$label' requires an exact reviewed optionId") }
-            elseif ([string]$s.value.kind -in @('integer','string') -and (-not $s.value.PSObject.Properties['value'] -or $null -eq $s.value.value)) { $issues.Add("Dynamic setting '$label' requires a simple value") }
+            Test-DynamicSettingNode $s "Dynamic setting '$label'" 0
             if ($s.policy -and -not $policyNames.Contains([string]$s.policy)) { $issues.Add("Dynamic setting '$label' targets policy '$($s.policy)' that has no policy bundle") }
         }
     }
