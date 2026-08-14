@@ -1,0 +1,33 @@
+# Benchmark source documents and archives
+*.pdf
+*.zip
+*.7z
+*.xlsx
+
+# DOCX is normally ignored, except the intentionally published design document
+*.docx
+!docs/CISPolicyCreator_Fail_Closed_Mapping_Policy.docx
+
+# Private/local working data
+/work/
+/private/
+**/recommendations.raw.json
+**/source-extract*.json
+
+# Import/diagnostic output
+import-results-*.json
+settings-catalog-diagnostics-*.json
+mapping-report-*.csv
+mapping-report-*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

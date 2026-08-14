@@ -1,0 +1,34 @@
+name: Mapping gap
+about: Track a CIS Intune recommendation that is manual or unresolved
+labels: ["mapping-gap"]
+body:
+  - type: input
+    id: benchmark
+    attributes:
+      label: Benchmark/version
+    validations:
+      required: true
+  - type: input
+    id: recommendation
+    attributes:
+      label: Recommendation ID
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Current status
+      options:
+        - unresolved
+        - manual
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Intune/Graph evidence collected
+      description: Do not paste copyrighted benchmark sections. Summarize the implementation evidence and include public Microsoft documentation references if available.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

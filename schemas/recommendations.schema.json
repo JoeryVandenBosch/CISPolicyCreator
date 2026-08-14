@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cispolicycreator.local/schema/recommendations.schema.json",
+  "title": "CISPolicyCreator recommendation inventory",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["recommendationId", "profiles", "status"],
+    "properties": {
+      "recommendationId": { "type": "string", "minLength": 1 },
+      "profiles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+      "status": { "enum": ["mapped", "manual", "unresolved", "not-applicable"] },
+      "implementationType": { "type": ["string", "null"] },
+      "implementationRefs": { "type": "array", "items": { "type": "string" } },
+      "notes": { "type": ["string", "null"] }
+    },
+    "additionalProperties": true
+  }
+}

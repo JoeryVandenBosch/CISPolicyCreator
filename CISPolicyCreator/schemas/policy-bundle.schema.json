@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cispolicycreator.local/schema/policy-bundle.schema.json",
+  "title": "CISPolicyCreator Settings Catalog policy bundle",
+  "type": "object",
+  "required": ["mappingStatus", "recommendationIds", "profiles", "policy", "settings"],
+  "properties": {
+    "mappingStatus": { "type": "string", "const": "mapped" },
+    "recommendationIds": { "type": "array", "items": { "type": "string" } },
+    "profiles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "policy": {
+      "type": "object",
+      "required": ["name", "platforms", "technologies"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "platforms": { "type": "string", "minLength": 1 },
+        "technologies": { "type": "string", "minLength": 1 },
+        "roleScopeTagIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "settings": { "type": "array" }
+  },
+  "additionalProperties": true
+}
