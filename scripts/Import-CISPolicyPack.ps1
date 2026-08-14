@@ -6,6 +6,7 @@ param(
     [switch]$StopOnError,
     [switch]$ContinueOnError,
     [string]$TenantId,
+    [switch]$UseDeviceCode,
     [switch]$ProbeOnly
 )
 
@@ -35,6 +36,7 @@ Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }
 $connectArgs=@{ Scopes=$graphScope; ContextScope='Process'; NoWelcome=$true }
 if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
+if ($UseDeviceCode) { $connectArgs.UseDeviceCode=$true }
 Connect-MgGraph @connectArgs
 $context=Get-MgContext
 if ($TenantId -and $context.TenantId -ne $TenantId) { throw "Authenticated tenant '$($context.TenantId)' does not match requested TenantId '$TenantId'." }

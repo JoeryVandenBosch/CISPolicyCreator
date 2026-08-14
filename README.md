@@ -144,8 +144,11 @@ Dry run uses read-only Graph scope, resolves every selected setting, validates e
     -PackRoot .\work\generated-pack `
     -Profile L1 `
     -TenantId '<tenant-guid>' `
+    -UseDeviceCode `
     -DryRun
 ```
+
+`-UseDeviceCode` is optional, but is useful in embedded or headless terminals that cannot complete browser-based authentication.
 
 An optional probe creates one temporary unassigned policy and always attempts cleanup:
 
