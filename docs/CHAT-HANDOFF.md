@@ -29,6 +29,8 @@ Important supporting commands:
 - `Export-SettingsCatalogDiagnostics.ps1`: capture a pinned definition snapshot;
 - `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISMappingReviewWorklist.ps1`: recursively validate a private historical policy pack against a pinned snapshot and emit candidate-only review evidence without changing mappings;
+- `New-CISMappingReviewApprovals.ps1`: create an all-deferred, hash-bound private reviewer template;
+- `Apply-CISMappingReviewApprovals.ps1`: promote only explicitly acknowledged exact occurrences into a new catalog, with benchmark-prescribed values and no source overwrite;
 - `New-CISAdministratorDecisions.ps1`: generate an explicit decision template;
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;
@@ -39,10 +41,10 @@ Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, dec
 
 ## Verification
 
-The repository contains copyright-safe tests for extraction, Manual+mapped semantics, private candidate worklists, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
+The repository contains copyright-safe tests for extraction, Manual+mapped semantics, private candidate worklists, all-deferred and explicit mapping approvals, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
 
 ## Current benchmark state
 
-The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual). The public-safe catalog now contains 18 exact Settings Catalog mappings validated against a pinned 18,227-definition Graph snapshot; 397 recommendations remain unresolved. The full PDF orchestrator produces 18 dynamic settings in 6 unassigned policies, repeated direct/PDF builds are byte-identical, and all 18 settings pass a pinned-tenant live dry run with zero writes. A private deterministic review worklist derived from the pinned snapshot and historical policies reports 265 unique candidates, 50 ambiguous recommendations, and 100 without candidates; these are candidate hints only and have not changed the public catalog. The catalog is partial and must not be represented as a complete CIS baseline. Continue explicit evidence-backed review and test-tenant import/behavior validation before advancing to the later benchmark roadmap.
+The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual). The public-safe catalog now contains 18 exact Settings Catalog mappings validated against a pinned 18,227-definition Graph snapshot; 397 recommendations remain unresolved. The full PDF orchestrator produces 18 dynamic settings in 6 unassigned policies, repeated direct/PDF builds are byte-identical, and all 18 settings pass a pinned-tenant live dry run with zero writes. A private deterministic review worklist derived from the pinned snapshot and historical policies reports 265 unique candidates, 50 ambiguous recommendations, and 100 without candidates. The hash-bound approval template contains 315 unresolved candidate rows, all defaulted to `defer`; no approval or public catalog change has been made. The catalog is partial and must not be represented as a complete CIS baseline. Continue explicit evidence-backed review and test-tenant import/behavior validation before advancing to the later benchmark roadmap.
 
-Source PDFs, raw extraction text, private decisions, tenant identifiers, and import logs must not be committed.
+Source PDFs, raw extraction text, private review/approval files, private decisions, tenant identifiers, and import logs must not be committed.

@@ -21,9 +21,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' -o -name '*.private-review.json' \) -print -quit | grep -q .; then
+          if find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' -o -name '*.private-review.json' -o -name '*.private-approvals.json' \) -print -quit | grep -q .; then
             echo 'Source benchmark/archive/private extraction or review data found in repository.' >&2
-            find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' -o -name '*.private-review.json' \) -print
+            find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' -o -name '*.private-review.json' -o -name '*.private-approvals.json' \) -print
             exit 1
           fi
 

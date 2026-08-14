@@ -43,6 +43,12 @@ private CIS Intune PDF
         v
 deterministic extraction + source identity checks
         |
+        +---- all-unresolved catalog seed
+        |
+        +---- optional candidate-only worklist
+                    |
+                    +---- explicit hash-bound reviewer approvals
+        |
         v
 reviewed, versioned mapping catalog
         |
@@ -117,6 +123,31 @@ If you have a legitimately obtained, previously reviewed configuration-policy pa
 ```
 
 The command recursively validates every referenced definition, type, choice ID, and value against the pinned snapshot, then uses deterministic normalized title/display-name containment only to produce review candidates. It never edits the mapping catalog. `unique-candidate` is not mapping proof, ambiguous candidates remain ambiguous, and a reviewer must explicitly approve the exact setting hierarchy and value before changing `mappingStatus`. The worklist contains private benchmark titles and must not be committed.
+
+Create a private approval template tied to the exact catalog and worklist hashes:
+
+```powershell
+.\scripts\New-CISMappingReviewApprovals.ps1 `
+    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
+    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
+    -CatalogVersion '<next catalog version>' `
+    -PackVersion '<next pack version>' `
+    -OutputPath C:\Private\benchmark.private-approvals.json
+```
+
+Every row starts as `defer`. A reviewer may set a row to `mapped` only by acknowledging semantic equivalence, asserting `valueBasis: benchmark-prescribed`, and selecting an exact candidate occurrence, complete top-level definition, and explicit unassigned policy metadata. The policy platform/technology must match the hashed reference and only the default role scope tag `0` is accepted. Apply those approvals to a new catalog file:
+
+```powershell
+.\scripts\Apply-CISMappingReviewApprovals.ps1 `
+    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
+    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
+    -ApprovalsPath C:\Private\benchmark.private-approvals.json `
+    -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
+    -ReferencePackRoot C:\Private\reviewed-reference-pack `
+    -OutputPath C:\Private\mapping-catalog.next.json
+```
+
+The apply command rechecks every source hash and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations, never overwrites the input catalog, and cannot be used for organizational values that belong in `requires-input`. The output still requires the complete PDF build, offline validation, live dry run, and test-tenant review before publication or import.
 
 If the catalog declares organizational choices, generate and complete a decision file:
 
@@ -204,7 +235,7 @@ The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 rec
 
 ## Public repository rules
 
-Never commit source PDFs, Build Kits, raw extraction JSON, administrator decision files containing organizational details, tenant identifiers, credentials, diagnostic exports, or import-result logs. Public catalogs contain only minimal recommendation identifiers, mapping metadata, reviewed Graph identifiers/values, and original project code.
+Never commit source PDFs, Build Kits, raw extraction JSON, private review/approval files, administrator decision files containing organizational details, tenant identifiers, credentials, diagnostic exports, or import-result logs. Public catalogs contain only minimal recommendation identifiers, mapping metadata, reviewed Graph identifiers/values, and original project code.
 
 ## License
 

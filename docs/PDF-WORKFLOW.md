@@ -63,7 +63,68 @@ The reference root must contain `configuration-policies\*.json` with an exact `[
 
 The normalized title/display-name rule is only a reviewer shortcut. The output explicitly sets `mappingChangesMade` to `false`; `unique-candidate` does not prove a mapping, ambiguous candidates remain ambiguous, and no catalog is modified. The worklist contains private benchmark titles, is ignored by Git through `*.private-review.json`, and must not be committed.
 
-## 6. Supply organizational decisions
+## 6. Approve exact mapping evidence explicitly
+
+Create a private, all-deferred approval template bound to the exact catalog and review-worklist hashes:
+
+```powershell
+.\scripts\New-CISMappingReviewApprovals.ps1 `
+  -MappingCatalogPath .\benchmarks\example\1.0.0\mapping-catalog.json `
+  -ReviewWorklistPath C:\Private\benchmark.private-review.json `
+  -CatalogVersion '0.2.0' `
+  -PackVersion '0.2.0' `
+  -OutputPath C:\Private\benchmark.private-approvals.json
+```
+
+Changing a review to `mapped` requires all of the following explicit evidence: `acknowledged: true`, a reviewer identity and justification, a public-safe note, `valueBasis: benchmark-prescribed`, one or more exact candidate occurrences, the complete top-level definition ID, and unassigned policy metadata. The platform and technology must equal the hashed reference policy, profiles must equal the selected occurrence profile, and only default role scope tag `0` is allowed. Ambiguous candidates may be selected only through this explicit review. `Manual` assessment remains independent and is preserved when its deterministic mapping is approved.
+
+Copy selector fields exactly from one occurrence in the private worklist. An approved review has this shape:
+
+```json
+{
+  "recommendationId": "1.2.3",
+  "candidateStatus": "unique-candidate",
+  "outcome": "mapped",
+  "acknowledged": true,
+  "valueBasis": "benchmark-prescribed",
+  "reviewedBy": "reviewer identity",
+  "justification": "Why the recommendation semantics and complete setting tree are equivalent.",
+  "publicNotes": "Exact Settings Catalog hierarchy and value reviewed.",
+  "selections": [
+    {
+      "candidateDefinitionId": "exact_candidate_definition_id",
+      "sourceFile": "configuration-policies/reference-policy.json",
+      "path": "settings[1]",
+      "topLevelDefinitionId": "exact_top_level_definition_id",
+      "policy": {
+        "id": "public-safe-policy-id",
+        "name": "Public-safe policy name [L1]",
+        "description": "Original project description.",
+        "platforms": "windows10",
+        "technologies": "mdm",
+        "profiles": ["L1"],
+        "roleScopeTagIds": ["0"]
+      }
+    }
+  ]
+}
+```
+
+Apply the approvals to a new catalog; the source catalog is never overwritten:
+
+```powershell
+.\scripts\Apply-CISMappingReviewApprovals.ps1 `
+  -MappingCatalogPath .\benchmarks\example\1.0.0\mapping-catalog.json `
+  -ReviewWorklistPath C:\Private\benchmark.private-review.json `
+  -ApprovalsPath C:\Private\benchmark.private-approvals.json `
+  -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
+  -ReferencePackRoot C:\Private\reviewed-reference-pack `
+  -OutputPath C:\Private\mapping-catalog.next.json
+```
+
+The script verifies the catalog, worklist, snapshot, and every reference-policy hash; revalidates exact definitions, types, choices, values, collections, and nested groups; and promotes only currently `unresolved` recommendations. An all-deferred file writes nothing. This path intentionally cannot authorize organizational values: use `requires-input` and an administrator decision instead. Keep `*.private-approvals.json` private, then run the complete build and live/test-tenant validation before publishing the new catalog.
+
+## 7. Supply organizational decisions
 
 ```powershell
 .\scripts\New-CISAdministratorDecisions.ps1 `
@@ -73,7 +134,7 @@ The normalized title/display-name rule is only a reviewer shortcut. The output e
 
 Complete every required value, set `acknowledged` to `true`, and add a justification. Values outside reviewed allowed sets/ranges fail validation. Missing decisions remain nondeployable `requires-input`; they are never defaulted.
 
-## 7. Build atomically
+## 8. Build atomically
 
 ```powershell
 .\scripts\Invoke-CISPolicyPipeline.ps1 `
@@ -86,14 +147,14 @@ Complete every required value, set `acknowledged` to `true`, and add a justifica
 
 The script extracts to a private staging directory, compiles and validates the pack, moves the finished pack into place, and removes staging data. It refuses to overwrite an existing output path. `-KeepPrivateExtraction` retains raw text outside the pack only when explicitly requested.
 
-## 8. Review and validate offline
+## 9. Review and validate offline
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot .\work\example
 .\scripts\Get-CISMappingReport.ps1 -PackRoot .\work\example
 ```
 
-## 9. Validate live, then import explicitly
+## 10. Validate live, then import explicitly
 
 Run `-DryRun` with a pinned tenant. It uses read-only Graph scope and validates current definitions/options before any write. Add `-UseDeviceCode` in embedded or headless terminals. Run `-ProbeOnly` if a temporary write-path test is required. Finally, invoke the importer without either switch to create unassigned policies.
 

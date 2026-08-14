@@ -3,21 +3,30 @@
   "$id": "https://cispolicycreator.local/schema/private-mapping-review.schema.json",
   "title": "CISPolicyCreator private mapping review worklist",
   "type": "object",
-  "required": ["schemaVersion", "tool", "mappingChangesMade", "source", "summary", "recommendations"],
+  "required": ["schemaVersion", "tool", "mappingChangesMade", "benchmark", "source", "summary", "recommendations"],
   "properties": {
-    "schemaVersion": { "const": "1.0" },
+    "schemaVersion": { "const": "1.1" },
     "tool": {
       "type": "object",
       "required": ["name", "version", "matchRule", "minimumNormalizedLength"],
       "properties": {
         "name": { "const": "New-CISMappingReviewWorklist.ps1" },
-        "version": { "const": "0.1.0" },
+        "version": { "const": "0.2.0" },
         "matchRule": { "const": "exact-normalized-title-display-containment" },
         "minimumNormalizedLength": { "type": "integer", "minimum": 1 }
       },
       "additionalProperties": false
     },
     "mappingChangesMade": { "const": false },
+    "benchmark": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
     "source": {
       "type": "object",
       "required": ["extractionSha256", "settingsCatalogSnapshotSha256", "referenceFiles"],

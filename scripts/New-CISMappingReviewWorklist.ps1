@@ -227,7 +227,7 @@ foreach($recommendation in @($extraction.recommendations)){
         $definition=$definitionById[$definitionId]
         $displayName=[string]$definition.displayName
         $normalizedDisplayName=Normalize-ReviewText $displayName
-        if($normalizedDisplayName.Length -lt $MinimumNormalizedLength){continue}
+        if($normalizedTitle.Length -lt $MinimumNormalizedLength -or $normalizedDisplayName.Length -lt $MinimumNormalizedLength){continue}
         $direction=$null
         if($normalizedTitle -ceq $normalizedDisplayName){$direction='exact'}
         elseif($normalizedTitle.Contains($normalizedDisplayName)){$direction='recommendation-contains-definition'}
@@ -263,14 +263,18 @@ foreach($recommendation in @($extraction.recommendations)){
 }
 
 $worklist=[pscustomobject][ordered]@{
-    schemaVersion='1.0'
+    schemaVersion='1.1'
     tool=[pscustomobject][ordered]@{
         name='New-CISMappingReviewWorklist.ps1'
-        version='0.1.0'
+        version='0.2.0'
         matchRule='exact-normalized-title-display-containment'
         minimumNormalizedLength=$MinimumNormalizedLength
     }
     mappingChangesMade=$false
+    benchmark=[pscustomobject][ordered]@{
+        id=[string]$extraction.benchmark.id
+        version=[string]$extraction.benchmark.version
+    }
     source=[pscustomobject][ordered]@{
         extractionSha256=(Get-Sha256 $extractionInput.Path)
         settingsCatalogSnapshotSha256=(Get-Sha256 $snapshotInput.Path)

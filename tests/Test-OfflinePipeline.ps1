@@ -30,8 +30,9 @@ try {
     Assert-True ($mappingCatalogHashBefore -ceq (Get-FileHash -LiteralPath $common.MappingCatalogPath -Algorithm SHA256).Hash) 'Candidate generation must not modify the mapping catalog.'
     $review=Read-Json $reviewPathA
     Assert-True (-not [bool]$review.mappingChangesMade) 'Candidate worklists must explicitly state that no mappings were changed.'
-    Assert-True ($review.summary.recommendationCount -eq 4 -and $review.summary.referenceDefinitionCount -eq 9 -and $review.summary.validatedOccurrenceCount -eq 11) 'Candidate worklist summary must count all synthetic recommendations and recursively validated reference settings.'
-    Assert-True ($review.summary.uniqueCandidateRecommendations -eq 2 -and $review.summary.ambiguousCandidateRecommendations -eq 1 -and $review.summary.noCandidateRecommendations -eq 1 -and $review.summary.candidateLinkCount -eq 5) 'Candidate worklist status counts must be deterministic.'
+    Assert-True ([string]$review.schemaVersion -ceq '1.1' -and [string]$review.benchmark.id -ceq 'synthetic-intune-review' -and [string]$review.benchmark.version -ceq '1.0.0') 'Candidate worklists must bind evidence to the exact benchmark identity.'
+    Assert-True ($review.summary.recommendationCount -eq 5 -and $review.summary.referenceDefinitionCount -eq 9 -and $review.summary.validatedOccurrenceCount -eq 11) 'Candidate worklist summary must count all synthetic recommendations and recursively validated reference settings.'
+    Assert-True ($review.summary.uniqueCandidateRecommendations -eq 3 -and $review.summary.ambiguousCandidateRecommendations -eq 1 -and $review.summary.noCandidateRecommendations -eq 1 -and $review.summary.candidateLinkCount -eq 6) 'Candidate worklist status counts must be deterministic.'
     $manualCandidate=@($review.recommendations | Where-Object recommendationId -eq '1.3')[0]
     Assert-True ($manualCandidate.cisAssessmentMethod -ceq 'Manual' -and $manualCandidate.candidateStatus -ceq 'unique-candidate') 'A Manual assessment recommendation may still have a deterministic mapping candidate.'
     $ambiguousCandidate=@($review.recommendations | Where-Object recommendationId -eq '1.2')[0]
@@ -67,6 +68,117 @@ try {
     $unsafeReviewNameFailed=$false
     try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath (Join-Path $testRoot 'review.json') } catch { $unsafeReviewNameFailed=$true }
     Assert-True $unsafeReviewNameFailed 'A private review worklist must use the ignored .private-review.json suffix.'
+
+    $reviewCatalogPath=Join-Path $testRoot 'review-catalog.json'
+    & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `
+        -ExtractionPath $reviewCommon.ExtractionPath `
+        -OutputPath $reviewCatalogPath `
+        -CatalogId 'synthetic-review-catalog' `
+        -CatalogVersion '0.1.0' `
+        -PackId 'synthetic-review-pack' `
+        -PackName 'Synthetic Review Pack' `
+        -PackVersion '0.1.0'
+    $reviewCatalogHashBefore=(Get-FileHash -LiteralPath $reviewCatalogPath -Algorithm SHA256).Hash
+    $approvalTemplateA=Join-Path $testRoot 'approval-a.private-approvals.json'
+    $approvalTemplateB=Join-Path $testRoot 'approval-b.private-approvals.json'
+    & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath $approvalTemplateA
+    & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath $approvalTemplateB
+    Assert-True (((Get-FileHash -LiteralPath $approvalTemplateA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $approvalTemplateB -Algorithm SHA256).Hash)) 'Repeated private approval templates must be byte-identical.'
+    $approval=Read-Json $approvalTemplateA
+    Assert-True (@($approval.reviews).Count -eq 4 -and @($approval.reviews | Where-Object outcome -ne 'defer').Count -eq 0) 'Every candidate review must start deferred and nondeployable.'
+
+    $wrongBenchmarkWorklist=Read-Json $reviewPathA
+    $wrongBenchmarkWorklist.benchmark.id='different-benchmark'
+    $wrongBenchmarkWorklistPath=Join-Path $testRoot 'wrong-benchmark.private-review.json'
+    $wrongBenchmarkWorklist | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $wrongBenchmarkWorklistPath -Encoding utf8
+    $wrongBenchmarkFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $wrongBenchmarkWorklistPath -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath (Join-Path $testRoot 'wrong-benchmark.private-approvals.json') } catch { $wrongBenchmarkFailed=$true }
+    Assert-True $wrongBenchmarkFailed 'Candidate evidence from a different benchmark identity must fail closed.'
+
+    $approvedPolicy=[pscustomobject][ordered]@{
+        id='synthetic-approved-l1'
+        name='Synthetic Approved [L1]'
+        description='Copyright-safe mapping approval test policy.'
+        platforms='windows10'
+        technologies='mdm'
+        profiles=@('L1')
+        roleScopeTagIds=@('0')
+    }
+    $approvedSelections=@{
+        '1.1'=[pscustomobject][ordered]@{candidateDefinitionId='synthetic_choice';sourceFile='configuration-policies/Synthetic Settings [L1].json';path='settings[1]';topLevelDefinitionId='synthetic_choice';policy=$approvedPolicy}
+        '1.2'=[pscustomobject][ordered]@{candidateDefinitionId='synthetic_group';sourceFile='configuration-policies/Synthetic Settings [L1].json';path='settings[3]';topLevelDefinitionId='synthetic_group';policy=$approvedPolicy}
+        '1.3'=[pscustomobject][ordered]@{candidateDefinitionId='synthetic_string_collection';sourceFile='configuration-policies/Synthetic Settings [L1].json';path='settings[2]';topLevelDefinitionId='synthetic_string_collection';policy=$approvedPolicy}
+        '1.5'=[pscustomobject][ordered]@{candidateDefinitionId='synthetic_parent_choice';sourceFile='configuration-policies/Synthetic Settings [L1].json';path='settings[4]';topLevelDefinitionId='synthetic_parent_choice';policy=$approvedPolicy}
+    }
+    foreach($review in @($approval.reviews)){
+        $id=[string]$review.recommendationId
+        if(-not $approvedSelections.ContainsKey($id)){continue}
+        $review.outcome='mapped'
+        $review.acknowledged=$true
+        $review.valueBasis='benchmark-prescribed'
+        $review.reviewedBy='Synthetic reviewer'
+        $review.justification='Synthetic recommendation semantics, setting hierarchy, and exact value were reviewed.'
+        $review.publicNotes='Exact synthetic setting hierarchy and value reviewed.'
+        $review.selections=@($approvedSelections[$id])
+    }
+    $approvedPath=Join-Path $testRoot 'approved.private-approvals.json'
+    $approval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $approvedPath -Encoding utf8
+    $approvedCatalogA=Join-Path $testRoot 'approved-catalog-a.json'
+    $approvedCatalogB=Join-Path $testRoot 'approved-catalog-b.json'
+    $applyCommon=@{
+        MappingCatalogPath=$reviewCatalogPath
+        ReviewWorklistPath=$reviewPathA
+        ApprovalsPath=$approvedPath
+        SettingsCatalogSnapshotPath=$reviewCommon.SettingsCatalogSnapshotPath
+        ReferencePackRoot=$reviewCommon.ReferencePackRoot
+    }
+    & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -OutputPath $approvedCatalogA
+    & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -OutputPath $approvedCatalogB
+    Assert-True (((Get-FileHash -LiteralPath $approvedCatalogA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $approvedCatalogB -Algorithm SHA256).Hash)) 'Repeated approved catalog promotion must be byte-identical.'
+    Assert-True ($reviewCatalogHashBefore -ceq (Get-FileHash -LiteralPath $reviewCatalogPath -Algorithm SHA256).Hash) 'Approval application must never modify the input catalog.'
+    $approvedCatalog=Read-Json $approvedCatalogA
+    Assert-True ([string]$approvedCatalog.version -ceq '0.2.0' -and [string]$approvedCatalog.pack.version -ceq '0.2.0') 'Approved catalog and pack versions must come from the explicit private approval file.'
+    Assert-True (@($approvedCatalog.recommendations | Where-Object mappingStatus -eq 'mapped').Count -eq 4 -and @($approvedCatalog.recommendations | Where-Object mappingStatus -eq 'unresolved').Count -eq 1) 'Only explicitly approved reviews may become mapped.'
+    Assert-True (@($approvedCatalog.settingsCatalogPolicies).Count -eq 1 -and @($approvedCatalog.settingsCatalogSettings).Count -eq 4) 'Approved selections must produce one reviewed policy and four exact setting trees.'
+
+    $approvedPack=Join-Path $testRoot 'approved-pack'
+    & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath $reviewCommon.ExtractionPath -MappingCatalogPath $approvedCatalogA -SettingsCatalogSnapshotPath $reviewCommon.SettingsCatalogSnapshotPath -OutputPath $approvedPack
+    $approvedValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $approvedPack -PassThru
+    Assert-True $approvedValidation.IsValid 'An explicitly approved catalog must build a valid unassigned pack.'
+    $approvedRecommendations=@(Read-Json (Join-Path $approvedPack 'spec\recommendations.json'))
+    $approvedManual=@($approvedRecommendations | Where-Object recommendationId -eq '1.3')[0]
+    Assert-True ($approvedManual.cisAssessmentMethod -ceq 'Manual' -and $approvedManual.mappingStatus -ceq 'mapped') 'Explicit catalog promotion must keep Manual assessment independent from deterministic mapped status.'
+    $approvedSettings=@(Read-Json (Join-Path $approvedPack 'spec\settings-catalog.json'))
+    $approvedNested=@($approvedSettings | Where-Object recommendationId -eq '1.5')[0]
+    Assert-True (@($approvedNested.value.children).Count -eq 1 -and @($approvedNested.value.children[0].value.items).Count -eq 2) 'Approved historical nested choice/group evidence must retain the complete exact tree.'
+
+    $deferredApplyFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $approvalTemplateA -OutputPath (Join-Path $testRoot 'deferred-catalog.json') } catch { $deferredApplyFailed=$true }
+    Assert-True $deferredApplyFailed 'A default all-deferred approval template must not produce a new catalog.'
+
+    $fakeApproval=Read-Json $approvedPath
+    @($fakeApproval.reviews | Where-Object recommendationId -eq '1.1')[0].selections[0].candidateDefinitionId='SYNTHETIC_CHOICE'
+    $fakeApprovalPath=Join-Path $testRoot 'fake.private-approvals.json'
+    $fakeApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $fakeApprovalPath -Encoding utf8
+    $fakeApprovalFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $fakeApprovalPath -OutputPath (Join-Path $testRoot 'fake-catalog.json') } catch { $fakeApprovalFailed=$true }
+    Assert-True $fakeApprovalFailed 'A case-changed or otherwise non-exact candidate definition must fail approval application.'
+
+    $wrongPlatformApproval=Read-Json $approvedPath
+    @($wrongPlatformApproval.reviews | Where-Object recommendationId -eq '1.1')[0].selections[0].policy.platforms='androidDeviceAdministrator'
+    $wrongPlatformApprovalPath=Join-Path $testRoot 'wrong-platform.private-approvals.json'
+    $wrongPlatformApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $wrongPlatformApprovalPath -Encoding utf8
+    $wrongPlatformApprovalFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $wrongPlatformApprovalPath -OutputPath (Join-Path $testRoot 'wrong-platform-catalog.json') } catch { $wrongPlatformApprovalFailed=$true }
+    Assert-True $wrongPlatformApprovalFailed 'Approval policy platform and technology must match the hashed reference policy exactly.'
+
+    $organizationalApproval=Read-Json $approvedPath
+    @($organizationalApproval.reviews | Where-Object recommendationId -eq '1.1')[0].valueBasis=$null
+    $organizationalApprovalPath=Join-Path $testRoot 'organizational.private-approvals.json'
+    $organizationalApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $organizationalApprovalPath -Encoding utf8
+    $organizationalApprovalFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $organizationalApprovalPath -OutputPath (Join-Path $testRoot 'organizational-catalog.json') } catch { $organizationalApprovalFailed=$true }
+    Assert-True $organizationalApprovalFailed 'A mapped review without an explicit benchmark-prescribed value basis must fail closed.'
 
     $seedCatalogPath=Join-Path $testRoot 'seed-catalog.json'
     & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `

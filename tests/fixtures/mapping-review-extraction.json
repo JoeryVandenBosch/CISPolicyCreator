@@ -13,7 +13,7 @@
   "source": {
     "fileName": "synthetic-review.pdf",
     "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
-    "pageCount": 4
+    "pageCount": 5
   },
   "recommendations": [
     {
@@ -55,6 +55,17 @@
       "page": 4,
       "profiles": ["L1"],
       "cisAssessmentMethod": "Manual",
+      "profileApplicability": "Level 1",
+      "audit": null,
+      "remediation": null,
+      "defaultValue": null
+    },
+    {
+      "recommendationId": "1.5",
+      "title": "Synthetic parent choice",
+      "page": 5,
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Automated",
       "profileApplicability": "Level 1",
       "audit": null,
       "remediation": null,

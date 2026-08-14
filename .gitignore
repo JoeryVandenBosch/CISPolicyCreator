@@ -15,6 +15,7 @@
 **/source-extract*.json
 *.private-extraction.json
 *.private-review.json
+*.private-approvals.json
 
 # Import/diagnostic output
 import-results-*.json

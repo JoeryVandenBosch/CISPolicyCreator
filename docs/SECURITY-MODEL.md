@@ -1,6 +1,6 @@
 # Security model
 
-CISPolicyCreator treats the PDF, mapping catalog, decision file, definition snapshot, generated pack, and live tenant as distinct trust boundaries.
+CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, mapping catalog, administrator decision file, definition snapshot, generated pack, and live tenant as distinct trust boundaries.
 
 ## Build invariants
 
@@ -15,6 +15,7 @@ CISPolicyCreator treats the PDF, mapping catalog, decision file, definition snap
 9. Static Settings Catalog payloads and heuristic fallbacks are rejected.
 10. All build inputs are schema-validated and hashed; private definition snapshots record their source tenant and capture time.
 11. Generated files are deterministic and contain no source PDF or raw extraction text.
+12. Candidate matches cannot change mapping status; promotion requires a hash-bound explicit approval of semantic equivalence, the exact occurrence/tree, and a benchmark-prescribed value basis.
 
 ## Runtime invariants
 
@@ -30,6 +31,6 @@ CISPolicyCreator treats the PDF, mapping catalog, decision file, definition snap
 
 ## Residual risks
 
-A valid Graph payload does not prove semantic equivalence to a CIS recommendation. Mapping review and test-tenant assessment remain required. Microsoft Graph beta behavior can drift; the pinned snapshot makes the build reproducible, while live dry run detects current-tenant drift and fails rather than substituting a different setting.
+A valid Graph payload does not prove semantic equivalence to a CIS recommendation. Explicit mapping approval, full pack validation, live dry run, and test-tenant assessment remain required. Microsoft Graph beta behavior can drift; the pinned snapshot makes the build reproducible, while live dry run detects current-tenant drift and fails rather than substituting a different setting.
 
 PDFs are untrusted input. Use the hash-pinned parser version, retain source documents privately, and process them in an appropriately constrained workstation environment. Extraction defaults to a 250 MiB file limit and 2,000-page limit; lower them when appropriate.
