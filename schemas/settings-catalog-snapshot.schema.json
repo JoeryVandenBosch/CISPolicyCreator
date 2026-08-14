@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cispolicycreator.local/schema/settings-catalog-snapshot.schema.json",
+  "title": "CISPolicyCreator Settings Catalog definition snapshot",
+  "type": "object",
+  "required": ["schemaVersion", "apiVersion", "capturedAt", "tenantId", "definitions"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "apiVersion": { "enum": ["beta", "v1.0"] },
+    "capturedAt": { "type": "string", "minLength": 1 },
+    "tenantId": { "type": "string", "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$" },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "displayName", "baseUri", "offsetUri", "@odata.type", "options", "valueDefinition"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "displayName": { "type": "string", "minLength": 1 },
+          "baseUri": { "type": ["string", "null"] },
+          "offsetUri": { "type": ["string", "null"] },
+          "@odata.type": { "type": "string", "minLength": 1 },
+          "options": { "type": "array" },
+          "valueDefinition": {}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

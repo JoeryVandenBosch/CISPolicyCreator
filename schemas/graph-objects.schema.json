@@ -12,10 +12,10 @@
       "recommendationIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
       "profiles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
       "endpoint": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
-      "listEndpoint": { "type": ["string", "null"] },
+      "listEndpoint": { "type": ["string", "null"], "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
       "nameProperty": { "type": ["string", "null"] },
       "payload": { "type": "object" }
     },
-    "additionalProperties": true
+    "additionalProperties": false
   }
 }

@@ -1,5 +1,5 @@
 name: Mapping gap
-about: Track a CIS Intune recommendation that is manual or unresolved
+description: Track an unresolved, requires-input, manual, or not-applicable CIS Intune mapping
 labels: ["mapping-gap"]
 body:
   - type: input
@@ -15,12 +15,24 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: status
+    id: assessment_method
     attributes:
-      label: Current status
+      label: CIS assessment method
+      options:
+        - Automated
+        - Manual
+    validations:
+      required: true
+  - type: dropdown
+    id: mapping_status
+    attributes:
+      label: Current mapping status
       options:
         - unresolved
+        - requires-input
         - manual
+        - not-applicable
+        - mapped
     validations:
       required: true
   - type: textarea

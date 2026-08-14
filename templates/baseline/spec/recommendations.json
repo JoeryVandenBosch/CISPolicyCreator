@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "recommendationId": "replace-me",
+    "profiles": ["L1"],
+    "cisAssessmentMethod": "Automated",
+    "mappingStatus": "unresolved",
+    "implementationType": null,
+    "implementationRefs": [],
+    "notes": "Template placeholder; replace through the reproducible pipeline."
+  }
+]

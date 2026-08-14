@@ -49,46 +49,43 @@ function Normalize-CpcCspPath {
     return $v.TrimEnd('/')
 }
 
-function Get-CpcCandidateSettingId {
-    param([Parameter(Mandatory)]$Spec)
-    $base = Normalize-CpcCspPath $Spec.resolve.baseUri
-    $baseId = $base -replace '[^a-z0-9]+','_'
-    $offsetId = ([string]$Spec.resolve.offsetUri).Trim().ToLowerInvariant() -replace '[^a-z0-9]+','_'
-    return "${baseId}_${offsetId}"
-}
-
 function Get-CpcSettingDefinition {
     param([Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions)
 
     if ($Spec.resolve.definitionId) {
-        try { return Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$($Spec.resolve.definitionId)" }
+        $encodedDefinitionId=[Uri]::EscapeDataString([string]$Spec.resolve.definitionId)
+        try { $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$encodedDefinitionId" }
         catch { throw "Could not read explicit Settings Catalog definition '$($Spec.resolve.definitionId)' for '$($Spec.displayName)': $(Get-CpcGraphErrorDetail $_)" }
-    }
-
-    $base = Normalize-CpcCspPath $Spec.resolve.baseUri
-    $offset = ([string]$Spec.resolve.offsetUri).Trim().ToLowerInvariant()
-    $matches = @()
-    if ($base -and $offset) {
+        if ([string]$def.id -cne [string]$Spec.resolve.definitionId) { throw "Graph returned definition '$($def.id)' instead of reviewed definition '$($Spec.resolve.definitionId)' for '$($Spec.displayName)'." }
+    } else {
+        $base = Normalize-CpcCspPath $Spec.resolve.baseUri
+        $offset = ([string]$Spec.resolve.offsetUri).Trim().ToLowerInvariant()
+        if (-not $base -or -not $offset) {
+            throw "'$($Spec.displayName)' must use an explicit definitionId or an exact baseUri + offsetUri resolver."
+        }
         $matches = @($Definitions | Where-Object {
             (Normalize-CpcCspPath $_.baseUri) -eq $base -and ([string]$_.offsetUri).Trim().ToLowerInvariant() -eq $offset
         })
+        if ($matches.Count -ne 1) { throw "Could not uniquely resolve Settings Catalog definition for '$($Spec.displayName)' by exact baseUri + offsetUri. Matches=$($matches.Count)." }
+        $def = $matches[0]
     }
-    if ($matches.Count -eq 0 -and $Spec.resolve.displayName) {
-        $needle = ([string]$Spec.resolve.displayName).Trim().ToLowerInvariant()
-        $matches = @($Definitions | Where-Object { ([string]$_.displayName).Trim().ToLowerInvariant() -eq $needle })
+    $definitionBaseUri=if ($def.PSObject.Properties['baseUri']) { [string]$def.baseUri } else { $null }
+    $definitionOffsetUri=if ($def.PSObject.Properties['offsetUri']) { [string]$def.offsetUri } else { $null }
+    if ($Spec.resolve.baseUri -and (Normalize-CpcCspPath $definitionBaseUri) -ne (Normalize-CpcCspPath $Spec.resolve.baseUri)) {
+        throw "Definition '$($def.id)' baseUri does not match the reviewed resolver for '$($Spec.displayName)'."
     }
-    if ($matches.Count -ne 1 -and $base -and $offset) {
-        $candidateId = Get-CpcCandidateSettingId -Spec $Spec
-        try {
-            $direct = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$candidateId"
-            if ($direct -and $direct.id) { $matches = @($direct) }
-        } catch {}
+    if ($Spec.resolve.offsetUri -and ([string]$definitionOffsetUri).Trim() -ine ([string]$Spec.resolve.offsetUri).Trim()) {
+        throw "Definition '$($def.id)' offsetUri does not match the reviewed resolver for '$($Spec.displayName)'."
     }
-    if ($matches.Count -ne 1) { throw "Could not uniquely resolve Settings Catalog definition for '$($Spec.displayName)'. Matches=$($matches.Count)." }
-
-    $def = $matches[0]
-    if (([string]$def.'@odata.type') -match 'ChoiceSettingDefinition' -and @($def.options).Count -eq 0) {
-        $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$($def.id)"
+    if ($Spec.resolve.expectedType -and [string]$def.'@odata.type' -ne [string]$Spec.resolve.expectedType) {
+        throw "Definition '$($def.id)' type '$($def.'@odata.type')' does not match reviewed type '$($Spec.resolve.expectedType)' for '$($Spec.displayName)'."
+    }
+    $optionsProperty=$def.PSObject.Properties['options']
+    if (([string]$def.'@odata.type') -match 'ChoiceSettingDefinition' -and (-not $optionsProperty -or @($optionsProperty.Value).Count -eq 0)) {
+        $encodedResolvedId=[Uri]::EscapeDataString([string]$def.id)
+        $def = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationSettings/$encodedResolvedId"
+        if ($Spec.resolve.definitionId -and [string]$def.id -cne [string]$Spec.resolve.definitionId) { throw "Graph returned a different definition while loading choice options for '$($Spec.displayName)'." }
+        if ([string]$def.'@odata.type' -cne [string]$Spec.resolve.expectedType) { throw "Graph definition type changed while loading choice options for '$($Spec.displayName)'." }
     }
     return $def
 }
@@ -103,29 +100,13 @@ function New-CpcConfigurationSettingBody {
         if ([string]$valueSpec.kind -ne 'choice') { throw "Value kind '$($valueSpec.kind)' does not match choice definition '$($Spec.displayName)'." }
         $options = @($Definition.options)
         if ($options.Count -eq 0) { throw "No choice options returned for '$($Spec.displayName)'." }
-        $choice = $null
-        if ($valueSpec.optionId) {
-            $candidate = @($options | Where-Object { [string]$_.itemId -eq [string]$valueSpec.optionId })
-            if ($candidate.Count -eq 1) { $choice = $candidate[0] }
-        }
-        if (-not $choice -and $valueSpec.contains) {
-            $needle = ([string]$valueSpec.contains).ToLowerInvariant()
-            $exclude = if ($valueSpec.exclude) { ([string]$valueSpec.exclude).ToLowerInvariant() } else { $null }
-            $candidate = @($options | Where-Object {
-                $text = (([string]$_.displayName)+' '+([string]$_.name)+' '+([string]$_.description)+' '+([string]$_.itemId)).ToLowerInvariant()
-                ($text -like "*$needle*") -and (-not $exclude -or $text -notlike "*$exclude*")
-            })
-            if ($candidate.Count -eq 1) { $choice = $candidate[0] }
-        }
-        if (-not $choice -and $valueSpec.optionSuffix) {
-            $suffix = [string]$valueSpec.optionSuffix
-            $candidate = @($options | Where-Object { ([string]$_.itemId).EndsWith($suffix,[System.StringComparison]::OrdinalIgnoreCase) })
-            if ($candidate.Count -eq 1) { $choice = $candidate[0] }
-        }
-        if (-not $choice) {
+        if (-not $valueSpec.optionId) { throw "An exact reviewed optionId is required for choice setting '$($Spec.displayName)'." }
+        $candidate = @($options | Where-Object { [string]$_.itemId -ceq [string]$valueSpec.optionId })
+        if ($candidate.Count -ne 1) {
             $available = ($options | ForEach-Object { "$($_.itemId) [$($_.displayName)]" }) -join '; '
-            throw "Could not select choice '$($valueSpec.desired)' for '$($Spec.displayName)'. Available: $available"
+            throw "Exact choice optionId '$($valueSpec.optionId)' was not uniquely present for '$($Spec.displayName)'. Available: $available"
         }
+        $choice = $candidate[0]
         return @{
             '@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting'
             settingInstance=@{
@@ -144,8 +125,22 @@ function New-CpcConfigurationSettingBody {
         $kind = [string]$valueSpec.kind
         if ($kind -notin @('integer','string')) { throw "Value kind '$kind' is unsupported for simple definition '$($Spec.displayName)'." }
         if ($null -eq $valueSpec.value) { throw "No simple value supplied for '$($Spec.displayName)'." }
+        $valueDefinitionProperty=$Definition.PSObject.Properties['valueDefinition']
+        $valueDefinition=if ($valueDefinitionProperty) { $valueDefinitionProperty.Value } else { $null }
+        if ($kind -eq 'integer' -and $valueDefinition) {
+            $minimumProperty=$valueDefinition.PSObject.Properties['minimumValue']
+            $maximumProperty=$valueDefinition.PSObject.Properties['maximumValue']
+            if ($minimumProperty -and [int64]$valueSpec.value -lt [int64]$minimumProperty.Value) { throw "Value for '$($Spec.displayName)' is below the live definition minimum." }
+            if ($maximumProperty -and [int64]$valueSpec.value -gt [int64]$maximumProperty.Value) { throw "Value for '$($Spec.displayName)' is above the live definition maximum." }
+        }
+        if ($kind -eq 'string' -and $valueDefinition) {
+            $minimumLengthProperty=$valueDefinition.PSObject.Properties['minimumLength']
+            $maximumLengthProperty=$valueDefinition.PSObject.Properties['maximumLength']
+            if ($minimumLengthProperty -and ([string]$valueSpec.value).Length -lt [int]$minimumLengthProperty.Value) { throw "Value for '$($Spec.displayName)' is shorter than the live definition minimumLength." }
+            if ($maximumLengthProperty -and ([string]$valueSpec.value).Length -gt [int]$maximumLengthProperty.Value) { throw "Value for '$($Spec.displayName)' is longer than the live definition maximumLength." }
+        }
         $simpleValue = if ($kind -eq 'integer') {
-            @{ '@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue'; value=[int]$valueSpec.value }
+            @{ '@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue'; value=[int64]$valueSpec.value }
         } else {
             @{ '@odata.type'='#microsoft.graph.deviceManagementConfigurationStringSettingValue'; value=[string]$valueSpec.value }
         }
@@ -216,12 +211,13 @@ function New-CpcSettingsCatalogPolicyBody {
         description=[string]$Policy.description
         platforms=[string]$Policy.platforms
         technologies=[string]$Policy.technologies
-        roleScopeTagIds=@($Policy.roleScopeTagIds)
+        roleScopeTagIds=if ($Policy.PSObject.Properties['roleScopeTagIds']) { @($Policy.roleScopeTagIds) } else { @('0') }
         settings=@(ConvertTo-CpcWritablePayload -InputObject @($Settings))
     }
     if (@($body.roleScopeTagIds).Count -eq 0) { $body.roleScopeTagIds=@('0') }
-    if ($Policy.templateReference -and $Policy.templateReference.templateId) {
-        $body.templateReference = ConvertTo-CpcWritablePayload -InputObject $Policy.templateReference
+    $templateProperty=$Policy.PSObject.Properties['templateReference']
+    if ($templateProperty -and $templateProperty.Value -and $templateProperty.Value.templateId) {
+        $body.templateReference = ConvertTo-CpcWritablePayload -InputObject $templateProperty.Value
     }
     return $body
 }
@@ -241,8 +237,14 @@ function Test-CpcProfileSelected {
 
 function Test-CpcGraphEndpointSafe {
     param([Parameter(Mandatory)][string]$Uri)
-    if ($Uri -notmatch '^https://graph\.microsoft\.com/(beta|v1\.0)/deviceManagement(?:/|\?|$)') { return $false }
-    if ($Uri -match '/assign(?:ments)?(?:\?|$|/)') { return $false }
+    try { $parsed=[Uri]$Uri } catch { return $false }
+    if (-not $parsed.IsAbsoluteUri -or $parsed.Scheme -cne 'https' -or $parsed.Host -cne 'graph.microsoft.com' -or -not $parsed.IsDefaultPort -or $parsed.UserInfo -or $parsed.Fragment) { return $false }
+    $path=[Uri]::UnescapeDataString($parsed.AbsolutePath)
+    if ($path.Contains('%')) { return $false }
+    if ($path -notmatch '^/(beta|v1\.0)/deviceManagement(?:/|$)') { return $false }
+    $segments=@($path.Split('/',[StringSplitOptions]::RemoveEmptyEntries))
+    if (@($segments | Where-Object { $_ -in @('.','..') }).Count -gt 0) { return $false }
+    if (@($segments | Where-Object { $_ -in @('assign','assignment','assignments') }).Count -gt 0) { return $false }
     return $true
 }
 
@@ -252,7 +254,7 @@ function Test-CpcObjectContainsAssignments {
         if ($null -eq $node -or $node -is [string] -or $node -is [ValueType]) { return $false }
         if ($node -is [System.Collections.IDictionary]) {
             foreach ($key in $node.Keys) {
-                if ([string]$key -ieq 'assignments') { return $true }
+                if ([string]$key -imatch '^assignments?(?:@|$)') { return $true }
                 if (Has-Assignments $node[$key]) { return $true }
             }
             return $false
@@ -262,7 +264,7 @@ function Test-CpcObjectContainsAssignments {
             return $false
         }
         foreach ($p in $node.PSObject.Properties) {
-            if ($p.Name -ieq 'assignments') { return $true }
+            if ($p.Name -imatch '^assignments?(?:@|$)') { return $true }
             if (Has-Assignments $p.Value) { return $true }
         }
         return $false

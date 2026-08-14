@@ -13,14 +13,17 @@ $rows=@($recs | ForEach-Object {
     [pscustomobject]@{
         RecommendationId=[string]$_.recommendationId
         Profiles=(@($_.profiles) -join ',')
-        Status=[string]$_.status
+        CisAssessmentMethod=[string]$_.cisAssessmentMethod
+        MappingStatus=[string]$_.mappingStatus
+        CatalogMappingStatus=[string]$_.catalogMappingStatus
+        DecisionRef=[string]$_.decisionRef
         ImplementationType=[string]$_.implementationType
         ImplementationRefs=(@($_.implementationRefs) -join ';')
         Notes=[string]$_.notes
     }
 })
-$rows | Sort-Object Status,RecommendationId | Format-Table -AutoSize
+$rows | Sort-Object MappingStatus,RecommendationId | Format-Table -AutoSize
 Write-Host ''
-$rows | Group-Object Status | Sort-Object Name | ForEach-Object { Write-Host ("{0,-14} {1,5}" -f $_.Name,$_.Count) }
+$rows | Group-Object MappingStatus | Sort-Object Name | ForEach-Object { Write-Host ("{0,-14} {1,5}" -f $_.Name,$_.Count) }
 if ($CsvPath) { $rows | Export-Csv -LiteralPath $CsvPath -NoTypeInformation -Encoding utf8; Write-Host "CSV: $CsvPath" }
 if ($JsonPath) { $rows | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $JsonPath -Encoding utf8; Write-Host "JSON: $JsonPath" }

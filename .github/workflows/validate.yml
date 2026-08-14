@@ -10,13 +10,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install hash-pinned PDF dependency
+        run: python -m pip install --require-hashes -r tools/requirements.txt
+
       - name: Ensure private benchmark artifacts are not committed
         shell: bash
         run: |
           set -euo pipefail
-          if find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' \) -print -quit | grep -q .; then
+          if find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' \) -print -quit | grep -q .; then
             echo 'Source benchmark/archive/raw extraction found in repository.' >&2
-            find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' \) -print
+            find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' -o -name '*.private-extraction.json' \) -print
             exit 1
           fi
 
@@ -45,5 +52,13 @@ jobs:
         shell: pwsh
         run: ./scripts/Test-CISPolicyPack.ps1 -PackRoot ./templates/baseline
 
-      - name: Python syntax check
-        run: python -m py_compile tools/Extract-CISRecommendations.py
+      - name: Offline reproducible pipeline tests
+        shell: pwsh
+        run: ./tests/Test-OfflinePipeline.ps1
+
+      - name: Python extraction tests
+        run: python -m unittest tests/test_extractor.py
+
+      - name: Real PDF orchestration test
+        shell: pwsh
+        run: ./tests/Test-PdfPipeline.ps1

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "catalogId": "synthetic-mappings",
+  "catalogVersion": "1.0.0",
+  "decisions": [
+    {
+      "id": "retention-days",
+      "value": 14,
+      "acknowledged": true,
+      "justification": "Approved synthetic test value."
+    }
+  ]
+}

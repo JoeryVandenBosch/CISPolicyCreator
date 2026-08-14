@@ -16,10 +16,12 @@
         "description": { "type": "string" },
         "platforms": { "type": "string", "minLength": 1 },
         "technologies": { "type": "string", "minLength": 1 },
-        "roleScopeTagIds": { "type": "array", "items": { "type": "string" } }
-      }
+        "roleScopeTagIds": { "type": "array", "items": { "type": "string" } },
+        "templateReference": { "type": ["object", "null"] }
+      },
+      "additionalProperties": false
     },
     "settings": { "type": "array" }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

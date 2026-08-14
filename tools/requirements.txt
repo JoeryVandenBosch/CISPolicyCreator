@@ -1,1 +1,3 @@
-pypdf>=5.0.0,<7
+pypdf==6.15.0 \
+    --hash=sha256:14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee \
+    --hash=sha256:d39c4d955a76409284a905e2d65b40076d77ab76129e0faaeeb6612403ecfc79

@@ -2,6 +2,8 @@
 
 CISPolicyCreator has a deliberately narrow roadmap.
 
+All benchmark catalog work is gated on the reproducible offline pipeline, schema, decision, provenance, and test requirements documented in the repository. Catalogs must use that pipeline; benchmark-specific one-off generation scripts are not accepted.
+
 ## 1. Windows 11 Intune
 
 The reusable engine is based on the Windows 11 v5.0.0 implementation that was validated against a live Intune test tenant. The public repository contains the generic engine rather than redistributing source benchmark documents or third-party baseline exports.

@@ -1,62 +1,73 @@
-# CISPolicyCreator - Fail-Closed Mapping and Validation Policy
+# Fail-closed mapping and validation policy
 
 ## Purpose
 
-CISPolicyCreator translates CIS Benchmarks that are explicitly authored for Microsoft Intune into Microsoft Intune policy objects. The project fails closed: when a recommendation cannot be mapped with high confidence to a real Intune policy object, setting, API field, or supported configuration mechanism, it is not deployed.
+CISPolicyCreator converts CIS Benchmarks authored specifically for Microsoft Intune into Microsoft Intune policy objects. When any source identity, mapping, value, administrator decision, API representation, or cross-file reference is uncertain, the affected implementation is not emitted.
 
-> **Project principle:** When in doubt, do not deploy. Prefer an explicit `manual` or `unresolved` result over a plausible but unverified configuration.
+The project optimizes for accuracy and auditability, not maximum automation.
 
-## Supported scope
+## Independent classification axes
 
-Only CIS Benchmarks specifically authored for Microsoft Intune are in scope. Generic platform benchmarks are excluded unless a separate reviewed mapping project explicitly adds support.
+`cisAssessmentMethod` records the benchmark's assessment classification:
 
-## Mapping states
+- `Manual`
+- `Automated`
 
-| State | Meaning | Deployable |
-|---|---|---|
-| `mapped` | Confident Intune mapping and validated target value | Yes |
-| `manual` | Human action required or not safely automatable | No |
-| `unresolved` | Appears automatable but mapping/value/API representation is not sufficiently certain | No |
-| `not-applicable` | Not applicable to the selected platform/profile | No |
+`mappingStatus` records the state of the Intune mapping:
 
-## Fail-closed rules
+- `mapped`: a deterministic, reviewed implementation exists;
+- `unresolved`: a possible implementation has not been proven exactly;
+- `requires-input`: the implementation path is known but an organizational value requires explicit administrator choice;
+- `manual`: the control is a non-policy/process action outside the supported deployment path;
+- `not-applicable`: the recommendation is excluded by a documented applicability rule.
 
-- Never guess `settingDefinitionId`, choice IDs, OMA-URIs, plist keys, Graph properties, value encodings, or policy types.
-- UI-path-only guidance is not enough if the corresponding Graph representation cannot be verified.
-- Ambiguous matches are `unresolved`.
-- API drift is `unresolved` until reviewed.
-- CIS controls marked Manual stay manual unless a separately reviewed implementation is explicitly documented.
-- Generated policies are never assigned automatically.
+These fields must not be inferred from each other. In particular, a CIS `Manual` recommendation may be `mapped` when a deterministic Intune implementation exists.
 
-## Validation pipeline
+Only final `mapped` recommendations are deployable. When an administrator supplies a required decision, the compiler validates the value against the catalog's reviewed constraints and emits a final `mapped` record with `catalogMappingStatus: requires-input` and `decisionRef` provenance. Without that input, the record remains `requires-input` and its deployable object is omitted.
 
-1. Parse the CIS Intune recommendation and applicability.
-2. Classify the Intune object type.
-3. Resolve the current Microsoft Graph/Intune representation.
-4. Validate the exact target value/choice.
-5. Build a clean writable payload without GET-only/OData metadata.
-6. Run `-DryRun` and block unresolved mappings from deployment.
-7. Create policies unassigned.
-8. Validate behavior in the target tenant and with assessment tooling where available.
+## Non-negotiable rules
 
-## Runtime safety controls
+- Never construct, derive, or guess a `settingDefinitionId`.
+- Resolve a setting only by an explicit reviewed ID or an exact `baseUri + offsetUri` tuple that matches exactly one definition.
+- Never use a display-name fallback to make a deployment decision.
+- Never guess or heuristically select a choice/value ID.
+- Choice settings require an exact reviewed `optionId` present exactly once in the pinned and live definition.
+- Ambiguous or missing definition/value matches fail closed.
+- Static embedded Settings Catalog settings are rejected because they bypass definition/value validation.
+- Organizational choices require an explicit acknowledged decision from the administrator.
+- Non-policy and process controls remain `manual`.
+- No assignment endpoints, assignment payloads, group creation, or automatic policy assignments are permitted.
 
-- Tenant verification and optional `-TenantId` pinning.
-- `-ProbeOnly` Graph write test.
-- `-DryRun` exact payload validation.
-- Existing-policy detection.
-- Detailed Graph error bodies.
-- No automatic assignments or group creation.
-- Per-recommendation mapping/status logging.
+## Validation layers
 
-## Audit requirements
+1. Verify benchmark identity and required document text declared by the reviewed catalog.
+2. Extract recommendation ID, profile, assessment method, and private review text locally.
+3. Reject empty extraction, duplicate IDs, unknown profiles, or assessment-method mismatches.
+4. Require the exact expected recommendation count and an explicit catalog classification for every extracted ID; incomplete catalogs fail.
+5. Validate explicit administrator decisions against type/range/allowed-value constraints.
+6. Resolve each Settings Catalog mapping against a pinned definition snapshot.
+7. Generate deterministic pack files and provenance hashes.
+8. Evaluate JSON Schemas and semantic cross-file rules.
+9. During live dry run, validate the exact current Graph definition and option before any create request.
+10. Create policies unassigned only after all selected mappings and payloads pass preflight.
 
-Each recommendation must be traceable to its CIS ID/profile, Intune policy, Graph object/setting definition, configured value, resolution method, mapping state, and run result.
+## Reproducibility and audit
+
+The generated manifest records the source PDF name/hash/page count, compiler/extractor/PDF-parser versions, mapping catalog identity/hash, decision-file hash, and Settings Catalog snapshot hash. Pack JSON uses stable ordering and contains no build timestamp. Identical input bytes produce identical generated pack bytes.
+
+Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
+
+## Runtime controls
+
+- Offline validation happens before authentication.
+- Dry run requests read-only Graph scope.
+- Tenant ID can be pinned explicitly.
+- Existing exact-name objects are skipped and never patched.
+- The write probe is temporary, unassigned, and cleanup is attempted in `finally`.
+- Creation stops on the first Graph error by default.
+- Partial/preflight results are preserved when possible.
+- Import never creates assignments.
 
 ## Definition of done
 
-A benchmark pack is complete only when every in-scope recommendation has an explicit state, unresolved/manual items are excluded from deployable payloads, generated JSON passes validation, live resolution succeeds for mapped settings, write probes pass, policies are unassigned by default, and benchmark-specific decisions are documented.
-
-## Public repository guidance
-
-Do not commit CIS benchmark PDFs to the public repository. Keep original tooling, schemas, mapping metadata, policy-generation logic, and project documentation in GitHub; users should supply legitimately obtained benchmark files locally when needed.
+A benchmark catalog is complete only when every extracted recommendation has an explicit final state, all mapped objects have exact reviewed evidence, all administrator decisions are explicit, repeated builds are byte-identical, offline tests pass, live dry run resolves every selected mapping, test-tenant behavior is validated, and all policies remain unassigned by default.

@@ -4,15 +4,18 @@ param(
     [string]$Profile='L1',
     [switch]$DryRun,
     [switch]$StopOnError,
+    [switch]$ContinueOnError,
     [string]$TenantId,
     [switch]$ProbeOnly
 )
 
 $ErrorActionPreference='Stop'
+if ($StopOnError -and $ContinueOnError) { throw 'StopOnError and ContinueOnError cannot be used together.' }
+$stopOnCreateError = -not $ContinueOnError
 $PackRoot=(Resolve-Path -LiteralPath $PackRoot).Path
 $repoRoot=Split-Path -Parent $PSScriptRoot
 $modulePath=Join-Path $repoRoot 'src\CISPolicyCreator.psm1'
-Import-Module $modulePath -Force
+Import-Module $modulePath -Force -DisableNameChecking
 
 # Fail closed before authentication or writes.
 $validation=& (Join-Path $PSScriptRoot 'Test-CISPolicyPack.ps1') -PackRoot $PackRoot -PassThru
@@ -26,9 +29,11 @@ if (-not (Get-Module -ListAvailable -Name Microsoft.Graph.Authentication)) {
 }
 Import-Module Microsoft.Graph.Authentication
 $manifest=Get-Content -LiteralPath (Join-Path $PackRoot 'manifest.json') -Raw | ConvertFrom-Json -Depth 100
+if ($ProbeOnly -and -not $manifest.settingsCatalogProbe) { throw 'Pack does not define settingsCatalogProbe in manifest.json. No Graph connection was made.' }
 
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
-$connectArgs=@{ Scopes='DeviceManagementConfiguration.ReadWrite.All'; ContextScope='Process'; NoWelcome=$true }
+$graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }
+$connectArgs=@{ Scopes=$graphScope; ContextScope='Process'; NoWelcome=$true }
 if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
 Connect-MgGraph @connectArgs
 $context=Get-MgContext
@@ -47,6 +52,16 @@ try {
 } catch { Write-Warning "Could not read organization metadata: $($_.Exception.Message)" }
 
 $results=[System.Collections.Generic.List[object]]::new()
+$resultWritten=$false
+
+function Save-CpcImportResults {
+    if ($resultWritten -or $results.Count -eq 0) { return $null }
+    $stamp=Get-Date -Format 'yyyyMMdd-HHmmss-fff'
+    $path=Join-Path $PackRoot "import-results-$stamp.json"
+    $results | ConvertTo-Json -Depth 30 | Set-Content -LiteralPath $path -Encoding utf8
+    $script:resultWritten=$true
+    return $path
+}
 
 function Invoke-SettingsCatalogProbe {
     param([Parameter(Mandatory)]$Probe)
@@ -62,10 +77,16 @@ function Invoke-SettingsCatalogProbe {
     }
     $body=New-CpcSettingsCatalogPolicyBody -Policy $probePolicy -Settings @($setting)
     Write-Host "Running Settings Catalog deep-create probe in tenant $($context.TenantId)..."
-    $created=Invoke-MgGraphRequest -Method POST -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies' -ContentType 'application/json' -Body ($body | ConvertTo-Json -Depth 100)
-    Write-Host "WRITE PROBE PASS: created temporary policy $($created.id)."
-    Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$($created.id)" | Out-Null
-    Write-Host 'WRITE PROBE CLEANUP PASS: temporary policy deleted.'
+    $created=$null
+    try {
+        $created=Invoke-MgGraphRequest -Method POST -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies' -ContentType 'application/json' -Body ($body | ConvertTo-Json -Depth 100)
+        Write-Host "WRITE PROBE PASS: created temporary policy $($created.id)."
+    } finally {
+        if ($created -and $created.id) {
+            Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$($created.id)" | Out-Null
+            Write-Host 'WRITE PROBE CLEANUP PASS: temporary policy deleted.'
+        }
+    }
 }
 
 try {
@@ -180,7 +201,7 @@ try {
                 Write-Host "Created policy: $($p.name) ($($p.settingCount) embedded settings)"
                 Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'created' -Detail "$($created.id) :: $($p.settingCount) settings"
             } catch {
-                $detail=Get-CpcGraphErrorDetail $_; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'failed' -Detail $detail; Write-Warning "Failed policy '$($p.name)': $detail"; if ($StopOnError) { throw }
+                $detail=Get-CpcGraphErrorDetail $_; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'failed' -Detail $detail; Write-Warning "Failed policy '$($p.name)': $detail"; if ($stopOnCreateError) { throw }
             }
         }
         foreach ($o in $preparedGraphObjects) {
@@ -190,16 +211,20 @@ try {
                 Write-Host "Created Graph object: $($o.name)"
                 Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'created' -Detail ([string]$created.id)
             } catch {
-                $detail=Get-CpcGraphErrorDetail $_; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'failed' -Detail $detail; Write-Warning "Failed Graph object '$($o.name)': $detail"; if ($StopOnError) { throw }
+                $detail=Get-CpcGraphErrorDetail $_; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'failed' -Detail $detail; Write-Warning "Failed Graph object '$($o.name)': $detail"; if ($stopOnCreateError) { throw }
             }
         }
     }
 
-    $stamp=Get-Date -Format 'yyyyMMdd-HHmmss'
-    $resultPath=Join-Path $PackRoot "import-results-$stamp.json"
-    $results | ConvertTo-Json -Depth 30 | Set-Content -LiteralPath $resultPath -Encoding utf8
+    $resultPath=Save-CpcImportResults
     Write-Host ''
     Write-Host "Import complete for profile '$Profile'. No assignments were created."
     Write-Host "Results: $resultPath"
+}
+catch {
+    $failure=$_
+    $resultPath=Save-CpcImportResults
+    if ($resultPath) { Write-Warning "Import aborted. Partial/preflight results: $resultPath" }
+    throw $failure
 }
 finally { Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null }

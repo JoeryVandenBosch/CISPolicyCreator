@@ -14,27 +14,27 @@
       "profiles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
       "resolve": {
         "type": "object",
+        "minProperties": 1,
+        "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
         "properties": {
           "definitionId": { "type": ["string", "null"] },
           "baseUri": { "type": ["string", "null"] },
           "offsetUri": { "type": ["string", "null"] },
-          "displayName": { "type": ["string", "null"] }
-        }
+          "expectedType": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
       },
       "value": {
         "type": "object",
         "required": ["kind"],
         "properties": {
           "kind": { "enum": ["choice", "integer", "string"] },
-          "desired": {},
           "optionId": { "type": ["string", "null"] },
-          "contains": { "type": ["string", "null"] },
-          "exclude": { "type": ["string", "null"] },
-          "optionSuffix": { "type": ["string", "null"] },
           "value": {}
-        }
+        },
+        "additionalProperties": false
       }
     },
-    "additionalProperties": true
+    "additionalProperties": false
   }
 }

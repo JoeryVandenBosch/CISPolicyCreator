@@ -1,15 +1,29 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "2.0",
   "id": "replace-me",
   "name": "Replace me",
   "version": "1.0.0",
   "benchmarkScope": "microsoft-intune",
   "sourceDocumentIncluded": false,
+  "source": {
+    "fileName": "example.pdf",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "pageCount": 1
+  },
+  "build": {
+    "toolVersion": "0.2.0",
+    "extractorVersion": "0.2.0",
+    "pdfParser": "pypdf",
+    "pdfParserVersion": "6.15.0",
+    "mappingCatalogId": "replace-me",
+    "mappingCatalogVersion": "1.0.0",
+    "mappingCatalogSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "administratorDecisionsSha256": null,
+    "settingsCatalogSnapshotSha256": null
+  },
   "recommendationsSpec": "spec/recommendations.json",
   "settingsCatalogPolicyDirectory": "policies/settings-catalog",
   "settingsCatalogSpec": "spec/settings-catalog.json",
   "graphObjects": "spec/graph-objects.json",
-  "settingsCatalogProbe": null,
-  "defaultPlatform": "windows10",
-  "defaultTechnologies": "mdm"
+  "settingsCatalogProbe": null
 }

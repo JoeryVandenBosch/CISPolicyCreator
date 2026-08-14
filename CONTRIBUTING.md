@@ -16,7 +16,11 @@ Supported benchmark packs must be based on a CIS benchmark explicitly authored f
 
 ## Mapping requirements
 
-Every deployable recommendation must be `mapped` and reference a reviewed Intune implementation. If an exact Graph object, setting definition, value, platform requirement, or enrollment prerequisite cannot be proven, use `unresolved` or `manual`.
+Record `cisAssessmentMethod` (`Manual` or `Automated`) independently from `mappingStatus`. A CIS Manual recommendation may be mapped when its Intune implementation is deterministic.
+
+Every deployable recommendation must be `mapped` and reference a reviewed Intune implementation. Use `requires-input` for organizational choices, `manual` for non-policy/process work, and `unresolved` whenever an exact Graph object, setting definition, value, platform requirement, or enrollment prerequisite cannot be proven.
+
+Mapping catalogs must never use constructed IDs, display-name fallback, substring/suffix option matching, or unvalidated static Settings Catalog payloads. Add copyright-safe fixtures and fail-closed tests with every new implementation mechanism.
 
 ## Pull requests
 
@@ -24,6 +28,8 @@ Before opening a PR:
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot <pack>
+python -m unittest tests/test_extractor.py
+.\tests\Test-OfflinePipeline.ps1
 ```
 
 Run a `-DryRun` against a test tenant when the pack is intended for deployment and include non-sensitive validation notes in the PR description.

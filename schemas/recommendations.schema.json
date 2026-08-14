@@ -3,17 +3,21 @@
   "$id": "https://cispolicycreator.local/schema/recommendations.schema.json",
   "title": "CISPolicyCreator recommendation inventory",
   "type": "array",
+  "minItems": 1,
   "items": {
     "type": "object",
-    "required": ["recommendationId", "profiles", "status"],
+    "required": ["recommendationId", "profiles", "cisAssessmentMethod", "mappingStatus"],
     "properties": {
       "recommendationId": { "type": "string", "minLength": 1 },
       "profiles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
-      "status": { "enum": ["mapped", "manual", "unresolved", "not-applicable"] },
+      "cisAssessmentMethod": { "enum": ["Manual", "Automated"] },
+      "mappingStatus": { "enum": ["mapped", "unresolved", "requires-input", "manual", "not-applicable"] },
+      "catalogMappingStatus": { "enum": ["mapped", "unresolved", "requires-input", "manual", "not-applicable"] },
+      "decisionRef": { "type": ["string", "null"] },
       "implementationType": { "type": ["string", "null"] },
       "implementationRefs": { "type": "array", "items": { "type": "string" } },
       "notes": { "type": ["string", "null"] }
     },
-    "additionalProperties": true
+    "additionalProperties": false
   }
 }

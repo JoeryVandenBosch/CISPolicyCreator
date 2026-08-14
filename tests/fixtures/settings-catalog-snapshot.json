@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "apiVersion": "beta",
+  "capturedAt": "2026-08-14T00:00:00Z",
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "definitions": [
+    {
+      "id": "synthetic_choice",
+      "displayName": "Synthetic choice",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Choice",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
+      "options": [
+        { "itemId": "synthetic_choice_enabled", "displayName": "Enabled" },
+        { "itemId": "synthetic_choice_disabled", "displayName": "Disabled" }
+      ],
+      "valueDefinition": null
+    },
+    {
+      "id": "synthetic_retention",
+      "displayName": "Synthetic retention",
+      "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+      "offsetUri": "Retention",
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
+      "options": [],
+      "valueDefinition": { "minimumValue": 1, "maximumValue": 365 }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0",
+  "id": "synthetic-mappings",
+  "version": "1.0.0",
+  "benchmark": { "id": "synthetic-intune", "version": "1.0.0", "expectedRecommendationCount": 3 },
+  "pack": { "id": "synthetic-pack", "name": "Synthetic Intune Pack", "version": "1.0.0" },
+  "sourceDocument": { "requiredText": ["Synthetic Intune Benchmark"] },
+  "recommendations": [
+    {
+      "recommendationId": "1.1",
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": ["graph-object:Synthetic compliance [L1]"],
+      "decisionRef": null,
+      "notes": "Manual assessment method; deterministic policy mapping."
+    },
+    {
+      "recommendationId": "1.2",
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": ["settings-catalog:synthetic-policy"],
+      "decisionRef": null,
+      "notes": "Exact choice ID reviewed."
+    },
+    {
+      "recommendationId": "1.3",
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "requires-input",
+      "implementationType": "settings-catalog",
+      "implementationRefs": ["settings-catalog:synthetic-policy"],
+      "decisionRef": "retention-days",
+      "notes": "Organization must explicitly choose the retention period."
+    }
+  ],
+  "administratorInputs": [
+    {
+      "id": "retention-days",
+      "recommendationId": "1.3",
+      "prompt": "Choose the reviewed retention period.",
+      "valueType": "integer",
+      "allowedValues": [7, 14, 30]
+    }
+  ],
+  "settingsCatalogPolicies": [
+    {
+      "id": "synthetic-policy",
+      "name": "Synthetic Settings [L1]",
+      "description": "Copyright-safe test policy.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": ["L1"],
+      "roleScopeTagIds": ["0"]
+    }
+  ],
+  "settingsCatalogSettings": [
+    {
+      "recommendationId": "1.2",
+      "policyId": "synthetic-policy",
+      "displayName": "Synthetic choice",
+      "profiles": ["L1"],
+      "resolve": {
+        "definitionId": null,
+        "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+        "offsetUri": "Choice",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": { "kind": "choice", "optionId": "synthetic_choice_enabled", "decisionRef": null }
+    },
+    {
+      "recommendationId": "1.3",
+      "policyId": "synthetic-policy",
+      "displayName": "Synthetic retention",
+      "profiles": ["L1"],
+      "resolve": {
+        "definitionId": "synthetic_retention",
+        "baseUri": "./Device/Vendor/MSFT/Policy/Config/Synthetic",
+        "offsetUri": "Retention",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+      },
+      "value": { "kind": "integer", "decisionRef": "retention-days" }
+    }
+  ],
+  "graphObjects": [
+    {
+      "name": "Synthetic compliance [L1]",
+      "recommendationIds": ["1.1"],
+      "profiles": ["L1"],
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies?$select=id,displayName",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+        "displayName": "Synthetic compliance [L1]"
+      }
+    }
+  ]
+}

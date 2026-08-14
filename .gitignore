@@ -13,6 +13,7 @@
 /private/
 **/recommendations.raw.json
 **/source-extract*.json
+*.private-extraction.json
 
 # Import/diagnostic output
 import-results-*.json
