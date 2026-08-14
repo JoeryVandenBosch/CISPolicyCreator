@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-for-windows-11-5.0.0-mappings",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "benchmark": {
     "id": "cis-microsoft-intune-for-windows-11",
     "version": "5.0.0",
@@ -10,7 +10,7 @@
   "pack": {
     "id": "cis-microsoft-intune-for-windows-11-5.0.0",
     "name": "CIS Microsoft Intune for Windows 11 Benchmark v5.0.0",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "sourceDocument": {
     "requiredText": [
@@ -818,11 +818,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-security-authority-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "4.10.25.1",
@@ -2282,11 +2284,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:auditing-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "6.24",
@@ -2822,11 +2826,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.2",
@@ -2834,11 +2840,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.3",
@@ -2846,11 +2854,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.4",
@@ -2858,11 +2868,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition ID and bounded integer value validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.5",
@@ -2870,11 +2882,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.6",
@@ -2882,11 +2896,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "45.7",
@@ -2894,11 +2910,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-server-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.1",
@@ -2906,11 +2924,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.2",
@@ -2918,11 +2938,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.3",
@@ -2930,11 +2952,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.4",
@@ -2954,11 +2978,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.6",
@@ -2966,11 +2992,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "46.7",
@@ -2978,11 +3006,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:lanman-workstation-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "47.1",
@@ -3446,11 +3476,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:printers-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and option IDs validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "69.1",
@@ -3710,11 +3742,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:system-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and underlying option value validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "81.8",
@@ -3722,11 +3756,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:system-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact definition and underlying option value validated against the pinned tenant snapshot and reviewed v5 reference spec."
     },
     {
       "recommendationId": "82.1",
@@ -5002,7 +5038,429 @@
     }
   ],
   "administratorInputs": [],
-  "settingsCatalogPolicies": [],
-  "settingsCatalogSettings": [],
+  "settingsCatalogPolicies": [
+    {
+      "id": "auditing-l1",
+      "name": "CIS - Auditing [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "lanman-server-l1",
+      "name": "CIS - Lanman Server [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "lanman-workstation-l1",
+      "name": "CIS - Lanman Workstation [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "local-security-authority-l1",
+      "name": "CIS - Local Security Authority [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "printers-l2",
+      "name": "CIS - Printers [L2] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "system-l2",
+      "name": "CIS - System [L2] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    }
+  ],
+  "settingsCatalogSettings": [
+    {
+      "recommendationId": "4.10.24.1",
+      "policyId": "local-security-authority-l1",
+      "displayName": "Allow Custom SSPs and APs to be loaded into LSASS",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localsecurityauthority_allowcustomsspsaps",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localsecurityauthority_allowcustomsspsaps_0",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "6.23",
+      "policyId": "auditing-l1",
+      "displayName": "Privilege Use Audit Sensitive Privilege Use",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_audit_privilegeuse_auditsensitiveprivilegeuse",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_audit_privilegeuse_auditsensitiveprivilegeuse_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.1",
+      "policyId": "lanman-server-l1",
+      "displayName": "Audit Client Does Not Support Encryption",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_auditclientdoesnotsupportencryption",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_auditclientdoesnotsupportencryption_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.2",
+      "policyId": "lanman-server-l1",
+      "displayName": "Audit Client Does Not Support Signing",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_auditclientdoesnotsupportsigning",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_auditclientdoesnotsupportsigning_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.3",
+      "policyId": "lanman-server-l1",
+      "displayName": "Audit Insecure Guest Logon",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_auditinsecureguestlogon",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_auditinsecureguestlogon_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.4",
+      "policyId": "lanman-server-l1",
+      "displayName": "Auth Rate Limiter Delay In Ms",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_authratelimiterdelayinms",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+      },
+      "value": {
+        "kind": "integer",
+        "value": 2000,
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.5",
+      "policyId": "lanman-server-l1",
+      "displayName": "Enable Auth Rate Limiter",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_enableauthratelimiter",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_enableauthratelimiter_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.6",
+      "policyId": "lanman-server-l1",
+      "displayName": "Enable Mailslots",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_enablemailslots",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_enablemailslots_0",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "45.7",
+      "policyId": "lanman-server-l1",
+      "displayName": "Min Smb2 Dialect",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanserver_minsmb2dialect",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanserver_minsmb2dialect_785",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.1",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Audit Insecure Guest Logon",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_auditinsecureguestlogon",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_auditinsecureguestlogon_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.2",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Audit Server Does Not Support Encryption",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_auditserverdoesnotsupportencryption",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_auditserverdoesnotsupportencryption_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.3",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Audit Server Does Not Support Signing",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_auditserverdoesnotsupportsigning",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_auditserverdoesnotsupportsigning_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.5",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Enable Mailslots",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_enablemailslots",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_enablemailslots_0",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.6",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Min Smb2 Dialect",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_minsmb2dialect",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_minsmb2dialect_785",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "46.7",
+      "policyId": "lanman-workstation-l1",
+      "displayName": "Require Encryption",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_requireencryption",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_requireencryption_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "68.1",
+      "policyId": "printers-l2",
+      "displayName": "Require Ipps Policy",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_printers_requireippspolicy",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_printers_requireippspolicy_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "81.7",
+      "policyId": "system-l2",
+      "displayName": "Limit Diagnostic Log Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_system_limitdiagnosticlogcollection",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_system_limitdiagnosticlogcollection_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "81.8",
+      "policyId": "system-l2",
+      "displayName": "Limit Dump Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_system_limitdumpcollection",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_system_limitdumpcollection_1",
+        "decisionRef": null
+      }
+    }
+  ],
   "graphObjects": []
 }

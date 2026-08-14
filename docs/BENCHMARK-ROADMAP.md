@@ -6,7 +6,7 @@ All benchmark catalog work is gated on the reproducible offline pipeline, schema
 
 ## 1. Windows 11 Intune
 
-The reusable engine is based on the Windows 11 v5.0.0 implementation that was validated against a live Intune test tenant. A public-safe 415-recommendation catalog seed is now included. Every entry remains unresolved until its current Graph implementation is independently reviewed against a pinned Settings Catalog snapshot or another authoritative endpoint; the seed therefore emits no deployable policies.
+The repository includes a public-safe catalog for all 415 Windows 11 v5.0.0 recommendation identifiers. The first 18 recommendations have exact definition and option/value mappings validated against a pinned Settings Catalog snapshot; they compile reproducibly into 6 unassigned policies. The remaining 397 recommendations stay unresolved and emit no implementation. Continue evidence-backed mapping review and live dry-run/test-tenant validation before describing this benchmark catalog as complete.
 
 ## 2. macOS 26 Tahoe Intune
 

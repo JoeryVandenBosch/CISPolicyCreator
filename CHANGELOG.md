@@ -2,6 +2,7 @@
 
 ## 0.2.1 - 2026-08-14
 
+- Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

@@ -42,6 +42,6 @@ The repository contains copyright-safe tests for extraction, Manual+mapped seman
 
 ## Current benchmark state
 
-The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual), and the repository contains a public-safe all-unresolved inventory catalog for those identifiers. The full orchestrator produces a validated nondeployable pack with zero settings, Graph objects, or assignments. The next content milestone is evidence-backed review of that catalog against a pinned tenant snapshot, followed by macOS 26 Tahoe Intune and iOS/iPadOS Intune according to the supported roadmap.
+The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual). The public-safe catalog now contains 18 exact Settings Catalog mappings validated against a pinned 18,227-definition Graph snapshot; 397 recommendations remain unresolved. The full PDF orchestrator produces 18 dynamic settings in 6 unassigned policies, and repeated direct/PDF builds are byte-identical. The catalog is partial and must not be represented as a complete CIS baseline. Continue evidence-backed mapping review, then perform live dry-run and test-tenant validation before advancing to the later benchmark roadmap.
 
 Source PDFs, raw extraction text, private decisions, tenant identifiers, and import logs must not be committed.

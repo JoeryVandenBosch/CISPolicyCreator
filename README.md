@@ -184,7 +184,7 @@ See [docs/CHAT-HANDOFF.md](docs/CHAT-HANDOFF.md) for the concise current-state h
 
 ## Current benchmark status
 
-The reusable engine is derived from a privately validated Windows 11 Intune implementation. Public normalized catalogs are not yet included. The next milestone is to author catalogs through this reproducible pipeline, starting with the planned benchmark sequence in [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md).
+The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Eighteen recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 18 settings in 6 unassigned policies; the other 397 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
 
 ## Public repository rules
 
