@@ -7,7 +7,7 @@
     "collectionUri": "https://graph.microsoft.com/beta/deviceManagement/configurationSettings",
     "pageSize": 500,
     "pageCount": 1,
-    "definitionCount": 2,
+    "definitionCount": 3,
     "usedODataNextLink": false,
     "usedSkipFallback": false
   },
@@ -32,6 +32,15 @@
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
       "options": [],
       "valueDefinition": { "minimumValue": 1, "maximumValue": 365 }
+    },
+    {
+      "id": "synthetic_group",
+      "displayName": "",
+      "baseUri": null,
+      "offsetUri": null,
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingDefinition",
+      "options": [],
+      "valueDefinition": null
     }
   ]
 }

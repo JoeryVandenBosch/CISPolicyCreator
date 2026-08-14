@@ -35,6 +35,7 @@ try {
             if(-not $seenIds.Add($id)){throw "Settings Catalog pagination returned duplicate definition ID '$id'; completeness cannot be proven."}
             $items.Add($item)
         }
+        Write-Host "Retrieved Settings Catalog page $pageCount ($($pageItems.Count) definitions; $($items.Count) total)."
         $serverNext=[string]$r.'@odata.nextLink'
         if($serverNext){
             $usedODataNextLink=$true

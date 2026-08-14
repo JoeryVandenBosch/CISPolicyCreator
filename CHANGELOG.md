@@ -7,6 +7,7 @@
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.
 - Add an explicit device-code authentication option for Settings Catalog snapshot export from embedded or headless terminals.
 - Record Settings Catalog pagination evidence and fail closed on duplicate IDs, inconsistent counts, or unbounded retrieval.
+- Preserve authoritative definitions whose Graph `displayName` is empty; exact resolution continues to rely only on reviewed IDs or unique CSP paths.
 
 ## 0.2.0 - 2026-08-14
 

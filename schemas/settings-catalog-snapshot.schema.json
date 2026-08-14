@@ -30,7 +30,7 @@
         "required": ["id", "displayName", "baseUri", "offsetUri", "@odata.type", "options", "valueDefinition"],
         "properties": {
           "id": { "type": "string", "minLength": 1 },
-          "displayName": { "type": "string", "minLength": 1 },
+          "displayName": { "type": "string" },
           "baseUri": { "type": ["string", "null"] },
           "offsetUri": { "type": ["string", "null"] },
           "@odata.type": { "type": "string", "minLength": 1 },
