@@ -27,6 +27,7 @@ A user clones the repository, supplies a legitimately obtained CIS Benchmark PDF
 Important supporting commands:
 
 - `Export-SettingsCatalogDiagnostics.ps1`: capture a pinned definition snapshot;
+- `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISAdministratorDecisions.ps1`: generate an explicit decision template;
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;
@@ -41,6 +42,6 @@ The repository contains copyright-safe tests for extraction, Manual+mapped seman
 
 ## Current benchmark state
 
-The generic pipeline is implemented before additional public benchmark catalogs. The Windows 11 v5 work remains the privately validated behavioral reference. The next content milestone is a reviewed public-safe catalog produced through this pipeline, followed by macOS 26 Tahoe Intune and iOS/iPadOS Intune according to the supported roadmap.
+The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual), and the repository contains a public-safe all-unresolved inventory catalog for those identifiers. The full orchestrator produces a validated nondeployable pack with zero settings, Graph objects, or assignments. The next content milestone is evidence-backed review of that catalog against a pinned tenant snapshot, followed by macOS 26 Tahoe Intune and iOS/iPadOS Intune according to the supported roadmap.
 
 Source PDFs, raw extraction text, private decisions, tenant identifiers, and import logs must not be committed.

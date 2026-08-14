@@ -57,6 +57,34 @@ Synthetic audit text.
         with self.assertRaisesRegex(ValueError, "Could not normalize"):
             MODULE.extract(text)
 
+    def test_cis_controls_reference_is_not_treated_as_recommendation(self) -> None:
+        text = """
+<<<PAGE 1>>>
+Page 1
+1.1 Ensure synthetic setting is enabled (Automated)
+Profile Applicability:
+Level 1
+Audit:
+Synthetic audit text.
+Remediation:
+Synthetic remediation text.
+CIS Controls:
+9.2 Ensure Only Approved Ports, Protocols and Services Are Running
+Ensure that only approved services are running.
+<<<PAGE 2>>>
+Page 2
+1.2 Ensure second synthetic setting is enabled (Manual)
+Profile Applicability:
+Level 2
+Audit:
+Synthetic audit text.
+Remediation:
+Synthetic remediation text.
+"""
+        records = MODULE.extract(text)
+        self.assertEqual([item["recommendationId"] for item in records], ["1.1", "1.2"])
+        self.assertEqual([item["page"] for item in records], [1, 2])
+
 
 if __name__ == "__main__":
     unittest.main()

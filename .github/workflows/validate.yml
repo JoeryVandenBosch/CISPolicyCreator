@@ -36,6 +36,26 @@ jobs:
             Get-Content -LiteralPath $_.FullName -Raw | ConvertFrom-Json -Depth 100 | Out-Null
           }
 
+      - name: Validate published mapping catalogs
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $schema = Join-Path $PWD 'schemas/mapping-catalog.schema.json'
+          Get-ChildItem -LiteralPath ./benchmarks -Recurse -Filter mapping-catalog.json | ForEach-Object {
+            $json = Get-Content -LiteralPath $_.FullName -Raw
+            if (-not ($json | Test-Json -SchemaFile $schema -ErrorAction Stop)) {
+              throw "Published mapping catalog failed schema validation: $($_.FullName)"
+            }
+            $catalog = $json | ConvertFrom-Json -Depth 100
+            $ids = @($catalog.recommendations.recommendationId)
+            if ($ids.Count -ne [int]$catalog.benchmark.expectedRecommendationCount) {
+              throw "Published mapping catalog count mismatch: $($_.FullName)"
+            }
+            if (@($ids | Sort-Object -Unique).Count -ne $ids.Count) {
+              throw "Published mapping catalog contains duplicate recommendation IDs: $($_.FullName)"
+            }
+          }
+
       - name: PowerShell parser check
         shell: pwsh
         run: |

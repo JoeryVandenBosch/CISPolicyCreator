@@ -10,7 +10,7 @@
       "type": "object",
       "required": ["extractorVersion", "pdfParser", "pdfParserVersion"],
       "properties": {
-        "extractorVersion": { "const": "0.2.0" },
+        "extractorVersion": { "const": "0.2.1" },
         "pdfParser": { "const": "pypdf" },
         "pdfParserVersion": { "const": "6.15.0" }
       },

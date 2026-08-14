@@ -74,7 +74,26 @@ Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
 
 ## Build a pack from a PDF
 
-A reviewed mapping catalog must already exist for the exact benchmark family and version. The repository intentionally builds the generic pipeline before publishing additional benchmark catalogs.
+A reviewed mapping catalog must exist for the exact benchmark family and version. When starting a new benchmark, first run the private extractor and create a copyright-safe, fail-closed catalog seed:
+
+```powershell
+python .\tools\Extract-CISRecommendations.py C:\Private\Benchmark.pdf `
+    --benchmark-id '<benchmark-id>' `
+    --benchmark-version '<version>' `
+    --require-text '<reviewed source fingerprint>' `
+    --output C:\Private\benchmark.private-extraction.json
+
+.\scripts\New-CISMappingCatalog.ps1 `
+    -ExtractionPath C:\Private\benchmark.private-extraction.json `
+    -OutputPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
+    -CatalogId '<catalog-id>' `
+    -CatalogVersion '0.1.0' `
+    -PackId '<pack-id>' `
+    -PackName '<pack name>' `
+    -PackVersion '0.1.0'
+```
+
+The seed contains no benchmark prose and marks every recommendation `unresolved`. Reviewers then add only evidence-backed mappings.
 
 First capture the current authoritative Settings Catalog definitions:
 
@@ -155,7 +174,7 @@ schemas/    build-input and generated-pack JSON Schemas
 tools/      deterministic local PDF extractor and pinned dependency
 templates/  schema-valid empty pack template
 tests/      copyright-safe offline fixtures and behavioral tests
-benchmarks/ reviewed public-safe mapping catalogs, when completed
+benchmarks/ public-safe inventory seeds and reviewed mapping catalogs
 docs/       format, workflow, security, and scope documentation
 ```
 

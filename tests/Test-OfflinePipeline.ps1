@@ -16,6 +16,24 @@ try {
         AdministratorDecisionsPath=(Join-Path $fixtures 'administrator-decisions.json')
         SettingsCatalogSnapshotPath=(Join-Path $fixtures 'settings-catalog-snapshot.json')
     }
+    $seedCatalogPath=Join-Path $testRoot 'seed-catalog.json'
+    & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `
+        -ExtractionPath $common.ExtractionPath `
+        -OutputPath $seedCatalogPath `
+        -CatalogId 'synthetic-seed' `
+        -CatalogVersion '0.1.0' `
+        -PackId 'synthetic-seed-pack' `
+        -PackName 'Synthetic Seed Pack' `
+        -PackVersion '0.1.0'
+    $seedCatalog=Read-Json $seedCatalogPath
+    Assert-True (@($seedCatalog.recommendations).Count -eq 3) 'Catalog seed must include every extracted recommendation.'
+    Assert-True (@($seedCatalog.recommendations | Where-Object mappingStatus -ne 'unresolved').Count -eq 0) 'Catalog seed must classify every recommendation as unresolved.'
+    Assert-True ($null -eq $seedCatalog.recommendations[0].PSObject.Properties['title']) 'Catalog seed must not copy benchmark titles or prose.'
+    $seedPack=Join-Path $testRoot 'seed-pack'
+    & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath $common.ExtractionPath -MappingCatalogPath $seedCatalogPath -OutputPath $seedPack
+    $seedValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $seedPack -PassThru
+    Assert-True $seedValidation.IsValid 'All-unresolved catalog seed must build a valid nondeployable pack.'
+
     $packA=Join-Path $testRoot 'pack-a'
     $packB=Join-Path $testRoot 'pack-b'
     & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -OutputPath $packA

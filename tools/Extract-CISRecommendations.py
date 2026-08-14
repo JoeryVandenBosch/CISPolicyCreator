@@ -16,7 +16,9 @@ from typing import Any
 
 
 REC_RE = re.compile(
-    r"(?ms)^(?P<id>\d+(?:\.\d+){1,6})\s+"
+    r"(?ms)^<<<PAGE (?P<page>\d+)>>>\s*"
+    r"(?:^Page \d+\s*)?"
+    r"^(?P<id>\d+(?:\.\d+){1,6})\s+"
     r"(?:\([^\n]+\)\s+)?Ensure\s+"
     r"(?P<title>.{1,500}?)\s+\((?P<assessment>Automated|Manual)\)\s*"
     r"(?=Profile Applicability:)"
@@ -106,8 +108,7 @@ def extract(text: str) -> list[dict[str, Any]]:
         if recommendation_id in seen:
             raise ValueError(f"Duplicate recommendation ID extracted: {recommendation_id}")
         seen.add(recommendation_id)
-        page_matches = list(re.finditer(r"<<<PAGE (\d+)>>>", text[: match.start()]))
-        page = int(page_matches[-1].group(1)) if page_matches else 1
+        page = int(match.group("page"))
         profiles = parse_profiles(profile)
         if not profiles:
             raise ValueError(
@@ -171,7 +172,7 @@ def main() -> None:
     payload = {
         "schemaVersion": "2.0",
         "tool": {
-            "extractorVersion": "0.2.0",
+            "extractorVersion": "0.2.1",
             "pdfParser": "pypdf",
             "pdfParserVersion": importlib.metadata.version("pypdf"),
         },

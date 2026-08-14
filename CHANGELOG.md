@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 - 2026-08-14
+
+- Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
+- Add regression coverage for recommendation-like CIS Controls text.
+- Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.
+
 ## 0.2.0 - 2026-08-14
 
 - Added deterministic PDF-to-pack orchestration with atomic private staging.

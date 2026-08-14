@@ -18,6 +18,21 @@ The PDF parser runs locally. It extracts `cisAssessmentMethod` independently fro
 
 The catalog is original, public-safe project metadata keyed by exact benchmark ID/version and recommendation ID. It classifies each recommendation as `mapped`, `unresolved`, `requires-input`, `manual`, or `not-applicable` and contains only reviewed Intune implementations.
 
+For a new benchmark, create the private extraction first, then generate an all-unresolved catalog without copying benchmark prose:
+
+```powershell
+.\scripts\New-CISMappingCatalog.ps1 `
+  -ExtractionPath C:\Private\benchmark.private-extraction.json `
+  -OutputPath .\benchmarks\example\1.0.0\mapping-catalog.json `
+  -CatalogId 'example-mappings' `
+  -CatalogVersion '0.1.0' `
+  -PackId 'example-pack' `
+  -PackName 'Example Intune Pack' `
+  -PackVersion '0.1.0'
+```
+
+This initializer is deterministic and fail-closed: all entries start `unresolved`, implementation arrays are empty, and no Graph identifiers or values are inferred.
+
 The catalog records the reviewed expected recommendation count and must explicitly classify every extracted ID. Use `unresolved` for mappings that have not been proven. Missing/extra IDs or count mismatches fail source validation rather than silently producing an incomplete inventory.
 
 ## 4. Capture authoritative definitions

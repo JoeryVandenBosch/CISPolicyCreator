@@ -12,7 +12,7 @@
   },
   "build": {
     "toolVersion": "0.2.0",
-    "extractorVersion": "0.2.0",
+    "extractorVersion": "0.2.1",
     "pdfParser": "pypdf",
     "pdfParserVersion": "6.15.0",
     "mappingCatalogId": "replace-me",
