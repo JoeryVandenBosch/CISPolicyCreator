@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cispolicycreator.local/schema/private-mapping-review.schema.json",
+  "title": "CISPolicyCreator private mapping review worklist",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "mappingChangesMade", "source", "summary", "recommendations"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "tool": {
+      "type": "object",
+      "required": ["name", "version", "matchRule", "minimumNormalizedLength"],
+      "properties": {
+        "name": { "const": "New-CISMappingReviewWorklist.ps1" },
+        "version": { "const": "0.1.0" },
+        "matchRule": { "const": "exact-normalized-title-display-containment" },
+        "minimumNormalizedLength": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "mappingChangesMade": { "const": false },
+    "source": {
+      "type": "object",
+      "required": ["extractionSha256", "settingsCatalogSnapshotSha256", "referenceFiles"],
+      "properties": {
+        "extractionSha256": { "$ref": "#/$defs/sha256" },
+        "settingsCatalogSnapshotSha256": { "$ref": "#/$defs/sha256" },
+        "referenceFiles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["recommendationCount", "referenceDefinitionCount", "validatedOccurrenceCount", "uniqueCandidateRecommendations", "ambiguousCandidateRecommendations", "noCandidateRecommendations", "candidateLinkCount"],
+      "properties": {
+        "recommendationCount": { "type": "integer", "minimum": 1 },
+        "referenceDefinitionCount": { "type": "integer", "minimum": 1 },
+        "validatedOccurrenceCount": { "type": "integer", "minimum": 1 },
+        "uniqueCandidateRecommendations": { "type": "integer", "minimum": 0 },
+        "ambiguousCandidateRecommendations": { "type": "integer", "minimum": 0 },
+        "noCandidateRecommendations": { "type": "integer", "minimum": 0 },
+        "candidateLinkCount": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "recommendations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["recommendationId", "title", "page", "profiles", "cisAssessmentMethod", "candidateStatus", "candidates"],
+        "properties": {
+          "recommendationId": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "page": { "type": "integer", "minimum": 1 },
+          "profiles": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "cisAssessmentMethod": { "enum": ["Manual", "Automated"] },
+          "candidateStatus": { "enum": ["none", "unique-candidate", "ambiguous-candidates"] },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["definitionId", "displayName", "expectedType", "matchDirection", "occurrences"],
+              "properties": {
+                "definitionId": { "type": "string", "minLength": 1 },
+                "displayName": { "type": "string", "minLength": 1 },
+                "expectedType": { "type": "string", "minLength": 1 },
+                "matchDirection": { "enum": ["exact", "recommendation-contains-definition", "definition-contains-recommendation"] },
+                "occurrences": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": ["policyName", "profile", "sourceFile", "path", "topLevelDefinitionId", "ancestorDefinitionIds", "instanceType", "observedValue"],
+                    "properties": {
+                      "policyName": { "type": "string", "minLength": 1 },
+                      "profile": { "type": "string", "minLength": 1 },
+                      "sourceFile": { "type": "string", "minLength": 1 },
+                      "path": { "type": "string", "minLength": 1 },
+                      "topLevelDefinitionId": { "type": "string", "minLength": 1 },
+                      "ancestorDefinitionIds": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                      "instanceType": { "type": "string", "minLength": 1 },
+                      "observedValue": {}
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "candidateStatus": { "const": "none" } }, "required": ["candidateStatus"] },
+            "then": { "properties": { "candidates": { "maxItems": 0 } } }
+          },
+          {
+            "if": { "properties": { "candidateStatus": { "const": "unique-candidate" } }, "required": ["candidateStatus"] },
+            "then": { "properties": { "candidates": { "minItems": 1, "maxItems": 1 } } }
+          },
+          {
+            "if": { "properties": { "candidateStatus": { "const": "ambiguous-candidates" } }, "required": ["candidateStatus"] },
+            "then": { "properties": { "candidates": { "minItems": 2 } } }
+          }
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

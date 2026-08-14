@@ -30,6 +30,7 @@ Only final `mapped` recommendations are deployable. When an administrator suppli
 - Never construct, derive, or guess a `settingDefinitionId`.
 - Resolve a setting only by an explicit reviewed ID or an exact `baseUri + offsetUri` tuple that matches exactly one definition.
 - Never use a display-name fallback to make a deployment decision.
+- Normalized title/display-name matches may appear only in a private candidate worklist; even a unique candidate cannot change `mappingStatus` without explicit review of the exact definition hierarchy and value.
 - Never guess or heuristically select a choice/value ID.
 - Choice settings require an exact reviewed `optionId` present exactly once in the pinned and live definition.
 - Simple collections validate every element's type and constraints; group collections and choice-dependent children validate every nested definition, type, choice, value, and bounded depth.
@@ -57,6 +58,8 @@ Only final `mapped` recommendations are deployable. When an administrator suppli
 The generated manifest records the source PDF name/hash/page count, compiler/extractor/PDF-parser versions, mapping catalog identity/hash, decision-file hash, and Settings Catalog snapshot hash. Pack JSON uses stable ordering and contains no build timestamp. Identical input bytes produce identical generated pack bytes.
 
 Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
+
+Private candidate worklists are reproducible reviewer aids, not compiler inputs or mapping authority. They record hashes for the extraction, pinned snapshot, and reference policy files, preserve exact historical occurrences, and declare `mappingChangesMade: false`. They must remain private because they contain benchmark titles.
 
 ## Runtime controls
 

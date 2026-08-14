@@ -16,6 +16,58 @@ try {
         AdministratorDecisionsPath=(Join-Path $fixtures 'administrator-decisions.json')
         SettingsCatalogSnapshotPath=(Join-Path $fixtures 'settings-catalog-snapshot.json')
     }
+    $reviewCommon=@{
+        ExtractionPath=(Join-Path $fixtures 'mapping-review-extraction.json')
+        SettingsCatalogSnapshotPath=$common.SettingsCatalogSnapshotPath
+        ReferencePackRoot=(Join-Path $fixtures 'reference-pack')
+    }
+    $mappingCatalogHashBefore=(Get-FileHash -LiteralPath $common.MappingCatalogPath -Algorithm SHA256).Hash
+    $reviewPathA=Join-Path $testRoot 'mapping-a.private-review.json'
+    $reviewPathB=Join-Path $testRoot 'mapping-b.private-review.json'
+    & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath $reviewPathA
+    & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath $reviewPathB
+    Assert-True (((Get-FileHash -LiteralPath $reviewPathA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $reviewPathB -Algorithm SHA256).Hash)) 'Repeated candidate worklists must be byte-identical.'
+    Assert-True ($mappingCatalogHashBefore -ceq (Get-FileHash -LiteralPath $common.MappingCatalogPath -Algorithm SHA256).Hash) 'Candidate generation must not modify the mapping catalog.'
+    $review=Read-Json $reviewPathA
+    Assert-True (-not [bool]$review.mappingChangesMade) 'Candidate worklists must explicitly state that no mappings were changed.'
+    Assert-True ($review.summary.recommendationCount -eq 4 -and $review.summary.referenceDefinitionCount -eq 9 -and $review.summary.validatedOccurrenceCount -eq 11) 'Candidate worklist summary must count all synthetic recommendations and recursively validated reference settings.'
+    Assert-True ($review.summary.uniqueCandidateRecommendations -eq 2 -and $review.summary.ambiguousCandidateRecommendations -eq 1 -and $review.summary.noCandidateRecommendations -eq 1 -and $review.summary.candidateLinkCount -eq 5) 'Candidate worklist status counts must be deterministic.'
+    $manualCandidate=@($review.recommendations | Where-Object recommendationId -eq '1.3')[0]
+    Assert-True ($manualCandidate.cisAssessmentMethod -ceq 'Manual' -and $manualCandidate.candidateStatus -ceq 'unique-candidate') 'A Manual assessment recommendation may still have a deterministic mapping candidate.'
+    $ambiguousCandidate=@($review.recommendations | Where-Object recommendationId -eq '1.2')[0]
+    Assert-True ($ambiguousCandidate.candidateStatus -ceq 'ambiguous-candidates' -and @($ambiguousCandidate.candidates).Count -eq 3) 'Multiple normalized title matches must remain explicitly ambiguous.'
+    $nestedCandidate=@($ambiguousCandidate.candidates | Where-Object definitionId -eq 'synthetic_group_enabled')[0]
+    Assert-True (@($nestedCandidate.occurrences[0].ancestorDefinitionIds).Count -eq 1 -and [string]$nestedCandidate.occurrences[0].observedValue.optionId -ceq 'synthetic_group_enabled_true') 'Nested historical settings must retain their exact ancestor and choice evidence.'
+    $noCandidate=@($review.recommendations | Where-Object recommendationId -eq '1.4')[0]
+    Assert-True ($noCandidate.candidateStatus -ceq 'none' -and @($noCandidate.candidates).Count -eq 0) 'Recommendations without deterministic title evidence must remain candidate-free.'
+
+    $badReferenceRoot=Join-Path $testRoot 'bad-reference'
+    $badReferencePolicies=Join-Path $badReferenceRoot 'configuration-policies'
+    New-Item -ItemType Directory -Path $badReferencePolicies | Out-Null
+    $referenceFixture=Get-ChildItem -LiteralPath (Join-Path $reviewCommon.ReferencePackRoot 'configuration-policies') -Filter *.json -File | Select-Object -First 1
+    $badReference=Read-Json $referenceFixture.FullName
+    $badReference.settings[0].settingInstance.choiceSettingValue.value='enabled'
+    $badReferencePath=Join-Path $badReferencePolicies $referenceFixture.Name
+    $badReference | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $badReferencePath -Encoding utf8
+    $badReferenceFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -ReferencePackRoot $badReferenceRoot -OutputPath (Join-Path $testRoot 'bad-reference.private-review.json') } catch { $badReferenceFailed=$true }
+    Assert-True $badReferenceFailed 'A plausible but non-exact historical choice ID must fail closed.'
+
+    $caseReferenceRoot=Join-Path $testRoot 'case-reference'
+    $caseReferencePolicies=Join-Path $caseReferenceRoot 'configuration-policies'
+    New-Item -ItemType Directory -Path $caseReferencePolicies | Out-Null
+    $caseReference=Read-Json $referenceFixture.FullName
+    $caseReference.settings[0].settingInstance.settingDefinitionId='SYNTHETIC_CHOICE'
+    $caseReferencePath=Join-Path $caseReferencePolicies $referenceFixture.Name
+    $caseReference | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $caseReferencePath -Encoding utf8
+    $caseReferenceFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -ReferencePackRoot $caseReferenceRoot -OutputPath (Join-Path $testRoot 'case-reference.private-review.json') } catch { $caseReferenceFailed=$true }
+    Assert-True $caseReferenceFailed 'A historical definition ID with non-exact casing must fail closed.'
+
+    $unsafeReviewNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath (Join-Path $testRoot 'review.json') } catch { $unsafeReviewNameFailed=$true }
+    Assert-True $unsafeReviewNameFailed 'A private review worklist must use the ignored .private-review.json suffix.'
+
     $seedCatalogPath=Join-Path $testRoot 'seed-catalog.json'
     & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `
         -ExtractionPath $common.ExtractionPath `

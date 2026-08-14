@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "2.0",
+  "tool": {
+    "extractorVersion": "0.2.1",
+    "pdfParser": "pypdf",
+    "pdfParserVersion": "6.15.0"
+  },
+  "benchmark": {
+    "id": "synthetic-intune-review",
+    "version": "1.0.0",
+    "requiredTextMatched": ["Synthetic Intune Review Benchmark"]
+  },
+  "source": {
+    "fileName": "synthetic-review.pdf",
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "pageCount": 4
+  },
+  "recommendations": [
+    {
+      "recommendationId": "1.1",
+      "title": "Synthetic choice",
+      "page": 1,
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Automated",
+      "profileApplicability": "Level 1",
+      "audit": null,
+      "remediation": null,
+      "defaultValue": null
+    },
+    {
+      "recommendationId": "1.2",
+      "title": "Synthetic group",
+      "page": 2,
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Automated",
+      "profileApplicability": "Level 1",
+      "audit": null,
+      "remediation": null,
+      "defaultValue": null
+    },
+    {
+      "recommendationId": "1.3",
+      "title": "Synthetic string collection",
+      "page": 3,
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Manual",
+      "profileApplicability": "Level 1",
+      "audit": null,
+      "remediation": null,
+      "defaultValue": null
+    },
+    {
+      "recommendationId": "1.4",
+      "title": "Synthetic unmatched recommendation",
+      "page": 4,
+      "profiles": ["L1"],
+      "cisAssessmentMethod": "Manual",
+      "profileApplicability": "Level 1",
+      "audit": null,
+      "remediation": null,
+      "defaultValue": null
+    }
+  ]
+}

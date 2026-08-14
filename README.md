@@ -106,6 +106,18 @@ First capture the current authoritative Settings Catalog definitions:
 
 Add `-UseDeviceCode` when running from an embedded or headless terminal that cannot open the interactive browser window. Export records page/count evidence and fails on duplicate IDs or inconsistent pagination rather than accepting a possibly truncated definition set.
 
+If you have a legitimately obtained, previously reviewed configuration-policy pack for the same benchmark, you can create a private candidate worklist:
+
+```powershell
+.\scripts\New-CISMappingReviewWorklist.ps1 `
+    -ExtractionPath C:\Private\benchmark.private-extraction.json `
+    -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
+    -ReferencePackRoot C:\Private\reviewed-reference-pack `
+    -OutputPath C:\Private\benchmark.private-review.json
+```
+
+The command recursively validates every referenced definition, type, choice ID, and value against the pinned snapshot, then uses deterministic normalized title/display-name containment only to produce review candidates. It never edits the mapping catalog. `unique-candidate` is not mapping proof, ambiguous candidates remain ambiguous, and a reviewer must explicitly approve the exact setting hierarchy and value before changing `mappingStatus`. The worklist contains private benchmark titles and must not be committed.
+
 If the catalog declares organizational choices, generate and complete a decision file:
 
 ```powershell

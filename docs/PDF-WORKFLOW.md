@@ -47,7 +47,23 @@ Use `-UseDeviceCode` in embedded or headless terminals where browser-based authe
 
 This private snapshot records API version, capture time, and tenant ID. Exact setting and option IDs are checked against it, and its SHA-256—not its tenant ID—is recorded in the generated pack. Do not commit tenant snapshots.
 
-## 5. Supply organizational decisions
+## 5. Optionally create a private mapping-review worklist
+
+If a legitimately obtained, previously reviewed configuration-policy pack exists for the exact benchmark, it can be used as candidate evidence:
+
+```powershell
+.\scripts\New-CISMappingReviewWorklist.ps1 `
+  -ExtractionPath C:\Private\benchmark.private-extraction.json `
+  -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
+  -ReferencePackRoot C:\Private\reviewed-reference-pack `
+  -OutputPath C:\Private\benchmark.private-review.json
+```
+
+The reference root must contain `configuration-policies\*.json` with an exact `[L1]`, `[L2]`, or `[BL]` marker in each policy name. Before creating candidates, the script recursively validates every historical setting definition, instance type, exact choice ID, simple value constraint, collection element, and nested group value against the pinned snapshot. Input file hashes and exact observed values are retained as review evidence, and identical inputs produce byte-identical worklists.
+
+The normalized title/display-name rule is only a reviewer shortcut. The output explicitly sets `mappingChangesMade` to `false`; `unique-candidate` does not prove a mapping, ambiguous candidates remain ambiguous, and no catalog is modified. The worklist contains private benchmark titles, is ignored by Git through `*.private-review.json`, and must not be committed.
+
+## 6. Supply organizational decisions
 
 ```powershell
 .\scripts\New-CISAdministratorDecisions.ps1 `
@@ -57,7 +73,7 @@ This private snapshot records API version, capture time, and tenant ID. Exact se
 
 Complete every required value, set `acknowledged` to `true`, and add a justification. Values outside reviewed allowed sets/ranges fail validation. Missing decisions remain nondeployable `requires-input`; they are never defaulted.
 
-## 6. Build atomically
+## 7. Build atomically
 
 ```powershell
 .\scripts\Invoke-CISPolicyPipeline.ps1 `
@@ -70,14 +86,14 @@ Complete every required value, set `acknowledged` to `true`, and add a justifica
 
 The script extracts to a private staging directory, compiles and validates the pack, moves the finished pack into place, and removes staging data. It refuses to overwrite an existing output path. `-KeepPrivateExtraction` retains raw text outside the pack only when explicitly requested.
 
-## 7. Review and validate offline
+## 8. Review and validate offline
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot .\work\example
 .\scripts\Get-CISMappingReport.ps1 -PackRoot .\work\example
 ```
 
-## 8. Validate live, then import explicitly
+## 9. Validate live, then import explicitly
 
 Run `-DryRun` with a pinned tenant. It uses read-only Graph scope and validates current definitions/options before any write. Add `-UseDeviceCode` in embedded or headless terminals. Run `-ProbeOnly` if a temporary write-path test is required. Finally, invoke the importer without either switch to create unassigned policies.
 

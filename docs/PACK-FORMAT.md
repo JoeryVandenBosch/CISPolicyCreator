@@ -11,6 +11,8 @@ The compiler consumes four independently auditable inputs. The mapping catalog d
 3. pinned Settings Catalog definition snapshot when settings are mapped;
 4. explicit administrator decisions when the catalog contains `requires-input` records.
 
+Private `*.private-review.json` candidate worklists are not compiler inputs and are never part of a pack. They can accelerate human mapping review, but their title matches do not authorize a definition ID, option ID, value, or `mappingStatus` change.
+
 Schemas for all inputs live under `schemas/`. Input paths and raw extraction text are not copied into the generated pack.
 
 ## Manifest
