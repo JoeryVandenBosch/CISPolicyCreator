@@ -4,6 +4,10 @@
 
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.
+- Harden live Graph collection reads for missing continuation links, explicit skip fallback, duplicate IDs, and unbounded pagination.
+- Accept the first live validation record in an initially empty typed result collection.
+- Treat CSP path metadata omitted by Graph's single-definition response as unavailable rather than contradictory, while still rejecting any returned mismatch.
+- Skip the full Settings Catalog collection read when every mapping already uses an explicit definition ID.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

@@ -104,9 +104,12 @@ try {
         $specPath=Join-Path $PackRoot ([string]$manifest.settingsCatalogSpec)
         if (Test-Path -LiteralPath $specPath) {
             $dynamicSpecs=@(Get-Content -LiteralPath $specPath -Raw | ConvertFrom-Json -Depth 100)
-            if ($dynamicSpecs.Count -gt 0) {
+            $pathResolvedSpecs=@($dynamicSpecs | Where-Object { -not $_.resolve.definitionId })
+            if ($pathResolvedSpecs.Count -gt 0) {
                 Write-Host 'Loading current Settings Catalog definitions from Microsoft Graph...'
                 $definitions=Invoke-CpcGraphPaged 'https://graph.microsoft.com/beta/deviceManagement/configurationSettings?$top=500'
+            } elseif ($dynamicSpecs.Count -gt 0) {
+                Write-Host 'Every Settings Catalog mapping uses an explicit definition ID; validating definitions individually.'
             }
         }
     }

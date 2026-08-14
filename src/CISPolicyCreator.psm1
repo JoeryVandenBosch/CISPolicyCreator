@@ -2,7 +2,7 @@ Set-StrictMode -Version Latest
 
 function Add-CpcResult {
     param(
-        [Parameter(Mandatory)][System.Collections.Generic.List[object]]$Results,
+        [Parameter(Mandatory)][AllowEmptyCollection()][System.Collections.Generic.List[object]]$Results,
         [Parameter(Mandatory)][string]$Stage,
         [Parameter(Mandatory)][string]$Name,
         [Parameter(Mandatory)][string]$Status,
@@ -13,16 +13,53 @@ function Add-CpcResult {
 
 function Invoke-CpcGraphPaged {
     param([Parameter(Mandatory)][string]$Uri)
-    $items = @()
+
+    $topMatch=[regex]::Match($Uri,'(?i)(?:[?&])\$top=(\d+)')
+    $pageSize=if($topMatch.Success){[int]$topMatch.Groups[1].Value}else{0}
+    if($Uri -match '(?i)(?:[?&])\$skip=') { throw 'Invoke-CpcGraphPaged requires an unskipped collection URI.' }
+
+    $items=[System.Collections.Generic.List[object]]::new()
+    $seenIds=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     $next = $Uri
+    $pageCount=0
     while ($next) {
+        $pageCount++
+        if($pageCount -gt 1000){throw 'Graph pagination exceeded 1000 pages; refusing an unbounded read.'}
         $r = Invoke-MgGraphRequest -Method GET -Uri $next
-        if ($null -ne $r.value) {
-            $items += @($r.value)
-            $next = $r.'@odata.nextLink'
-        } else {
-            $items += $r
+
+        $isDictionary=$r -is [System.Collections.IDictionary]
+        $valueProperty=if($isDictionary){$r.Contains('value')}else{$null -ne $r.PSObject.Properties['value']}
+        if(-not $valueProperty){
+            $items.Add($r)
             $next = $null
+            continue
+        }
+
+        if($isDictionary){$pageItems=@($r['value'])}else{$pageItems=@($r.PSObject.Properties['value'].Value)}
+        foreach($item in $pageItems){
+            $itemIsDictionary=$item -is [System.Collections.IDictionary]
+            $idProperty=if($itemIsDictionary){$item.Contains('id')}else{$null -ne $item.PSObject.Properties['id']}
+            $id=''
+            if($idProperty){
+                if($itemIsDictionary){$id=[string]$item['id']}else{$id=[string]$item.PSObject.Properties['id'].Value}
+            }
+            if([string]::IsNullOrWhiteSpace($id)){throw "Graph collection page $pageCount returned an item without an ID."}
+            if(-not $seenIds.Add($id)){throw "Graph pagination returned duplicate object ID '$id'; completeness cannot be proven."}
+            $items.Add($item)
+        }
+
+        $nextProperty=if($isDictionary){$r.Contains('@odata.nextLink')}else{$null -ne $r.PSObject.Properties['@odata.nextLink']}
+        $serverNext=''
+        if($nextProperty){
+            if($isDictionary){$serverNext=[string]$r['@odata.nextLink']}else{$serverNext=[string]$r.PSObject.Properties['@odata.nextLink'].Value}
+        }
+        if(-not [string]::IsNullOrWhiteSpace($serverNext)){
+            $next=$serverNext
+        }elseif($pageSize -gt 0 -and $pageItems.Count -eq $pageSize){
+            $separator=if($Uri.Contains('?')){'&'}else{'?'}
+            $next=$Uri+$separator+'$skip='+$items.Count
+        }else{
+            $next=$null
         }
     }
     return @($items)
@@ -69,12 +106,14 @@ function Get-CpcSettingDefinition {
         if ($matches.Count -ne 1) { throw "Could not uniquely resolve Settings Catalog definition for '$($Spec.displayName)' by exact baseUri + offsetUri. Matches=$($matches.Count)." }
         $def = $matches[0]
     }
-    $definitionBaseUri=if ($def.PSObject.Properties['baseUri']) { [string]$def.baseUri } else { $null }
-    $definitionOffsetUri=if ($def.PSObject.Properties['offsetUri']) { [string]$def.offsetUri } else { $null }
-    if ($Spec.resolve.baseUri -and (Normalize-CpcCspPath $definitionBaseUri) -ne (Normalize-CpcCspPath $Spec.resolve.baseUri)) {
+    $definitionBaseUriProperty=$def.PSObject.Properties['baseUri']
+    $definitionOffsetUriProperty=$def.PSObject.Properties['offsetUri']
+    $definitionBaseUri=if ($definitionBaseUriProperty) { [string]$definitionBaseUriProperty.Value } else { $null }
+    $definitionOffsetUri=if ($definitionOffsetUriProperty) { [string]$definitionOffsetUriProperty.Value } else { $null }
+    if ($Spec.resolve.baseUri -and -not [string]::IsNullOrWhiteSpace($definitionBaseUri) -and (Normalize-CpcCspPath $definitionBaseUri) -ne (Normalize-CpcCspPath $Spec.resolve.baseUri)) {
         throw "Definition '$($def.id)' baseUri does not match the reviewed resolver for '$($Spec.displayName)'."
     }
-    if ($Spec.resolve.offsetUri -and ([string]$definitionOffsetUri).Trim() -ine ([string]$Spec.resolve.offsetUri).Trim()) {
+    if ($Spec.resolve.offsetUri -and -not [string]::IsNullOrWhiteSpace($definitionOffsetUri) -and ([string]$definitionOffsetUri).Trim() -ine ([string]$Spec.resolve.offsetUri).Trim()) {
         throw "Definition '$($def.id)' offsetUri does not match the reviewed resolver for '$($Spec.displayName)'."
     }
     if ($Spec.resolve.expectedType -and [string]$def.'@odata.type' -ne [string]$Spec.resolve.expectedType) {

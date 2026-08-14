@@ -100,11 +100,81 @@ try {
 
     Import-Module (Join-Path $repoRoot 'src\CISPolicyCreator.psm1') -Force -DisableNameChecking
     Assert-True (-not (Get-Command Get-CpcCandidateSettingId -ErrorAction SilentlyContinue)) 'Constructed candidate definition-ID helper must not exist.'
+    $emptyResults=[System.Collections.Generic.List[object]]::new()
+    Add-CpcResult -Results $emptyResults -Stage 'test' -Name 'first' -Status 'validated'
+    Assert-True ($emptyResults.Count -eq 1) 'The first live validation result must be accepted into an empty result collection.'
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/1/assignments')) 'Assignment endpoint must be rejected.'
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com:444/beta/deviceManagement/configurationPolicies')) 'Non-default Graph ports must be rejected.'
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com/beta/deviceManagement/%2e%2e/groups')) 'Dot-segment path escape must be rejected.'
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com/beta/deviceManagement/%2561ssignments')) 'Double-encoded path components must be rejected.'
     Assert-True (Test-CpcObjectContainsAssignments ([pscustomobject]@{ nested=[pscustomobject]@{ assignments=@() } })) 'Nested assignment payload must be detected.'
+    $cpcModule=Get-Module CISPolicyCreator
+    $pagingResult=& $cpcModule {
+        $script:CpcMockCalls=0
+        function script:Invoke-MgGraphRequest {
+            param([string]$Method,[string]$Uri)
+            $script:CpcMockCalls++
+            if($Uri.Contains('$skip=2')){return [pscustomobject]@{value=@([pscustomobject]@{id='c'})}}
+            return [pscustomobject]@{value=@([pscustomobject]@{id='a'},[pscustomobject]@{id='b'})}
+        }
+        try {
+            $pagedItems=@(Invoke-CpcGraphPaged 'https://graph.microsoft.com/beta/test?$top=2')
+            [pscustomobject]@{itemCount=$pagedItems.Count; callCount=$script:CpcMockCalls}
+        } finally {
+            Remove-Item Function:\script:Invoke-MgGraphRequest -ErrorAction SilentlyContinue
+            Remove-Variable CpcMockCalls -Scope Script -ErrorAction SilentlyContinue
+        }
+    }
+    Assert-True ($pagingResult.itemCount -eq 3 -and $pagingResult.callCount -eq 2) 'A full page without nextLink must continue using explicit skip pagination.'
+    $duplicatePageFailed=& $cpcModule {
+        $script:CpcMockCalls=0
+        function script:Invoke-MgGraphRequest {
+            param([string]$Method,[string]$Uri)
+            $script:CpcMockCalls++
+            if($script:CpcMockCalls -eq 1){return [pscustomobject]@{value=@([pscustomobject]@{id='a'},[pscustomobject]@{id='b'})}}
+            return [pscustomobject]@{value=@([pscustomobject]@{id='b'})}
+        }
+        try {
+            try { Invoke-CpcGraphPaged 'https://graph.microsoft.com/beta/test?$top=2' | Out-Null; return $false } catch { return $true }
+        } finally {
+            Remove-Item Function:\script:Invoke-MgGraphRequest -ErrorAction SilentlyContinue
+            Remove-Variable CpcMockCalls -Scope Script -ErrorAction SilentlyContinue
+        }
+    }
+    Assert-True $duplicatePageFailed 'Duplicate IDs across Graph pages must fail closed.'
+    $omittedPathResult=& $cpcModule {
+        function script:Invoke-MgGraphRequest {
+            param([string]$Method,[string]$Uri)
+            return [pscustomobject]@{id='explicit_definition'; '@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'}
+        }
+        try {
+            $spec=[pscustomobject]@{
+                displayName='Explicit definition'
+                resolve=[pscustomobject]@{definitionId='explicit_definition'; baseUri='./Device/Vendor/MSFT/Policy'; offsetUri='/Config/Test/Value'; expectedType='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'}
+            }
+            $resolvedDefinition=Get-CpcSettingDefinition -Spec $spec -Definitions @()
+            [string]$resolvedDefinition.id
+        } finally {
+            Remove-Item Function:\script:Invoke-MgGraphRequest -ErrorAction SilentlyContinue
+        }
+    }
+    Assert-True ($omittedPathResult -ceq 'explicit_definition') 'An explicit live definition that omits optional CSP path metadata must still resolve by exact ID.'
+    $contradictoryPathFailed=& $cpcModule {
+        function script:Invoke-MgGraphRequest {
+            param([string]$Method,[string]$Uri)
+            return [pscustomobject]@{id='explicit_definition'; baseUri='./Device/Vendor/MSFT/Different'; offsetUri='/Config/Test/Value'; '@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'}
+        }
+        try {
+            $spec=[pscustomobject]@{
+                displayName='Explicit definition'
+                resolve=[pscustomobject]@{definitionId='explicit_definition'; baseUri='./Device/Vendor/MSFT/Policy'; offsetUri='/Config/Test/Value'; expectedType='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'}
+            }
+            try { Get-CpcSettingDefinition -Spec $spec -Definitions @() | Out-Null; return $false } catch { return $true }
+        } finally {
+            Remove-Item Function:\script:Invoke-MgGraphRequest -ErrorAction SilentlyContinue
+        }
+    }
+    Assert-True $contradictoryPathFailed 'A live CSP path that contradicts reviewed metadata must fail closed.'
     $snapshotFixture=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
     $choiceDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_choice')[0]
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
