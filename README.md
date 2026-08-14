@@ -103,6 +103,8 @@ First capture the current authoritative Settings Catalog definitions:
     -OutputPath C:\Private\settings-catalog-snapshot.json
 ```
 
+Add `-UseDeviceCode` when running from an embedded or headless terminal that cannot open the interactive browser window. Export records page/count evidence and fails on duplicate IDs or inconsistent pagination rather than accepting a possibly truncated definition set.
+
 If the catalog declares organizational choices, generate and complete a decision file:
 
 ```powershell

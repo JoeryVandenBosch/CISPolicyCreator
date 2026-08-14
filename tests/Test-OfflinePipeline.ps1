@@ -75,6 +75,14 @@ try {
     try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -SettingsCatalogSnapshotPath $ambiguousPath -OutputPath (Join-Path $testRoot 'ambiguous-pack') } catch { $ambiguousFailed=$true }
     Assert-True $ambiguousFailed 'Ambiguous exact definition matches must fail closed.'
 
+    $countMismatchSnapshot=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
+    $countMismatchSnapshot.retrieval.definitionCount++
+    $countMismatchPath=Join-Path $testRoot 'count-mismatch-snapshot.json'
+    $countMismatchSnapshot | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $countMismatchPath -Encoding utf8
+    $countMismatchFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -SettingsCatalogSnapshotPath $countMismatchPath -OutputPath (Join-Path $testRoot 'count-mismatch-pack') } catch { $countMismatchFailed=$true }
+    Assert-True $countMismatchFailed 'A snapshot with inconsistent retrieval evidence must fail closed.'
+
     $incompleteCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
     $incompleteCatalog.recommendations=@($incompleteCatalog.recommendations | Where-Object recommendationId -ne '1.3')
     $incompletePath=Join-Path $testRoot 'incomplete-catalog.json'

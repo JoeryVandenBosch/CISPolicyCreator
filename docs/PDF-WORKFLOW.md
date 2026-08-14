@@ -43,6 +43,8 @@ The catalog records the reviewed expected recommendation count and must explicit
   -OutputPath C:\Private\settings-catalog-snapshot.json
 ```
 
+Use `-UseDeviceCode` in embedded or headless terminals where browser-based authentication is unavailable. The exporter records pagination evidence, follows server continuation links, falls back to explicit `$skip` paging when necessary, and rejects duplicate IDs or inconsistent counts.
+
 This private snapshot records API version, capture time, and tenant ID. Exact setting and option IDs are checked against it, and its SHA-256—not its tenant ID—is recorded in the generated pack. Do not commit tenant snapshots.
 
 ## 5. Supply organizational decisions

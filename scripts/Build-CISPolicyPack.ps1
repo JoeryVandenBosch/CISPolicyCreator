@@ -115,6 +115,9 @@ if ($SettingsCatalogSnapshotPath) {
     $snapshotInput = Read-ValidatedJson $SettingsCatalogSnapshotPath 'settings-catalog-snapshot.schema.json' 'Settings Catalog snapshot'
     $snapshot = $snapshotInput.Value
     $snapshotHash = Get-FileSha256 $snapshotInput.Path
+    if ([int]$snapshot.retrieval.definitionCount -ne @($snapshot.definitions).Count) { throw 'Settings Catalog snapshot retrieval count does not match its definitions array.' }
+    $snapshotIds=@($snapshot.definitions | ForEach-Object { [string]$_.id })
+    if (@($snapshotIds | Sort-Object -Unique).Count -ne $snapshotIds.Count) { throw 'Settings Catalog snapshot contains duplicate definition IDs.' }
 }
 
 $extractedById = @{}

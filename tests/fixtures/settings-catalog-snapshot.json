@@ -1,8 +1,16 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "apiVersion": "beta",
   "capturedAt": "2026-08-14T00:00:00Z",
   "tenantId": "00000000-0000-0000-0000-000000000000",
+  "retrieval": {
+    "collectionUri": "https://graph.microsoft.com/beta/deviceManagement/configurationSettings",
+    "pageSize": 500,
+    "pageCount": 1,
+    "definitionCount": 2,
+    "usedODataNextLink": false,
+    "usedSkipFallback": false
+  },
   "definitions": [
     {
       "id": "synthetic_choice",
