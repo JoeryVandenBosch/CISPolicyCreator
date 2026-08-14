@@ -34,6 +34,7 @@ Important supporting commands:
 - `New-CISAdministratorDecisions.ps1`: generate an explicit decision template;
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;
+- `Test-CISRepository.ps1`: one-command local/CI privacy, schema, parser, pipeline, extractor, and synthetic-PDF verification;
 - `Get-CISMappingReport.ps1`: assessment/mapping audit report;
 - `Import-CISPolicyPack.ps1`: live dry run and explicit unassigned import.
 

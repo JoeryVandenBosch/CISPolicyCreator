@@ -180,6 +180,12 @@ The PDF and private extraction text are not copied into the pack. Omit `-Adminis
 
 Validation evaluates the JSON Schemas and cross-file semantic rules. It runs without Graph access.
 
+To run the same complete privacy, schema, parser, offline-pipeline, extractor, and synthetic-PDF checks as GitHub Actions:
+
+```powershell
+.\scripts\Test-CISRepository.ps1 -PythonPath .\.venv\Scripts\python.exe
+```
+
 ## Live validation and import
 
 Dry run uses read-only Graph scope, resolves every selected setting, validates exact option IDs, and prepares every payload before any write:

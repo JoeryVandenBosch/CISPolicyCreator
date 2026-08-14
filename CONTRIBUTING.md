@@ -27,9 +27,7 @@ Mapping catalogs must never use constructed IDs, display-name fallback, substrin
 Before opening a PR:
 
 ```powershell
-.\scripts\Test-CISPolicyPack.ps1 -PackRoot <pack>
-python -m unittest tests/test_extractor.py
-.\tests\Test-OfflinePipeline.ps1
+.\scripts\Test-CISRepository.ps1 -PythonPath .\.venv\Scripts\python.exe
 ```
 
 Run a `-DryRun` against a test tenant when the pack is intended for deployment and include non-sensitive validation notes in the PR description.
