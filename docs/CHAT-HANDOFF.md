@@ -30,7 +30,7 @@ Important supporting commands:
 - `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISMappingReviewWorklist.ps1`: recursively validate a private historical policy pack against a pinned snapshot and emit candidate-only review evidence without changing mappings;
 - `New-CISMappingReviewApprovals.ps1`: create an all-deferred, hash-bound private reviewer template;
-- `Apply-CISMappingReviewApprovals.ps1`: promote only explicitly acknowledged exact occurrences into a new catalog, with benchmark-prescribed values and no source overwrite;
+- `Apply-CISMappingReviewApprovals.ps1`: promote only explicitly acknowledged exact occurrences, then atomically publish a new catalog only after extraction-bound full-pack compilation and offline validation;
 - `New-CISAdministratorDecisions.ps1`: generate an explicit decision template;
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;

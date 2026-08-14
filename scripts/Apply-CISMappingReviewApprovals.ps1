@@ -1,5 +1,6 @@
 [CmdletBinding()]
 param(
+    [Parameter(Mandatory)][string]$ExtractionPath,
     [Parameter(Mandatory)][string]$MappingCatalogPath,
     [Parameter(Mandatory)][string]$ReviewWorklistPath,
     [Parameter(Mandatory)][string]$ApprovalsPath,
@@ -87,16 +88,20 @@ function Assert-ReferenceSimpleValue($Definition,$SettingValue,[string]$Context)
     throw "$Context uses unsupported simple value type '$valueType'."
 }
 
+$extractionInput=Read-ValidatedJson $ExtractionPath 'extraction.schema.json' 'Private extraction'
 $catalogInput=Read-ValidatedJson $MappingCatalogPath 'mapping-catalog.schema.json' 'Mapping catalog'
 $worklistInput=Read-ValidatedJson $ReviewWorklistPath 'private-mapping-review.schema.json' 'Private mapping review worklist'
 $approvalsInput=Read-ValidatedJson $ApprovalsPath 'mapping-review-approvals.schema.json' 'Private mapping review approvals'
 $snapshotInput=Read-ValidatedJson $SettingsCatalogSnapshotPath 'settings-catalog-snapshot.schema.json' 'Settings Catalog snapshot'
+$extraction=$extractionInput.Value
 $catalog=$catalogInput.Value
 $worklist=$worklistInput.Value
 $approvals=$approvalsInput.Value
 $snapshot=$snapshotInput.Value
 
 if([bool]$worklist.mappingChangesMade){throw 'The review worklist must be candidate-only.'}
+if((Get-Sha256 $extractionInput.Path) -cne [string]$worklist.source.extractionSha256){throw 'Private extraction hash does not match the reviewed worklist evidence.'}
+if([string]$extraction.benchmark.id -cne [string]$worklist.benchmark.id -or [string]$extraction.benchmark.version -cne [string]$worklist.benchmark.version){throw 'Private extraction and review worklist target different benchmarks.'}
 if([string]$worklist.benchmark.id -cne [string]$catalog.benchmark.id -or [string]$worklist.benchmark.version -cne [string]$catalog.benchmark.version){throw 'Review worklist and mapping catalog target different benchmarks.'}
 if((Get-Sha256 $catalogInput.Path) -cne [string]$approvals.catalog.sha256){throw 'Approval catalog hash does not match MappingCatalogPath.'}
 if([string]$catalog.id -cne [string]$approvals.catalog.id -or [string]$catalog.version -cne [string]$approvals.catalog.version){throw 'Approvals target a different mapping catalog identity or version.'}
@@ -389,11 +394,27 @@ $parent=Split-Path -Parent $outputFull
 if(-not $parent){$parent=(Get-Location).Path}
 if(-not (Test-Path -LiteralPath $parent)){New-Item -ItemType Directory -Path $parent|Out-Null}
 $temporary=Join-Path $parent ('.'+[IO.Path]::GetFileName($outputFull)+'.'+[guid]::NewGuid().ToString('N')+'.tmp')
+$tempBase=[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar,[IO.Path]::AltDirectorySeparatorChar)+[IO.Path]::DirectorySeparatorChar
+$validationRoot=Join-Path $tempBase ('CISPolicyCreator-approval-validation-'+[guid]::NewGuid().ToString('N'))
 try{
     [IO.File]::WriteAllText($temporary,$json,[Text.UTF8Encoding]::new($false))
+    & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath $extractionInput.Path -MappingCatalogPath $temporary -SettingsCatalogSnapshotPath $snapshotInput.Path -OutputPath $validationRoot
+    $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $validationRoot -PassThru
+    if(-not $validation.IsValid){throw 'Approved catalog did not compile into a valid fail-closed policy pack.'}
+    $resolvedValidationRoot=[IO.Path]::GetFullPath($validationRoot)
+    if(-not $resolvedValidationRoot.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
+    Remove-Item -LiteralPath $resolvedValidationRoot -Recurse -Force
     Move-Item -LiteralPath $temporary -Destination $outputFull
-}finally{if(Test-Path -LiteralPath $temporary){Remove-Item -LiteralPath $temporary -Force}}
+}finally{
+    if(Test-Path -LiteralPath $temporary){Remove-Item -LiteralPath $temporary -Force}
+    if(Test-Path -LiteralPath $validationRoot){
+        $resolvedValidationRoot=[IO.Path]::GetFullPath($validationRoot)
+        if(-not $resolvedValidationRoot.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
+        Remove-Item -LiteralPath $resolvedValidationRoot -Recurse -Force
+    }
+}
 
 Write-Host "Applied $mappedReviewCount explicit mapping review(s): $outputFull"
 Write-Host "New Settings Catalog settings: $($newSettings.Count); new policies: $($newPolicyById.Count)"
-Write-Warning 'The output is still subject to full PDF build validation, live dry run, test-tenant validation, and unassigned-only import.'
+Write-Host 'Full private-extraction-bound pack compilation and offline validation passed before catalog publication.'
+Write-Warning 'The output is still subject to live dry run, test-tenant validation, and unassigned-only import.'

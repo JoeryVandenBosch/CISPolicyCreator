@@ -61,7 +61,7 @@ Every recommendation remains visible in the inventory, including unresolved, req
 
 Private candidate worklists are reproducible reviewer aids, not compiler inputs or mapping authority. They record hashes for the extraction, pinned snapshot, and reference policy files, preserve exact historical occurrences, and declare `mappingChangesMade: false`. They must remain private because they contain benchmark titles.
 
-Candidate promotion is a separate explicit trust boundary. Approval templates default every row to `defer`; a mapped review must acknowledge semantic equivalence, select an exact occurrence and complete top-level setting tree, and assert that the value is prescribed by the benchmark. Application rechecks all pinned hashes and writes a new catalog without modifying the source. Organizational values cannot use this path and remain `requires-input` until an administrator supplies a separate decision.
+Candidate promotion is a separate explicit trust boundary. Approval templates default every row to `defer`; a mapped review must acknowledge semantic equivalence, select an exact occurrence and complete top-level setting tree, and assert that the value is prescribed by the benchmark. Application rechecks the private extraction and all other pinned hashes, then compiles and validates the complete pack before atomically writing a new catalog without modifying the source. Organizational values cannot use this path and remain `requires-input` until an administrator supplies a separate decision.
 
 ## Runtime controls
 

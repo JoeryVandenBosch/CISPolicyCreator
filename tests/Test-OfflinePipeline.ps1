@@ -126,6 +126,7 @@ try {
     $approvedCatalogA=Join-Path $testRoot 'approved-catalog-a.json'
     $approvedCatalogB=Join-Path $testRoot 'approved-catalog-b.json'
     $applyCommon=@{
+        ExtractionPath=$reviewCommon.ExtractionPath
         MappingCatalogPath=$reviewCatalogPath
         ReviewWorklistPath=$reviewPathA
         ApprovalsPath=$approvedPath
@@ -156,6 +157,15 @@ try {
     try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $approvalTemplateA -OutputPath (Join-Path $testRoot 'deferred-catalog.json') } catch { $deferredApplyFailed=$true }
     Assert-True $deferredApplyFailed 'A default all-deferred approval template must not produce a new catalog.'
 
+    $wrongExtraction=Read-Json $reviewCommon.ExtractionPath
+    $wrongExtraction.source.sha256=('3'*64)
+    $wrongExtractionPath=Join-Path $testRoot 'wrong-extraction.json'
+    $wrongExtraction | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $wrongExtractionPath -Encoding utf8
+    $wrongExtractionOutput=Join-Path $testRoot 'wrong-extraction-catalog.json'
+    $wrongExtractionFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ExtractionPath $wrongExtractionPath -OutputPath $wrongExtractionOutput } catch { $wrongExtractionFailed=$true }
+    Assert-True ($wrongExtractionFailed -and -not (Test-Path -LiteralPath $wrongExtractionOutput)) 'Approval application must reject an extraction whose file hash differs from the reviewed evidence and write nothing.'
+
     $fakeApproval=Read-Json $approvedPath
     @($fakeApproval.reviews | Where-Object recommendationId -eq '1.1')[0].selections[0].candidateDefinitionId='SYNTHETIC_CHOICE'
     $fakeApprovalPath=Join-Path $testRoot 'fake.private-approvals.json'
@@ -179,6 +189,26 @@ try {
     $organizationalApprovalFailed=$false
     try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $organizationalApprovalPath -OutputPath (Join-Path $testRoot 'organizational-catalog.json') } catch { $organizationalApprovalFailed=$true }
     Assert-True $organizationalApprovalFailed 'A mapped review without an explicit benchmark-prescribed value basis must fail closed.'
+
+    $invalidExistingCatalog=Read-Json $reviewCatalogPath
+    $invalidExistingCatalog.graphObjects=@([pscustomobject][ordered]@{
+        name='Invalid pre-existing synthetic object'
+        recommendationIds=@('missing-recommendation')
+        profiles=@('L1')
+        endpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies'
+        payload=[pscustomobject]@{}
+    })
+    $invalidExistingCatalogPath=Join-Path $testRoot 'invalid-existing-catalog.json'
+    $invalidExistingCatalog | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $invalidExistingCatalogPath -Encoding utf8
+    $invalidApprovalTemplate=Join-Path $testRoot 'invalid-existing.private-approvals.json'
+    & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $invalidExistingCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath $invalidApprovalTemplate
+    $invalidApproval=Read-Json $invalidApprovalTemplate
+    $invalidApproval.reviews=@($approval.reviews)
+    $invalidApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $invalidApprovalTemplate -Encoding utf8
+    $invalidPromotionOutput=Join-Path $testRoot 'invalid-promotion-catalog.json'
+    $invalidPromotionFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -MappingCatalogPath $invalidExistingCatalogPath -ApprovalsPath $invalidApprovalTemplate -OutputPath $invalidPromotionOutput } catch { $invalidPromotionFailed=$true }
+    Assert-True ($invalidPromotionFailed -and -not (Test-Path -LiteralPath $invalidPromotionOutput)) 'A promoted catalog that fails complete pack compilation must not be published.'
 
     $seedCatalogPath=Join-Path $testRoot 'seed-catalog.json'
     & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `

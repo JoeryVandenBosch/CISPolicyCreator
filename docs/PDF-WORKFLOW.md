@@ -114,6 +114,7 @@ Apply the approvals to a new catalog; the source catalog is never overwritten:
 
 ```powershell
 .\scripts\Apply-CISMappingReviewApprovals.ps1 `
+  -ExtractionPath C:\Private\benchmark.private-extraction.json `
   -MappingCatalogPath .\benchmarks\example\1.0.0\mapping-catalog.json `
   -ReviewWorklistPath C:\Private\benchmark.private-review.json `
   -ApprovalsPath C:\Private\benchmark.private-approvals.json `
@@ -122,7 +123,7 @@ Apply the approvals to a new catalog; the source catalog is never overwritten:
   -OutputPath C:\Private\mapping-catalog.next.json
 ```
 
-The script verifies the catalog, worklist, snapshot, and every reference-policy hash; revalidates exact definitions, types, choices, values, collections, and nested groups; and promotes only currently `unresolved` recommendations. An all-deferred file writes nothing. This path intentionally cannot authorize organizational values: use `requires-input` and an administrator decision instead. Keep `*.private-approvals.json` private, then run the complete build and live/test-tenant validation before publishing the new catalog.
+The script verifies the private extraction, catalog, worklist, snapshot, and every reference-policy hash; revalidates exact definitions, types, choices, values, collections, and nested groups; and promotes only currently `unresolved` recommendations. It writes the candidate catalog to a temporary file, compiles the complete extraction-bound pack, and runs offline pack validation before atomically publishing the new catalog. Any failure removes the temporary pack/catalog and leaves the requested output absent. An all-deferred file writes nothing. This path intentionally cannot authorize organizational values: use `requires-input` and an administrator decision instead. Keep `*.private-approvals.json` private, then run live dry-run and test-tenant validation before publishing the new catalog.
 
 ## 7. Supply organizational decisions
 

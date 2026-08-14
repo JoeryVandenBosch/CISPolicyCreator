@@ -139,6 +139,7 @@ Every row starts as `defer`. A reviewer may set a row to `mapped` only by acknow
 
 ```powershell
 .\scripts\Apply-CISMappingReviewApprovals.ps1 `
+    -ExtractionPath C:\Private\benchmark.private-extraction.json `
     -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
     -ReviewWorklistPath C:\Private\benchmark.private-review.json `
     -ApprovalsPath C:\Private\benchmark.private-approvals.json `
@@ -147,7 +148,7 @@ Every row starts as `defer`. A reviewer may set a row to `mapped` only by acknow
     -OutputPath C:\Private\mapping-catalog.next.json
 ```
 
-The apply command rechecks every source hash and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations, never overwrites the input catalog, and cannot be used for organizational values that belong in `requires-input`. The output still requires the complete PDF build, offline validation, live dry run, and test-tenant review before publication or import.
+The apply command rechecks every source hash, including the private extraction, and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations and never overwrites the input catalog. Before publishing the new catalog, it atomically compiles the complete extraction-bound pack and runs offline validation; any failure leaves no output catalog. This path cannot be used for organizational values that belong in `requires-input`. Live dry run and test-tenant review remain mandatory before publication or import.
 
 If the catalog declares organizational choices, generate and complete a decision file:
 
