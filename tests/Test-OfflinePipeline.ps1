@@ -10,6 +10,17 @@ function Read-Json([string]$Path) { Get-Content -LiteralPath $Path -Raw | Conver
 
 try {
     New-Item -ItemType Directory -Path $testRoot | Out-Null
+    $initializer=Join-Path $repoRoot 'scripts\Initialize-CISPolicyCreator.ps1'
+    $initializerFilePath=Join-Path $testRoot 'not-an-environment'
+    Set-Content -LiteralPath $initializerFilePath -Value 'fixture' -Encoding utf8
+    $initializerFileFailed=$false
+    try { & $initializer -EnvironmentPath $initializerFilePath } catch { $initializerFileFailed=$true }
+    Assert-True $initializerFileFailed 'Runtime initialization must not overwrite a file used as EnvironmentPath.'
+    $initializerDirectoryPath=Join-Path $testRoot 'existing-unrelated-directory'
+    New-Item -ItemType Directory -Path $initializerDirectoryPath | Out-Null
+    $initializerDirectoryFailed=$false
+    try { & $initializer -EnvironmentPath $initializerDirectoryPath } catch { $initializerDirectoryFailed=$true }
+    Assert-True $initializerDirectoryFailed 'Runtime initialization must not treat an existing unrelated directory as a virtual environment.'
     $importScript=Join-Path $repoRoot 'scripts\Import-CISPolicyPack.ps1'
     $missingPack=Join-Path $testRoot 'does-not-exist'
     $tenantId='00000000-0000-0000-0000-000000000001'

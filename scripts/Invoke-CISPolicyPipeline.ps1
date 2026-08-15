@@ -24,10 +24,15 @@ $catalog = $catalogJson | ConvertFrom-Json -Depth 100
 $pythonExecutable=if ($PythonPath) {
     (Resolve-Path -LiteralPath $PythonPath).Path
 } else {
-    $pythonCommand=Get-Command python -ErrorAction SilentlyContinue
-    if ($pythonCommand) { $pythonCommand.Source } else { $null }
+    $localPython=if($IsWindows){Join-Path $repoRoot '.venv\Scripts\python.exe'}else{Join-Path $repoRoot '.venv/bin/python'}
+    if(Test-Path -LiteralPath $localPython){
+        (Resolve-Path -LiteralPath $localPython).Path
+    }else{
+        $pythonCommand=Get-Command python -ErrorAction SilentlyContinue
+        if ($pythonCommand) { $pythonCommand.Source } else { $null }
+    }
 }
-if (-not $pythonExecutable) { throw 'Python 3 is required for local PDF extraction.' }
+if (-not $pythonExecutable) { throw 'Python 3 is required for local PDF extraction. Run scripts/Initialize-CISPolicyCreator.ps1.' }
 $extractor = Join-Path $repoRoot 'tools\Extract-CISRecommendations.py'
 $outputRoot = [IO.Path]::GetFullPath($OutputPath)
 if (Test-Path -LiteralPath $outputRoot) { throw "OutputPath already exists: $outputRoot" }

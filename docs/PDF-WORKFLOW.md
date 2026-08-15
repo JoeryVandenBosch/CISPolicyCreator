@@ -2,7 +2,7 @@
 
 CISPolicyCreator separates private document extraction, reviewed mapping, deterministic compilation, live validation, and deployment.
 
-Before reading the source, the extractor requires Python 3.11 or later and verifies that the installed `pypdf` version exactly matches the SHA-256-locked requirement and extraction schema. Install with `python -m pip install --require-hashes -r .\tools\requirements.txt`; a different parser version fails closed.
+Before reading the source, the extractor requires Python 3.11 or later and verifies that the installed `pypdf` version exactly matches the SHA-256-locked requirement and extraction schema. Run `.\scripts\Initialize-CISPolicyCreator.ps1` to create or reuse the local `.venv` and install the exact dependency; a different parser version fails closed. The initializer does not install Graph tooling or AI components.
 
 ## 1. Eligibility and privacy
 
@@ -11,7 +11,13 @@ Use only a legitimately obtained CIS Benchmark explicitly authored for Microsoft
 ## 2. Install the pinned extractor
 
 ```powershell
-python -m pip install --require-hashes -r .\tools\requirements.txt
+.\scripts\Initialize-CISPolicyCreator.ps1
+$python=(.\scripts\Test-CISPrerequisites.ps1 -PassThru).PythonPath
+& $python .\tools\Extract-CISRecommendations.py C:\Private\Benchmark.pdf `
+  --benchmark-id '<benchmark-id>' `
+  --benchmark-version '<version>' `
+  --require-text '<reviewed source fingerprint>' `
+  --output C:\Private\benchmark.private-extraction.json
 ```
 
 The PDF parser runs locally. It extracts `cisAssessmentMethod` independently from mapping status and fails on empty output, duplicate recommendation IDs, or unrecognized profile applicability.

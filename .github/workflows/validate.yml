@@ -14,9 +14,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install hash-pinned PDF dependency
-        run: python -m pip install --require-hashes -r tools/requirements.txt
+      - name: Initialize hash-pinned offline runtime
+        shell: pwsh
+        run: ./scripts/Initialize-CISPolicyCreator.ps1 -EnvironmentPath .venv
 
       - name: Complete repository validation
         shell: pwsh
-        run: ./scripts/Test-CISRepository.ps1 -PythonPath python
+        run: ./scripts/Test-CISRepository.ps1 -PythonPath .venv/bin/python

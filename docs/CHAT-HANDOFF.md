@@ -28,6 +28,8 @@ Extraction first verifies Python 3.11+ and requires the installed `pypdf` versio
 
 Important supporting commands:
 
+- `Initialize-CISPolicyCreator.ps1`: create or reuse the local virtual environment and install the hash-locked offline parser dependency;
+- `Test-CISPrerequisites.ps1`: verify PowerShell, Python, the parser contract, and optionally the Graph authentication module;
 - `Export-SettingsCatalogDiagnostics.ps1`: capture a pinned definition snapshot;
 - `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISMappingReviewWorklist.ps1`: recursively validate a private historical policy pack against a pinned snapshot and emit candidate-only review evidence without changing mappings;
@@ -46,7 +48,7 @@ When a mapped leaf choice/integer/string exists, the compiler also embeds one de
 
 ## Verification
 
-The repository contains copyright-safe tests for extraction, Manual+mapped semantics, private candidate worklists, deferred/rejected/mapped review states, deterministic private progress reports, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
+The repository contains copyright-safe tests for clean runtime initialization, automatic local-environment discovery, extraction, Manual+mapped semantics, private candidate worklists, deferred/rejected/mapped review states, deterministic private progress reports, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions initializes the same hash-pinned environment and runs the complete suite.
 
 ## Current benchmark state
 

@@ -196,9 +196,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract private recommendation records from a CIS Intune benchmark PDF."
     )
-    parser.add_argument("pdf", type=Path)
-    parser.add_argument("--benchmark-id", required=True)
-    parser.add_argument("--benchmark-version", required=True)
+    parser.add_argument("pdf", type=Path, nargs="?")
+    parser.add_argument("--benchmark-id")
+    parser.add_argument("--benchmark-version")
+    parser.add_argument(
+        "--check-runtime",
+        action="store_true",
+        help="Verify Python and the hash-locked parser contract without reading a PDF.",
+    )
     parser.add_argument("--require-text", action="append", default=[])
     parser.add_argument("--max-file-size-mib", type=int, default=250)
     parser.add_argument("--max-pages", type=int, default=2000)
@@ -210,6 +215,18 @@ def main() -> None:
         parser_version = verify_runtime()
     except (OSError, KeyError, ValueError, RuntimeError, importlib.metadata.PackageNotFoundError) as exc:
         raise SystemExit(f"Runtime prerequisite check failed: {exc}") from exc
+
+    if args.check_runtime:
+        if args.pdf or args.benchmark_id or args.benchmark_version or args.require_text:
+            parser.error("--check-runtime cannot be combined with PDF extraction arguments.")
+        print(
+            "Runtime prerequisites valid: "
+            f"Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}; "
+            f"pypdf {parser_version}."
+        )
+        return
+    if not args.pdf or not args.benchmark_id or not args.benchmark_version:
+        parser.error("PDF, --benchmark-id, and --benchmark-version are required for extraction.")
 
     pdf = args.pdf.resolve(strict=True)
     if args.max_file_size_mib < 1 or args.max_pages < 1:

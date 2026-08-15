@@ -75,18 +75,22 @@ The generated manifest records SHA-256 hashes for the PDF, mapping catalog, admi
 - `Microsoft.Graph.Authentication` for snapshot export, live dry runs, probes, and imports
 
 ```powershell
-python -m pip install --require-hashes -r .\tools\requirements.txt
+.\scripts\Initialize-CISPolicyCreator.ps1
+
+# Required only for snapshot export and live Graph operations:
 Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
+.\scripts\Test-CISPrerequisites.ps1 -RequireGraph
 ```
 
-The extractor verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
+The initializer creates or reuses `.venv`, installs the PDF dependency with `--require-hashes`, and verifies the result. It never installs the Graph module or any AI runtime. The main PDF pipeline automatically prefers this local environment. The extractor independently verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
 
 ## Build a pack from a PDF
 
 A reviewed mapping catalog must exist for the exact benchmark family and version. When starting a new benchmark, first run the private extractor and create a copyright-safe, fail-closed catalog seed:
 
 ```powershell
-python .\tools\Extract-CISRecommendations.py C:\Private\Benchmark.pdf `
+$python=(.\scripts\Test-CISPrerequisites.ps1 -PassThru).PythonPath
+& $python .\tools\Extract-CISRecommendations.py C:\Private\Benchmark.pdf `
     --benchmark-id '<benchmark-id>' `
     --benchmark-version '<version>' `
     --require-text '<reviewed source fingerprint>' `
@@ -201,7 +205,7 @@ Validation evaluates the JSON Schemas and cross-file semantic rules. It runs wit
 To run the same complete privacy, schema, parser, offline-pipeline, extractor, and synthetic-PDF checks as GitHub Actions:
 
 ```powershell
-.\scripts\Test-CISRepository.ps1 -PythonPath .\.venv\Scripts\python.exe
+.\scripts\Test-CISRepository.ps1
 ```
 
 ## Live validation and import

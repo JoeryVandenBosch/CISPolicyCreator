@@ -1,17 +1,11 @@
 [CmdletBinding()]
 param(
-    [string]$PythonPath='python'
+    [string]$PythonPath
 )
 
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 $repoRoot=Split-Path -Parent $PSScriptRoot
-
-function Resolve-PythonExecutable([string]$Path) {
-    if(Test-Path -LiteralPath $Path){return (Resolve-Path -LiteralPath $Path).Path}
-    $command=Get-Command $Path -ErrorAction Stop
-    return $command.Source
-}
 
 Push-Location $repoRoot
 try {
@@ -58,10 +52,9 @@ try {
     & (Join-Path $repoRoot 'scripts/Test-CISPolicyPack.ps1') -PackRoot (Join-Path $repoRoot 'templates/baseline')
     & (Join-Path $repoRoot 'tests/Test-OfflinePipeline.ps1')
 
-    $python=Resolve-PythonExecutable $PythonPath
-    $pythonVersion=& $python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
-    if($LASTEXITCODE -ne 0){throw 'Could not determine the Python version.'}
-    if([version]$pythonVersion -lt [version]'3.11'){throw "Python 3.11 or later is required; found $pythonVersion."}
+    $prerequisites=& (Join-Path $repoRoot 'scripts/Test-CISPrerequisites.ps1') -PythonPath $PythonPath -PassThru
+    $python=[string]$prerequisites.PythonPath
+    $pythonVersion=[string]$prerequisites.PythonVersion
     & $python -m unittest tests/test_extractor.py
     if($LASTEXITCODE -ne 0){throw "Python extraction tests failed with exit code $LASTEXITCODE."}
     & (Join-Path $repoRoot 'tests/Test-PdfPipeline.ps1') -PythonPath $python

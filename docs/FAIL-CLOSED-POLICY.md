@@ -8,6 +8,8 @@ The project optimizes for accuracy and auditability, not maximum automation.
 
 The PDF extractor accepts only Python 3.11 or later and the exact `pypdf` version jointly pinned by the hash-locked requirements file and extraction schema. Missing hashes, version drift, or disagreement between those repository contracts stops extraction before the PDF is read.
 
+Repository-owned initialization creates or reuses a local virtual environment and installs only the hash-locked offline parser dependency. The same bootstrap runs in CI. Graph tooling remains a separately verified live-operation prerequisite, and no AI runtime is installed.
+
 ## Independent classification axes
 
 `cisAssessmentMethod` records the benchmark's assessment classification:
