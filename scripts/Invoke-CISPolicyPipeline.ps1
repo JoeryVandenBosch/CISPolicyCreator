@@ -44,6 +44,7 @@ $extractionPath = Join-Path $stagingRoot 'source-extraction.private.json'
 $privatePath = if ($KeepPrivateExtraction) { "$outputRoot.private-extraction.json" } else { $null }
 if ($privatePath -and (Test-Path -LiteralPath $privatePath)) { throw "Private extraction output already exists: $privatePath" }
 $completed=$false
+$privatePublished=$false
 
 try {
     New-Item -ItemType Directory -Path $stagingRoot | Out-Null
@@ -61,17 +62,18 @@ try {
     if ($AdministratorDecisionsPath) { $buildArgs.AdministratorDecisionsPath=(Resolve-Path -LiteralPath $AdministratorDecisionsPath).Path }
     if ($SettingsCatalogSnapshotPath) { $buildArgs.SettingsCatalogSnapshotPath=(Resolve-Path -LiteralPath $SettingsCatalogSnapshotPath).Path }
     & (Join-Path $PSScriptRoot 'Build-CISPolicyPack.ps1') @buildArgs
-    Move-Item -LiteralPath $packStaging -Destination $outputRoot
 
     if ($KeepPrivateExtraction) {
-        Move-Item -LiteralPath $extractionPath -Destination $privatePath
-        Write-Warning "Private benchmark text retained outside the pack: $privatePath"
+        [IO.File]::Move($extractionPath,$privatePath)
+        $privatePublished=$true
     }
+    # Staging and output share a parent, so this is an atomic rename that refuses a raced destination.
+    [IO.Directory]::Move($packStaging,$outputRoot)
     $completed=$true
+    if ($KeepPrivateExtraction) { Write-Warning "Private benchmark text retained outside the pack: $privatePath" }
     Write-Host "Reproducible pipeline complete: $outputRoot"
     Write-Host 'The generated pack contains no source PDF, raw benchmark prose, credentials, assignments, or AI-generated runtime artifacts.'
 } finally {
     if (Test-Path -LiteralPath $stagingRoot) { Remove-Item -LiteralPath $stagingRoot -Recurse -Force }
-    if (-not $completed -and (Test-Path -LiteralPath $outputRoot)) { Remove-Item -LiteralPath $outputRoot -Recurse -Force }
-    if (-not $completed -and $privatePath -and (Test-Path -LiteralPath $privatePath)) { Remove-Item -LiteralPath $privatePath -Force }
+    if (-not $completed -and $privatePublished -and (Test-Path -LiteralPath $privatePath)) { Remove-Item -LiteralPath $privatePath -Force }
 }

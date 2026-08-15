@@ -68,6 +68,26 @@ try {
     try { & $importScript -PackRoot (Join-Path $repoRoot 'templates\baseline') -TenantId $tenantId -ConfirmUnassignedImport } catch { $partialImportAcknowledgement=$_.Exception.Message }
     Assert-True ($partialImportAcknowledgement -ceq 'Import of a partial pack requires -ConfirmPartialPack before Graph authentication. Unresolved=1; requires-input=0.') 'A valid partial pack must require a separate explicit acknowledgement before Graph authentication.'
 
+    $racedOutput=Join-Path $testRoot 'raced-pipeline-output'
+    $racedPrivate="$racedOutput.private-extraction.json"
+    $racedMarker=Join-Path $racedOutput 'owned-by-another-process.txt'
+    $fakePython=Join-Path $testRoot 'fake-python.ps1'
+    $escapedOutput=$racedOutput.Replace("'","''")
+    $escapedPrivate=$racedPrivate.Replace("'","''")
+    @"
+param([Parameter(ValueFromRemainingArguments=`$true)][object[]]`$RemainingArguments)
+New-Item -ItemType Directory -Path '$escapedOutput' | Out-Null
+Set-Content -LiteralPath (Join-Path '$escapedOutput' 'owned-by-another-process.txt') -Value 'preserve me'
+Set-Content -LiteralPath '$escapedPrivate' -Value 'preserve me too'
+throw 'Synthetic extractor failure after another process claimed both outputs.'
+"@ | Set-Content -LiteralPath $fakePython -Encoding utf8
+    $racedPipelineFailed=$false
+    try {
+        & (Join-Path $repoRoot 'scripts\Invoke-CISPolicyPipeline.ps1') -PdfPath (Join-Path $fixtures 'extraction.json') -MappingCatalogPath (Join-Path $fixtures 'mapping-catalog.json') -OutputPath $racedOutput -PythonPath $fakePython -KeepPrivateExtraction
+    } catch { $racedPipelineFailed=$true }
+    Assert-True $racedPipelineFailed 'The synthetic extractor failure must abort the orchestrator.'
+    Assert-True ((Test-Path -LiteralPath $racedMarker) -and (Test-Path -LiteralPath $racedPrivate)) 'Failed pipeline cleanup must not delete output paths claimed by another process after preflight.'
+
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')
         MappingCatalogPath=(Join-Path $fixtures 'mapping-catalog.json')
