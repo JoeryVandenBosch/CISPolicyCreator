@@ -2,6 +2,8 @@
 
 CISPolicyCreator separates private document extraction, reviewed mapping, deterministic compilation, live validation, and deployment.
 
+Before reading the source, the extractor requires Python 3.11 or later and verifies that the installed `pypdf` version exactly matches the SHA-256-locked requirement and extraction schema. Install with `python -m pip install --require-hashes -r .\tools\requirements.txt`; a different parser version fails closed.
+
 ## 1. Eligibility and privacy
 
 Use only a legitimately obtained CIS Benchmark explicitly authored for Microsoft Intune. Never commit the PDF or raw extracted benchmark prose. A reviewed mapping catalog declares required source text and exact benchmark identity; extraction stops when those checks fail.

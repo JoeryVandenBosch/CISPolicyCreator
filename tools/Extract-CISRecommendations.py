@@ -11,6 +11,7 @@ import hashlib
 import importlib.metadata
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -35,6 +36,57 @@ HEADINGS = [
     "References",
     "CIS Controls",
 ]
+
+MINIMUM_PYTHON = (3, 11)
+EXTRACTOR_VERSION = "0.2.2"
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+REQUIREMENTS_PATH = Path(__file__).with_name("requirements.txt")
+EXTRACTION_SCHEMA_PATH = REPOSITORY_ROOT / "schemas" / "extraction.schema.json"
+
+
+def load_parser_contract(
+    requirements_path: Path = REQUIREMENTS_PATH,
+    schema_path: Path = EXTRACTION_SCHEMA_PATH,
+) -> str:
+    """Return the single hash-locked pypdf version agreed by requirements and schema."""
+    requirements = requirements_path.read_text(encoding="utf-8")
+    logical_requirements = requirements.replace("\\\r\n", " ").replace("\\\n", " ")
+    matches = re.findall(
+        r"(?im)^\s*pypdf==(?P<version>[^\s]+)(?P<options>[^\r\n]*)$",
+        logical_requirements,
+    )
+    if len(matches) != 1:
+        raise ValueError("tools/requirements.txt must contain exactly one pinned pypdf requirement.")
+    version, options = matches[0]
+    hashes = re.findall(r"--hash=sha256:([a-f0-9]{64})(?=\s|$)", options)
+    if not hashes:
+        raise ValueError("The pinned pypdf requirement must contain at least one SHA-256 hash.")
+
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    schema_version = schema["properties"]["tool"]["properties"]["pdfParserVersion"]["const"]
+    if version != schema_version:
+        raise ValueError(
+            "Pinned pypdf version disagrees with extraction.schema.json: "
+            f"requirements={version}; schema={schema_version}."
+        )
+    return version
+
+
+def verify_runtime() -> str:
+    if sys.version_info[:2] < MINIMUM_PYTHON:
+        raise RuntimeError(
+            f"Python {MINIMUM_PYTHON[0]}.{MINIMUM_PYTHON[1]} or later is required; "
+            f"found {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}."
+        )
+    expected = load_parser_contract()
+    installed = importlib.metadata.version("pypdf")
+    if installed != expected:
+        raise RuntimeError(
+            "Installed pypdf does not match the repository's hash-pinned parser version: "
+            f"installed={installed}; required={expected}. "
+            "Install tools/requirements.txt with --require-hashes."
+        )
+    return installed
 
 
 def sha256_file(path: Path) -> str:
@@ -154,6 +206,11 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
+    try:
+        parser_version = verify_runtime()
+    except (OSError, KeyError, ValueError, RuntimeError, importlib.metadata.PackageNotFoundError) as exc:
+        raise SystemExit(f"Runtime prerequisite check failed: {exc}") from exc
+
     pdf = args.pdf.resolve(strict=True)
     if args.max_file_size_mib < 1 or args.max_pages < 1:
         raise SystemExit("PDF size and page limits must be positive integers.")
@@ -172,9 +229,9 @@ def main() -> None:
     payload = {
         "schemaVersion": "2.0",
         "tool": {
-            "extractorVersion": "0.2.1",
+            "extractorVersion": EXTRACTOR_VERSION,
             "pdfParser": "pypdf",
-            "pdfParserVersion": importlib.metadata.version("pypdf"),
+            "pdfParserVersion": parser_version,
         },
         "benchmark": {
             "id": args.benchmark_id,

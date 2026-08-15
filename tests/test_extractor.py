@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import importlib.util
+import json
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +18,33 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ExtractorTests(unittest.TestCase):
+    def test_parser_contract_is_hash_locked_and_schema_bound(self) -> None:
+        self.assertEqual(MODULE.load_parser_contract(), "6.15.0")
+
+    def test_parser_contract_rejects_unhashed_or_schema_mismatched_versions(self) -> None:
+        schema = json.loads(MODULE.EXTRACTION_SCHEMA_PATH.read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            requirements = root / "requirements.txt"
+            schema_path = root / "extraction.schema.json"
+            schema_path.write_text(json.dumps(schema), encoding="utf-8")
+
+            requirements.write_text("pypdf==6.15.0\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "at least one SHA-256 hash"):
+                MODULE.load_parser_contract(requirements, schema_path)
+
+            requirements.write_text(
+                "pypdf==6.14.0 --hash=sha256:" + ("a" * 64) + "\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "disagrees with extraction.schema.json"):
+                MODULE.load_parser_contract(requirements, schema_path)
+
+    def test_runtime_rejects_an_installed_parser_version_mismatch(self) -> None:
+        with patch.object(MODULE.importlib.metadata, "version", return_value="0.0.0"):
+            with self.assertRaisesRegex(RuntimeError, "installed=0.0.0; required=6.15.0"):
+                MODULE.verify_runtime()
+
     def test_manual_and_automated_are_preserved(self) -> None:
         text = """
 <<<PAGE 1>>>

@@ -6,6 +6,8 @@ CISPolicyCreator converts CIS Benchmarks authored specifically for Microsoft Int
 
 The project optimizes for accuracy and auditability, not maximum automation.
 
+The PDF extractor accepts only Python 3.11 or later and the exact `pypdf` version jointly pinned by the hash-locked requirements file and extraction schema. Missing hashes, version drift, or disagreement between those repository contracts stops extraction before the PDF is read.
+
 ## Independent classification axes
 
 `cisAssessmentMethod` records the benchmark's assessment classification:

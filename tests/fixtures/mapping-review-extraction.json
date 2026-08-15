@@ -1,7 +1,7 @@
 {
   "schemaVersion": "2.0",
   "tool": {
-    "extractorVersion": "0.2.1",
+    "extractorVersion": "0.2.2",
     "pdfParser": "pypdf",
     "pdfParserVersion": "6.15.0"
   },

@@ -20,7 +20,7 @@ $manifest=[ordered]@{
     schemaVersion='2.0'; id=$PackId; name=$Name; version=$Version
     benchmarkScope='microsoft-intune'; sourceDocumentIncluded=$false
     source=[ordered]@{ fileName=$SourceFileName; sha256=$SourceSha256.ToLowerInvariant(); pageCount=$SourcePageCount }
-    build=[ordered]@{ toolVersion='0.2.0'; extractorVersion='0.2.1'; pdfParser='pypdf'; pdfParserVersion='6.15.0'; mappingCatalogId=$MappingCatalogId; mappingCatalogVersion=$MappingCatalogVersion; mappingCatalogSha256=$MappingCatalogSha256.ToLowerInvariant(); administratorDecisionsSha256=$null; settingsCatalogSnapshotSha256=$null }
+    build=[ordered]@{ toolVersion='0.2.0'; extractorVersion='0.2.2'; pdfParser='pypdf'; pdfParserVersion='6.15.0'; mappingCatalogId=$MappingCatalogId; mappingCatalogVersion=$MappingCatalogVersion; mappingCatalogSha256=$MappingCatalogSha256.ToLowerInvariant(); administratorDecisionsSha256=$null; settingsCatalogSnapshotSha256=$null }
     recommendationsSpec='spec/recommendations.json'
     settingsCatalogPolicyDirectory='policies/settings-catalog'
     settingsCatalogSpec='spec/settings-catalog.json'

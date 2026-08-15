@@ -71,13 +71,15 @@ The generated manifest records SHA-256 hashes for the PDF, mapping catalog, admi
 
 - PowerShell 7+
 - Python 3.11+
-- `pypdf`, installed from the hash-pinned requirements file
+- `pypdf`, installed from the hash-pinned requirements file; extraction fails if the installed version differs from the schema-bound pin
 - `Microsoft.Graph.Authentication` for snapshot export, live dry runs, probes, and imports
 
 ```powershell
 python -m pip install --require-hashes -r .\tools\requirements.txt
 Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
 ```
+
+The extractor verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
 
 ## Build a pack from a PDF
 

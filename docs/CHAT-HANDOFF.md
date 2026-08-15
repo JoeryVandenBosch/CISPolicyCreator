@@ -24,6 +24,8 @@ A user clones the repository, supplies a legitimately obtained CIS Benchmark PDF
 
 `scripts/Invoke-CISPolicyPipeline.ps1` orchestrates private PDF extraction, source eligibility checks, reviewed catalog compilation, administrator decisions, exact definition-snapshot validation, deterministic pack generation, JSON Schema evaluation, and semantic fail-closed checks.
 
+Extraction first verifies Python 3.11+ and requires the installed `pypdf` version to match both the SHA-256-locked requirements file and extraction schema exactly.
+
 Important supporting commands:
 
 - `Export-SettingsCatalogDiagnostics.ps1`: capture a pinned definition snapshot;
