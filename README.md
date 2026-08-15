@@ -265,7 +265,7 @@ See [docs/CHAT-HANDOFF.md](docs/CHAT-HANDOFF.md) for the concise current-state h
 
 ## Current benchmark status
 
-The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Twenty-eight recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 28 settings in 10 unassigned policies. The original 18 mappings also pass live tenant dry-run validation; the 10 newly promoted priority Level 1 mappings remain gated on a fresh live dry run. The other 387 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
+The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Twenty-eight recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 28 settings in 10 unassigned policies; all 28 have passed live tenant dry-run validation. An explicitly acknowledged Level 1 partial-pack import found every target policy name already present, skipped them without modification, and created no assignments. The other 387 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
 
 ## Public repository rules
 

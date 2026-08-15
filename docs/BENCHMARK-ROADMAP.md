@@ -6,7 +6,7 @@ All benchmark catalog work is gated on the reproducible offline pipeline, schema
 
 ## 1. Windows 11 Intune
 
-The repository includes a public-safe catalog for all 415 Windows 11 v5.0.0 recommendation identifiers. Twenty-eight recommendations have exact definition and option/value mappings validated against a pinned Settings Catalog snapshot and compile reproducibly into 10 unassigned policies. The original 18 mappings passed a live tenant dry run; the 10 newly promoted priority Level 1 mappings await a fresh live dry run. The remaining 387 recommendations stay unresolved and emit no implementation. Continue evidence-backed mapping review and test-tenant import/behavior validation before describing this benchmark catalog as complete.
+The repository includes a public-safe catalog for all 415 Windows 11 v5.0.0 recommendation identifiers. Twenty-eight recommendations have exact definition and option/value mappings validated against a pinned Settings Catalog snapshot and a live tenant dry run, and compile reproducibly into 10 unassigned policies. An explicitly acknowledged Level 1 partial-pack import found every target policy name already present, skipped them without modification, and created no assignments. The remaining 387 recommendations stay unresolved and emit no implementation. Continue evidence-backed mapping review and administrator-controlled test-device behavior validation before describing this benchmark catalog as complete.
 
 ## 2. macOS 26 Tahoe Intune
 
