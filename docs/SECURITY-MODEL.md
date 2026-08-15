@@ -18,7 +18,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 12. Candidate matches cannot change mapping status. A hash-bound rejection records a reviewed false candidate but emits nothing; promotion requires a separate explicit approval of semantic equivalence, the exact occurrence/tree, and a benchmark-prescribed value basis. The new catalog is published only after the exact private extraction compiles into a fully valid offline pack.
 13. Mapping audit reports require complete offline pack validation and are not produced from invalid or tampered packs.
 14. Repository bootstrap installs hash-locked offline Python requirements into an explicit virtual environment. Its opt-in live prerequisite installs only the exact version-and-content-locked Graph authentication module into ignored local storage, without authenticating; AI is never a runtime dependency.
-15. Pack publication is an atomic same-parent directory move, and failure cleanup is ownership-scoped so raced output paths belonging to another process are never deleted.
+15. Compiler and orchestrator pack publication use atomic same-parent directory moves, and failure cleanup is ownership-scoped so raced output paths belonging to another process are never deleted.
 
 ## Runtime invariants
 

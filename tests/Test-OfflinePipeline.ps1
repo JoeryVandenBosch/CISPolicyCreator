@@ -88,6 +88,14 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     Assert-True $racedPipelineFailed 'The synthetic extractor failure must abort the orchestrator.'
     Assert-True ((Test-Path -LiteralPath $racedMarker) -and (Test-Path -LiteralPath $racedPrivate)) 'Failed pipeline cleanup must not delete output paths claimed by another process after preflight.'
 
+    $existingCompilerOutput=Join-Path $testRoot 'existing-compiler-output'
+    New-Item -ItemType Directory -Path $existingCompilerOutput | Out-Null
+    $existingCompilerMarker=Join-Path $existingCompilerOutput 'owned-by-another-process.txt'
+    Set-Content -LiteralPath $existingCompilerMarker -Value 'preserve me'
+    $existingCompilerFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath (Join-Path $fixtures 'extraction.json') -MappingCatalogPath (Join-Path $fixtures 'mapping-catalog.json') -SettingsCatalogSnapshotPath (Join-Path $fixtures 'settings-catalog-snapshot.json') -OutputPath $existingCompilerOutput } catch { $existingCompilerFailed=$true }
+    Assert-True ($existingCompilerFailed -and (Test-Path -LiteralPath $existingCompilerMarker)) 'The standalone compiler must refuse and preserve a claimed output directory.'
+
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')
         MappingCatalogPath=(Join-Path $fixtures 'mapping-catalog.json')

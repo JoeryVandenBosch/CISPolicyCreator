@@ -63,7 +63,7 @@ The generated manifest records the source PDF name/hash/page count, compiler/ext
 
 Mapping audit reports are derived only after the complete pack validator succeeds. Invalid or tampered packs produce no report; report outputs are deterministic and never overwrite existing files.
 
-Pack orchestration publishes from a unique staging directory using a same-parent atomic move. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
+The standalone compiler and pack orchestrator publish from unique staging directories using same-parent atomic moves. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
 
 Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
 

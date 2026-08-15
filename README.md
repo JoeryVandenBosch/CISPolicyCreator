@@ -203,7 +203,7 @@ The PDF and private extraction text are not copied into the pack. Omit `-Adminis
 
 Validation evaluates the JSON Schemas and cross-file semantic rules. It runs without Graph access. Mapping reporting invokes that same validation first, refuses invalid/tampered packs and existing output files, emits byte-stable UTF-8 JSON/CSV, and reports `cisAssessmentMethod` independently from mapping completeness.
 
-The top-level pipeline builds in a unique same-parent staging directory and publishes with an atomic directory move. If another process claims the requested pack or private-extraction path after preflight, publication fails without deleting or overwriting that other process's files. Failure cleanup is limited to staging content and private output proven to have been published by the current run.
+The standalone compiler and top-level pipeline build in unique same-parent staging directories and publish with atomic directory moves. If another process claims the requested pack or private-extraction path after preflight, publication fails without deleting or overwriting that other process's files. Failure cleanup is limited to staging content and private output proven to have been published by the current run.
 
 To run the same complete privacy, schema, parser, offline-pipeline, extractor, and synthetic-PDF checks as GitHub Actions:
 

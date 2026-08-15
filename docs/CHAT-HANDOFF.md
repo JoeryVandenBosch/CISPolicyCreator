@@ -44,7 +44,7 @@ Important supporting commands:
 - `Get-CISMappingReport.ps1`: deterministic assessment/mapping audit report generated only from a fully valid pack;
 - `Import-CISPolicyPack.ps1`: read-only live dry run plus tenant-pinned, separately acknowledged probe/import write modes; partial packs require an additional explicit acknowledgement, same-name Settings Catalog policies must exactly match before skip, generic-object name collisions abort, and policies remain unassigned.
 
-Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, decisions, and definition snapshot. Repeated builds from identical inputs are byte-identical. The orchestrator publishes with an atomic same-parent move and limits failure cleanup to artifacts owned by that run.
+Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, decisions, and definition snapshot. Repeated builds from identical inputs are byte-identical. The compiler and orchestrator publish with atomic same-parent moves and limit failure cleanup to artifacts owned by that run.
 When a mapped leaf choice/integer/string exists, the compiler also embeds one deterministic, exact-copy write probe; otherwise the probe remains unavailable rather than being guessed.
 
 ## Verification

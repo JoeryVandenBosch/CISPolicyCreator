@@ -387,11 +387,13 @@ foreach ($graphObject in @($catalog.graphObjects)) {
 
 $outputRoot = [IO.Path]::GetFullPath($OutputPath)
 if (Test-Path -LiteralPath $outputRoot) { throw "OutputPath already exists: $outputRoot" }
-$createdOutput = $false
+$outputParent=Split-Path -Parent $outputRoot
+if(-not $outputParent){$outputParent=(Get-Location).Path}
+if(-not (Test-Path -LiteralPath $outputParent)){New-Item -ItemType Directory -Path $outputParent -Force | Out-Null}
+$buildRoot=Join-Path $outputParent ('.cpc-build-'+[guid]::NewGuid().ToString('N'))
 try {
-    New-Item -ItemType Directory -Path (Join-Path $outputRoot 'policies\settings-catalog') -Force | Out-Null
-    New-Item -ItemType Directory -Path (Join-Path $outputRoot 'spec') -Force | Out-Null
-    $createdOutput = $true
+    New-Item -ItemType Directory -Path (Join-Path $buildRoot 'policies\settings-catalog') -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $buildRoot 'spec') -Force | Out-Null
     $generatedFileNames=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
     foreach ($policyId in @($settingsByPolicy.Keys | Sort-Object)) {
         $policy = $policyById[$policyId]
@@ -402,11 +404,11 @@ try {
             policy=[ordered]@{ name=[string]$policy.name; description=[string]$policy.description; platforms=[string]$policy.platforms; technologies=[string]$policy.technologies; roleScopeTagIds=@(Get-OptionalProperty $policy 'roleScopeTagIds' @('0')) }
             settings=@()
         }
-        Write-StableJson (Join-Path $outputRoot "policies\settings-catalog\$safeName.json") $bundle
+        Write-StableJson (Join-Path $buildRoot "policies\settings-catalog\$safeName.json") $bundle
     }
-    Write-StableJson (Join-Path $outputRoot 'spec\recommendations.json') @($finalRecommendations)
-    Write-StableJson (Join-Path $outputRoot 'spec\settings-catalog.json') @($generatedSettings)
-    Write-StableJson (Join-Path $outputRoot 'spec\graph-objects.json') @($generatedGraphObjects)
+    Write-StableJson (Join-Path $buildRoot 'spec\recommendations.json') @($finalRecommendations)
+    Write-StableJson (Join-Path $buildRoot 'spec\settings-catalog.json') @($generatedSettings)
+    Write-StableJson (Join-Path $buildRoot 'spec\graph-objects.json') @($generatedGraphObjects)
     $settingsCatalogProbe=$null
     if($probeCandidates.Count -gt 0){$settingsCatalogProbe=($probeCandidates | Sort-Object SortKey | Select-Object -First 1).Probe}
     $manifest = [ordered]@{
@@ -421,11 +423,12 @@ try {
         recommendationsSpec='spec/recommendations.json'; settingsCatalogPolicyDirectory='policies/settings-catalog'
         settingsCatalogSpec='spec/settings-catalog.json'; graphObjects='spec/graph-objects.json'; settingsCatalogProbe=$settingsCatalogProbe
     }
-    Write-StableJson (Join-Path $outputRoot 'manifest.json') $manifest
-    $validation = & (Join-Path $PSScriptRoot 'Test-CISPolicyPack.ps1') -PackRoot $outputRoot -PassThru
+    Write-StableJson (Join-Path $buildRoot 'manifest.json') $manifest
+    $validation = & (Join-Path $PSScriptRoot 'Test-CISPolicyPack.ps1') -PackRoot $buildRoot -PassThru
     if (-not $validation.IsValid) { throw "Generated pack failed validation:`n$($validation.Issues -join "`n")" }
+    # Build and destination share a parent, so publication is atomic and refuses a raced destination.
+    [IO.Directory]::Move($buildRoot,$outputRoot)
     Write-Host "Generated validated policy pack: $outputRoot"
-} catch {
-    if ($createdOutput -and (Test-Path -LiteralPath $outputRoot)) { Remove-Item -LiteralPath $outputRoot -Recurse -Force }
-    throw
+} finally {
+    if(Test-Path -LiteralPath $buildRoot){Remove-Item -LiteralPath $buildRoot -Recurse -Force}
 }
