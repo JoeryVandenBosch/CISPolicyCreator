@@ -235,10 +235,11 @@ Import remains a separate explicit operation:
     -PackRoot .\work\generated-pack `
     -Profile L1 `
     -TenantId '<tenant-guid>' `
-    -ConfirmUnassignedImport
+    -ConfirmUnassignedImport `
+    -ConfirmPartialPack
 ```
 
-The import acknowledgement is required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit a partial run. No assignments are created in either mode.
+`-ConfirmPartialPack` is required only when final recommendations remain `unresolved` or `requires-input`; those recommendations emit nothing, and the separate acknowledgement prevents a partial catalog from being mistaken for a complete baseline. Omit it for a complete pack. The unassigned-import acknowledgement is always required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit continuing after a Graph error. No assignments are created in either mode.
 
 ## Repository layout
 

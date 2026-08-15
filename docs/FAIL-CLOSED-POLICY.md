@@ -67,6 +67,8 @@ Candidate promotion is a separate explicit trust boundary. Approval templates de
 
 ## Runtime controls
 
+An actual import of a pack that still contains `unresolved` or `requires-input` recommendations requires a separate `-ConfirmPartialPack` acknowledgement after offline validation and before Graph authentication. Dry runs and temporary probes cannot carry this acknowledgement. Partial recommendations remain nondeployable and are never silently presented as an implemented baseline.
+
 - Offline validation happens before authentication.
 - Dry run requests read-only Graph scope.
 - Every write mode requires an explicit pinned tenant ID and a mode-specific acknowledgement before pack validation or authentication.

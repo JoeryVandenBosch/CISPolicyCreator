@@ -30,7 +30,16 @@ try {
     Assert-True ($contradictoryLiveMode -ceq 'DryRun and ProbeOnly cannot be used together.') 'DryRun must not be combinable with the write probe.'
     $dryRunWriteAcknowledgement=$null
     try { & $importScript -PackRoot $missingPack -DryRun -ConfirmUnassignedImport } catch { $dryRunWriteAcknowledgement=$_.Exception.Message }
-    Assert-True ($dryRunWriteAcknowledgement -ceq 'DryRun is read-only and cannot be combined with a write acknowledgement.') 'DryRun must reject write acknowledgements rather than imply that a write can occur.'
+    Assert-True ($dryRunWriteAcknowledgement -ceq 'DryRun is read-only and cannot be combined with an import or write acknowledgement.') 'DryRun must reject write acknowledgements rather than imply that a write can occur.'
+    $dryRunPartialAcknowledgement=$null
+    try { & $importScript -PackRoot $missingPack -DryRun -ConfirmPartialPack } catch { $dryRunPartialAcknowledgement=$_.Exception.Message }
+    Assert-True ($dryRunPartialAcknowledgement -ceq 'DryRun is read-only and cannot be combined with an import or write acknowledgement.') 'DryRun must reject a partial-import acknowledgement because it performs no import.'
+    $probePartialAcknowledgement=$null
+    try { & $importScript -PackRoot $missingPack -TenantId $tenantId -ProbeOnly -ConfirmTemporaryWriteProbe -ConfirmPartialPack } catch { $probePartialAcknowledgement=$_.Exception.Message }
+    Assert-True ($probePartialAcknowledgement -ceq 'ProbeOnly cannot be combined with ConfirmPartialPack.') 'A temporary probe must not acknowledge a separate partial-pack import.'
+    $partialImportAcknowledgement=$null
+    try { & $importScript -PackRoot (Join-Path $repoRoot 'templates\baseline') -TenantId $tenantId -ConfirmUnassignedImport } catch { $partialImportAcknowledgement=$_.Exception.Message }
+    Assert-True ($partialImportAcknowledgement -ceq 'Import of a partial pack requires -ConfirmPartialPack before Graph authentication. Unresolved=1; requires-input=0.') 'A valid partial pack must require a separate explicit acknowledgement before Graph authentication.'
 
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')

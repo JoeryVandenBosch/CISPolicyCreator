@@ -9,18 +9,20 @@ param(
     [switch]$UseDeviceCode,
     [switch]$ProbeOnly,
     [switch]$ConfirmUnassignedImport,
-    [switch]$ConfirmTemporaryWriteProbe
+    [switch]$ConfirmTemporaryWriteProbe,
+    [switch]$ConfirmPartialPack
 )
 
 $ErrorActionPreference='Stop'
 if ($StopOnError -and $ContinueOnError) { throw 'StopOnError and ContinueOnError cannot be used together.' }
 if ($DryRun -and $ProbeOnly) { throw 'DryRun and ProbeOnly cannot be used together.' }
 if ($DryRun) {
-    if ($ConfirmUnassignedImport -or $ConfirmTemporaryWriteProbe) { throw 'DryRun is read-only and cannot be combined with a write acknowledgement.' }
+    if ($ConfirmUnassignedImport -or $ConfirmTemporaryWriteProbe -or $ConfirmPartialPack) { throw 'DryRun is read-only and cannot be combined with an import or write acknowledgement.' }
 } elseif ($ProbeOnly) {
     if (-not $TenantId) { throw 'ProbeOnly requires an explicit TenantId before pack validation or Graph authentication.' }
     if (-not $ConfirmTemporaryWriteProbe) { throw 'ProbeOnly requires -ConfirmTemporaryWriteProbe before pack validation or Graph authentication.' }
     if ($ConfirmUnassignedImport) { throw 'ProbeOnly cannot be combined with ConfirmUnassignedImport.' }
+    if ($ConfirmPartialPack) { throw 'ProbeOnly cannot be combined with ConfirmPartialPack.' }
 } else {
     if (-not $TenantId) { throw 'Import requires an explicit TenantId before pack validation or Graph authentication.' }
     if (-not $ConfirmUnassignedImport) { throw 'Import requires -ConfirmUnassignedImport before pack validation or Graph authentication.' }
@@ -39,12 +41,25 @@ if (-not $validation.IsValid) {
     throw "Policy pack failed fail-closed validation. No Graph connection was made.`n$text"
 }
 
+$manifest=Get-Content -LiteralPath (Join-Path $PackRoot 'manifest.json') -Raw | ConvertFrom-Json -Depth 100
+if ($ProbeOnly -and -not $manifest.settingsCatalogProbe) { throw 'Pack does not define settingsCatalogProbe in manifest.json. No Graph connection was made.' }
+if (-not $DryRun -and -not $ProbeOnly) {
+    $recommendationsPath=Join-Path $PackRoot ([string]$manifest.recommendationsSpec)
+    $recommendations=@(Get-Content -LiteralPath $recommendationsPath -Raw | ConvertFrom-Json -Depth 100)
+    $unresolvedCount=@($recommendations | Where-Object mappingStatus -eq 'unresolved').Count
+    $requiresInputCount=@($recommendations | Where-Object mappingStatus -eq 'requires-input').Count
+    if (($unresolvedCount+$requiresInputCount) -gt 0) {
+        if (-not $ConfirmPartialPack) {
+            throw "Import of a partial pack requires -ConfirmPartialPack before Graph authentication. Unresolved=$unresolvedCount; requires-input=$requiresInputCount."
+        }
+        Write-Warning "Partial-pack import explicitly acknowledged: unresolved=$unresolvedCount; requires-input=$requiresInputCount. Those recommendations emit no policy implementation."
+    }
+}
+
 if (-not (Get-Module -ListAvailable -Name Microsoft.Graph.Authentication)) {
     throw 'Microsoft.Graph.Authentication is required. Install-Module Microsoft.Graph.Authentication -Scope CurrentUser'
 }
 Import-Module Microsoft.Graph.Authentication
-$manifest=Get-Content -LiteralPath (Join-Path $PackRoot 'manifest.json') -Raw | ConvertFrom-Json -Depth 100
-if ($ProbeOnly -and -not $manifest.settingsCatalogProbe) { throw 'Pack does not define settingsCatalogProbe in manifest.json. No Graph connection was made.' }
 
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }
