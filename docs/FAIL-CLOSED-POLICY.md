@@ -65,6 +65,8 @@ Mapping audit reports are derived only after the complete pack validator succeed
 
 The standalone compiler and pack orchestrator publish from unique staging directories using same-parent atomic moves. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
 
+Pack validation rejects a symbolic link, junction, or other reparse point used as the pack root or anywhere inside it before reading the manifest. Manifest-relative paths must remain lexically inside the pack as well; linked paths cannot be used to read mutable content outside the validated pack.
+
 Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
 
 Private candidate worklists are reproducible reviewer aids, not compiler inputs or mapping authority. They record hashes for the extraction, pinned snapshot, and reference policy files, preserve exact historical occurrences, and declare `mappingChangesMade: false`. They must remain private because they contain benchmark titles.

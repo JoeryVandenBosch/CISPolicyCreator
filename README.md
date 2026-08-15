@@ -31,6 +31,7 @@ The pipeline also enforces these invariants:
 - generic Graph endpoints are limited to Microsoft Graph `deviceManagement` resources;
 - assignment endpoints and assignment payloads are rejected;
 - policies are never assigned automatically;
+- filesystem links and junctions used as or inside packs are rejected before manifest processing;
 - existing Settings Catalog policies are skipped only after their metadata and complete setting/value payloads exactly match; ambiguous names or differences abort before writes;
 - existing generic Graph object name collisions abort before writes because endpoint-agnostic content equivalence cannot be proven; they are never silently updated.
 

@@ -96,6 +96,23 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath (Join-Path $fixtures 'extraction.json') -MappingCatalogPath (Join-Path $fixtures 'mapping-catalog.json') -SettingsCatalogSnapshotPath (Join-Path $fixtures 'settings-catalog-snapshot.json') -OutputPath $existingCompilerOutput } catch { $existingCompilerFailed=$true }
     Assert-True ($existingCompilerFailed -and (Test-Path -LiteralPath $existingCompilerMarker)) 'The standalone compiler must refuse and preserve a claimed output directory.'
 
+    $linkedPack=Join-Path $testRoot 'linked-pack'
+    Copy-Item -LiteralPath (Join-Path $repoRoot 'templates\baseline') -Destination $linkedPack -Recurse
+    $outsideSpec=Join-Path $testRoot 'outside-spec'
+    Copy-Item -LiteralPath (Join-Path $linkedPack 'spec') -Destination $outsideSpec -Recurse
+    $linkedSpec=Join-Path $linkedPack 'spec'
+    Remove-Item -LiteralPath $linkedSpec -Recurse -Force
+    if($IsWindows){New-Item -ItemType Junction -Path $linkedSpec -Target $outsideSpec | Out-Null}
+    else{New-Item -ItemType SymbolicLink -Path $linkedSpec -Target $outsideSpec | Out-Null}
+    $linkedValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $linkedPack -PassThru
+    Assert-True ((-not $linkedValidation.IsValid) -and @($linkedValidation.Issues | Where-Object {$_ -cmatch 'Filesystem links are not allowed'}).Count -gt 0) 'A pack containing a symlink or junction must fail before linked content is read.'
+
+    $linkedPackRoot=Join-Path $testRoot 'linked-pack-root'
+    if($IsWindows){New-Item -ItemType Junction -Path $linkedPackRoot -Target (Join-Path $repoRoot 'templates\baseline') | Out-Null}
+    else{New-Item -ItemType SymbolicLink -Path $linkedPackRoot -Target (Join-Path $repoRoot 'templates\baseline') | Out-Null}
+    $linkedRootValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $linkedPackRoot -PassThru
+    Assert-True ((-not $linkedRootValidation.IsValid) -and @($linkedRootValidation.Issues | Where-Object {$_ -cmatch 'Filesystem links are not allowed.*pack root'}).Count -gt 0) 'A pack root that is itself a symlink or junction must fail before content is read.'
+
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')
         MappingCatalogPath=(Join-Path $fixtures 'mapping-catalog.json')

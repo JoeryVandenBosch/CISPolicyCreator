@@ -10,6 +10,24 @@ $modulePath=Join-Path (Split-Path -Parent $PSScriptRoot) 'src\CISPolicyCreator.p
 Import-Module $modulePath -Force -DisableNameChecking
 $issues=[System.Collections.Generic.List[string]]::new()
 
+# A lexical in-root path can still escape through a symlink/junction. Reject links before reading the manifest.
+try {
+    $packEntries=@(Get-Item -LiteralPath $PackRoot -Force -ErrorAction Stop)+@(Get-ChildItem -LiteralPath $PackRoot -Recurse -Force -ErrorAction Stop)
+    foreach($entry in $packEntries){
+        $linkTypeProperty=$entry.PSObject.Properties['LinkType']
+        $isLink=(($entry.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) -or ($linkTypeProperty -and $linkTypeProperty.Value)
+        if($isLink){
+            $displayPath=if($entry.FullName -eq $PackRoot){'. (pack root)'}else{$entry.FullName.Substring($PackRoot.Length+1)}
+            $issues.Add("Filesystem links are not allowed in a policy pack: $displayPath")
+        }
+    }
+} catch {$issues.Add("Could not safely enumerate policy pack paths: $($_.Exception.Message)")}
+if($issues.Count -gt 0){
+    $result=[pscustomobject]@{IsValid=$false;Issues=@($issues);RecommendationCounts=@{};DeployableCount=0}
+    if($PassThru){return $result}
+    throw ($issues -join [Environment]::NewLine)
+}
+
 function Read-JsonFile([string]$Path,[string]$Label) {
     if (-not (Test-Path -LiteralPath $Path)) { $issues.Add("$Label missing: $Path"); return $null }
     try { return Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -Depth 100 }

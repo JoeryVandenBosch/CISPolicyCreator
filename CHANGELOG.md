@@ -25,6 +25,7 @@
 - Require a unique same-name Settings Catalog policy to pass read-only, full metadata and nested setting/value equivalence checks before it can be skipped; abort before writes on duplicates or drift. A live read-only regression check detected 27 existing settings where the partial pack expected 1 and stopped with zero creates or assignments.
 - Abort preflight on any same-name generic Graph object because an endpoint-agnostic importer cannot safely prove arbitrary resource equivalence; never report a name-only collision as successfully deployed.
 - Publish standalone-compiled and orchestrated packs with atomic same-parent moves and ownership-scoped cleanup so a raced output path created by another process is never overwritten or deleted.
+- Reject symbolic links, junctions, and other reparse points used as or inside policy packs before manifest processing so linked content cannot escape the validated pack root.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

@@ -19,6 +19,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 13. Mapping audit reports require complete offline pack validation and are not produced from invalid or tampered packs.
 14. Repository bootstrap installs hash-locked offline Python requirements into an explicit virtual environment. Its opt-in live prerequisite installs only the exact version-and-content-locked Graph authentication module into ignored local storage, without authenticating; AI is never a runtime dependency.
 15. Compiler and orchestrator pack publication use atomic same-parent directory moves, and failure cleanup is ownership-scoped so raced output paths belonging to another process are never deleted.
+16. Policy packs using filesystem links, junctions, or reparse points as their root or internally are rejected before manifest processing, preventing linked content from escaping the validated pack root.
 
 ## Runtime invariants
 
