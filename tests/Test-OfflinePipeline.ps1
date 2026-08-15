@@ -502,6 +502,10 @@ try {
     $duplicateExistingSettingFailed=$false
     try { Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings @($actualSettings+$actualSettings[0]) | Out-Null } catch { $duplicateExistingSettingFailed=$true }
     Assert-True $duplicateExistingSettingFailed 'Duplicate top-level setting definition IDs in an existing policy must fail closed.'
+    Assert-CpcNoGenericGraphObjectCollision -Name 'New generic object' -ExistingObjects @()
+    $genericCollisionError=$null
+    try { Assert-CpcNoGenericGraphObjectCollision -Name 'Existing generic object' -ExistingObjects @([pscustomobject]@{id='existing-object-id'}) } catch { $genericCollisionError=$_.Exception.Message }
+    Assert-True ([string]$genericCollisionError -cmatch 'cannot prove their content equivalent') 'A same-name generic Graph object must fail closed because endpoint-agnostic equivalence cannot be proven.'
     $cpcModule=Get-Module CISPolicyCreator
     $pagingResult=& $cpcModule {
         $script:CpcMockCalls=0

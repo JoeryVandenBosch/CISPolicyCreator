@@ -243,8 +243,14 @@ try {
                 if (Test-CpcObjectContainsAssignments -InputObject $payload) { throw "Graph object '$name' contains assignments." }
                 $nameProperty=if ($obj.nameProperty) { [string]$obj.nameProperty } else { 'displayName' }
                 $existingObjects=Invoke-CpcGraphPaged $listEndpoint
-                $match=@($existingObjects | Where-Object { [string]$_.$nameProperty -eq $name })
-                $preparedGraphObjects.Add([pscustomobject]@{ name=$name; endpoint=$endpoint; payload=$payload; existing=$match })
+                $match=@($existingObjects | Where-Object { [string]$_.$nameProperty -ieq $name })
+                try { Assert-CpcNoGenericGraphObjectCollision -Name $name -ExistingObjects $match }
+                catch {
+                    $detail=Get-CpcGraphErrorDetail $_
+                    Add-CpcResult -Results $results -Stage 'graph-object' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                    throw "Generic Graph object collision for '$name': $detail No Intune objects were created."
+                }
+                $preparedGraphObjects.Add([pscustomobject]@{ name=$name; endpoint=$endpoint; payload=$payload })
             }
         }
     }
@@ -255,8 +261,7 @@ try {
             else { Write-Host "[DRY RUN] Would deep-create policy: $($p.name) ($($p.settingCount) embedded settings)"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'dry-run-deep-create' -Detail "$($p.settingCount) embedded settings" }
         }
         foreach ($o in $preparedGraphObjects) {
-            if ($o.existing.Count -gt 0) { Write-Host "[DRY RUN] Existing Graph object, would skip: $($o.name) [$($o.existing[0].id)]"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'existing' -Detail ([string]$o.existing[0].id) }
-            else { Write-Host "[DRY RUN] Would create Graph object: $($o.name) -> $($o.endpoint)"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'dry-run' -Detail $o.endpoint }
+            Write-Host "[DRY RUN] Would create Graph object: $($o.name) -> $($o.endpoint)"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'dry-run' -Detail $o.endpoint
         }
     } else {
         foreach ($p in $preparedPolicies) {
@@ -270,7 +275,6 @@ try {
             }
         }
         foreach ($o in $preparedGraphObjects) {
-            if ($o.existing.Count -gt 0) { Write-Warning "Graph object already exists and will not be modified: $($o.name)"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'existing' -Detail ([string]$o.existing[0].id); continue }
             try {
                 $created=Invoke-MgGraphRequest -Method POST -Uri $o.endpoint -ContentType 'application/json' -Body ($o.payload | ConvertTo-Json -Depth 100)
                 Write-Host "Created Graph object: $($o.name)"

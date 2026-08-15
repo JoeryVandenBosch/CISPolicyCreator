@@ -23,6 +23,7 @@
 - Treat CSP path metadata omitted by Graph's single-definition response as unavailable rather than contradictory, while still rejecting any returned mismatch.
 - Skip the full Settings Catalog collection read when every mapping already uses an explicit definition ID.
 - Require a unique same-name Settings Catalog policy to pass read-only, full metadata and nested setting/value equivalence checks before it can be skipped; abort before writes on duplicates or drift. A live read-only regression check detected 27 existing settings where the partial pack expected 1 and stopped with zero creates or assignments.
+- Abort preflight on any same-name generic Graph object because an endpoint-agnostic importer cannot safely prove arbitrary resource equivalence; never report a name-only collision as successfully deployed.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

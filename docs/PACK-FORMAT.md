@@ -175,7 +175,7 @@ Supported value kinds are `choice`, `integer`, `string`, `integer-collection`, `
 
 ## Generic Graph objects
 
-Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Existing objects are skipped by exact name rather than updated; they do not use the Settings Catalog content-equivalence comparison.
+Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Because these adapters may represent different resource types, a universal response-to-payload equivalence comparison is not safe. Any case-insensitive same-name object aborts preflight; it is never skipped as successful, updated, or assigned.
 
 ## Profiles
 

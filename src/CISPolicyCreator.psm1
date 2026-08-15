@@ -462,6 +462,17 @@ function Compare-CpcSettingsCatalogPolicy {
     }
 }
 
+function Assert-CpcNoGenericGraphObjectCollision {
+    param(
+        [Parameter(Mandatory)][string]$Name,
+        [Parameter(Mandatory)][AllowEmptyCollection()]$ExistingObjects
+    )
+    $matches=@($ExistingObjects | Where-Object { $null -ne $_ })
+    if($matches.Count -eq 0){return}
+    $ids=@($matches | ForEach-Object { if($_.id){[string]$_.id}else{'<missing-id>'} }) -join ', '
+    throw "Found $($matches.Count) existing generic Graph object(s) named '$Name' (IDs: $ids). The endpoint-agnostic importer cannot prove their content equivalent to the pack."
+}
+
 function Test-CpcProfileSelected {
     param([Parameter(Mandatory)]$Profiles,[Parameter(Mandatory)][string]$Selector)
     $p=@($Profiles | ForEach-Object { ([string]$_).ToUpperInvariant() })

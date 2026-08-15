@@ -32,7 +32,7 @@ The pipeline also enforces these invariants:
 - assignment endpoints and assignment payloads are rejected;
 - policies are never assigned automatically;
 - existing Settings Catalog policies are skipped only after their metadata and complete setting/value payloads exactly match; ambiguous names or differences abort before writes;
-- existing generic Graph objects are skipped by exact name and never silently updated.
+- existing generic Graph object name collisions abort before writes because endpoint-agnostic content equivalence cannot be proven; they are never silently updated.
 
 See [docs/FAIL-CLOSED-POLICY.md](docs/FAIL-CLOSED-POLICY.md).
 
@@ -250,6 +250,8 @@ Import remains a separate explicit operation:
 `-ConfirmPartialPack` is required only when final recommendations remain `unresolved` or `requires-input`; those recommendations emit nothing, and the separate acknowledgement prevents a partial catalog from being mistaken for a complete baseline. Omit it for a complete pack. The unassigned-import acknowledgement is always required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit continuing after a Graph error. No assignments are created in either mode.
 
 Before any create request, every case-insensitive same-name Settings Catalog policy is read back with all of its settings. Exactly one match may be skipped only when its name, description, platform, technology, role scope tags, template identity, definition IDs, and complete nested option/value payloads match the prepared pack. Duplicate names, unreadable content, extra or missing settings, or any metadata/value difference abort the import before writes. Graph response metadata and server-generated setting wrapper IDs are the only payload details ignored by this comparison.
+
+Generic Graph adapters may target different Intune resource types, so the importer has no universal safe equivalence projection for them. Any case-insensitive same-name generic object therefore aborts preflight rather than being treated as deployed. The administrator must resolve the collision explicitly outside this script; the importer never patches or assigns it.
 
 ## Repository layout
 
