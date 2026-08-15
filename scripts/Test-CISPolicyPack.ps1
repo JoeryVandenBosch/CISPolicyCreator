@@ -59,11 +59,6 @@ if ([string]$manifest.benchmarkScope -ne 'microsoft-intune') { $issues.Add("mani
 if ($manifest.sourceDocumentIncluded -eq $true) { $issues.Add('manifest.sourceDocumentIncluded must be false for public-safe packs') }
 if ($manifest.settingsCatalogProbe) {
     $probe=$manifest.settingsCatalogProbe
-    if (-not $probe.displayName -or -not $probe.platforms -or -not $probe.technologies) { $issues.Add('settingsCatalogProbe requires displayName, platforms, and technologies') }
-    if (-not $probe.resolve -or (-not $probe.resolve.definitionId -and (-not $probe.resolve.baseUri -or -not $probe.resolve.offsetUri)) -or -not $probe.resolve.expectedType) { $issues.Add('settingsCatalogProbe requires an explicit definitionId or exact baseUri + offsetUri plus expectedType') }
-    if (-not $probe.value -or [string]$probe.value.kind -notin @('choice','integer','string')) { $issues.Add('settingsCatalogProbe has unsupported or missing value kind') }
-    elseif ([string]$probe.value.kind -eq 'choice' -and -not $probe.value.optionId) { $issues.Add('settingsCatalogProbe choice requires an exact reviewed optionId') }
-    elseif ([string]$probe.value.kind -in @('integer','string') -and (-not $probe.value.PSObject.Properties['value'] -or $null -eq $probe.value.value)) { $issues.Add('settingsCatalogProbe simple setting requires value') }
     if (Test-CpcObjectContainsAssignments -InputObject $probe) { $issues.Add('settingsCatalogProbe contains assignment data') }
 }
 
@@ -94,8 +89,10 @@ foreach ($r in $recommendations) {
 $referencedIds=[System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
 $policyCount=0; $staticCount=0; $dynamicCount=0; $graphCount=0
 $policyNames=[System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+$policyMetadata=@{}
 $graphNames=[System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
 $dynamicKeys=[System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+$settingsCatalogSpecs=@()
 
 function Assert-MappedRecommendation([string]$Id,[string]$Where,$Profiles) {
     if (-not $Id) { $issues.Add("$Where missing recommendationId"); return }
@@ -181,6 +178,7 @@ if ($manifest.settingsCatalogPolicyDirectory) {
             if ([string]$b.mappingStatus -ne 'mapped') { $issues.Add("$($file.Name): mappingStatus must be mapped") }
             if (-not $b.policy.name) { $issues.Add("$($file.Name): policy.name is required") }
             elseif (-not $policyNames.Add([string]$b.policy.name)) { $issues.Add("Duplicate policy name: $($b.policy.name)") }
+            else { $policyMetadata[[string]$b.policy.name]=$b.policy }
             if (-not $b.policy.platforms) { $issues.Add("$($file.Name): policy.platforms is required") }
             if (-not $b.policy.technologies) { $issues.Add("$($file.Name): policy.technologies is required") }
             if (@($b.profiles).Count -eq 0) { $issues.Add("$($file.Name): profiles is required") }
@@ -198,8 +196,8 @@ if ($manifest.settingsCatalogSpec) {
     $raw=if ($path) { Read-JsonFile $path 'Settings Catalog spec' } else { $null }
     if ($null -ne $raw -and $path) {
         Assert-JsonSchema $path 'settings-catalog.schema.json' 'Settings Catalog spec'
-        $specs=@($raw); $dynamicCount=$specs.Count
-        foreach ($s in $specs) {
+        $settingsCatalogSpecs=@($raw); $dynamicCount=$settingsCatalogSpecs.Count
+        foreach ($s in $settingsCatalogSpecs) {
             $label=if ($s.recommendationId) { [string]$s.recommendationId } else { [string]$s.displayName }
             if ([string]$s.mappingStatus -ne 'mapped') { $issues.Add("Dynamic setting '$label' mappingStatus must be mapped") }
             Assert-MappedRecommendation ([string]$s.recommendationId) "Dynamic setting '$label'" $s.profiles
@@ -213,6 +211,59 @@ if ($manifest.settingsCatalogSpec) {
             }
             Test-DynamicSettingNode $s "Dynamic setting '$label'" 0
             if ($s.policy -and -not $policyNames.Contains([string]$s.policy)) { $issues.Add("Dynamic setting '$label' targets policy '$($s.policy)' that has no policy bundle") }
+        }
+    }
+}
+
+if($manifest.settingsCatalogProbe){
+    $probe=$manifest.settingsCatalogProbe
+    $requiredProbeProperties=@('recommendationId','policy','displayName','platforms','technologies','resolve','value')
+    $probeShapeReady=@($requiredProbeProperties | Where-Object { $null -eq $probe.PSObject.Properties[$_] }).Count -eq 0 -and $null -ne $probe.resolve -and $null -ne $probe.value
+    if($probeShapeReady){
+        $requiredResolverProperties=@('definitionId','baseUri','offsetUri','expectedType')
+        $probeShapeReady=@($requiredResolverProperties | Where-Object { $null -eq $probe.resolve.PSObject.Properties[$_] }).Count -eq 0 -and $null -ne $probe.value.PSObject.Properties['kind']
+    }
+    if($probeShapeReady){
+        $probeMatches=@($settingsCatalogSpecs | Where-Object {
+            [string]$_.recommendationId -ceq [string]$probe.recommendationId -and
+            [string]$_.policy -ceq [string]$probe.policy -and
+            [string]$_.displayName -ceq [string]$probe.displayName -and
+            [string]$_.resolve.definitionId -ceq [string]$probe.resolve.definitionId
+        })
+        if($probeMatches.Count -ne 1){
+            $issues.Add("settingsCatalogProbe must match exactly one generated dynamic setting; matches=$($probeMatches.Count)")
+        }else{
+            $sourceSetting=$probeMatches[0]
+            foreach($propertyName in $requiredResolverProperties){
+                $probeValue=$probe.resolve.PSObject.Properties[$propertyName].Value
+                $sourceValue=$sourceSetting.resolve.PSObject.Properties[$propertyName].Value
+                if(($null -eq $probeValue) -ne ($null -eq $sourceValue) -or ($null -ne $probeValue -and [string]$probeValue -cne [string]$sourceValue)){
+                    $issues.Add("settingsCatalogProbe resolver '$propertyName' differs from its generated dynamic setting")
+                }
+            }
+            $kind=[string]$probe.value.kind
+            if($kind -cne [string]$sourceSetting.value.kind){$issues.Add('settingsCatalogProbe value kind differs from its generated dynamic setting')}
+            elseif($kind -eq 'choice'){
+                $probeOption=$probe.value.PSObject.Properties['optionId']
+                if($probeOption -and [string]$probeOption.Value -cne [string]$sourceSetting.value.optionId){$issues.Add('settingsCatalogProbe optionId differs from its generated dynamic setting')}
+                $sourceChildren=$sourceSetting.value.PSObject.Properties['children']
+                if($sourceChildren -and @($sourceChildren.Value).Count -gt 0){$issues.Add('settingsCatalogProbe cannot omit choice-dependent children')}
+            }elseif($kind -eq 'integer'){
+                $probeSimpleValue=$probe.value.PSObject.Properties['value']
+                if($probeSimpleValue -and ($probeSimpleValue.Value -is [byte] -or $probeSimpleValue.Value -is [int16] -or $probeSimpleValue.Value -is [int32] -or $probeSimpleValue.Value -is [int64])){
+                    if([int64]$probeSimpleValue.Value -ne [int64]$sourceSetting.value.value){$issues.Add('settingsCatalogProbe integer differs from its generated dynamic setting')}
+                }
+            }elseif($kind -eq 'string'){
+                $probeSimpleValue=$probe.value.PSObject.Properties['value']
+                if($probeSimpleValue -and $probeSimpleValue.Value -is [string] -and [string]$probeSimpleValue.Value -cne [string]$sourceSetting.value.value){$issues.Add('settingsCatalogProbe string differs from its generated dynamic setting')}
+            }
+        }
+        if(-not $policyMetadata.ContainsKey([string]$probe.policy)){
+            $issues.Add("settingsCatalogProbe targets missing policy '$($probe.policy)'")
+        }else{
+            $probePolicy=$policyMetadata[[string]$probe.policy]
+            if([string]$probe.platforms -cne [string]$probePolicy.platforms){$issues.Add('settingsCatalogProbe platforms differs from its policy bundle')}
+            if([string]$probe.technologies -cne [string]$probePolicy.technologies){$issues.Add('settingsCatalogProbe technologies differs from its policy bundle')}
         }
     }
 }

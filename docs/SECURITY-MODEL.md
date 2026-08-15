@@ -27,7 +27,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 6. Encoded or plain assignment path segments and assignment payload properties are rejected.
 7. Existing exact-name objects are skipped and never patched.
 8. Import stops on the first create error unless `-ContinueOnError` is explicit.
-9. Probe cleanup is attempted even if later probe processing fails.
+9. A probe must exactly match a generated reviewed leaf setting and policy platform/technology; cleanup is attempted even if later probe processing fails.
 10. No automatic assignments or group creation are implemented.
 
 ## Residual risks

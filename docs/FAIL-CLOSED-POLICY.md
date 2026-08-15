@@ -69,7 +69,7 @@ Candidate promotion is a separate explicit trust boundary. Approval templates de
 - Dry run requests read-only Graph scope.
 - Every write mode requires an explicit pinned tenant ID and a mode-specific acknowledgement before pack validation or authentication.
 - Existing exact-name objects are skipped and never patched.
-- The write probe is temporary, unassigned, and cleanup is attempted in `finally`.
+- The write probe is copied only from an exact generated leaf setting and matching policy metadata; it is temporary, unassigned, and cleanup is attempted in `finally`.
 - Creation stops on the first Graph error by default.
 - Partial/preflight results are preserved when possible.
 - Import never creates assignments.

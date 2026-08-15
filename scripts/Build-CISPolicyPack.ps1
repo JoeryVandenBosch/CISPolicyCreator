@@ -333,6 +333,7 @@ foreach ($policy in @($catalog.settingsCatalogPolicies)) {
     $policyById[[string]$policy.id] = $policy
 }
 $generatedSettings = [System.Collections.Generic.List[object]]::new()
+$probeCandidates = [System.Collections.Generic.List[object]]::new()
 $settingsByPolicy = @{}
 $settingKeys=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 foreach ($setting in @($catalog.settingsCatalogSettings)) {
@@ -350,6 +351,24 @@ foreach ($setting in @($catalog.settingsCatalogSettings)) {
         displayName=[string]$resolvedNode.displayName; profiles=@($setting.profiles); resolve=$resolvedNode.resolve; value=$resolvedNode.value
     }
     $generatedSettings.Add($generated)
+    $valueKind=[string]$resolvedNode.value.kind
+    $childrenProperty=$resolvedNode.value.PSObject.Properties['children']
+    $hasChildren=$childrenProperty -and @($childrenProperty.Value).Count -gt 0
+    if($valueKind -in @('choice','integer','string') -and -not $hasChildren){
+        $policy=$policyById[[string]$setting.policyId]
+        $probeCandidates.Add([pscustomobject][ordered]@{
+            SortKey=([string]$id)+'|'+([string]$setting.policyId)+'|'+([string]$resolvedNode.resolve.definitionId)
+            Probe=[pscustomobject][ordered]@{
+                recommendationId=$id
+                policy=[string]$policy.name
+                displayName=[string]$resolvedNode.displayName
+                platforms=[string]$policy.platforms
+                technologies=[string]$policy.technologies
+                resolve=$resolvedNode.resolve
+                value=$resolvedNode.value
+            }
+        }) | Out-Null
+    }
     if (-not $settingsByPolicy.ContainsKey([string]$setting.policyId)) { $settingsByPolicy[[string]$setting.policyId] = [System.Collections.Generic.List[string]]::new() }
     $settingsByPolicy[[string]$setting.policyId].Add($id)
 }
@@ -388,6 +407,8 @@ try {
     Write-StableJson (Join-Path $outputRoot 'spec\recommendations.json') @($finalRecommendations)
     Write-StableJson (Join-Path $outputRoot 'spec\settings-catalog.json') @($generatedSettings)
     Write-StableJson (Join-Path $outputRoot 'spec\graph-objects.json') @($generatedGraphObjects)
+    $settingsCatalogProbe=$null
+    if($probeCandidates.Count -gt 0){$settingsCatalogProbe=($probeCandidates | Sort-Object SortKey | Select-Object -First 1).Probe}
     $manifest = [ordered]@{
         schemaVersion='2.0'; id=[string]$catalog.pack.id; name=[string]$catalog.pack.name; version=[string]$catalog.pack.version
         benchmarkScope='microsoft-intune'; sourceDocumentIncluded=$false
@@ -398,7 +419,7 @@ try {
             mappingCatalogSha256=(Get-FileSha256 $catalogInput.Path); administratorDecisionsSha256=$decisionHash; settingsCatalogSnapshotSha256=$snapshotHash
         }
         recommendationsSpec='spec/recommendations.json'; settingsCatalogPolicyDirectory='policies/settings-catalog'
-        settingsCatalogSpec='spec/settings-catalog.json'; graphObjects='spec/graph-objects.json'; settingsCatalogProbe=$null
+        settingsCatalogSpec='spec/settings-catalog.json'; graphObjects='spec/graph-objects.json'; settingsCatalogProbe=$settingsCatalogProbe
     }
     Write-StableJson (Join-Path $outputRoot 'manifest.json') $manifest
     $validation = & (Join-Path $PSScriptRoot 'Test-CISPolicyPack.ps1') -PackRoot $outputRoot -PassThru

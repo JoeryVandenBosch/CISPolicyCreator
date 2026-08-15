@@ -249,6 +249,8 @@ try {
     & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath $common.ExtractionPath -MappingCatalogPath $seedCatalogPath -OutputPath $seedPack
     $seedValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $seedPack -PassThru
     Assert-True $seedValidation.IsValid 'All-unresolved catalog seed must build a valid nondeployable pack.'
+    $seedManifest=Read-Json (Join-Path $seedPack 'manifest.json')
+    Assert-True ($null -eq $seedManifest.settingsCatalogProbe) 'A pack without an eligible mapped leaf setting must not invent a write probe.'
 
     $packA=Join-Path $testRoot 'pack-a'
     $packB=Join-Path $testRoot 'pack-b'
@@ -266,6 +268,19 @@ try {
 
     $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $packA -PassThru
     Assert-True $validation.IsValid 'Generated pack must pass validation.'
+    $manifest=Read-Json (Join-Path $packA 'manifest.json')
+    Assert-True ([string]$manifest.settingsCatalogProbe.recommendationId -ceq '1.2') 'The compiler must bind its deterministic probe to the originating mapped recommendation.'
+    Assert-True ([string]$manifest.settingsCatalogProbe.resolve.definitionId -ceq 'synthetic_choice' -and [string]$manifest.settingsCatalogProbe.value.optionId -ceq 'synthetic_choice_enabled') 'The probe must copy an exact snapshot-resolved definition and reviewed option.'
+    Assert-True ([string]$manifest.settingsCatalogProbe.platforms -ceq 'windows10' -and [string]$manifest.settingsCatalogProbe.technologies -ceq 'mdm') 'The probe must copy its policy platform and technology.'
+
+    $tamperedProbePack=Join-Path $testRoot 'tampered-probe-pack'
+    Copy-Item -LiteralPath $packA -Destination $tamperedProbePack -Recurse
+    $tamperedProbeManifestPath=Join-Path $tamperedProbePack 'manifest.json'
+    $tamperedProbeManifest=Read-Json $tamperedProbeManifestPath
+    $tamperedProbeManifest.settingsCatalogProbe.value.optionId='plausible-but-unreviewed'
+    $tamperedProbeManifest | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $tamperedProbeManifestPath -Encoding utf8
+    $tamperedProbeValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $tamperedProbePack -PassThru
+    Assert-True (-not $tamperedProbeValidation.IsValid) 'A probe value that differs from the generated reviewed setting must fail pack validation.'
     $recommendations=@(Read-Json (Join-Path $packA 'spec\recommendations.json'))
     $manualMapped=@($recommendations | Where-Object recommendationId -eq '1.1')[0]
     Assert-True ($manualMapped.cisAssessmentMethod -ceq 'Manual') 'Manual assessment method must be preserved.'

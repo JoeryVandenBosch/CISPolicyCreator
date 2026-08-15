@@ -201,7 +201,7 @@ Dry run uses read-only Graph scope, resolves every selected setting, validates e
 
 `-UseDeviceCode` is optional, but is useful in embedded or headless terminals that cannot complete browser-based authentication.
 
-An optional probe creates one temporary unassigned policy and always attempts cleanup:
+When the compiler found an eligible reviewed leaf setting, the pack contains a deterministic probe that creates one temporary unassigned policy and always attempts cleanup:
 
 ```powershell
 .\scripts\Import-CISPolicyPack.ps1 `

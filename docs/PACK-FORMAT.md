@@ -53,6 +53,8 @@ Schema version `2.0` records source and build provenance:
 
 All manifest paths must be relative and remain inside the pack root.
 
+When a pack contains a mapped top-level `choice`, `integer`, or `string` setting without dependent children, the compiler deterministically copies the first eligible snapshot-resolved setting into `settingsCatalogProbe`. The probe records its originating recommendation and policy plus the exact definition, value, platform, and technology. Offline validation requires it to match the generated dynamic setting and policy bundle exactly. If no eligible mapped leaf setting exists, the field remains `null`; no probe is invented.
+
 ## Recommendation inventory
 
 ```json
