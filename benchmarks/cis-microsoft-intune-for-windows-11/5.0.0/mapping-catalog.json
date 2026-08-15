@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-for-windows-11-5.0.0-mappings",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "benchmark": {
     "id": "cis-microsoft-intune-for-windows-11",
     "version": "5.0.0",
@@ -10,7 +10,7 @@
   "pack": {
     "id": "cis-microsoft-intune-for-windows-11-5.0.0",
     "name": "CIS Microsoft Intune for Windows 11 Benchmark v5.0.0",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "sourceDocument": {
     "requiredText": [
@@ -74,11 +74,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ms-security-guide-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "4.4.2",
@@ -1756,11 +1758,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows-components-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "4.11.35.4.9.5",
@@ -1996,11 +2000,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows-components-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "4.11.55.1",
@@ -2442,11 +2448,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:device-guard-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed UEFI-lock option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "23.3",
@@ -3044,11 +3052,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "49.5",
@@ -3128,11 +3138,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "49.14",
@@ -3152,11 +3164,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "49.16",
@@ -3332,11 +3346,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "49.31",
@@ -3344,11 +3360,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "49.32",
@@ -3368,11 +3386,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-security-authority-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact Level 1 definition and benchmark-prescribed UEFI-lock option reviewed against the pinned snapshot."
     },
     {
       "recommendationId": "54.1",
@@ -5116,6 +5136,58 @@
       "roleScopeTagIds": [
         "0"
       ]
+    },
+    {
+      "id": "device-guard-l1",
+      "name": "CIS - Device Guard [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "local-policies-security-options-l1",
+      "name": "CIS - Local Policies Security Options [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ms-security-guide-l1",
+      "name": "CIS - MS Security Guide [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows-components-restrictions-l1",
+      "name": "CIS - Windows Components - Restrictions [L1] - Windows 11 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 11 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
     }
   ],
   "settingsCatalogSettings": [
@@ -5459,6 +5531,186 @@
         "kind": "choice",
         "optionId": "device_vendor_msft_policy_config_system_limitdumpcollection_1",
         "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "23.2",
+      "policyId": "device-guard-l1",
+      "displayName": "Credential Guard",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_deviceguard_lsacfgflags",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DeviceGuard/LsaCfgFlags",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_deviceguard_lsacfgflags_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.4",
+      "policyId": "windows-components-restrictions-l1",
+      "displayName": "Require user authentication for remote connections by using Network Level Authentication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_user_authentication_policy",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_USER_AUTHENTICATION_POLICY",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_user_authentication_policy_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.54.2.4",
+      "policyId": "windows-components-restrictions-l1",
+      "displayName": "Disallow WinRM from storing RunAs credentials",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotemanagement_disallowstoringofrunascredentials",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteManagement/DisallowStoringOfRunAsCredentials",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotemanagement_disallowstoringofrunascredentials_1"
+      }
+    },
+    {
+      "recommendationId": "4.4.1",
+      "policyId": "ms-security-guide-l1",
+      "displayName": "Apply UAC restrictions to local accounts on network logons",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_mssecurityguide_applyuacrestrictionstolocalaccountsonnetworklogon",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSecurityGuide/ApplyUACRestrictionsToLocalAccountsOnNetworkLogon",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_mssecurityguide_applyuacrestrictionstolocalaccountsonnetworklogon_1"
+      }
+    },
+    {
+      "recommendationId": "49.13",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Microsoft Network Client Send Unencrypted Password To Third Party SMB Servers",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_microsoftnetworkclient_sendunencryptedpasswordtothirdpartysmbservers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/MicrosoftNetworkClient_SendUnencryptedPasswordToThirdPartySMBServers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_microsoftnetworkclient_sendunencryptedpasswordtothirdpartysmbservers_0"
+      }
+    },
+    {
+      "recommendationId": "49.15",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Network Access Do Not Allow Anonymous Enumeration Of SAM Accounts",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccounts",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkAccess_DoNotAllowAnonymousEnumerationOfSAMAccounts",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccounts_1"
+      }
+    },
+    {
+      "recommendationId": "49.2",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Accounts Limit Local Account Use Of Blank Passwords To Console Logon Only",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_accounts_limitlocalaccountuseofblankpasswordstoconsolelogononly",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/Accounts_LimitLocalAccountUseOfBlankPasswordsToConsoleLogonOnly",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_accounts_limitlocalaccountuseofblankpasswordstoconsolelogononly_1"
+      }
+    },
+    {
+      "recommendationId": "49.30",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "User Account Control Switch To The Secure Desktop When Prompting For Elevation",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_switchtothesecuredesktopwhenpromptingforelevation",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_SwitchToTheSecureDesktopWhenPromptingForElevation",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_switchtothesecuredesktopwhenpromptingforelevation_1"
+      }
+    },
+    {
+      "recommendationId": "49.31",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "User Account Control Run All Administrators In Admin Approval Mode",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_runalladministratorsinadminapprovalmode",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_RunAllAdministratorsInAdminApprovalMode",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_runalladministratorsinadminapprovalmode_1"
+      }
+    },
+    {
+      "recommendationId": "50.1",
+      "policyId": "local-security-authority-l1",
+      "displayName": "Configure Lsa Protected Process",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localsecurityauthority_configurelsaprotectedprocess",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalSecurityAuthority/ConfigureLsaProtectedProcess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localsecurityauthority_configurelsaprotectedprocess_1"
       }
     }
   ],
