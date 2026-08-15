@@ -3,6 +3,54 @@
   "$id": "https://cispolicycreator.local/schema/settings-catalog.schema.json",
   "title": "CISPolicyCreator dynamic Settings Catalog specification",
   "type": "array",
+  "$defs": {
+    "resolver": {
+      "type": "object",
+      "minProperties": 1,
+      "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
+      "properties": {
+        "definitionId": { "type": ["string", "null"] },
+        "baseUri": { "type": ["string", "null"] },
+        "offsetUri": { "type": ["string", "null"] },
+        "expectedType": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "required": ["displayName", "resolve", "value"],
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1 },
+        "resolve": { "$ref": "#/$defs/resolver" },
+        "value": { "$ref": "#/$defs/value" }
+      },
+      "additionalProperties": false
+    },
+    "value": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["choice", "integer", "string", "integer-collection", "string-collection", "group-collection"] },
+        "optionId": { "type": ["string", "null"] },
+        "value": {},
+        "values": { "type": "array", "minItems": 1, "items": { "type": ["integer", "string"] } },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["children"],
+            "properties": {
+              "children": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/node" } }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
   "items": {
     "type": "object",
     "required": ["recommendationId", "mappingStatus", "policy", "displayName", "profiles", "resolve", "value"],
@@ -12,29 +60,9 @@
       "policy": { "type": "string", "minLength": 1 },
       "displayName": { "type": "string", "minLength": 1 },
       "profiles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-      "resolve": {
-        "type": "object",
-        "properties": {
-          "definitionId": { "type": ["string", "null"] },
-          "baseUri": { "type": ["string", "null"] },
-          "offsetUri": { "type": ["string", "null"] },
-          "displayName": { "type": ["string", "null"] }
-        }
-      },
-      "value": {
-        "type": "object",
-        "required": ["kind"],
-        "properties": {
-          "kind": { "enum": ["choice", "integer", "string"] },
-          "desired": {},
-          "optionId": { "type": ["string", "null"] },
-          "contains": { "type": ["string", "null"] },
-          "exclude": { "type": ["string", "null"] },
-          "optionSuffix": { "type": ["string", "null"] },
-          "value": {}
-        }
-      }
+      "resolve": { "$ref": "#/$defs/resolver" },
+      "value": { "$ref": "#/$defs/value" }
     },
-    "additionalProperties": true
+    "additionalProperties": false
   }
 }

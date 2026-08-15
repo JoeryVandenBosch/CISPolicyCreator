@@ -2,9 +2,11 @@
 
 CISPolicyCreator has a deliberately narrow roadmap.
 
+All benchmark catalog work is gated on the reproducible offline pipeline, schema, decision, provenance, and test requirements documented in the repository. Catalogs must use that pipeline; benchmark-specific one-off generation scripts are not accepted.
+
 ## 1. Windows 11 Intune
 
-The reusable engine is based on the Windows 11 v5.0.0 implementation that was validated against a live Intune test tenant. The public repository contains the generic engine rather than redistributing source benchmark documents or third-party baseline exports.
+The repository includes a public-safe catalog for all 415 Windows 11 v5.0.0 recommendation identifiers. Twenty-eight recommendations have exact definition and option/value mappings validated against a pinned Settings Catalog snapshot and live tenant mapping resolution, and compile reproducibly into 10 unassigned policies. An earlier explicitly acknowledged Level 1 partial-pack import made no changes because every target policy name was present. Hardened read-only verification then proved that name equality was insufficient: the first existing policy contained 27 settings while the partial pack expected 1, so the importer correctly aborted before writes. The remaining 387 recommendations stay unresolved and emit no implementation. Continue evidence-backed mapping review and administrator-controlled test-device behavior validation before describing this benchmark catalog as complete.
 
 ## 2. macOS 26 Tahoe Intune
 

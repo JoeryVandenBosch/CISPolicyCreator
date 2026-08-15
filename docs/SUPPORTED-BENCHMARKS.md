@@ -6,7 +6,7 @@ CISPolicyCreator intentionally supports only CIS benchmarks whose remediation gu
 
 | Benchmark family | Version currently in project workflow | Status |
 |---|---:|---|
-| CIS Microsoft Intune for Windows 11 | 5.0.0 | Proven reference implementation in a test tenant; reusable engine derived from this work |
+| CIS Microsoft Intune for Windows 11 | 5.0.0 | Partial reviewed catalog: 28 snapshot- and live-dry-run-validated mappings in 10 unassigned policies; 387 remain unresolved |
 | CIS Apple macOS 26 Tahoe Intune | 1.0.0 | Next benchmark-pack implementation target |
 | CIS Microsoft Intune for Apple iOS 17 and iPadOS 17 | 2.0.0 | Planned after macOS |
 

@@ -1,5 +1,7 @@
 # CISPolicyCreator – Chat Handoff
 
+> **Historical note:** This handoff records the original v0.1 framework state. The normative v0.2 architecture and safety model are now documented in `README.md`, `docs/FAIL-CLOSED-POLICY.md`, `docs/PACK-FORMAT.md`, and `docs/PDF-WORKFLOW.md`. In v0.2, `cisAssessmentMethod` is independent from the five-state `mappingStatus`, and the reproducible scripting pipeline takes priority over additional benchmark catalogs.
+
 **Date:** 2026-08-14  
 **Repository:** `https://github.com/JoeryVandenBosch/CISPolicyCreator`
 
@@ -61,7 +63,7 @@ The final deployment approach proved the following concepts:
 - Exact choice/simple value validation
 - Removal of GET-only / response-only OData metadata
 - Duplicate policy detection
-- Existing exact-name policy skip behavior
+- Existing-policy readback and exact metadata/setting/value verification before skip
 - Tenant validation
 - `-DryRun`
 - Temporary Graph write probe

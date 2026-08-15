@@ -13,6 +13,11 @@
 /private/
 **/recommendations.raw.json
 **/source-extract*.json
+*.private-extraction.json
+*.private-review.json
+*.private-approvals.json
+*.private-review-report.json
+*.private-review-report.csv
 
 # Import/diagnostic output
 import-results-*.json
@@ -24,6 +29,7 @@ mapping-report-*.json
 __pycache__/
 *.py[cod]
 .venv/
+.modules/
 venv/
 
 # Editor / OS

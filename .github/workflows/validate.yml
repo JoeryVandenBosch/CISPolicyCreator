@@ -10,40 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ensure private benchmark artifacts are not committed
-        shell: bash
-        run: |
-          set -euo pipefail
-          if find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' \) -print -quit | grep -q .; then
-            echo 'Source benchmark/archive/raw extraction found in repository.' >&2
-            find . -type f \( -iname '*.pdf' -o -iname '*.zip' -o -name 'recommendations.raw.json' \) -print
-            exit 1
-          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Validate JSON syntax
+      - name: Initialize hash-pinned runtime
         shell: pwsh
-        run: |
-          $ErrorActionPreference = 'Stop'
-          Get-ChildItem -Recurse -Filter *.json | ForEach-Object {
-            Write-Host "Parsing $($_.FullName)"
-            Get-Content -LiteralPath $_.FullName -Raw | ConvertFrom-Json -Depth 100 | Out-Null
-          }
+        run: ./scripts/Initialize-CISPolicyCreator.ps1 -EnvironmentPath .venv -IncludeGraph
 
-      - name: PowerShell parser check
+      - name: Complete repository validation
         shell: pwsh
-        run: |
-          $ErrorActionPreference = 'Stop'
-          Get-ChildItem -Recurse -Include *.ps1,*.psm1 | ForEach-Object {
-            $tokens = $null; $errors = $null
-            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
-            if ($errors.Count -gt 0) {
-              $errors | ForEach-Object { Write-Error "$($_.Extent.File):$($_.Extent.StartLineNumber): $($_.Message)" }
-            }
-          }
-
-      - name: Fail-closed template pack validation
-        shell: pwsh
-        run: ./scripts/Test-CISPolicyPack.ps1 -PackRoot ./templates/baseline
-
-      - name: Python syntax check
-        run: python -m py_compile tools/Extract-CISRecommendations.py
+        run: ./scripts/Test-CISRepository.ps1 -PythonPath .venv/bin/python -RequireGraph

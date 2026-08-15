@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cispolicycreator.local/schema/administrator-decisions.schema.json",
+  "title": "CISPolicyCreator explicit administrator decisions",
+  "type": "object",
+  "required": ["schemaVersion", "catalogId", "catalogVersion", "decisions"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "catalogId": { "type": "string", "minLength": 1 },
+    "catalogVersion": { "type": "string", "minLength": 1 },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "value", "acknowledged", "justification"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "value": {},
+          "acknowledged": { "const": true },
+          "justification": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

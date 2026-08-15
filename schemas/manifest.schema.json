@@ -3,19 +3,108 @@
   "$id": "https://cispolicycreator.local/schema/manifest.schema.json",
   "title": "CISPolicyCreator pack manifest",
   "type": "object",
-  "required": ["schemaVersion", "id", "name", "version", "benchmarkScope", "recommendationsSpec"],
+  "$defs": {
+    "probeResolver": {
+      "type": "object",
+      "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
+      "properties": {
+        "definitionId": { "type": "string", "minLength": 1 },
+        "baseUri": { "type": ["string", "null"] },
+        "offsetUri": { "type": ["string", "null"] },
+        "expectedType": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "probeValue": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "optionId"],
+          "properties": {
+            "kind": { "const": "choice" },
+            "optionId": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "integer" },
+            "value": { "type": "integer" }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "string" },
+            "value": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "settingsCatalogProbe": {
+      "type": "object",
+      "required": ["recommendationId", "policy", "displayName", "platforms", "technologies", "resolve", "value"],
+      "properties": {
+        "recommendationId": { "type": "string", "minLength": 1 },
+        "policy": { "type": "string", "minLength": 1 },
+        "displayName": { "type": "string", "minLength": 1 },
+        "platforms": { "type": "string", "minLength": 1 },
+        "technologies": { "type": "string", "minLength": 1 },
+        "resolve": { "$ref": "#/$defs/probeResolver" },
+        "value": { "$ref": "#/$defs/probeValue" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["schemaVersion", "id", "name", "version", "benchmarkScope", "sourceDocumentIncluded", "source", "build", "recommendationsSpec", "settingsCatalogPolicyDirectory", "settingsCatalogSpec", "graphObjects", "settingsCatalogProbe"],
   "properties": {
-    "schemaVersion": { "type": "string", "const": "1.1" },
+    "schemaVersion": { "type": "string", "const": "2.0" },
     "id": { "type": "string", "minLength": 1 },
     "name": { "type": "string", "minLength": 1 },
     "version": { "type": "string", "minLength": 1 },
     "benchmarkScope": { "type": "string", "const": "microsoft-intune" },
     "sourceDocumentIncluded": { "type": "boolean", "const": false },
+    "source": {
+      "type": "object",
+      "required": ["fileName", "sha256", "pageCount"],
+      "properties": {
+        "fileName": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "pageCount": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "build": {
+      "type": "object",
+      "required": ["toolVersion", "extractorVersion", "pdfParser", "pdfParserVersion", "mappingCatalogId", "mappingCatalogVersion", "mappingCatalogSha256"],
+      "properties": {
+        "toolVersion": { "type": "string", "minLength": 1 },
+        "extractorVersion": { "type": "string", "minLength": 1 },
+        "pdfParser": { "const": "pypdf" },
+        "pdfParserVersion": { "type": "string", "minLength": 1 },
+        "mappingCatalogId": { "type": "string", "minLength": 1 },
+        "mappingCatalogVersion": { "type": "string", "minLength": 1 },
+        "mappingCatalogSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "administratorDecisionsSha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+        "settingsCatalogSnapshotSha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
     "recommendationsSpec": { "type": "string", "minLength": 1 },
     "settingsCatalogPolicyDirectory": { "type": "string" },
     "settingsCatalogSpec": { "type": "string" },
     "graphObjects": { "type": "string" },
-    "settingsCatalogProbe": { "type": ["object", "null"] }
+    "settingsCatalogProbe": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/settingsCatalogProbe" }
+      ]
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }
