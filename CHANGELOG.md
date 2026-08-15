@@ -16,12 +16,13 @@
 - Add optional repository-local installation of an exact pinned Graph authentication module, require that version for live scripts, and verify the live prerequisite in clean CI without authenticating.
 - Add recursively validated Settings Catalog choice children, integer/string collections, and group collections with exact nested definitions, values, bounded depth, and live payload generation.
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
-- Promote 10 additional priority Level 1 mappings only after exact private title, top-level definition, occurrence, and option review; compile 28 total settings into 10 unassigned policies while leaving 387 recommendations unresolved. All 28 mappings pass live dry-run validation, and an acknowledged Level 1 import safely skips existing policy names without modification or assignments.
+- Promote 10 additional priority Level 1 mappings only after exact private title, top-level definition, occurrence, and option review; compile 28 total settings into 10 unassigned policies while leaving 387 recommendations unresolved. All 28 mappings pass live mapping validation, and an acknowledged Level 1 import made no changes when existing names were found.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.
 - Harden live Graph collection reads for missing continuation links, explicit skip fallback, duplicate IDs, and unbounded pagination.
 - Accept the first live validation record in an initially empty typed result collection.
 - Treat CSP path metadata omitted by Graph's single-definition response as unavailable rather than contradictory, while still rejecting any returned mismatch.
 - Skip the full Settings Catalog collection read when every mapping already uses an explicit definition ID.
+- Require a unique same-name Settings Catalog policy to pass read-only, full metadata and nested setting/value equivalence checks before it can be skipped; abort before writes on duplicates or drift. A live read-only regression check detected 27 existing settings where the partial pack expected 1 and stopped with zero creates or assignments.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

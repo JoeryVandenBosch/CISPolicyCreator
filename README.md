@@ -31,7 +31,8 @@ The pipeline also enforces these invariants:
 - generic Graph endpoints are limited to Microsoft Graph `deviceManagement` resources;
 - assignment endpoints and assignment payloads are rejected;
 - policies are never assigned automatically;
-- existing exact-name objects are skipped, never silently updated.
+- existing Settings Catalog policies are skipped only after their metadata and complete setting/value payloads exactly match; ambiguous names or differences abort before writes;
+- existing generic Graph objects are skipped by exact name and never silently updated.
 
 See [docs/FAIL-CLOSED-POLICY.md](docs/FAIL-CLOSED-POLICY.md).
 
@@ -248,6 +249,8 @@ Import remains a separate explicit operation:
 
 `-ConfirmPartialPack` is required only when final recommendations remain `unresolved` or `requires-input`; those recommendations emit nothing, and the separate acknowledgement prevents a partial catalog from being mistaken for a complete baseline. Omit it for a complete pack. The unassigned-import acknowledgement is always required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit continuing after a Graph error. No assignments are created in either mode.
 
+Before any create request, every case-insensitive same-name Settings Catalog policy is read back with all of its settings. Exactly one match may be skipped only when its name, description, platform, technology, role scope tags, template identity, definition IDs, and complete nested option/value payloads match the prepared pack. Duplicate names, unreadable content, extra or missing settings, or any metadata/value difference abort the import before writes. Graph response metadata and server-generated setting wrapper IDs are the only payload details ignored by this comparison.
+
 ## Repository layout
 
 ```text
@@ -265,7 +268,7 @@ See [docs/CHAT-HANDOFF.md](docs/CHAT-HANDOFF.md) for the concise current-state h
 
 ## Current benchmark status
 
-The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Twenty-eight recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 28 settings in 10 unassigned policies; all 28 have passed live tenant dry-run validation. An explicitly acknowledged Level 1 partial-pack import found every target policy name already present, skipped them without modification, and created no assignments. The other 387 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
+The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Twenty-eight recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 28 settings in 10 unassigned policies; all 28 have passed live tenant mapping validation. An earlier explicitly acknowledged Level 1 partial-pack import made no changes because every target policy name was already present. After same-name readback verification was hardened, a read-only live run correctly aborted before writes because the first existing policy contained 27 settings while the partial pack expected 1; names are no longer treated as proof of equivalence. The other 387 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
 
 ## Public repository rules
 

@@ -76,7 +76,8 @@ An actual import of a pack that still contains `unresolved` or `requires-input` 
 - Offline validation happens before authentication.
 - Dry run requests read-only Graph scope.
 - Every write mode requires an explicit pinned tenant ID and a mode-specific acknowledgement before pack validation or authentication.
-- Existing exact-name objects are skipped and never patched.
+- A case-insensitive same-name Settings Catalog policy is skipped only after exactly one match is read and its policy metadata and complete nested setting/value payload are proven equivalent; duplicates, read failures, and any difference abort before writes.
+- Existing generic Graph objects are skipped by exact name and never patched.
 - The write probe is copied only from an exact generated leaf setting and matching policy metadata; it is temporary, unassigned, and cleanup is attempted in `finally`.
 - Creation stops on the first Graph error by default.
 - Partial/preflight results are preserved when possible.

@@ -109,6 +109,8 @@ Policy bundles contain policy metadata but no raw static settings:
 
 Settings are assembled through the validated dynamic specification and embedded in the initial deep-create POST.
 
+During live dry run or import, a case-insensitive same-name Settings Catalog policy is not assumed equivalent. Graph must return exactly one match, and the importer reads its metadata and every setting. The importer canonicalizes property order and top-level setting order, treats role scope tag ordering as insignificant, treats an absent or empty template ID as no template, and ignores only Graph response metadata plus the server-generated outer setting ID. All other metadata and complete nested definition/option/value content must match the prepared bundle exactly or the operation aborts before writes.
+
 ## Validated Settings Catalog setting
 
 ```json
@@ -173,7 +175,7 @@ Supported value kinds are `choice`, `integer`, `string`, `integer-collection`, `
 
 ## Generic Graph objects
 
-Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Existing objects are skipped rather than updated.
+Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Existing objects are skipped by exact name rather than updated; they do not use the Settings Catalog content-equivalence comparison.
 
 ## Profiles
 

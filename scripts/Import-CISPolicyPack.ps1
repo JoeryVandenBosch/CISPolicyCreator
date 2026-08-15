@@ -193,8 +193,35 @@ try {
             if (@($merged).Count -eq 0) { throw "Selected policy '$name' has zero settings; Intune deep-create requires at least one setting." }
             $body=New-CpcSettingsCatalogPolicyBody -Policy $bundle.policy -Settings $merged
             if (Test-CpcObjectContainsAssignments -InputObject $body) { throw "Selected policy '$name' unexpectedly contains assignments." }
-            $existing=@($existingPolicies | Where-Object { $_.name -eq $name })
-            $preparedPolicies.Add([pscustomobject]@{ name=$name; body=$body; settingCount=@($merged).Count; existing=$existing })
+            # A matching name is only a collision candidate. Prove complete equivalence before any skip or write.
+            $existing=@($existingPolicies | Where-Object { [string]$_.name -ieq $name })
+            if ($existing.Count -gt 1) {
+                $detail="Found $($existing.Count) existing policies with the same case-insensitive name. Exact identity is ambiguous."
+                Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                throw "Existing-policy verification failed for '$name': $detail No Intune policies were created."
+            }
+            $existingVerification=$null
+            if ($existing.Count -eq 1) {
+                $existingId=[string]$existing[0].id
+                if ([string]::IsNullOrWhiteSpace($existingId)) { throw "Existing-policy verification failed for '$name': Graph returned an empty policy ID. No Intune policies were created." }
+                $encodedId=[Uri]::EscapeDataString($existingId)
+                try {
+                    $existingDetail=Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$encodedId"
+                    $existingSettings=Invoke-CpcGraphPaged "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$encodedId/settings?`$top=100"
+                    $comparison=Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $body -ActualPolicy $existingDetail -ActualSettings @($existingSettings)
+                } catch {
+                    $detail=Get-CpcGraphErrorDetail $_
+                    Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                    throw "Existing-policy verification failed for '$name': $detail No Intune policies were created."
+                }
+                if (-not $comparison.equivalent) {
+                    $detail="Existing policy '$existingId' differs from the pack (expectedSettings=$($comparison.expectedSettingCount); actualSettings=$($comparison.actualSettingCount); expectedSha256=$($comparison.expectedSha256); actualSha256=$($comparison.actualSha256))."
+                    Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                    throw "Existing-policy verification failed for '$name': $detail No Intune policies were created."
+                }
+                $existingVerification=[pscustomobject]@{id=$existingId;comparison=$comparison}
+            }
+            $preparedPolicies.Add([pscustomobject]@{ name=$name; body=$body; settingCount=@($merged).Count; existingVerification=$existingVerification })
         }
     }
 
@@ -224,7 +251,7 @@ try {
 
     if ($DryRun) {
         foreach ($p in $preparedPolicies) {
-            if ($p.existing.Count -gt 0) { Write-Host "[DRY RUN] Existing policy, would skip: $($p.name) [$($p.existing[0].id)]"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'existing' -Detail ([string]$p.existing[0].id) }
+            if ($p.existingVerification) { Write-Host "[DRY RUN] Existing policy exactly matches; would skip: $($p.name) [$($p.existingVerification.id)]"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'existing-equivalent' -Detail ([string]$p.existingVerification.id) }
             else { Write-Host "[DRY RUN] Would deep-create policy: $($p.name) ($($p.settingCount) embedded settings)"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'dry-run-deep-create' -Detail "$($p.settingCount) embedded settings" }
         }
         foreach ($o in $preparedGraphObjects) {
@@ -233,7 +260,7 @@ try {
         }
     } else {
         foreach ($p in $preparedPolicies) {
-            if ($p.existing.Count -gt 0) { Write-Warning "Policy already exists and will not be modified: $($p.name)"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'existing' -Detail ([string]$p.existing[0].id); continue }
+            if ($p.existingVerification) { Write-Warning "Policy already exists, exactly matches, and will not be modified: $($p.name)"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'existing-equivalent' -Detail ([string]$p.existingVerification.id); continue }
             try {
                 $created=Invoke-MgGraphRequest -Method POST -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies' -ContentType 'application/json' -Body ($p.body | ConvertTo-Json -Depth 100)
                 Write-Host "Created policy: $($p.name) ($($p.settingCount) embedded settings)"

@@ -63,7 +63,7 @@ The final deployment approach proved the following concepts:
 - Exact choice/simple value validation
 - Removal of GET-only / response-only OData metadata
 - Duplicate policy detection
-- Existing exact-name policy skip behavior
+- Existing-policy readback and exact metadata/setting/value verification before skip
 - Tenant validation
 - `-DryRun`
 - Temporary Graph write probe

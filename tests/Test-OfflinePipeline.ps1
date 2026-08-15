@@ -478,6 +478,30 @@ try {
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com/beta/deviceManagement/%2e%2e/groups')) 'Dot-segment path escape must be rejected.'
     Assert-True (-not (Test-CpcGraphEndpointSafe 'https://graph.microsoft.com/beta/deviceManagement/%2561ssignments')) 'Double-encoded path components must be rejected.'
     Assert-True (Test-CpcObjectContainsAssignments ([pscustomobject]@{ nested=[pscustomobject]@{ assignments=@() } })) 'Nested assignment payload must be detected.'
+    $expectedPolicy=[ordered]@{
+        name='Synthetic existing policy';description='Expected description';platforms='windows10';technologies='mdm';roleScopeTagIds=@('tag-b','tag-a')
+        settings=@(
+            [ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting';settingInstance=[ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance';settingDefinitionId='definition-b';choiceSettingValue=[ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue';value='definition-b_enabled';children=@()}}},
+            [ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting';settingInstance=[ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance';settingDefinitionId='definition-a';simpleSettingValue=[ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue';value=1}}}
+        )
+    }
+    $actualPolicy=[pscustomobject]@{id='server-policy-id';name='Synthetic existing policy';description='Expected description';platforms='windows10';technologies='mdm';roleScopeTagIds=@('tag-a','tag-b');templateReference=[pscustomobject]@{templateId='';templateFamily='none'};createdDateTime='server-managed'}
+    $actualSettings=@(
+        [pscustomobject]@{id='server-setting-a';'@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting';'@odata.etag'='ignored';settingInstance=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance';settingDefinitionId='definition-a';simpleSettingValue=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue';value=1}}},
+        [pscustomobject]@{id='server-setting-b';'@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting';settingInstance=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance';settingDefinitionId='definition-b';choiceSettingValue=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue';value='definition-b_enabled';children=@()}}}
+    )
+    $equivalentPolicy=Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $actualSettings
+    Assert-True ($equivalentPolicy.equivalent -and $equivalentPolicy.expectedSettingCount -eq 2 -and $equivalentPolicy.actualSettingCount -eq 2) 'Existing policy verification must ignore only response metadata, wrapper IDs, role-tag ordering, and an empty template reference.'
+    $wrongValueSettings=@($actualSettings | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $wrongValueSettings[1].settingInstance.choiceSettingValue.value='definition-b_disabled'
+    Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $wrongValueSettings).equivalent) 'An existing policy with a different exact choice ID must not be skipped.'
+    $extraSettings=@($actualSettings)+@([pscustomobject]@{id='server-setting-c';'@odata.type'='#microsoft.graph.deviceManagementConfigurationSetting';settingInstance=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance';settingDefinitionId='definition-c';simpleSettingValue=[pscustomobject]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationIntegerSettingValue';value=3}}})
+    Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $extraSettings).equivalent) 'An existing policy with an extra setting must not be skipped.'
+    $wrongMetadataPolicy=$actualPolicy.PSObject.Copy();$wrongMetadataPolicy.description='Different description'
+    Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $wrongMetadataPolicy -ActualSettings $actualSettings).equivalent) 'An existing policy with different policy metadata must not be skipped.'
+    $duplicateExistingSettingFailed=$false
+    try { Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings @($actualSettings+$actualSettings[0]) | Out-Null } catch { $duplicateExistingSettingFailed=$true }
+    Assert-True $duplicateExistingSettingFailed 'Duplicate top-level setting definition IDs in an existing policy must fail closed.'
     $cpcModule=Get-Module CISPolicyCreator
     $pagingResult=& $cpcModule {
         $script:CpcMockCalls=0

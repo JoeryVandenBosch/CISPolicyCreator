@@ -343,6 +343,125 @@ function New-CpcSettingsCatalogPolicyBody {
     return $body
 }
 
+function ConvertTo-CpcCanonicalObject {
+    param([AllowNull()]$InputObject)
+
+    function Convert-CanonicalNode($node) {
+        if ($null -eq $node) { return $null }
+        if ($node -is [string] -or $node -is [ValueType]) { return $node }
+        if ($node -is [System.Collections.IDictionary]) {
+            $out=[ordered]@{}
+            [string[]]$keys=@($node.Keys | ForEach-Object { [string]$_ })
+            [Array]::Sort($keys,[StringComparer]::Ordinal)
+            foreach($key in $keys){$out[$key]=Convert-CanonicalNode $node[$key]}
+            return $out
+        }
+        if ($node -is [System.Collections.IEnumerable] -and -not ($node -is [string])) {
+            $items=[System.Collections.Generic.List[object]]::new()
+            foreach($item in $node){$items.Add((Convert-CanonicalNode $item)) | Out-Null}
+            return ,$items.ToArray()
+        }
+        $out=[ordered]@{}
+        [string[]]$names=@($node.PSObject.Properties.Name | ForEach-Object { [string]$_ })
+        [Array]::Sort($names,[StringComparer]::Ordinal)
+        foreach($name in $names){$out[$name]=Convert-CanonicalNode $node.PSObject.Properties[$name].Value}
+        return $out
+    }
+
+    return Convert-CanonicalNode $InputObject
+}
+
+function New-CpcSettingsCatalogPolicyFingerprint {
+    param(
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)][AllowEmptyCollection()]$Settings
+    )
+
+    function Get-RequiredProperty($node,[string]$name,[string]$context) {
+        if ($null -eq $node) { throw "$context is null." }
+        if ($node -is [System.Collections.IDictionary]) {
+            if (-not $node.Contains($name)) { throw "$context is missing required property '$name'." }
+            return $node[$name]
+        }
+        $property=$node.PSObject.Properties[$name]
+        if (-not $property) { throw "$context is missing required property '$name'." }
+        return $property.Value
+    }
+
+    function Get-OptionalProperty($node,[string]$name) {
+        if ($null -eq $node) { return $null }
+        if ($node -is [System.Collections.IDictionary]) {
+            if ($node.Contains($name)) { return $node[$name] }
+            return $null
+        }
+        $property=$node.PSObject.Properties[$name]
+        if ($property) { return $property.Value }
+        return $null
+    }
+
+    [string[]]$roleScopeTagIds=@(Get-RequiredProperty $Policy 'roleScopeTagIds' 'Settings Catalog policy' | ForEach-Object { [string]$_ })
+    if ($roleScopeTagIds.Count -eq 0 -or @($roleScopeTagIds | Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -gt 0) {
+        throw 'Settings Catalog policy roleScopeTagIds must contain only non-empty IDs.'
+    }
+    [Array]::Sort($roleScopeTagIds,[StringComparer]::Ordinal)
+
+    $templateReference=$null
+    $rawTemplate=Get-OptionalProperty $Policy 'templateReference'
+    if ($rawTemplate) {
+        $templateId=[string](Get-OptionalProperty $rawTemplate 'templateId')
+        if (-not [string]::IsNullOrWhiteSpace($templateId)) {
+            $templateReference=[ordered]@{templateId=$templateId}
+        }
+    }
+
+    $settingsByDefinitionId=[System.Collections.Generic.SortedDictionary[string,object]]::new([StringComparer]::Ordinal)
+    foreach($setting in @($Settings)) {
+        if ($null -eq $setting) { throw 'Settings Catalog policy contains a null setting.' }
+        $definitionId=Get-CpcTopLevelSettingDefinitionId -Setting $setting
+        if ([string]::IsNullOrWhiteSpace($definitionId)) { throw 'Settings Catalog policy contains a setting without a top-level settingDefinitionId.' }
+        if ($settingsByDefinitionId.ContainsKey($definitionId)) { throw "Settings Catalog policy contains duplicate top-level settingDefinitionId '$definitionId'." }
+        $writable=ConvertTo-CpcWritablePayload -InputObject $setting
+        if (-not ($writable -is [System.Collections.IDictionary])) { throw "Settings Catalog setting '$definitionId' is not an object." }
+        $writable.Remove('id')
+        $settingsByDefinitionId.Add($definitionId,(ConvertTo-CpcCanonicalObject $writable))
+    }
+
+    $canonicalSettings=[System.Collections.Generic.List[object]]::new()
+    foreach($entry in $settingsByDefinitionId.GetEnumerator()){$canonicalSettings.Add($entry.Value) | Out-Null}
+    $comparable=[ordered]@{
+        name=[string](Get-RequiredProperty $Policy 'name' 'Settings Catalog policy')
+        description=[string](Get-RequiredProperty $Policy 'description' 'Settings Catalog policy')
+        platforms=[string](Get-RequiredProperty $Policy 'platforms' 'Settings Catalog policy')
+        technologies=[string](Get-RequiredProperty $Policy 'technologies' 'Settings Catalog policy')
+        roleScopeTagIds=@($roleScopeTagIds)
+        templateReference=$templateReference
+        settings=@($canonicalSettings)
+    }
+    $json=$comparable | ConvertTo-Json -Depth 100 -Compress
+    $sha=[Security.Cryptography.SHA256]::Create()
+    try {$hash=[Convert]::ToHexString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($json))).ToLowerInvariant()}
+    finally {$sha.Dispose()}
+    return [pscustomobject]@{sha256=$hash;settingCount=$canonicalSettings.Count}
+}
+
+function Compare-CpcSettingsCatalogPolicy {
+    param(
+        [Parameter(Mandatory)]$ExpectedPolicy,
+        [Parameter(Mandatory)]$ActualPolicy,
+        [Parameter(Mandatory)][AllowEmptyCollection()]$ActualSettings
+    )
+    $expectedSettings=if($ExpectedPolicy -is [System.Collections.IDictionary]){$ExpectedPolicy['settings']}else{$ExpectedPolicy.settings}
+    $expected=New-CpcSettingsCatalogPolicyFingerprint -Policy $ExpectedPolicy -Settings @($expectedSettings)
+    $actual=New-CpcSettingsCatalogPolicyFingerprint -Policy $ActualPolicy -Settings @($ActualSettings)
+    return [pscustomobject]@{
+        equivalent=([string]$expected.sha256 -ceq [string]$actual.sha256)
+        expectedSha256=[string]$expected.sha256
+        actualSha256=[string]$actual.sha256
+        expectedSettingCount=[int]$expected.settingCount
+        actualSettingCount=[int]$actual.settingCount
+    }
+}
+
 function Test-CpcProfileSelected {
     param([Parameter(Mandatory)]$Profiles,[Parameter(Mandatory)][string]$Selector)
     $p=@($Profiles | ForEach-Object { ([string]$_).ToUpperInvariant() })
