@@ -2,6 +2,7 @@
 param(
     [string]$PythonCommand='python',
     [string]$EnvironmentPath,
+    [switch]$IncludeGraph,
     [switch]$PassThru
 )
 
@@ -44,7 +45,30 @@ $environmentPython=(Resolve-Path -LiteralPath $environmentPython[0]).Path
 $requirements=Join-Path $repoRoot 'tools\requirements.txt'
 & $environmentPython -m pip install --require-hashes -r $requirements | Out-Host
 if($LASTEXITCODE -ne 0){throw 'Hash-locked Python dependency installation failed.'}
-$validation=& (Join-Path $PSScriptRoot 'Test-CISPrerequisites.ps1') -PythonPath $environmentPython -PassThru
+
+if($IncludeGraph){
+    $graphContract=Import-PowerShellDataFile -LiteralPath (Join-Path $repoRoot 'tools\powershell-requirements.psd1')
+    $graphName=[string]$graphContract.MicrosoftGraphAuthentication.Name
+    $graphVersion=[version]$graphContract.MicrosoftGraphAuthentication.Version
+    $graphRepository=[string]$graphContract.MicrosoftGraphAuthentication.Repository
+    $moduleRoot=Join-Path $repoRoot '.modules'
+    if(Test-Path -LiteralPath $moduleRoot -PathType Leaf){throw "Graph module root is a file: $moduleRoot"}
+    $localManifest=Join-Path $moduleRoot "$graphName\$graphVersion\$graphName.psd1"
+    if(-not (Test-Path -LiteralPath $localManifest -PathType Leaf)){
+        if(-not (Get-Command Save-Module -ErrorAction SilentlyContinue)){
+            throw 'PowerShellGet Save-Module is required to bootstrap the repository-local Graph prerequisite.'
+        }
+        if(-not (Test-Path -LiteralPath $moduleRoot)){New-Item -ItemType Directory -Path $moduleRoot | Out-Null}
+        Save-Module -Name $graphName -RequiredVersion ([string]$graphVersion) -Repository $graphRepository -Path $moduleRoot -AcceptLicense -Force -ErrorAction Stop
+    }
+    if(-not (Test-Path -LiteralPath $localManifest -PathType Leaf)){
+        throw "Graph bootstrap did not produce the locked module manifest: $localManifest"
+    }
+}
+
+$validationArgs=@{PythonPath=$environmentPython;PassThru=$true}
+if($IncludeGraph){$validationArgs.RequireGraph=$true}
+$validation=& (Join-Path $PSScriptRoot 'Test-CISPrerequisites.ps1') @validationArgs
 
 $result=[pscustomobject][ordered]@{
     EnvironmentPath=$environmentRoot
@@ -53,5 +77,5 @@ $result=[pscustomobject][ordered]@{
     Prerequisites=$validation
 }
 Write-Host "Offline environment ready: $environmentRoot"
-Write-Host 'Microsoft.Graph.Authentication is optional for offline builds and must be installed separately before live operations.'
+if(-not $IncludeGraph){Write-Host 'Graph tooling remains optional. Run this initializer with -IncludeGraph before live operations.'}
 if($PassThru){return $result}

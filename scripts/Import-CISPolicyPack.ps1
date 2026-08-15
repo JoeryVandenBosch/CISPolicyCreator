@@ -56,10 +56,7 @@ if (-not $DryRun -and -not $ProbeOnly) {
     }
 }
 
-if (-not (Get-Module -ListAvailable -Name Microsoft.Graph.Authentication)) {
-    throw 'Microsoft.Graph.Authentication is required. Install-Module Microsoft.Graph.Authentication -Scope CurrentUser'
-}
-Import-Module Microsoft.Graph.Authentication
+& (Join-Path $PSScriptRoot 'Import-CISGraphAuthentication.ps1')
 
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }

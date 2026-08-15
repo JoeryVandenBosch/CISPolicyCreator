@@ -10,6 +10,22 @@ function Read-Json([string]$Path) { Get-Content -LiteralPath $Path -Raw | Conver
 
 try {
     New-Item -ItemType Directory -Path $testRoot | Out-Null
+    $graphContract=Import-PowerShellDataFile -LiteralPath (Join-Path $repoRoot 'tools\powershell-requirements.psd1')
+    Assert-True ([string]$graphContract.MicrosoftGraphAuthentication.Name -ceq 'Microsoft.Graph.Authentication') 'The live authentication prerequisite must use the reviewed Graph module.'
+    Assert-True ([version]$graphContract.MicrosoftGraphAuthentication.Version -eq [version]'2.28.0') 'The live authentication prerequisite must be locked to an exact tested version.'
+    Assert-True ([string]$graphContract.MicrosoftGraphAuthentication.Repository -ceq 'PSGallery') 'The Graph prerequisite must name its exact package repository.'
+    Assert-True ([string]$graphContract.MicrosoftGraphAuthentication.TreeSha256 -cmatch '^[0-9a-f]{64}$') 'The Graph module file tree must be content-hash locked.'
+    $tamperedGraphRoot=Join-Path $testRoot 'tampered-graph-repository'
+    New-Item -ItemType Directory -Path (Join-Path $tamperedGraphRoot 'scripts') -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $tamperedGraphRoot 'tools') -Force | Out-Null
+    $tamperedModuleRoot=Join-Path $tamperedGraphRoot ".modules\$($graphContract.MicrosoftGraphAuthentication.Name)\$($graphContract.MicrosoftGraphAuthentication.Version)"
+    New-Item -ItemType Directory -Path $tamperedModuleRoot -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $repoRoot 'scripts\Import-CISGraphAuthentication.ps1') -Destination (Join-Path $tamperedGraphRoot 'scripts\Import-CISGraphAuthentication.ps1')
+    Copy-Item -LiteralPath (Join-Path $repoRoot 'tools\powershell-requirements.psd1') -Destination (Join-Path $tamperedGraphRoot 'tools\powershell-requirements.psd1')
+    Set-Content -LiteralPath (Join-Path $tamperedModuleRoot 'Microsoft.Graph.Authentication.psd1') -Value "@{ModuleVersion='2.28.0'}" -Encoding utf8
+    $tamperedGraphError=$null
+    try { & (Join-Path $tamperedGraphRoot 'scripts\Import-CISGraphAuthentication.ps1') } catch { $tamperedGraphError=$_.Exception.Message }
+    Assert-True ([string]$tamperedGraphError -cmatch 'content hash') 'A same-version but altered repository-local Graph module must fail its content lock before import.'
     $initializer=Join-Path $repoRoot 'scripts\Initialize-CISPolicyCreator.ps1'
     $initializerFilePath=Join-Path $testRoot 'not-an-environment'
     Set-Content -LiteralPath $initializerFilePath -Value 'fixture' -Encoding utf8

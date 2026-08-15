@@ -37,9 +37,18 @@ $extractor=Join-Path $repoRoot 'tools\Extract-CISRecommendations.py'
 $runtimeOutput=@(& $python $extractor --check-runtime 2>&1)
 if($LASTEXITCODE -ne 0){throw "PDF runtime prerequisite validation failed: $($runtimeOutput -join [Environment]::NewLine)"}
 
-$graphModule=@(Get-Module -ListAvailable -Name Microsoft.Graph.Authentication | Sort-Object Version -Descending | Select-Object -First 1)
-if($RequireGraph -and $graphModule.Count -eq 0){
-    throw 'Microsoft.Graph.Authentication is required for live operations. Install-Module Microsoft.Graph.Authentication -Scope CurrentUser'
+$graphContract=Import-PowerShellDataFile -LiteralPath (Join-Path $repoRoot 'tools\powershell-requirements.psd1')
+$graphName=[string]$graphContract.MicrosoftGraphAuthentication.Name
+$graphVersion=[version]$graphContract.MicrosoftGraphAuthentication.Version
+$localGraphManifest=Join-Path $repoRoot ".modules\$graphName\$graphVersion\$graphName.psd1"
+$localGraphAvailable=Test-Path -LiteralPath $localGraphManifest -PathType Leaf
+$installedGraph=@(Get-Module -ListAvailable -Name $graphName | Where-Object Version -eq $graphVersion | Select-Object -First 1)
+$graphAvailable=$localGraphAvailable -or $installedGraph.Count -eq 1
+$graphSource=if($localGraphAvailable){'repository-local'}elseif($installedGraph.Count){'installed'}else{$null}
+if($RequireGraph){
+    $graphValidation=& (Join-Path $PSScriptRoot 'Import-CISGraphAuthentication.ps1') -PassThru
+    $graphAvailable=$true
+    $graphSource=[string]$graphValidation.Source
 }
 
 $result=[pscustomobject][ordered]@{
@@ -49,12 +58,13 @@ $result=[pscustomobject][ordered]@{
     PythonVersion=[string]$pythonVersion
     PdfParser='pypdf'
     PdfParserVersion=([regex]::Match(($runtimeOutput -join ' '),'pypdf ([0-9]+(?:\.[0-9]+)+(?:[A-Za-z0-9+-]*)?)').Groups[1].Value)
-    GraphAuthenticationAvailable=($graphModule.Count -gt 0)
-    GraphAuthenticationVersion=if($graphModule.Count){[string]$graphModule[0].Version}else{$null}
+    GraphAuthenticationAvailable=$graphAvailable
+    GraphAuthenticationVersion=if($graphAvailable){[string]$graphVersion}else{$null}
+    GraphAuthenticationSource=$graphSource
 }
 
 Write-Host "PowerShell     : $($result.PowerShellVersion)"
 Write-Host "Python         : $($result.PythonVersion) [$($result.PythonPath)]"
 Write-Host "PDF parser     : $($result.PdfParser) $($result.PdfParserVersion) (hash-locked contract valid)"
-Write-Host "Graph module   : $(if($result.GraphAuthenticationAvailable){$result.GraphAuthenticationVersion}else{'not installed; offline build remains available'})"
+Write-Host "Graph module   : $(if($result.GraphAuthenticationAvailable){$result.GraphAuthenticationVersion+' ('+$result.GraphAuthenticationSource+')'}else{'locked version not installed; offline build remains available'})"
 if($PassThru){return $result}

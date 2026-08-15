@@ -14,10 +14,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Initialize hash-pinned offline runtime
+      - name: Initialize hash-pinned runtime
         shell: pwsh
-        run: ./scripts/Initialize-CISPolicyCreator.ps1 -EnvironmentPath .venv
+        run: ./scripts/Initialize-CISPolicyCreator.ps1 -EnvironmentPath .venv -IncludeGraph
 
       - name: Complete repository validation
         shell: pwsh
-        run: ./scripts/Test-CISRepository.ps1 -PythonPath .venv/bin/python
+        run: ./scripts/Test-CISRepository.ps1 -PythonPath .venv/bin/python -RequireGraph

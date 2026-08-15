@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$PythonPath
+    [string]$PythonPath,
+    [switch]$RequireGraph
 )
 
 $ErrorActionPreference='Stop'
@@ -52,7 +53,9 @@ try {
     & (Join-Path $repoRoot 'scripts/Test-CISPolicyPack.ps1') -PackRoot (Join-Path $repoRoot 'templates/baseline')
     & (Join-Path $repoRoot 'tests/Test-OfflinePipeline.ps1')
 
-    $prerequisites=& (Join-Path $repoRoot 'scripts/Test-CISPrerequisites.ps1') -PythonPath $PythonPath -PassThru
+    $prerequisiteArgs=@{PythonPath=$PythonPath;PassThru=$true}
+    if($RequireGraph){$prerequisiteArgs.RequireGraph=$true}
+    $prerequisites=& (Join-Path $repoRoot 'scripts/Test-CISPrerequisites.ps1') @prerequisiteArgs
     $python=[string]$prerequisites.PythonPath
     $pythonVersion=[string]$prerequisites.PythonVersion
     & $python -m unittest tests/test_extractor.py

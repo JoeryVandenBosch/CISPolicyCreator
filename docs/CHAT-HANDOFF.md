@@ -28,8 +28,9 @@ Extraction first verifies Python 3.11+ and requires the installed `pypdf` versio
 
 Important supporting commands:
 
-- `Initialize-CISPolicyCreator.ps1`: create or reuse the local virtual environment and install the hash-locked offline parser dependency;
-- `Test-CISPrerequisites.ps1`: verify PowerShell, Python, the parser contract, and optionally the Graph authentication module;
+- `Initialize-CISPolicyCreator.ps1`: create or reuse the local virtual environment, install the hash-locked offline parser dependency, and optionally install the exact pinned Graph authentication module into ignored local storage;
+- `Import-CISGraphAuthentication.ps1`: load only the exact repository-pinned local or installed Graph authentication module before live operations;
+- `Test-CISPrerequisites.ps1`: verify PowerShell, Python, the parser contract, and optionally the locked Graph authentication contract;
 - `Export-SettingsCatalogDiagnostics.ps1`: capture a pinned definition snapshot;
 - `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISMappingReviewWorklist.ps1`: recursively validate a private historical policy pack against a pinned snapshot and emit candidate-only review evidence without changing mappings;

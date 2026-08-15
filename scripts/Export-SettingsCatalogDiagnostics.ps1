@@ -8,8 +8,7 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 if (Test-Path -LiteralPath $OutputPath) { throw "OutputPath already exists: $OutputPath" }
-if (-not (Get-Module -ListAvailable Microsoft.Graph.Authentication)) { throw 'Install Microsoft.Graph.Authentication first.' }
-Import-Module Microsoft.Graph.Authentication
+& (Join-Path $PSScriptRoot 'Import-CISGraphAuthentication.ps1')
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $args = @{ Scopes='DeviceManagementConfiguration.Read.All'; ContextScope='Process'; NoWelcome=$true }
 if ($TenantId) { $args.TenantId=$TenantId }

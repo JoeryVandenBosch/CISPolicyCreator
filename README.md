@@ -72,17 +72,17 @@ The generated manifest records SHA-256 hashes for the PDF, mapping catalog, admi
 - PowerShell 7+
 - Python 3.11+
 - `pypdf`, installed from the hash-pinned requirements file; extraction fails if the installed version differs from the schema-bound pin
-- `Microsoft.Graph.Authentication` for snapshot export, live dry runs, probes, and imports
+- the exact `Microsoft.Graph.Authentication` version pinned in `tools/powershell-requirements.psd1` for snapshot export, live dry runs, probes, and imports
 
 ```powershell
 .\scripts\Initialize-CISPolicyCreator.ps1
 
 # Required only for snapshot export and live Graph operations:
-Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
+.\scripts\Initialize-CISPolicyCreator.ps1 -IncludeGraph
 .\scripts\Test-CISPrerequisites.ps1 -RequireGraph
 ```
 
-The initializer creates or reuses `.venv`, installs the PDF dependency with `--require-hashes`, and verifies the result. It never installs the Graph module or any AI runtime. The main PDF pipeline automatically prefers this local environment. The extractor independently verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
+The initializer creates or reuses `.venv`, installs the PDF dependency with `--require-hashes`, and verifies the result. `-IncludeGraph` additionally downloads the exact locked authentication module from PowerShell Gallery into the ignored repository-local `.modules` directory; it does not authenticate or contact Microsoft Graph. Live scripts verify both its version and deterministic file-tree SHA-256 before loading it. No mode installs an AI runtime. The main PDF pipeline automatically prefers the local Python environment. The extractor independently verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
 
 ## Build a pack from a PDF
 

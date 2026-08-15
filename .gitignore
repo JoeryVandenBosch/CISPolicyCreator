@@ -29,6 +29,7 @@ mapping-report-*.json
 __pycache__/
 *.py[cod]
 .venv/
+.modules/
 venv/
 
 # Editor / OS

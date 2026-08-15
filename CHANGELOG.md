@@ -13,6 +13,7 @@
 - Require a separate pre-authentication acknowledgement before importing a pack with unresolved or unsupplied-input recommendations.
 - Validate packs before deterministic mapping-report generation, refuse output overwrite, and expose mapping completeness separately from CIS assessment method.
 - Add repository-owned, cross-platform virtual-environment initialization and prerequisite verification, and run CI through the same clean-clone bootstrap.
+- Add optional repository-local installation of an exact pinned Graph authentication module, require that version for live scripts, and verify the live prerequisite in clean CI without authenticating.
 - Add recursively validated Settings Catalog choice children, integer/string collections, and group collections with exact nested definitions, values, bounded depth, and live payload generation.
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.
