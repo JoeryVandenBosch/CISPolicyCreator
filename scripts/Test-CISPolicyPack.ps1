@@ -9,6 +9,7 @@ $PackRoot=(Resolve-Path -LiteralPath $PackRoot).Path
 $modulePath=Join-Path (Split-Path -Parent $PSScriptRoot) 'src\CISPolicyCreator.psm1'
 Import-Module $modulePath -Force -DisableNameChecking
 $issues=[System.Collections.Generic.List[string]]::new()
+$pathComparison=if($IsWindows){[StringComparison]::OrdinalIgnoreCase}else{[StringComparison]::Ordinal}
 
 # A lexical in-root path can still escape through a symlink/junction. Reject links before reading the manifest.
 try {
@@ -47,10 +48,10 @@ function Resolve-PackPath([string]$RelativePath,[string]$Label) {
     if ([IO.Path]::IsPathRooted($RelativePath)) { $issues.Add("$Label must be relative to the pack root"); return $null }
     $full=[IO.Path]::GetFullPath((Join-Path $PackRoot $RelativePath))
     $prefix=$PackRoot.TrimEnd([IO.Path]::DirectorySeparatorChar,[IO.Path]::AltDirectorySeparatorChar)+[IO.Path]::DirectorySeparatorChar
-    if (-not $full.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)) { $issues.Add("$Label escapes the pack root"); return $null }
+    if (-not $full.StartsWith($prefix,$pathComparison)) { $issues.Add("$Label escapes the pack root"); return $null }
     if (Test-Path -LiteralPath $full) {
         $resolved=(Resolve-Path -LiteralPath $full).Path
-        if (-not $resolved.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)) { $issues.Add("$Label resolves through a link outside the pack root"); return $null }
+        if (-not $resolved.StartsWith($prefix,$pathComparison)) { $issues.Add("$Label resolves through a link outside the pack root"); return $null }
     }
     return $full
 }

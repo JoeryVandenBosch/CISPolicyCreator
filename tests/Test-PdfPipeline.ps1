@@ -5,6 +5,7 @@ $repoRoot=Split-Path -Parent $PSScriptRoot
 $fixtures=Join-Path $PSScriptRoot 'fixtures'
 $python=(Get-Command $PythonPath -ErrorAction Stop).Source
 $tempBase=[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar)+[IO.Path]::DirectorySeparatorChar
+$pathComparison=if($IsWindows){[StringComparison]::OrdinalIgnoreCase}else{[StringComparison]::Ordinal}
 $testRoot=Join-Path $tempBase ('CISPolicyCreator-pdf-test-'+[guid]::NewGuid().ToString('N'))
 try{
     New-Item -ItemType Directory -Path $testRoot | Out-Null
@@ -42,6 +43,6 @@ try{
     Write-Host 'PASS: real PDF extraction and top-level pipeline orchestration.'
 } finally {
     $resolved=[IO.Path]::GetFullPath($testRoot)
-    if(-not $resolved.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)){ throw "Refusing unsafe cleanup path: $resolved" }
+    if(-not $resolved.StartsWith($tempBase,$pathComparison)){ throw "Refusing unsafe cleanup path: $resolved" }
     if(Test-Path -LiteralPath $resolved){ Remove-Item -LiteralPath $resolved -Recurse -Force }
 }

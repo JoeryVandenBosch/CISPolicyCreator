@@ -12,9 +12,10 @@ param(
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 $repoRoot=Split-Path -Parent $PSScriptRoot
+$pathComparison=if($IsWindows){[StringComparison]::OrdinalIgnoreCase}else{[StringComparison]::Ordinal}
 $outputFull=[IO.Path]::GetFullPath($OutputPath)
 if(Test-Path -LiteralPath $outputFull){throw "OutputPath already exists: $outputFull"}
-if(-not ([IO.Path]::GetFullPath($ApprovalsPath)).EndsWith('.private-approvals.json',[StringComparison]::OrdinalIgnoreCase)){throw 'ApprovalsPath must end with .private-approvals.json.'}
+if(-not ([IO.Path]::GetFullPath($ApprovalsPath)).EndsWith('.private-approvals.json',[StringComparison]::Ordinal)){throw 'ApprovalsPath must end with the exact lowercase suffix .private-approvals.json.'}
 
 function Read-ValidatedJson([string]$Path,[string]$SchemaName,[string]$Label) {
     $resolved=(Resolve-Path -LiteralPath $Path).Path
@@ -129,7 +130,7 @@ foreach($record in @($worklist.source.referenceFiles)){
     $segments=@($relativePath -split '[\\/]')
     if($segments.Count -eq 0 -or @($segments|Where-Object{$_ -in @('','.', '..')}).Count -gt 0){throw "Reference evidence path is unsafe: $relativePath"}
     $fullPath=[IO.Path]::GetFullPath((Join-Path $referenceRoot ($segments -join [IO.Path]::DirectorySeparatorChar)))
-    if(-not $fullPath.StartsWith($referenceRootPrefix,[StringComparison]::OrdinalIgnoreCase)){throw "Reference evidence escapes ReferencePackRoot: $relativePath"}
+    if(-not $fullPath.StartsWith($referenceRootPrefix,$pathComparison)){throw "Reference evidence escapes ReferencePackRoot: $relativePath"}
     if(-not (Test-Path -LiteralPath $fullPath -PathType Leaf)){throw "Reference evidence file is missing: $relativePath"}
     if((Get-Sha256 $fullPath) -cne [string]$record.sha256){throw "Reference evidence hash mismatch: $relativePath"}
     if($referenceByPath.ContainsKey($relativePath)){throw "Duplicate reference evidence path: $relativePath"}
@@ -402,14 +403,14 @@ try{
     $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $validationRoot -PassThru
     if(-not $validation.IsValid){throw 'Approved catalog did not compile into a valid fail-closed policy pack.'}
     $resolvedValidationRoot=[IO.Path]::GetFullPath($validationRoot)
-    if(-not $resolvedValidationRoot.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
+    if(-not $resolvedValidationRoot.StartsWith($tempBase,$pathComparison)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
     Remove-Item -LiteralPath $resolvedValidationRoot -Recurse -Force
     Move-Item -LiteralPath $temporary -Destination $outputFull
 }finally{
     if(Test-Path -LiteralPath $temporary){Remove-Item -LiteralPath $temporary -Force}
     if(Test-Path -LiteralPath $validationRoot){
         $resolvedValidationRoot=[IO.Path]::GetFullPath($validationRoot)
-        if(-not $resolvedValidationRoot.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
+        if(-not $resolvedValidationRoot.StartsWith($tempBase,$pathComparison)){throw "Refusing unsafe validation cleanup path: $resolvedValidationRoot"}
         Remove-Item -LiteralPath $resolvedValidationRoot -Recurse -Force
     }
 }

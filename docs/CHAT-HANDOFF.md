@@ -49,7 +49,7 @@ When a mapped leaf choice/integer/string exists, the compiler also embeds one de
 
 ## Verification
 
-The repository contains copyright-safe tests for clean runtime initialization, automatic local-environment discovery, extraction, Manual+mapped semantics, private candidate worklists, deferred/rejected/mapped review states, deterministic private progress reports, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, linked-path rejection, exact existing-policy comparison, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions initializes the same hash-pinned environment and runs the complete suite.
+The repository contains copyright-safe tests for clean runtime initialization, automatic local-environment discovery, extraction, Manual+mapped semantics, private candidate worklists, deferred/rejected/mapped review states, deterministic private progress reports, lowercase private-artifact naming, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, platform-correct path containment, linked-path rejection, exact existing-policy comparison, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions initializes the same hash-pinned environment and runs the complete suite.
 
 ## Current benchmark state
 

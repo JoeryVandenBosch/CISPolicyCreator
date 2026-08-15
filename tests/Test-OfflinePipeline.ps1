@@ -3,6 +3,7 @@ Set-StrictMode -Version Latest
 $repoRoot=Split-Path -Parent $PSScriptRoot
 $fixtures=Join-Path $PSScriptRoot 'fixtures'
 $tempBase=[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar)+[IO.Path]::DirectorySeparatorChar
+$pathComparison=if($IsWindows){[StringComparison]::OrdinalIgnoreCase}else{[StringComparison]::Ordinal}
 $testRoot=Join-Path $tempBase ('CISPolicyCreator-tests-'+[guid]::NewGuid().ToString('N'))
 
 function Assert-True([bool]$Condition,[string]$Message) { if (-not $Condition) { throw "ASSERTION FAILED: $Message" } }
@@ -113,6 +114,19 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $linkedRootValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $linkedPackRoot -PassThru
     Assert-True ((-not $linkedRootValidation.IsValid) -and @($linkedRootValidation.Issues | Where-Object {$_ -cmatch 'Filesystem links are not allowed.*pack root'}).Count -gt 0) 'A pack root that is itself a symlink or junction must fail before content is read.'
 
+    if($IsLinux){
+        $caseEscapingPack=Join-Path $testRoot 'case-escaping-pack'
+        $caseSiblingPack=Join-Path $testRoot 'CASE-ESCAPING-PACK'
+        Copy-Item -LiteralPath (Join-Path $repoRoot 'templates\baseline') -Destination $caseEscapingPack -Recurse
+        New-Item -ItemType Directory -Path (Join-Path $caseSiblingPack 'spec') -Force | Out-Null
+        Copy-Item -LiteralPath (Join-Path $caseEscapingPack 'spec\recommendations.json') -Destination (Join-Path $caseSiblingPack 'spec\recommendations.json')
+        $caseManifest=Read-Json (Join-Path $caseEscapingPack 'manifest.json')
+        $caseManifest.recommendationsSpec='../CASE-ESCAPING-PACK/spec/recommendations.json'
+        $caseManifest | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath (Join-Path $caseEscapingPack 'manifest.json') -Encoding utf8
+        $caseEscapeValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $caseEscapingPack -PassThru
+        Assert-True ((-not $caseEscapeValidation.IsValid) -and @($caseEscapeValidation.Issues | Where-Object {$_ -cmatch 'escapes the pack root'}).Count -gt 0) 'Case-distinct sibling paths must not pass pack-root containment on a case-sensitive filesystem.'
+    }
+
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')
         MappingCatalogPath=(Join-Path $fixtures 'mapping-catalog.json')
@@ -171,6 +185,9 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $unsafeReviewNameFailed=$false
     try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath (Join-Path $testRoot 'review.json') } catch { $unsafeReviewNameFailed=$true }
     Assert-True $unsafeReviewNameFailed 'A private review worklist must use the ignored .private-review.json suffix.'
+    $uppercaseReviewNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewWorklist.ps1') @reviewCommon -OutputPath (Join-Path $testRoot 'review.PRIVATE-REVIEW.JSON') } catch { $uppercaseReviewNameFailed=$true }
+    Assert-True $uppercaseReviewNameFailed 'A private review worklist must use the exact lowercase suffix covered by .gitignore.'
 
     $reviewCatalogPath=Join-Path $testRoot 'review-catalog.json'
     & (Join-Path $repoRoot 'scripts\New-CISMappingCatalog.ps1') `
@@ -187,6 +204,9 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath $approvalTemplateA
     & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath $approvalTemplateB
     Assert-True (((Get-FileHash -LiteralPath $approvalTemplateA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $approvalTemplateB -Algorithm SHA256).Hash)) 'Repeated private approval templates must be byte-identical.'
+    $uppercaseApprovalNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\New-CISMappingReviewApprovals.ps1') -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -CatalogVersion '0.2.0' -PackVersion '0.2.0' -OutputPath (Join-Path $testRoot 'approval.PRIVATE-APPROVALS.JSON') } catch { $uppercaseApprovalNameFailed=$true }
+    Assert-True $uppercaseApprovalNameFailed 'A private approval template must use the exact lowercase suffix covered by .gitignore.'
     $approval=Read-Json $approvalTemplateA
     Assert-True (@($approval.reviews).Count -eq 4 -and @($approval.reviews | Where-Object outcome -ne 'defer').Count -eq 0) 'Every candidate review must start deferred and nondeployable.'
 
@@ -207,6 +227,13 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $unsafeReportNameFailed=$false
     try { & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -JsonPath (Join-Path $testRoot 'progress.json') } catch { $unsafeReportNameFailed=$true }
     Assert-True $unsafeReportNameFailed 'A private review report must use the ignored .private-review-report.json suffix.'
+    $uppercaseReportNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -JsonPath (Join-Path $testRoot 'progress.PRIVATE-REVIEW-REPORT.JSON') } catch { $uppercaseReportNameFailed=$true }
+    Assert-True $uppercaseReportNameFailed 'A private review report must use the exact lowercase suffix covered by .gitignore.'
+
+    $uppercaseApplyApprovalNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') -ExtractionPath $reviewCommon.ExtractionPath -MappingCatalogPath $reviewCatalogPath -ReviewWorklistPath $reviewPathA -ApprovalsPath (Join-Path $testRoot 'approval.PRIVATE-APPROVALS.JSON') -SettingsCatalogSnapshotPath $reviewCommon.SettingsCatalogSnapshotPath -ReferencePackRoot $reviewCommon.ReferencePackRoot -OutputPath (Join-Path $testRoot 'uppercase-approval-output.json') } catch { $uppercaseApplyApprovalNameFailed=$true }
+    Assert-True $uppercaseApplyApprovalNameFailed 'Applying approvals must require the exact lowercase private approval suffix.'
 
     $wrongBenchmarkWorklist=Read-Json $reviewPathA
     $wrongBenchmarkWorklist.benchmark.id='different-benchmark'
@@ -648,6 +675,6 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     Write-Host 'PASS: offline reproducible pipeline and fail-closed behavior.'
 } finally {
     $resolvedTestRoot=[IO.Path]::GetFullPath($testRoot)
-    if (-not $resolvedTestRoot.StartsWith($tempBase,[StringComparison]::OrdinalIgnoreCase)) { throw "Refusing unsafe test cleanup path: $resolvedTestRoot" }
+    if (-not $resolvedTestRoot.StartsWith($tempBase,$pathComparison)) { throw "Refusing unsafe test cleanup path: $resolvedTestRoot" }
     if (Test-Path -LiteralPath $resolvedTestRoot) { Remove-Item -LiteralPath $resolvedTestRoot -Recurse -Force }
 }

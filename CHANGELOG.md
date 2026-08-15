@@ -26,6 +26,7 @@
 - Abort preflight on any same-name generic Graph object because an endpoint-agnostic importer cannot safely prove arbitrary resource equivalence; never report a name-only collision as successfully deployed.
 - Publish standalone-compiled and orchestrated packs with atomic same-parent moves and ownership-scoped cleanup so a raced output path created by another process is never overwritten or deleted.
 - Reject symbolic links, junctions, and other reparse points used as or inside policy packs before manifest processing so linked content cannot escape the validated pack root.
+- Use platform-correct case semantics for containment checks and require exact lowercase private reviewer suffixes so Linux paths cannot escape by case and private artifacts remain covered by repository ignore rules.
 - Anchor recommendation extraction to physical PDF page starts so similarly numbered CIS Controls references cannot be misclassified as benchmark recommendations.
 - Add regression coverage for recommendation-like CIS Controls text.
 - Add a deterministic catalog initializer that converts a private extraction into a public-safe, all-unresolved mapping catalog without benchmark prose.

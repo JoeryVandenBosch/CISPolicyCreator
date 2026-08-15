@@ -32,7 +32,7 @@ function Test-ExactArray($Left,$Right) {
 function Resolve-NewOutputPath([AllowNull()][string]$Path,[string]$Suffix,[string]$Label) {
     if(-not $Path){return $null}
     $full=[IO.Path]::GetFullPath($Path)
-    if(-not $full.EndsWith($Suffix,[StringComparison]::OrdinalIgnoreCase)){throw "$Label must end with $Suffix."}
+    if(-not $full.EndsWith($Suffix,[StringComparison]::Ordinal)){throw "$Label must end with the exact lowercase suffix $Suffix."}
     if(Test-Path -LiteralPath $full){throw "$Label already exists: $full"}
     $parent=Split-Path -Parent $full
     if(-not $parent){$parent=(Get-Location).Path}

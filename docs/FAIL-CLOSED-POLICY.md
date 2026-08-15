@@ -67,6 +67,8 @@ The standalone compiler and pack orchestrator publish from unique staging direct
 
 Pack validation rejects a symbolic link, junction, or other reparse point used as the pack root or anywhere inside it before reading the manifest. Manifest-relative paths must remain lexically inside the pack as well; linked paths cannot be used to read mutable content outside the validated pack.
 
+Path containment uses case-insensitive comparison only on Windows and exact case-sensitive comparison on other platforms. Private worklists, approvals, and review reports require their exact lowercase `.private-*` suffixes so the repository ignore rules cover them consistently on case-sensitive filesystems.
+
 Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
 
 Private candidate worklists are reproducible reviewer aids, not compiler inputs or mapping authority. They record hashes for the extraction, pinned snapshot, and reference policy files, preserve exact historical occurrences, and declare `mappingChangesMade: false`. They must remain private because they contain benchmark titles.

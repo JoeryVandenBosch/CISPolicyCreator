@@ -11,7 +11,7 @@ $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 $repoRoot=Split-Path -Parent $PSScriptRoot
 $outputFull=[IO.Path]::GetFullPath($OutputPath)
-if(-not $outputFull.EndsWith('.private-approvals.json',[StringComparison]::OrdinalIgnoreCase)){throw 'OutputPath must end with .private-approvals.json.'}
+if(-not $outputFull.EndsWith('.private-approvals.json',[StringComparison]::Ordinal)){throw 'OutputPath must end with the exact lowercase suffix .private-approvals.json.'}
 if(Test-Path -LiteralPath $outputFull){throw "OutputPath already exists: $outputFull"}
 
 function Read-ValidatedJson([string]$Path,[string]$SchemaName,[string]$Label) {

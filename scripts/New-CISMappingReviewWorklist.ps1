@@ -11,7 +11,7 @@ $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 $repoRoot=Split-Path -Parent $PSScriptRoot
 $outputFull=[IO.Path]::GetFullPath($OutputPath)
-if(-not $outputFull.EndsWith('.private-review.json',[StringComparison]::OrdinalIgnoreCase)){throw 'OutputPath must end with .private-review.json so private benchmark titles are covered by .gitignore.'}
+if(-not $outputFull.EndsWith('.private-review.json',[StringComparison]::Ordinal)){throw 'OutputPath must end with the exact lowercase suffix .private-review.json so private benchmark titles are covered by .gitignore.'}
 if(Test-Path -LiteralPath $outputFull){throw "OutputPath already exists: $outputFull"}
 
 function Read-ValidatedJson([string]$Path,[string]$SchemaName,[string]$Label) {
