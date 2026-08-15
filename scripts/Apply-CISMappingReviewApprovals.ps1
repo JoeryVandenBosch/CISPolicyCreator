@@ -281,7 +281,7 @@ foreach($catalogRecommendation in @($catalog.recommendations)){
     $recommendationId=[string]$catalogRecommendation.recommendationId
     if(-not $reviewByRecommendation.ContainsKey($recommendationId)){continue}
     $review=$reviewByRecommendation[$recommendationId]
-    if([string]$review.outcome -ceq 'defer'){continue}
+    if([string]$review.outcome -in @('defer','rejected')){continue}
     if([string]$review.outcome -cne 'mapped'){throw "Unsupported review outcome for '$recommendationId'."}
     if([string]$catalogRecommendation.mappingStatus -cne 'unresolved'){throw "Only unresolved recommendation '$recommendationId' can be promoted by this tool."}
     if(@($catalogRecommendation.implementationRefs).Count -ne 0 -or $null -ne (Get-OptionalProperty $catalogRecommendation 'implementationType') -or $null -ne (Get-OptionalProperty $catalogRecommendation 'decisionRef')){throw "Unresolved recommendation '$recommendationId' contains pre-existing implementation or decision data."}

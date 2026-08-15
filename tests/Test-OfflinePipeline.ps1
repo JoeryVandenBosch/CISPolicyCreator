@@ -109,6 +109,24 @@ try {
     $approval=Read-Json $approvalTemplateA
     Assert-True (@($approval.reviews).Count -eq 4 -and @($approval.reviews | Where-Object outcome -ne 'defer').Count -eq 0) 'Every candidate review must start deferred and nondeployable.'
 
+    $reviewReportA=Join-Path $testRoot 'progress-a.private-review-report.json'
+    $reviewReportB=Join-Path $testRoot 'progress-b.private-review-report.json'
+    $reviewReportCsv=Join-Path $testRoot 'progress.private-review-report.csv'
+    $reportCommon=@{MappingCatalogPath=$reviewCatalogPath;ReviewWorklistPath=$reviewPathA;ApprovalsPath=$approvalTemplateA}
+    & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -JsonPath $reviewReportA -CsvPath $reviewReportCsv
+    & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -JsonPath $reviewReportB
+    Assert-True (((Get-FileHash -LiteralPath $reviewReportA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $reviewReportB -Algorithm SHA256).Hash)) 'Repeated private review reports must be byte-identical.'
+    $reviewReport=Read-Json $reviewReportA
+    Assert-True (-not [bool]$reviewReport.mappingChangesMade -and $reviewReport.summary.recommendationCount -eq 5 -and $reviewReport.summary.pendingReviewRows -eq 4) 'A review report must be candidate-only and count every pending candidate review.'
+    Assert-True ($reviewReport.summary.uniqueCandidates -eq 3 -and $reviewReport.summary.ambiguousCandidates -eq 1 -and $reviewReport.summary.noCandidates -eq 1) 'A review report must preserve deterministic candidate classifications.'
+    Assert-True (-not $reviewReport.summary.reviewQueueComplete -and -not $reviewReport.summary.catalogComplete -and -not $reviewReport.summary.readyForCatalogPromotion) 'An all-deferred unresolved review queue must not report completion or promotion readiness.'
+    $manualReportRow=@($reviewReport.recommendations | Where-Object recommendationId -eq '1.3')[0]
+    Assert-True ($manualReportRow.cisAssessmentMethod -ceq 'Manual' -and $manualReportRow.state -ceq 'pending-review') 'Review reporting must keep Manual assessment independent from candidate mapping state.'
+    Assert-True (@($reviewReport.recommendations | Where-Object { $null -ne $_.PSObject.Properties['title'] }).Count -eq 0) 'Review progress reports must not copy private benchmark titles.'
+    $unsafeReportNameFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -JsonPath (Join-Path $testRoot 'progress.json') } catch { $unsafeReportNameFailed=$true }
+    Assert-True $unsafeReportNameFailed 'A private review report must use the ignored .private-review-report.json suffix.'
+
     $wrongBenchmarkWorklist=Read-Json $reviewPathA
     $wrongBenchmarkWorklist.benchmark.id='different-benchmark'
     $wrongBenchmarkWorklistPath=Join-Path $testRoot 'wrong-benchmark.private-review.json'
@@ -163,6 +181,39 @@ try {
     Assert-True ([string]$approvedCatalog.version -ceq '0.2.0' -and [string]$approvedCatalog.pack.version -ceq '0.2.0') 'Approved catalog and pack versions must come from the explicit private approval file.'
     Assert-True (@($approvedCatalog.recommendations | Where-Object mappingStatus -eq 'mapped').Count -eq 4 -and @($approvedCatalog.recommendations | Where-Object mappingStatus -eq 'unresolved').Count -eq 1) 'Only explicitly approved reviews may become mapped.'
     Assert-True (@($approvedCatalog.settingsCatalogPolicies).Count -eq 1 -and @($approvedCatalog.settingsCatalogSettings).Count -eq 4) 'Approved selections must produce one reviewed policy and four exact setting trees.'
+
+    $partiallyRejectedApproval=Read-Json $approvedPath
+    $rejectedReview=@($partiallyRejectedApproval.reviews | Where-Object recommendationId -eq '1.1')[0]
+    $rejectedReview.outcome='rejected'
+    $rejectedReview.acknowledged=$true
+    $rejectedReview.valueBasis=$null
+    $rejectedReview.reviewedBy='Synthetic reviewer'
+    $rejectedReview.justification='The historical candidate was reviewed and is not semantically equivalent.'
+    $rejectedReview.publicNotes='Historical candidate rejected; recommendation remains unresolved.'
+    $rejectedReview.selections=@()
+    $partiallyRejectedPath=Join-Path $testRoot 'partially-rejected.private-approvals.json'
+    $partiallyRejectedApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $partiallyRejectedPath -Encoding utf8
+    $partiallyRejectedReportPath=Join-Path $testRoot 'partially-rejected.private-review-report.json'
+    & (Join-Path $repoRoot 'scripts\Get-CISMappingReviewReport.ps1') @reportCommon -ApprovalsPath $partiallyRejectedPath -JsonPath $partiallyRejectedReportPath
+    $partiallyRejectedReport=Read-Json $partiallyRejectedReportPath
+    Assert-True ($partiallyRejectedReport.summary.rejectedReviews -eq 1 -and $partiallyRejectedReport.summary.mappedReviews -eq 3 -and $partiallyRejectedReport.summary.pendingReviewRows -eq 0 -and $partiallyRejectedReport.summary.reviewQueueComplete) 'Explicit rejections must close review rows without claiming a mapping.'
+    $partiallyRejectedCatalogPath=Join-Path $testRoot 'partially-rejected-catalog.json'
+    & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $partiallyRejectedPath -OutputPath $partiallyRejectedCatalogPath
+    $partiallyRejectedCatalog=Read-Json $partiallyRejectedCatalogPath
+    $rejectedCatalogRecommendation=@($partiallyRejectedCatalog.recommendations | Where-Object recommendationId -eq '1.1')[0]
+    Assert-True ($rejectedCatalogRecommendation.mappingStatus -ceq 'unresolved' -and @($partiallyRejectedCatalog.settingsCatalogSettings | Where-Object recommendationId -eq '1.1').Count -eq 0) 'A rejected candidate must remain unresolved and emit no policy setting.'
+
+    $allRejectedApproval=Read-Json $approvalTemplateA
+    foreach($review in @($allRejectedApproval.reviews)){
+        $review.outcome='rejected';$review.acknowledged=$true;$review.valueBasis=$null
+        $review.reviewedBy='Synthetic reviewer';$review.justification='Synthetic false candidate reviewed.';$review.publicNotes='Candidate rejected; unresolved retained.';$review.selections=@()
+    }
+    $allRejectedPath=Join-Path $testRoot 'all-rejected.private-approvals.json'
+    $allRejectedApproval | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $allRejectedPath -Encoding utf8
+    $allRejectedOutput=Join-Path $testRoot 'all-rejected-catalog.json'
+    $allRejectedFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Apply-CISMappingReviewApprovals.ps1') @applyCommon -ApprovalsPath $allRejectedPath -OutputPath $allRejectedOutput } catch { $allRejectedFailed=$true }
+    Assert-True ($allRejectedFailed -and -not (Test-Path -LiteralPath $allRejectedOutput)) 'An all-rejected review file must write no catalog because rejection is never a mapping.'
 
     $approvedPack=Join-Path $testRoot 'approved-pack'
     & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') -ExtractionPath $reviewCommon.ExtractionPath -MappingCatalogPath $approvedCatalogA -SettingsCatalogSnapshotPath $reviewCommon.SettingsCatalogSnapshotPath -OutputPath $approvedPack

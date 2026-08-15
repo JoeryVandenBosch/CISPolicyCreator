@@ -1,6 +1,6 @@
 # CISPolicyCreator chat handoff
 
-**Updated:** 2026-08-14
+**Updated:** 2026-08-15
 **Active architecture:** reproducible pipeline / pack schema v2
 
 ## Goal
@@ -30,6 +30,7 @@ Important supporting commands:
 - `New-CISMappingCatalog.ps1`: create a copyright-safe all-unresolved catalog seed from private extraction;
 - `New-CISMappingReviewWorklist.ps1`: recursively validate a private historical policy pack against a pinned snapshot and emit candidate-only review evidence without changing mappings;
 - `New-CISMappingReviewApprovals.ps1`: create an all-deferred, hash-bound private reviewer template;
+- `Get-CISMappingReviewReport.ps1`: generate deterministic private progress reports that distinguish undecided, rejected, and mapped candidate reviews without benchmark titles or state changes;
 - `Apply-CISMappingReviewApprovals.ps1`: promote only explicitly acknowledged exact occurrences, then atomically publish a new catalog only after extraction-bound full-pack compilation and offline validation;
 - `New-CISAdministratorDecisions.ps1`: generate an explicit decision template;
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
@@ -43,10 +44,10 @@ When a mapped leaf choice/integer/string exists, the compiler also embeds one de
 
 ## Verification
 
-The repository contains copyright-safe tests for extraction, Manual+mapped semantics, private candidate worklists, all-deferred and explicit mapping approvals, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
+The repository contains copyright-safe tests for extraction, Manual+mapped semantics, private candidate worklists, deferred/rejected/mapped review states, deterministic private progress reports, missing and valid administrator decisions, exact choices, simple collections, nested choice/group trees, ambiguous definitions, assignment rejection, deterministic repeated builds, and real synthetic-PDF orchestration. GitHub Actions installs the hash-pinned PDF dependency and runs the complete suite.
 
 ## Current benchmark state
 
-The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual). The public-safe catalog now contains 18 exact Settings Catalog mappings validated against a pinned 18,227-definition Graph snapshot; 397 recommendations remain unresolved. The full PDF orchestrator produces 18 dynamic settings in 6 unassigned policies, repeated direct/PDF builds are byte-identical, and all 18 settings pass a pinned-tenant live dry run with zero writes. A private deterministic review worklist derived from the pinned snapshot and historical policies reports 265 unique candidates, 50 ambiguous recommendations, and 100 without candidates. The hash-bound approval template contains 315 unresolved candidate rows, all defaulted to `defer`; no approval or public catalog change has been made. The catalog is partial and must not be represented as a complete CIS baseline. Continue explicit evidence-backed review and test-tenant import/behavior validation before advancing to the later benchmark roadmap.
+The generic pipeline is implemented. The supplied Windows 11 v5.0.0 source extracts to 415 unique recommendations (408 Automated and 7 Manual). The public-safe catalog now contains 18 exact Settings Catalog mappings validated against a pinned 18,227-definition Graph snapshot; 397 recommendations remain unresolved. The full PDF orchestrator produces 18 dynamic settings in 6 unassigned policies, repeated direct/PDF builds are byte-identical, and all 18 settings pass a pinned-tenant live dry run with zero writes. A private deterministic review worklist derived from the pinned snapshot and historical policies reports 265 unique candidates, 50 ambiguous recommendations, and 100 without candidates. The hash-bound approval template contains 315 unresolved candidate rows, all defaulted to undecided `defer`; the deterministic progress report confirms zero mapped or rejected reviews and no public catalog change. The catalog is partial and must not be represented as a complete CIS baseline. Continue explicit evidence-backed review and test-tenant import/behavior validation before advancing to the later benchmark roadmap.
 
-Source PDFs, raw extraction text, private review/approval files, private decisions, tenant identifiers, and import logs must not be committed.
+Source PDFs, raw extraction text, private review/approval/report files, private decisions, tenant identifiers, and import logs must not be committed.

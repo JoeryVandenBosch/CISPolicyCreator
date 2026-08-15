@@ -135,7 +135,20 @@ Create a private approval template tied to the exact catalog and worklist hashes
     -OutputPath C:\Private\benchmark.private-approvals.json
 ```
 
-Every row starts as `defer`. A reviewer may set a row to `mapped` only by acknowledging semantic equivalence, asserting `valueBasis: benchmark-prescribed`, and selecting an exact candidate occurrence, complete top-level definition, and explicit unassigned policy metadata. The policy platform/technology must match the hashed reference and only the default role scope tag `0` is accepted. Apply those approvals to a new catalog file:
+Every row starts as `defer`, meaning it has not been decided. A reviewer may set a row to `rejected` with an explicit acknowledgement and rationale; this records that the historical candidate is not semantically equivalent while leaving the recommendation unresolved and nondeployable. A reviewer may set a row to `mapped` only by acknowledging semantic equivalence, asserting `valueBasis: benchmark-prescribed`, and selecting an exact candidate occurrence, complete top-level definition, and explicit unassigned policy metadata. The policy platform/technology must match the hashed reference and only the default role scope tag `0` is accepted.
+
+Generate a deterministic private progress report without changing any decision or mapping:
+
+```powershell
+.\scripts\Get-CISMappingReviewReport.ps1 `
+    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
+    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
+    -ApprovalsPath C:\Private\benchmark.private-approvals.json `
+    -JsonPath C:\Private\benchmark.private-review-report.json `
+    -CsvPath C:\Private\benchmark.private-review-report.csv
+```
+
+The report is hash-bound, contains recommendation IDs and state counts but no benchmark titles, distinguishes pending, rejected, and approved candidate rows, and explicitly reports whether the review queue or catalog is complete. Keep it private. Apply mapped approvals to a new catalog file:
 
 ```powershell
 .\scripts\Apply-CISMappingReviewApprovals.ps1 `
@@ -148,7 +161,7 @@ Every row starts as `defer`. A reviewer may set a row to `mapped` only by acknow
     -OutputPath C:\Private\mapping-catalog.next.json
 ```
 
-The apply command rechecks every source hash, including the private extraction, and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations and never overwrites the input catalog. Before publishing the new catalog, it atomically compiles the complete extraction-bound pack and runs offline validation; any failure leaves no output catalog. This path cannot be used for organizational values that belong in `requires-input`. Live dry run and test-tenant review remain mandatory before publication or import.
+The apply command rechecks every source hash, including the private extraction, and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations with outcome `mapped`; `defer` and `rejected` never emit implementation content. The source catalog is never overwritten. Before publishing the new catalog, the script atomically compiles the complete extraction-bound pack and runs offline validation; any failure leaves no output catalog. This path cannot be used for organizational values that belong in `requires-input`. Live dry run and test-tenant review remain mandatory before publication or import.
 
 If the catalog declares organizational choices, generate and complete a decision file:
 
@@ -246,7 +259,7 @@ The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 rec
 
 ## Public repository rules
 
-Never commit source PDFs, Build Kits, raw extraction JSON, private review/approval files, administrator decision files containing organizational details, tenant identifiers, credentials, diagnostic exports, or import-result logs. Public catalogs contain only minimal recommendation identifiers, mapping metadata, reviewed Graph identifiers/values, and original project code.
+Never commit source PDFs, Build Kits, raw extraction JSON, private review/approval/report files, administrator decision files containing organizational details, tenant identifiers, credentials, diagnostic exports, or import-result logs. Public catalogs contain only minimal recommendation identifiers, mapping metadata, reviewed Graph identifiers/values, and original project code.
 
 ## License
 

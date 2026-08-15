@@ -16,6 +16,8 @@
 *.private-extraction.json
 *.private-review.json
 *.private-approvals.json
+*.private-review-report.json
+*.private-review-report.csv
 
 # Import/diagnostic output
 import-results-*.json

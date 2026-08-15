@@ -18,7 +18,7 @@ try {
     $tracked=@(& git -C $repoRoot ls-files)
     if($LASTEXITCODE -ne 0){throw 'Could not enumerate tracked repository files with git.'}
 
-    $privatePattern='(?i)(\.pdf$|\.zip$|\.7z$|\.xlsx$|(^|/)recommendations\.raw\.json$|\.private-extraction\.json$|\.private-review\.json$|\.private-approvals\.json$)'
+    $privatePattern='(?i)(\.pdf$|\.zip$|\.7z$|\.xlsx$|(^|/)recommendations\.raw\.json$|\.private-extraction\.json$|\.private-review\.json$|\.private-approvals\.json$|\.private-review-report\.(json|csv)$)'
     $trackedPrivate=@($tracked | Where-Object { $_ -match $privatePattern })
     if($trackedPrivate.Count -gt 0){throw "Tracked source/private benchmark artifacts are forbidden: $($trackedPrivate -join ', ')"}
     Write-Host 'PASS: no source/private benchmark artifacts are tracked.'

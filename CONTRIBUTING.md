@@ -20,6 +20,8 @@ Record `cisAssessmentMethod` (`Manual` or `Automated`) independently from `mappi
 
 Every deployable recommendation must be `mapped` and reference a reviewed Intune implementation. Use `requires-input` for organizational choices, `manual` for non-policy/process work, and `unresolved` whenever an exact Graph object, setting definition, value, platform requirement, or enrollment prerequisite cannot be proven.
 
+Private mapping reviews use `defer` for undecided candidates, `rejected` for explicitly reviewed false candidates, and `mapped` only for acknowledged exact evidence. Rejection never changes the catalog mapping status or emits implementation content.
+
 Mapping catalogs must never use constructed IDs, display-name fallback, substring/suffix option matching, or unvalidated static Settings Catalog payloads. Add copyright-safe fixtures and fail-closed tests with every new implementation mechanism.
 
 ## Pull requests

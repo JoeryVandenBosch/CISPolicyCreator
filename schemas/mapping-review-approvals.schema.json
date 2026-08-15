@@ -42,7 +42,7 @@
         "properties": {
           "recommendationId": { "type": "string", "minLength": 1 },
           "candidateStatus": { "enum": ["unique-candidate", "ambiguous-candidates"] },
-          "outcome": { "enum": ["defer", "mapped"] },
+          "outcome": { "enum": ["defer", "rejected", "mapped"] },
           "acknowledged": { "type": "boolean" },
           "valueBasis": { "enum": [null, "benchmark-prescribed"] },
           "reviewedBy": { "type": ["string", "null"], "minLength": 1 },
@@ -63,6 +63,19 @@
                 "reviewedBy": { "const": null },
                 "justification": { "const": null },
                 "publicNotes": { "const": null },
+                "selections": { "maxItems": 0 }
+              }
+            }
+          },
+          {
+            "if": { "properties": { "outcome": { "const": "rejected" } }, "required": ["outcome"] },
+            "then": {
+              "properties": {
+                "acknowledged": { "const": true },
+                "valueBasis": { "const": null },
+                "reviewedBy": { "type": "string", "minLength": 1 },
+                "justification": { "type": "string", "minLength": 1 },
+                "publicNotes": { "type": "string", "minLength": 1 },
                 "selections": { "maxItems": 0 }
               }
             }

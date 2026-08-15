@@ -76,7 +76,9 @@ Create a private, all-deferred approval template bound to the exact catalog and 
   -OutputPath C:\Private\benchmark.private-approvals.json
 ```
 
-Changing a review to `mapped` requires all of the following explicit evidence: `acknowledged: true`, a reviewer identity and justification, a public-safe note, `valueBasis: benchmark-prescribed`, one or more exact candidate occurrences, the complete top-level definition ID, and unassigned policy metadata. The platform and technology must equal the hashed reference policy, profiles must equal the selected occurrence profile, and only default role scope tag `0` is allowed. Ambiguous candidates may be selected only through this explicit review. `Manual` assessment remains independent and is preserved when its deterministic mapping is approved.
+`defer` means undecided. Use `rejected` with an explicit reviewer, acknowledgement, rationale, and public-safe note when a historical candidate is not semantically equivalent; rejection remains nondeployable and leaves the recommendation unresolved. Changing a review to `mapped` requires all of the following explicit evidence: `acknowledged: true`, a reviewer identity and justification, a public-safe note, `valueBasis: benchmark-prescribed`, one or more exact candidate occurrences, the complete top-level definition ID, and unassigned policy metadata. The platform and technology must equal the hashed reference policy, profiles must equal the selected occurrence profile, and only default role scope tag `0` is allowed. Ambiguous candidates may be selected only through this explicit review. `Manual` assessment remains independent and is preserved when its deterministic mapping is approved.
+
+Use `Get-CISMappingReviewReport.ps1` to create hash-bound private JSON/CSV progress reports. Reports contain no benchmark titles, make pending/rejected/approved counts explicit, and never alter the approval file or catalog.
 
 Copy selector fields exactly from one occurrence in the private worklist. An approved review has this shape:
 
@@ -123,7 +125,7 @@ Apply the approvals to a new catalog; the source catalog is never overwritten:
   -OutputPath C:\Private\mapping-catalog.next.json
 ```
 
-The script verifies the private extraction, catalog, worklist, snapshot, and every reference-policy hash; revalidates exact definitions, types, choices, values, collections, and nested groups; and promotes only currently `unresolved` recommendations. It writes the candidate catalog to a temporary file, compiles the complete extraction-bound pack, and runs offline pack validation before atomically publishing the new catalog. Any failure removes the temporary pack/catalog and leaves the requested output absent. An all-deferred file writes nothing. This path intentionally cannot authorize organizational values: use `requires-input` and an administrator decision instead. Keep `*.private-approvals.json` private, then run live dry-run and test-tenant validation before publishing the new catalog.
+The script verifies the private extraction, catalog, worklist, snapshot, and every reference-policy hash; revalidates exact definitions, types, choices, values, collections, and nested groups; and promotes only currently `unresolved` recommendations whose review outcome is `mapped`. Rejected reviews are audit evidence only and emit nothing. It writes the candidate catalog to a temporary file, compiles the complete extraction-bound pack, and runs offline pack validation before atomically publishing the new catalog. Any failure removes the temporary pack/catalog and leaves the requested output absent. An all-deferred or all-rejected file writes nothing. This path intentionally cannot authorize organizational values: use `requires-input` and an administrator decision instead. Keep private approval/report files private, then run live dry-run and test-tenant validation before publishing the new catalog.
 
 ## 7. Supply organizational decisions
 

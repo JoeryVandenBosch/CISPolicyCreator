@@ -8,6 +8,7 @@
 - Add one repository-owned validation entry point shared by local contributors and GitHub Actions.
 - Require a pinned tenant and mode-specific acknowledgement before any probe or unassigned import can authenticate or write.
 - Generate a deterministic temporary-write probe only from an exact mapped leaf setting, and reject any probe drift from its generated setting or policy metadata.
+- Distinguish undecided candidate reviews from explicit nondeployable rejections, and add hash-bound deterministic private JSON/CSV progress reporting without benchmark titles.
 - Add recursively validated Settings Catalog choice children, integer/string collections, and group collections with exact nested definitions, values, bounded depth, and live payload generation.
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.
