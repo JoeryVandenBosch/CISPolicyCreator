@@ -16,6 +16,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 10. All build inputs are schema-validated and hashed; private definition snapshots record their source tenant and capture time.
 11. Generated files are deterministic and contain no source PDF or raw extraction text.
 12. Candidate matches cannot change mapping status. A hash-bound rejection records a reviewed false candidate but emits nothing; promotion requires a separate explicit approval of semantic equivalence, the exact occurrence/tree, and a benchmark-prescribed value basis. The new catalog is published only after the exact private extraction compiles into a fully valid offline pack.
+13. Mapping audit reports require complete offline pack validation and are not produced from invalid or tampered packs.
 
 ## Runtime invariants
 

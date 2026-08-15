@@ -156,8 +156,10 @@ The script extracts to a private staging directory, compiles and validates the p
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot .\work\example
-.\scripts\Get-CISMappingReport.ps1 -PackRoot .\work\example
+.\scripts\Get-CISMappingReport.ps1 -PackRoot .\work\example -JsonPath .\work\mapping-report-example.json -CsvPath .\work\mapping-report-example.csv
 ```
+
+`Get-CISMappingReport.ps1` first runs complete pack validation and writes nothing when the pack is invalid. Repeated reports from identical packs are byte-identical, existing output files are never overwritten, and `CatalogComplete` is false while a final recommendation remains `unresolved` or `requires-input`.
 
 ## 10. Validate live, then import explicitly
 

@@ -190,10 +190,13 @@ The PDF and private extraction text are not copied into the pack. Omit `-Adminis
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot .\work\generated-pack
-.\scripts\Get-CISMappingReport.ps1 -PackRoot .\work\generated-pack
+.\scripts\Get-CISMappingReport.ps1 `
+    -PackRoot .\work\generated-pack `
+    -JsonPath .\work\mapping-report-pack.json `
+    -CsvPath .\work\mapping-report-pack.csv
 ```
 
-Validation evaluates the JSON Schemas and cross-file semantic rules. It runs without Graph access.
+Validation evaluates the JSON Schemas and cross-file semantic rules. It runs without Graph access. Mapping reporting invokes that same validation first, refuses invalid/tampered packs and existing output files, emits byte-stable UTF-8 JSON/CSV, and reports `cisAssessmentMethod` independently from mapping completeness.
 
 To run the same complete privacy, schema, parser, offline-pipeline, extractor, and synthetic-PDF checks as GitHub Actions:
 

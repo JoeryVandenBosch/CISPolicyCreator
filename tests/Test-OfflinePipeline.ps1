@@ -328,6 +328,18 @@ try {
 
     $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $packA -PassThru
     Assert-True $validation.IsValid 'Generated pack must pass validation.'
+    $mappingReportJsonA=Join-Path $testRoot 'mapping-report-a.json'
+    $mappingReportJsonB=Join-Path $testRoot 'mapping-report-b.json'
+    $mappingReportCsv=Join-Path $testRoot 'mapping-report-a.csv'
+    $mappingReportResult=& (Join-Path $repoRoot 'scripts\Get-CISMappingReport.ps1') -PackRoot $packA -JsonPath $mappingReportJsonA -CsvPath $mappingReportCsv -PassThru
+    & (Join-Path $repoRoot 'scripts\Get-CISMappingReport.ps1') -PackRoot $packA -JsonPath $mappingReportJsonB
+    Assert-True (((Get-FileHash -LiteralPath $mappingReportJsonA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $mappingReportJsonB -Algorithm SHA256).Hash)) 'Repeated mapping reports must be byte-identical.'
+    Assert-True ($mappingReportResult.Summary.RecommendationCount -eq 3 -and $mappingReportResult.Summary.Mapped -eq 3 -and $mappingReportResult.Summary.CatalogComplete) 'A validated fully resolved pack must report complete without conflating assessment and mapping states.'
+    $mappingReportManual=@($mappingReportResult.Rows | Where-Object RecommendationId -eq '1.1')[0]
+    Assert-True ($mappingReportManual.CisAssessmentMethod -ceq 'Manual' -and $mappingReportManual.MappingStatus -ceq 'mapped') 'Mapping reporting must preserve Manual assessment independently from mapped status.'
+    $mappingReportOverwriteFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Get-CISMappingReport.ps1') -PackRoot $packA -JsonPath $mappingReportJsonA } catch { $mappingReportOverwriteFailed=$true }
+    Assert-True $mappingReportOverwriteFailed 'Mapping reports must not overwrite an existing output file.'
     $manifest=Read-Json (Join-Path $packA 'manifest.json')
     Assert-True ([string]$manifest.settingsCatalogProbe.recommendationId -ceq '1.2') 'The compiler must bind its deterministic probe to the originating mapped recommendation.'
     Assert-True ([string]$manifest.settingsCatalogProbe.resolve.definitionId -ceq 'synthetic_choice' -and [string]$manifest.settingsCatalogProbe.value.optionId -ceq 'synthetic_choice_enabled') 'The probe must copy an exact snapshot-resolved definition and reviewed option.'
@@ -341,6 +353,10 @@ try {
     $tamperedProbeManifest | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $tamperedProbeManifestPath -Encoding utf8
     $tamperedProbeValidation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $tamperedProbePack -PassThru
     Assert-True (-not $tamperedProbeValidation.IsValid) 'A probe value that differs from the generated reviewed setting must fail pack validation.'
+    $invalidMappingReportPath=Join-Path $testRoot 'mapping-report-invalid.json'
+    $invalidMappingReportFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Get-CISMappingReport.ps1') -PackRoot $tamperedProbePack -JsonPath $invalidMappingReportPath } catch { $invalidMappingReportFailed=$true }
+    Assert-True ($invalidMappingReportFailed -and -not (Test-Path -LiteralPath $invalidMappingReportPath)) 'A tampered pack must not produce a mapping report.'
     $recommendations=@(Read-Json (Join-Path $packA 'spec\recommendations.json'))
     $manualMapped=@($recommendations | Where-Object recommendationId -eq '1.1')[0]
     Assert-True ($manualMapped.cisAssessmentMethod -ceq 'Manual') 'Manual assessment method must be preserved.'
@@ -355,6 +371,8 @@ try {
     $withoutRecommendations=@(Read-Json (Join-Path $packWithoutDecision 'spec\recommendations.json'))
     $unresolvedInput=@($withoutRecommendations | Where-Object recommendationId -eq '1.3')[0]
     Assert-True ($unresolvedInput.mappingStatus -ceq 'requires-input') 'Missing administrator input must remain nondeployable.'
+    $withoutDecisionReport=& (Join-Path $repoRoot 'scripts\Get-CISMappingReport.ps1') -PackRoot $packWithoutDecision -PassThru
+    Assert-True (-not $withoutDecisionReport.Summary.CatalogComplete -and $withoutDecisionReport.Summary.RequiresInput -eq 1) 'A valid pack with an unsupplied administrator decision must report incomplete without treating it as invalid.'
     $withoutSettings=@(Read-Json (Join-Path $packWithoutDecision 'spec\settings-catalog.json'))
     Assert-True ($withoutSettings.Count -eq 4) 'Only the setting that lacks required administrator input must be omitted.'
 

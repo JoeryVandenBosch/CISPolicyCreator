@@ -38,7 +38,7 @@ Important supporting commands:
 - `Build-CISPolicyPack.ps1`: deterministic compiler for already extracted input;
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;
 - `Test-CISRepository.ps1`: one-command local/CI privacy, schema, parser, pipeline, extractor, and synthetic-PDF verification;
-- `Get-CISMappingReport.ps1`: assessment/mapping audit report;
+- `Get-CISMappingReport.ps1`: deterministic assessment/mapping audit report generated only from a fully valid pack;
 - `Import-CISPolicyPack.ps1`: read-only live dry run plus tenant-pinned, separately acknowledged probe/import write modes; partial packs require an additional explicit acknowledgement and policies remain unassigned.
 
 Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, decisions, and definition snapshot. Repeated builds from identical inputs are byte-identical.

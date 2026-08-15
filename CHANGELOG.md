@@ -11,6 +11,7 @@
 - Distinguish undecided candidate reviews from explicit nondeployable rejections, and add hash-bound deterministic private JSON/CSV progress reporting without benchmark titles.
 - Fail PDF extraction before reading the source when Python is too old or the installed parser differs from the hash-locked, schema-bound `pypdf` version.
 - Require a separate pre-authentication acknowledgement before importing a pack with unresolved or unsupplied-input recommendations.
+- Validate packs before deterministic mapping-report generation, refuse output overwrite, and expose mapping completeness separately from CIS assessment method.
 - Add recursively validated Settings Catalog choice children, integer/string collections, and group collections with exact nested definitions, values, bounded depth, and live payload generation.
 - Add the first 18 exact Windows 11 v5.0.0 Settings Catalog mappings, validated against a pinned Graph definition snapshot and compiled into 6 unassigned policies; retain the other 397 recommendations as unresolved.
 - Support explicit device-code authentication for live dry-run, probe, and import commands.

@@ -59,6 +59,8 @@ Only final `mapped` recommendations are deployable. When an administrator suppli
 
 The generated manifest records the source PDF name/hash/page count, compiler/extractor/PDF-parser versions, mapping catalog identity/hash, decision-file hash, and Settings Catalog snapshot hash. Pack JSON uses stable ordering and contains no build timestamp. Identical input bytes produce identical generated pack bytes.
 
+Mapping audit reports are derived only after the complete pack validator succeeds. Invalid or tampered packs produce no report; report outputs are deterministic and never overwrite existing files.
+
 Every recommendation remains visible in the inventory, including unresolved, requires-input, manual, and not-applicable items. A reviewer can trace every deployable object back to recommendation IDs, profiles, assessment method, mapping status, implementation references, exact Graph definition/value, and administrator decision where applicable.
 
 Private candidate worklists are reproducible reviewer aids, not compiler inputs or mapping authority. They record hashes for the extraction, pinned snapshot, and reference policy files, preserve exact historical occurrences, and declare `mappingChangesMade: false`. They must remain private because they contain benchmark titles.
