@@ -67,7 +67,7 @@ Candidate promotion is a separate explicit trust boundary. Approval templates de
 
 - Offline validation happens before authentication.
 - Dry run requests read-only Graph scope.
-- Tenant ID can be pinned explicitly.
+- Every write mode requires an explicit pinned tenant ID and a mode-specific acknowledgement before pack validation or authentication.
 - Existing exact-name objects are skipped and never patched.
 - The write probe is temporary, unassigned, and cleanup is attempted in `finally`.
 - Creation stops on the first Graph error by default.

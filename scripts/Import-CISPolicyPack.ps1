@@ -7,11 +7,25 @@ param(
     [switch]$ContinueOnError,
     [string]$TenantId,
     [switch]$UseDeviceCode,
-    [switch]$ProbeOnly
+    [switch]$ProbeOnly,
+    [switch]$ConfirmUnassignedImport,
+    [switch]$ConfirmTemporaryWriteProbe
 )
 
 $ErrorActionPreference='Stop'
 if ($StopOnError -and $ContinueOnError) { throw 'StopOnError and ContinueOnError cannot be used together.' }
+if ($DryRun -and $ProbeOnly) { throw 'DryRun and ProbeOnly cannot be used together.' }
+if ($DryRun) {
+    if ($ConfirmUnassignedImport -or $ConfirmTemporaryWriteProbe) { throw 'DryRun is read-only and cannot be combined with a write acknowledgement.' }
+} elseif ($ProbeOnly) {
+    if (-not $TenantId) { throw 'ProbeOnly requires an explicit TenantId before pack validation or Graph authentication.' }
+    if (-not $ConfirmTemporaryWriteProbe) { throw 'ProbeOnly requires -ConfirmTemporaryWriteProbe before pack validation or Graph authentication.' }
+    if ($ConfirmUnassignedImport) { throw 'ProbeOnly cannot be combined with ConfirmUnassignedImport.' }
+} else {
+    if (-not $TenantId) { throw 'Import requires an explicit TenantId before pack validation or Graph authentication.' }
+    if (-not $ConfirmUnassignedImport) { throw 'Import requires -ConfirmUnassignedImport before pack validation or Graph authentication.' }
+    if ($ConfirmTemporaryWriteProbe) { throw 'Import cannot be combined with ConfirmTemporaryWriteProbe.' }
+}
 $stopOnCreateError = -not $ContinueOnError
 $PackRoot=(Resolve-Path -LiteralPath $PackRoot).Path
 $repoRoot=Split-Path -Parent $PSScriptRoot
@@ -35,7 +49,7 @@ if ($ProbeOnly -and -not $manifest.settingsCatalogProbe) { throw 'Pack does not 
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }
 $connectArgs=@{ Scopes=$graphScope; ContextScope='Process'; NoWelcome=$true }
-if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
+if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'Dry-run TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
 if ($UseDeviceCode) { $connectArgs.UseDeviceCode=$true }
 Connect-MgGraph @connectArgs
 $context=Get-MgContext

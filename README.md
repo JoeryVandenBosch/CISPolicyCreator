@@ -207,8 +207,11 @@ An optional probe creates one temporary unassigned policy and always attempts cl
 .\scripts\Import-CISPolicyPack.ps1 `
     -PackRoot .\work\generated-pack `
     -TenantId '<tenant-guid>' `
-    -ProbeOnly
+    -ProbeOnly `
+    -ConfirmTemporaryWriteProbe
 ```
+
+The probe acknowledgement is required because this mode creates one temporary unassigned policy and then attempts deletion. A pinned `-TenantId` is mandatory for every write mode.
 
 Import remains a separate explicit operation:
 
@@ -216,10 +219,11 @@ Import remains a separate explicit operation:
 .\scripts\Import-CISPolicyPack.ps1 `
     -PackRoot .\work\generated-pack `
     -Profile L1 `
-    -TenantId '<tenant-guid>'
+    -TenantId '<tenant-guid>' `
+    -ConfirmUnassignedImport
 ```
 
-Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit a partial run. No assignments are created in either mode.
+The import acknowledgement is required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit a partial run. No assignments are created in either mode.
 
 ## Repository layout
 

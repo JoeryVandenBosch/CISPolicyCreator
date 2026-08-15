@@ -157,6 +157,6 @@ The script extracts to a private staging directory, compiles and validates the p
 
 ## 10. Validate live, then import explicitly
 
-Run `-DryRun` with a pinned tenant. It uses read-only Graph scope and validates current definitions/options before any write. Add `-UseDeviceCode` in embedded or headless terminals. Run `-ProbeOnly` if a temporary write-path test is required. Finally, invoke the importer without either switch to create unassigned policies.
+Run `-DryRun` with a pinned tenant. It uses read-only Graph scope and validates current definitions/options before any write. Add `-UseDeviceCode` in embedded or headless terminals. A temporary write-path test requires `-ProbeOnly -ConfirmTemporaryWriteProbe` and an explicit `-TenantId`. Final unassigned creation requires `-ConfirmUnassignedImport` and an explicit `-TenantId`; omission of `-DryRun` alone never authorizes a write.
 
 Assignments remain a separate administrator-controlled operation outside this repository's importer.

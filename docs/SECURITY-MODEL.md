@@ -21,13 +21,14 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 
 1. Offline pack validation finishes before Graph authentication.
 2. Dry run requests read-only configuration scope.
-3. Live definition/value resolution completes before the first create request.
-4. Graph URLs must use HTTPS, the exact `graph.microsoft.com` host, an allowed API version, and a `deviceManagement` path.
-5. Encoded or plain assignment path segments and assignment payload properties are rejected.
-6. Existing exact-name objects are skipped and never patched.
-7. Import stops on the first create error unless `-ContinueOnError` is explicit.
-8. Probe cleanup is attempted even if later probe processing fails.
-9. No automatic assignments or group creation are implemented.
+3. Every write mode requires an explicit tenant ID and its own acknowledgement before pack validation or Graph authentication.
+4. Live definition/value resolution completes before the first create request.
+5. Graph URLs must use HTTPS, the exact `graph.microsoft.com` host, an allowed API version, and a `deviceManagement` path.
+6. Encoded or plain assignment path segments and assignment payload properties are rejected.
+7. Existing exact-name objects are skipped and never patched.
+8. Import stops on the first create error unless `-ContinueOnError` is explicit.
+9. Probe cleanup is attempted even if later probe processing fails.
+10. No automatic assignments or group creation are implemented.
 
 ## Residual risks
 

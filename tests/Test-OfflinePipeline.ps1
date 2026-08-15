@@ -10,6 +10,28 @@ function Read-Json([string]$Path) { Get-Content -LiteralPath $Path -Raw | Conver
 
 try {
     New-Item -ItemType Directory -Path $testRoot | Out-Null
+    $importScript=Join-Path $repoRoot 'scripts\Import-CISPolicyPack.ps1'
+    $missingPack=Join-Path $testRoot 'does-not-exist'
+    $tenantId='00000000-0000-0000-0000-000000000001'
+    $missingImportAcknowledgement=$null
+    try { & $importScript -PackRoot $missingPack -TenantId $tenantId } catch { $missingImportAcknowledgement=$_.Exception.Message }
+    Assert-True ($missingImportAcknowledgement -ceq 'Import requires -ConfirmUnassignedImport before pack validation or Graph authentication.') 'Write import must require an explicit acknowledgement before resolving the pack or authenticating.'
+    $missingImportTenant=$null
+    try { & $importScript -PackRoot $missingPack -ConfirmUnassignedImport } catch { $missingImportTenant=$_.Exception.Message }
+    Assert-True ($missingImportTenant -ceq 'Import requires an explicit TenantId before pack validation or Graph authentication.') 'Write import must require a pinned tenant before resolving the pack or authenticating.'
+    $missingProbeAcknowledgement=$null
+    try { & $importScript -PackRoot $missingPack -TenantId $tenantId -ProbeOnly } catch { $missingProbeAcknowledgement=$_.Exception.Message }
+    Assert-True ($missingProbeAcknowledgement -ceq 'ProbeOnly requires -ConfirmTemporaryWriteProbe before pack validation or Graph authentication.') 'The temporary write probe must require its own explicit acknowledgement.'
+    $missingProbeTenant=$null
+    try { & $importScript -PackRoot $missingPack -ProbeOnly -ConfirmTemporaryWriteProbe } catch { $missingProbeTenant=$_.Exception.Message }
+    Assert-True ($missingProbeTenant -ceq 'ProbeOnly requires an explicit TenantId before pack validation or Graph authentication.') 'The temporary write probe must require a pinned tenant.'
+    $contradictoryLiveMode=$null
+    try { & $importScript -PackRoot $missingPack -DryRun -ProbeOnly } catch { $contradictoryLiveMode=$_.Exception.Message }
+    Assert-True ($contradictoryLiveMode -ceq 'DryRun and ProbeOnly cannot be used together.') 'DryRun must not be combinable with the write probe.'
+    $dryRunWriteAcknowledgement=$null
+    try { & $importScript -PackRoot $missingPack -DryRun -ConfirmUnassignedImport } catch { $dryRunWriteAcknowledgement=$_.Exception.Message }
+    Assert-True ($dryRunWriteAcknowledgement -ceq 'DryRun is read-only and cannot be combined with a write acknowledgement.') 'DryRun must reject write acknowledgements rather than imply that a write can occur.'
+
     $common=@{
         ExtractionPath=(Join-Path $fixtures 'extraction.json')
         MappingCatalogPath=(Join-Path $fixtures 'mapping-catalog.json')

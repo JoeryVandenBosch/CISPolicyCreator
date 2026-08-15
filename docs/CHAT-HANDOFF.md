@@ -36,7 +36,7 @@ Important supporting commands:
 - `Test-CISPolicyPack.ps1`: offline schema and semantic validator;
 - `Test-CISRepository.ps1`: one-command local/CI privacy, schema, parser, pipeline, extractor, and synthetic-PDF verification;
 - `Get-CISMappingReport.ps1`: assessment/mapping audit report;
-- `Import-CISPolicyPack.ps1`: live dry run and explicit unassigned import.
+- `Import-CISPolicyPack.ps1`: read-only live dry run plus tenant-pinned, separately acknowledged probe/import write modes; policies remain unassigned.
 
 Generated manifests contain SHA-256 provenance for the PDF, mapping catalog, decisions, and definition snapshot. Repeated builds from identical inputs are byte-identical.
 
