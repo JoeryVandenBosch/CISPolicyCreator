@@ -121,14 +121,19 @@ PDFs to GitHub.
 
 Save the PDFs in `C:\Tools\CISPolicyCreator\private\pdf`.
 
-| Benchmark selector | Expected PDF |
-|---|---|
-| `Windows11-5.0.0` | `CIS_Microsoft_Intune_for_Windows_11_Benchmark_v5.0.0.pdf` |
-| `Windows10-5.0.0` | `CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.pdf` |
-| `Edge-1.0.0` | `CIS_Microsoft_Intune_for_Edge_Benchmark_v1.0.0.pdf` |
-| `Office-1.1.0` | `CIS_Microsoft_Intune_for_Office_Benchmark_v1.1.0.pdf` |
-| `macOS26-Tahoe-1.0.0` | `CIS_Apple_MacOS_26_Tahoe_Intune_Benchmark_v1.0.0.pdf` |
-| `iOS26-iPadOS26-1.0.0` | `CIS_Apple_iOS_26_and_iPadOS_26_Intune_Benchmark_v1.0.0.pdf` |
+| Benchmark selector | Expected PDF | Suggested pack folder (`$PackPath`) |
+|---|---|---|
+| `Windows11-5.0.0` | `CIS_Microsoft_Intune_for_Windows_11_Benchmark_v5.0.0.pdf` | `.\work\packs\windows11-v5-pack` |
+| `Windows10-5.0.0` | `CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.pdf` | `.\work\packs\windows10-v5-pack` |
+| `Edge-1.0.0` | `CIS_Microsoft_Intune_for_Edge_Benchmark_v1.0.0.pdf` | `.\work\packs\edge-v1-pack` |
+| `Office-1.1.0` | `CIS_Microsoft_Intune_for_Office_Benchmark_v1.1.0.pdf` | `.\work\packs\office-v1.1-pack` |
+| `macOS26-Tahoe-1.0.0` | `CIS_Apple_MacOS_26_Tahoe_Intune_Benchmark_v1.0.0.pdf` | `.\work\packs\macos26-tahoe-v1-pack` |
+| `iOS26-iPadOS26-1.0.0` | `CIS_Apple_iOS_26_and_iPadOS_26_Intune_Benchmark_v1.0.0.pdf` | `.\work\packs\ios26-ipados26-v1-pack` |
+
+The pack folder is only the local output folder where the tool saves the generated
+files. You may use any folder name you want. It does not become the Intune policy name.
+The folder must not already exist when you build the pack; using the suggested names
+above is easiest.
 
 A generic Microsoft Edge, Microsoft Office, Apple operating system, Android, Chrome,
 or Safari benchmark is not a substitute for an Intune-specific PDF.
@@ -154,6 +159,11 @@ PowerShell displays a Microsoft sign-in address and a short code. Open the addre
 enter the code, sign in, and return to PowerShell. The export is private tenant evidence
 used to prove that every mapped setting and option still exists.
 
+After sign-in, downloading the complete Settings Catalog can take several minutes.
+Messages such as `Retrieved Settings Catalog page 36 (500 definitions; 18000 total)`
+mean the tool is still working normally. Leave PowerShell open and wait until it says
+`Wrote ... definition(s)` and shows the output file path.
+
 If that output file already exists, give the new export a different filename. The tool
 does not silently replace evidence files.
 
@@ -167,8 +177,8 @@ $PdfPath = '.\private\pdf\CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.p
 $PackPath = '.\work\packs\windows10-v5-pack'
 ```
 
-For another PDF, copy its selector and filename from the table in Step 5, then choose a
-new `$PackPath`.
+For another PDF, copy its selector, filename, and suggested `$PackPath` from the table
+in Step 5. You may choose a different pack folder name if you prefer.
 
 ## Step 9: build the validated policy pack
 

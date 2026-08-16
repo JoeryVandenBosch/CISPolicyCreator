@@ -385,7 +385,7 @@ foreach ($graphObject in @($catalog.graphObjects)) {
     })
 }
 
-$outputRoot = [IO.Path]::GetFullPath($OutputPath)
+$outputRoot = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
 if (Test-Path -LiteralPath $outputRoot) { throw "OutputPath already exists: $outputRoot" }
 $outputParent=Split-Path -Parent $outputRoot
 if(-not $outputParent){$outputParent=(Get-Location).Path}

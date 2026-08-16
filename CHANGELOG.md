@@ -10,6 +10,7 @@
 - Replace the root README with a start-to-finish installation, build, dry-run, and unassigned-import guide.
 - Preserve empty and single-item JSON arrays in writable Graph payloads, including role scope tags, settings, and nested children.
 - Live dry-run all five new partial catalogs and import their nine policies with mapped settings into a test tenant without assignments.
+- Resolve relative pack output paths from PowerShell's visible current location instead of the hidden native process directory used by elevated shells.
 
 ## 0.2.1 - 2026-08-14
 
