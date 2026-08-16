@@ -408,6 +408,33 @@ function New-CpcSettingsCatalogPolicyFingerprint {
         return $null
     }
 
+    function Convert-ComparableSettingNode($node) {
+        if ($null -eq $node) { return $null }
+        if ($node -is [string] -or $node -is [ValueType]) { return $node }
+        if ($node -is [System.Collections.IEnumerable] -and -not ($node -is [string]) -and -not ($node -is [System.Collections.IDictionary])) {
+            $items=[System.Collections.Generic.List[object]]::new()
+            foreach($item in $node){$items.Add((Convert-ComparableSettingNode $item)) | Out-Null}
+            return ,$items.ToArray()
+        }
+
+        $isDictionary=$node -is [System.Collections.IDictionary]
+        [string[]]$names=if($isDictionary){@($node.Keys | ForEach-Object {[string]$_})}else{@($node.PSObject.Properties.Name | ForEach-Object {[string]$_})}
+        $hasSettingDefinitionId=if($isDictionary){$node.Contains('settingDefinitionId')}else{$null -ne $node.PSObject.Properties['settingDefinitionId']}
+        $out=[ordered]@{}
+        foreach($name in $names){
+            $value=if($isDictionary){$node[$name]}else{$node.PSObject.Properties[$name].Value}
+            # Graph adds service IDs and null response metadata after creation. It also
+            # omits @odata.type on setting/value wrappers while retaining it on the
+            # semantic setting instances. Normalize only those proven response-shape
+            # differences; exact instance types, definition IDs, values, and children
+            # remain part of the fingerprint.
+            if($name -ceq 'id' -or $null -eq $value){continue}
+            if($name -ceq '@odata.type' -and -not $hasSettingDefinitionId){continue}
+            $out[$name]=Convert-ComparableSettingNode $value
+        }
+        return $out
+    }
+
     [string[]]$roleScopeTagIds=@(Get-RequiredProperty $Policy 'roleScopeTagIds' 'Settings Catalog policy' | ForEach-Object { [string]$_ })
     if ($roleScopeTagIds.Count -eq 0 -or @($roleScopeTagIds | Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -gt 0) {
         throw 'Settings Catalog policy roleScopeTagIds must contain only non-empty IDs.'
@@ -431,8 +458,8 @@ function New-CpcSettingsCatalogPolicyFingerprint {
         if ($settingsByDefinitionId.ContainsKey($definitionId)) { throw "Settings Catalog policy contains duplicate top-level settingDefinitionId '$definitionId'." }
         $writable=ConvertTo-CpcWritablePayload -InputObject $setting
         if (-not ($writable -is [System.Collections.IDictionary])) { throw "Settings Catalog setting '$definitionId' is not an object." }
-        $writable.Remove('id')
-        $settingsByDefinitionId.Add($definitionId,(ConvertTo-CpcCanonicalObject $writable))
+        $comparableSetting=Convert-ComparableSettingNode $writable
+        $settingsByDefinitionId.Add($definitionId,(ConvertTo-CpcCanonicalObject $comparableSetting))
     }
 
     $canonicalSettings=[System.Collections.Generic.List[object]]::new()
