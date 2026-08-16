@@ -159,6 +159,11 @@ PowerShell displays a Microsoft sign-in address and a short code. Open the addre
 enter the code, sign in, and return to PowerShell. The export is private tenant evidence
 used to prove that every mapped setting and option still exists.
 
+After sign-in, downloading the complete Settings Catalog can take several minutes.
+Messages such as `Retrieved Settings Catalog page 36 (500 definitions; 18000 total)`
+mean the tool is still working normally. Leave PowerShell open and wait until it says
+`Wrote ... definition(s)` and shows the output file path.
+
 If that output file already exists, give the new export a different filename. The tool
 does not silently replace evidence files.
 
