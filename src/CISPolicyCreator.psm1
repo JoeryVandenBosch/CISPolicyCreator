@@ -312,7 +312,12 @@ function ConvertTo-CpcWritablePayload {
             return $out
         }
         if ($node -is [System.Collections.IEnumerable] -and -not ($node -is [string])) {
-            return @($node | ForEach-Object { Convert-Node $_ })
+            # PowerShell normally unwraps empty and single-item arrays when a function
+            # returns them. Graph distinguishes [] from null and [value] from value,
+            # so preserve the collection object at every nested payload level.
+            $items=[System.Collections.Generic.List[object]]::new()
+            foreach($item in $node){$items.Add((Convert-Node $item)) | Out-Null}
+            return ,$items.ToArray()
         }
         $out = [ordered]@{}
         foreach ($p in $node.PSObject.Properties) {
@@ -327,15 +332,19 @@ function ConvertTo-CpcWritablePayload {
 
 function New-CpcSettingsCatalogPolicyBody {
     param([Parameter(Mandatory)]$Policy,[Parameter(Mandatory)]$Settings)
+    [object[]]$roleScopeTagIds=@('0')
+    if ($Policy.PSObject.Properties['roleScopeTagIds']) {
+        [object[]]$roleScopeTagIds=@($Policy.roleScopeTagIds)
+    }
+    if ($roleScopeTagIds.Count -eq 0) { [object[]]$roleScopeTagIds=@('0') }
     $body = [ordered]@{
         name=[string]$Policy.name
         description=[string]$Policy.description
         platforms=[string]$Policy.platforms
         technologies=[string]$Policy.technologies
-        roleScopeTagIds=if ($Policy.PSObject.Properties['roleScopeTagIds']) { @($Policy.roleScopeTagIds) } else { @('0') }
-        settings=@(ConvertTo-CpcWritablePayload -InputObject @($Settings))
+        roleScopeTagIds=$roleScopeTagIds
+        settings=(ConvertTo-CpcWritablePayload -InputObject @($Settings))
     }
-    if (@($body.roleScopeTagIds).Count -eq 0) { $body.roleScopeTagIds=@('0') }
     $templateProperty=$Policy.PSObject.Properties['templateReference']
     if ($templateProperty -and $templateProperty.Value -and $templateProperty.Value.templateId) {
         $body.templateReference = ConvertTo-CpcWritablePayload -InputObject $templateProperty.Value

@@ -1,285 +1,296 @@
 # CISPolicyCreator
 
-CISPolicyCreator is a reproducible, fail-closed scripting pipeline for turning a legitimately obtained **CIS Benchmark authored specifically for Microsoft Intune** into a validated, unassigned Intune policy pack.
+CISPolicyCreator reads a legitimately obtained CIS Benchmark PDF written specifically
+for Microsoft Intune and builds a validated Intune policy pack. The pack can then be
+imported into Microsoft Intune as real, unassigned policies with settings.
 
-The build and import paths use repository-owned PowerShell and Python scripts. ChatGPT, Codex, and other AI systems are not runtime dependencies.
+The tool runs entirely from the scripts in this repository. ChatGPT, Codex, or another
+AI service is **not** required at runtime.
 
-> [!IMPORTANT]
-> This repository does not include CIS Benchmark PDFs, SecureSuite Build Kits, or copied benchmark prose. CISPolicyCreator is an independent community project and is not affiliated with or endorsed by CIS.
+## Important: these are partial policy packs
 
-## Safety model
+The supported PDFs are recognized completely: every extracted CIS recommendation is
+recorded and classified. Only recommendations with an exact, evidence-backed Microsoft
+Graph setting and value are emitted as policy settings.
 
-CIS assessment method and Intune mapping status are separate facts:
+| Supported CIS PDF | Version | Mapped settings | Unresolved | Unassigned policies |
+|---|---:|---:|---:|---:|
+| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 28 | 387 | 10 |
+| CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 9 | 349 | 4 |
+| CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 13 | 125 | 2 |
+| CIS Microsoft Intune for Office Benchmark | 1.1.0 | 2 | 236 | 1 |
+| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 1 | 99 | 1 |
+| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 1 | 93 | 1 |
 
-| Field | Values | Meaning |
-|---|---|---|
-| `cisAssessmentMethod` | `Manual`, `Automated` | How CIS says the recommendation is assessed |
-| `mappingStatus` | `mapped`, `unresolved`, `requires-input`, `manual`, `not-applicable` | Whether and how the recommendation maps to an Intune implementation |
+The five additional Windows 10, Edge, Office, macOS, and iOS/iPadOS packs have passed
+live dry-run validation and a real unassigned import with all mapped settings. The
+Windows 11 pack has separately passed live mapping validation. No assignments are
+created by any pack.
 
-A CIS recommendation with `cisAssessmentMethod: Manual` may still have `mappingStatus: mapped` when its Intune policy implementation is deterministic and reviewed.
+These numbers do **not** describe complete CIS baselines. Unresolved recommendations do
+not create settings. More exact mappings can be added later without weakening the
+fail-closed rules.
 
-Only `mapped` records may be referenced by deployable objects. A `requires-input` mapping becomes deployable only after a schema-valid, explicitly acknowledged administrator decision is supplied; the generated record retains its original catalog status and decision reference for auditability.
+## What the tool will never do
 
-The pipeline also enforces these invariants:
+- It never guesses a Microsoft Graph `settingDefinitionId`.
+- It never guesses a choice or value ID.
+- Ambiguous mappings remain unresolved.
+- Organizational decisions require explicit administrator input.
+- Non-policy and process controls remain manual.
+- It never creates assignments.
+- It never uploads or commits your CIS PDF.
+- It never overwrites a different same-name Intune policy.
 
-- no guessed `settingDefinitionId` values;
-- no guessed choice/value IDs;
-- no display-name, substring, suffix, or constructed-ID resolution fallback;
-- nested choice, simple-collection, and group-collection nodes require exact definition/type/value validation at every level;
-- ambiguous matches remain unresolved or fail the build;
-- unvalidated static Settings Catalog payloads are rejected;
-- generic Graph endpoints are limited to Microsoft Graph `deviceManagement` resources;
-- assignment endpoints and assignment payloads are rejected;
-- policies are never assigned automatically;
-- filesystem links and junctions used as or inside packs are rejected before manifest processing;
-- pack containment follows the host filesystem's case rules, and private reviewer outputs require exact lowercase ignored suffixes;
-- existing Settings Catalog policies are skipped only after their metadata and complete setting/value payloads exactly match; ambiguous names or differences abort before writes;
-- existing generic Graph object name collisions abort before writes because endpoint-agnostic content equivalence cannot be proven; they are never silently updated.
+`cisAssessmentMethod` and `mappingStatus` mean different things. A CIS recommendation
+marked `Manual` can still have an exact Intune policy mapping. `mappingStatus` records
+whether this project can safely produce that mapping.
 
-See [docs/FAIL-CLOSED-POLICY.md](docs/FAIL-CLOSED-POLICY.md).
+## Before you begin
 
-## Reproducible pipeline
+You need:
 
-```text
-private CIS Intune PDF
-        |
-        v
-deterministic extraction + source identity checks
-        |
-        +---- all-unresolved catalog seed
-        |
-        +---- optional candidate-only worklist
-                    |
-                    +---- explicit hash-bound reviewer approvals
-        |
-        v
-reviewed, versioned mapping catalog
-        |
-        +---- explicit administrator decisions, when required
-        |
-        +---- pinned Settings Catalog definition snapshot
-        v
-deterministic pack compiler
-        |
-        v
-JSON Schema + semantic fail-closed validation
-        |
-        v
-unassigned policy pack -> live dry run -> explicit import
-```
+1. A Windows computer.
+2. [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows).
+3. [Git for Windows](https://git-scm.com/download/win).
+4. [Python 3.11 or later](https://www.python.org/downloads/windows/).
+5. A Microsoft Intune tenant.
+6. An account allowed to read and create Intune device configuration policies.
+7. The correct CIS Benchmark PDFs, downloaded under the applicable CIS terms.
 
-The generated manifest records SHA-256 hashes for the PDF, mapping catalog, administrator decisions, and Settings Catalog snapshot. Repeating a build with identical inputs produces byte-identical pack files.
+Open **PowerShell 7** for all commands below. Do not use the older Windows PowerShell
+5.1 application.
 
-## Requirements
-
-- PowerShell 7+
-- Python 3.11+
-- `pypdf`, installed from the hash-pinned requirements file; extraction fails if the installed version differs from the schema-bound pin
-- the exact `Microsoft.Graph.Authentication` version pinned in `tools/powershell-requirements.psd1` for snapshot export, live dry runs, probes, and imports
+## Step 1: create a tools folder
 
 ```powershell
-.\scripts\Initialize-CISPolicyCreator.ps1
+New-Item -ItemType Directory -Path C:\Tools -Force
+Set-Location C:\Tools
+```
 
-# Required only for snapshot export and live Graph operations:
+## Step 2: download CISPolicyCreator
+
+```powershell
+git clone https://github.com/JoeryVandenBosch/CISPolicyCreator.git
+Set-Location C:\Tools\CISPolicyCreator
+```
+
+If you already cloned it, update it instead:
+
+```powershell
+Set-Location C:\Tools\CISPolicyCreator
+git pull
+```
+
+The scripts are already inside the repository's `scripts` folder. Do not copy the
+scripts into another directory.
+
+## Step 3: install the locked local requirements
+
+```powershell
 .\scripts\Initialize-CISPolicyCreator.ps1 -IncludeGraph
+```
+
+This creates repository-local `.venv` and `.modules` folders. It installs the exact
+locked PDF parser and Microsoft Graph authentication module versions used by the tool.
+
+Check the installation:
+
+```powershell
 .\scripts\Test-CISPrerequisites.ps1 -RequireGraph
 ```
 
-The initializer creates or reuses `.venv`, installs the PDF dependency with `--require-hashes`, and verifies the result. `-IncludeGraph` additionally downloads the exact locked authentication module from PowerShell Gallery into the ignored repository-local `.modules` directory; it does not authenticate or contact Microsoft Graph. Live scripts verify both its version and deterministic file-tree SHA-256 before loading it. No mode installs an AI runtime. The main PDF pipeline automatically prefers the local Python environment. The extractor independently verifies Python's minimum version and cross-checks the installed `pypdf` version against both `tools/requirements.txt` and `schemas/extraction.schema.json` before reading a PDF. Dependency drift therefore stops the pipeline instead of silently changing extraction behavior.
-
-## Build a pack from a PDF
-
-A reviewed mapping catalog must exist for the exact benchmark family and version. When starting a new benchmark, first run the private extractor and create a copyright-safe, fail-closed catalog seed:
+## Step 4: create private working folders
 
 ```powershell
-$python=(.\scripts\Test-CISPrerequisites.ps1 -PassThru).PythonPath
-& $python .\tools\Extract-CISRecommendations.py C:\Private\Benchmark.pdf `
-    --benchmark-id '<benchmark-id>' `
-    --benchmark-version '<version>' `
-    --require-text '<reviewed source fingerprint>' `
-    --output C:\Private\benchmark.private-extraction.json
-
-.\scripts\New-CISMappingCatalog.ps1 `
-    -ExtractionPath C:\Private\benchmark.private-extraction.json `
-    -OutputPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -CatalogId '<catalog-id>' `
-    -CatalogVersion '0.1.0' `
-    -PackId '<pack-id>' `
-    -PackName '<pack name>' `
-    -PackVersion '0.1.0'
+New-Item -ItemType Directory -Path .\private\pdf -Force
+New-Item -ItemType Directory -Path .\private\graph -Force
+New-Item -ItemType Directory -Path .\work\packs -Force
 ```
 
-The seed contains no benchmark prose and marks every recommendation `unresolved`. Reviewers then add only evidence-backed mappings.
+The `private` and `work` folders are ignored by Git.
 
-First capture the current authoritative Settings Catalog definitions:
+## Step 5: download the correct CIS PDFs
+
+Download only PDFs explicitly written for Microsoft Intune. Obtain them from the
+[official CIS Microsoft Intune page](https://www.cisecurity.org/benchmark/intune) or
+the [official CIS Intune for Apple page](https://www.cisecurity.org/benchmark/apple_macos_ios_intune).
+
+Follow the CIS terms and licensing requirements. Never commit, publish, or upload the
+PDFs to GitHub.
+
+Save the PDFs in `C:\Tools\CISPolicyCreator\private\pdf`.
+
+| Benchmark selector | Expected PDF |
+|---|---|
+| `Windows11-5.0.0` | `CIS_Microsoft_Intune_for_Windows_11_Benchmark_v5.0.0.pdf` |
+| `Windows10-5.0.0` | `CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.pdf` |
+| `Edge-1.0.0` | `CIS_Microsoft_Intune_for_Edge_Benchmark_v1.0.0.pdf` |
+| `Office-1.1.0` | `CIS_Microsoft_Intune_for_Office_Benchmark_v1.1.0.pdf` |
+| `macOS26-Tahoe-1.0.0` | `CIS_Apple_MacOS_26_Tahoe_Intune_Benchmark_v1.0.0.pdf` |
+| `iOS26-iPadOS26-1.0.0` | `CIS_Apple_iOS_26_and_iPadOS_26_Intune_Benchmark_v1.0.0.pdf` |
+
+A generic Microsoft Edge, Microsoft Office, Apple operating system, Android, Chrome,
+or Safari benchmark is not a substitute for an Intune-specific PDF.
+
+## Step 6: record your tenant ID
+
+Replace the example with your real Microsoft Entra tenant ID:
+
+```powershell
+$TenantId = '00000000-0000-0000-0000-000000000000'
+```
+
+## Step 7: export the current Intune Settings Catalog
 
 ```powershell
 .\scripts\Export-SettingsCatalogDiagnostics.ps1 `
-    -TenantId '<tenant-guid>' `
-    -OutputPath C:\Private\settings-catalog-snapshot.json
+  -TenantId $TenantId `
+  -UseDeviceCode `
+  -OutputPath .\private\graph\settings-catalog-snapshot.json
 ```
 
-Add `-UseDeviceCode` when running from an embedded or headless terminal that cannot open the interactive browser window. Export records page/count evidence and fails on duplicate IDs or inconsistent pagination rather than accepting a possibly truncated definition set.
+PowerShell displays a Microsoft sign-in address and a short code. Open the address,
+enter the code, sign in, and return to PowerShell. The export is private tenant evidence
+used to prove that every mapped setting and option still exists.
 
-If you have a legitimately obtained, previously reviewed configuration-policy pack for the same benchmark, you can create a private candidate worklist:
+If that output file already exists, give the new export a different filename. The tool
+does not silently replace evidence files.
+
+## Step 8: choose one benchmark
+
+This example uses Windows 10:
 
 ```powershell
-.\scripts\New-CISMappingReviewWorklist.ps1 `
-    -ExtractionPath C:\Private\benchmark.private-extraction.json `
-    -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
-    -ReferencePackRoot C:\Private\reviewed-reference-pack `
-    -OutputPath C:\Private\benchmark.private-review.json
+$Benchmark = 'Windows10-5.0.0'
+$PdfPath = '.\private\pdf\CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.pdf'
+$PackPath = '.\work\packs\windows10-v5-pack'
 ```
 
-The command recursively validates every referenced definition, type, choice ID, and value against the pinned snapshot, then uses deterministic normalized title/display-name containment only to produce review candidates. It never edits the mapping catalog. `unique-candidate` is not mapping proof, ambiguous candidates remain ambiguous, and a reviewer must explicitly approve the exact setting hierarchy and value before changing `mappingStatus`. The worklist contains private benchmark titles and must not be committed.
+For another PDF, copy its selector and filename from the table in Step 5, then choose a
+new `$PackPath`.
 
-Create a private approval template tied to the exact catalog and worklist hashes:
+## Step 9: build the validated policy pack
 
 ```powershell
-.\scripts\New-CISMappingReviewApprovals.ps1 `
-    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
-    -CatalogVersion '<next catalog version>' `
-    -PackVersion '<next pack version>' `
-    -OutputPath C:\Private\benchmark.private-approvals.json
+.\scripts\Build-CISSupportedBenchmark.ps1 `
+  -Benchmark $Benchmark `
+  -PdfPath $PdfPath `
+  -SettingsCatalogSnapshotPath .\private\graph\settings-catalog-snapshot.json `
+  -OutputPath $PackPath
 ```
 
-Every row starts as `defer`, meaning it has not been decided. A reviewer may set a row to `rejected` with an explicit acknowledgement and rationale; this records that the historical candidate is not semantically equivalent while leaving the recommendation unresolved and nondeployable. A reviewer may set a row to `mapped` only by acknowledging semantic equivalence, asserting `valueBasis: benchmark-prescribed`, and selecting an exact candidate occurrence, complete top-level definition, and explicit unassigned policy metadata. The policy platform/technology must match the hashed reference and only the default role scope tag `0` is accepted.
+The command checks the PDF title and version, extracts its recommendations locally,
+validates the exact mappings against the snapshot, creates the unassigned policy
+payloads, and validates the finished pack.
 
-Generate a deterministic private progress report without changing any decision or mapping:
+The output folder must not already exist. Use a new output name when rebuilding.
+
+## Step 10: inspect the result
 
 ```powershell
-.\scripts\Get-CISMappingReviewReport.ps1 `
-    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
-    -ApprovalsPath C:\Private\benchmark.private-approvals.json `
-    -JsonPath C:\Private\benchmark.private-review-report.json `
-    -CsvPath C:\Private\benchmark.private-review-report.csv
+.\scripts\Test-CISPolicyPack.ps1 -PackRoot $PackPath
+.\scripts\Get-CISMappingReport.ps1 -PackRoot $PackPath
 ```
 
-The report is hash-bound, contains recommendation IDs and state counts but no benchmark titles, distinguishes pending, rejected, and approved candidate rows, and explicitly reports whether the review queue or catalog is complete. Keep it private. Apply mapped approvals to a new catalog file:
+The report shows which recommendations are mapped, unresolved, require administrator
+input, remain manual, or are not applicable.
 
-```powershell
-.\scripts\Apply-CISMappingReviewApprovals.ps1 `
-    -ExtractionPath C:\Private\benchmark.private-extraction.json `
-    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -ReviewWorklistPath C:\Private\benchmark.private-review.json `
-    -ApprovalsPath C:\Private\benchmark.private-approvals.json `
-    -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
-    -ReferencePackRoot C:\Private\reviewed-reference-pack `
-    -OutputPath C:\Private\mapping-catalog.next.json
-```
-
-The apply command rechecks every source hash, including the private extraction, and recursively reconstructs the exact reviewed setting tree. It promotes only currently `unresolved` recommendations with outcome `mapped`; `defer` and `rejected` never emit implementation content. The source catalog is never overwritten. Before publishing the new catalog, the script atomically compiles the complete extraction-bound pack and runs offline validation; any failure leaves no output catalog. This path cannot be used for organizational values that belong in `requires-input`. Live dry run and test-tenant review remain mandatory before publication or import.
-
-If the catalog declares organizational choices, generate and complete a decision file:
-
-```powershell
-.\scripts\New-CISAdministratorDecisions.ps1 `
-    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -OutputPath C:\Private\administrator-decisions.json
-```
-
-Run the complete local build:
-
-```powershell
-.\scripts\Invoke-CISPolicyPipeline.ps1 `
-    -PdfPath C:\Private\Benchmark.pdf `
-    -MappingCatalogPath .\benchmarks\<benchmark>\<version>\mapping-catalog.json `
-    -SettingsCatalogSnapshotPath C:\Private\settings-catalog-snapshot.json `
-    -AdministratorDecisionsPath C:\Private\administrator-decisions.json `
-    -OutputPath .\work\generated-pack
-```
-
-The PDF and private extraction text are not copied into the pack. Omit `-AdministratorDecisionsPath` to produce a valid partial pack in which those recommendations remain `requires-input` and no corresponding deployable settings are emitted.
-
-## Validate and review
-
-```powershell
-.\scripts\Test-CISPolicyPack.ps1 -PackRoot .\work\generated-pack
-.\scripts\Get-CISMappingReport.ps1 `
-    -PackRoot .\work\generated-pack `
-    -JsonPath .\work\mapping-report-pack.json `
-    -CsvPath .\work\mapping-report-pack.csv
-```
-
-Validation evaluates the JSON Schemas and cross-file semantic rules. It runs without Graph access. Mapping reporting invokes that same validation first, refuses invalid/tampered packs and existing output files, emits byte-stable UTF-8 JSON/CSV, and reports `cisAssessmentMethod` independently from mapping completeness.
-
-The standalone compiler and top-level pipeline build in unique same-parent staging directories and publish with atomic directory moves. If another process claims the requested pack or private-extraction path after preflight, publication fails without deleting or overwriting that other process's files. Failure cleanup is limited to staging content and private output proven to have been published by the current run.
-
-To run the same complete privacy, schema, parser, offline-pipeline, extractor, and synthetic-PDF checks as GitHub Actions:
-
-```powershell
-.\scripts\Test-CISRepository.ps1
-```
-
-## Live validation and import
-
-Dry run uses read-only Graph scope, resolves every selected setting, validates exact option IDs, and prepares every payload before any write:
+## Step 11: perform a read-only Intune dry run
 
 ```powershell
 .\scripts\Import-CISPolicyPack.ps1 `
-    -PackRoot .\work\generated-pack `
-    -Profile L1 `
-    -TenantId '<tenant-guid>' `
-    -UseDeviceCode `
-    -DryRun
+  -PackRoot $PackPath `
+  -Profile ALL `
+  -TenantId $TenantId `
+  -UseDeviceCode `
+  -DryRun
 ```
 
-`-UseDeviceCode` is optional, but is useful in embedded or headless terminals that cannot complete browser-based authentication.
+The dry run signs in to Microsoft Graph, verifies the live setting definitions and
+values, checks for same-name policies, and shows what would be created. It does not
+write or assign anything.
 
-When the compiler found an eligible reviewed leaf setting, the pack contains a deterministic probe that creates one temporary unassigned policy and always attempts cleanup:
+## Step 12: import the unassigned policies
+
+Only continue after the dry run succeeds:
 
 ```powershell
 .\scripts\Import-CISPolicyPack.ps1 `
-    -PackRoot .\work\generated-pack `
-    -TenantId '<tenant-guid>' `
-    -ProbeOnly `
-    -ConfirmTemporaryWriteProbe
+  -PackRoot $PackPath `
+  -Profile ALL `
+  -TenantId $TenantId `
+  -UseDeviceCode `
+  -ConfirmUnassignedImport `
+  -ConfirmPartialPack
 ```
 
-The probe acknowledgement is required because this mode creates one temporary unassigned policy and then attempts deletion. A pinned `-TenantId` is mandatory for every write mode.
+`-ConfirmPartialPack` means you understand that only the mapped subset is imported.
+Unresolved recommendations remain absent.
 
-Import remains a separate explicit operation:
+The policies are created without assignments. CISPolicyCreator does not select users,
+devices, or groups. Assignments and production rollout remain administrator actions.
 
-```powershell
-.\scripts\Import-CISPolicyPack.ps1 `
-    -PackRoot .\work\generated-pack `
-    -Profile L1 `
-    -TenantId '<tenant-guid>' `
-    -ConfirmUnassignedImport `
-    -ConfirmPartialPack
-```
+## Step 13: check Intune
 
-`-ConfirmPartialPack` is required only when final recommendations remain `unresolved` or `requires-input`; those recommendations emit nothing, and the separate acknowledgement prevents a partial catalog from being mistaken for a complete baseline. Omit it for a complete pack. The unassigned-import acknowledgement is always required before pack validation or Graph authentication; omission of `-DryRun` alone is never sufficient write intent. Creation stops on the first Graph error by default. `-ContinueOnError` must be supplied explicitly to permit continuing after a Graph error. No assignments are created in either mode.
+1. Open the Microsoft Intune admin center.
+2. Go to **Devices**.
+3. Open **Configuration**.
+4. Search for policy names beginning with `CIS -`.
+5. Open a policy and verify its settings.
+6. Leave it unassigned until your organization has reviewed and tested it.
 
-Before any create request, every case-insensitive same-name Settings Catalog policy is read back with all of its settings. Exactly one match may be skipped only when its name, description, platform, technology, role scope tags, template identity, definition IDs, and complete nested option/value payloads match the prepared pack. Duplicate names, unreadable content, extra or missing settings, or any metadata/value difference abort the import before writes. Graph response metadata and server-generated setting wrapper IDs are the only payload details ignored by this comparison.
+## Build the other supported PDFs
 
-Generic Graph adapters may target different Intune resource types, so the importer has no universal safe equivalence projection for them. Any case-insensitive same-name generic object therefore aborts preflight rather than being treated as deployed. The administrator must resolve the collision explicitly outside this script; the importer never patches or assigns it.
+Repeat Steps 8 through 13 for each PDF. Always use the matching selector, exact PDF
+version, and a different pack output folder.
 
-## Repository layout
+## Common problems
 
-```text
-scripts/    extraction orchestration, compilation, validation, reporting, import
-src/        fail-closed Graph and payload helpers
-schemas/    build-input and generated-pack JSON Schemas
-tools/      deterministic local PDF extractor and pinned dependency
-templates/  schema-valid empty pack template
-tests/      copyright-safe offline fixtures and behavioral tests
-benchmarks/ public-safe inventory seeds and reviewed mapping catalogs
-docs/       format, workflow, security, and scope documentation
-```
+### “Source eligibility check failed”
 
-See [docs/CHAT-HANDOFF.md](docs/CHAT-HANDOFF.md) for the concise current-state handoff. The longer `CISPolicyCreator_CHAT_HANDOFFnew.md` is retained as historical v0.1 context only.
+The PDF title or version does not match the selected catalog. Use the exact
+Intune-specific PDF and selector from Step 5.
 
-## Current benchmark status
+### “OutputPath already exists”
 
-The repository includes a public-safe Windows 11 v5.0.0 catalog with all 415 recommendation identifiers. Twenty-eight recommendations currently have exact, snapshot-validated Settings Catalog mappings, producing 28 settings in 10 unassigned policies; all 28 have passed live tenant mapping validation. An earlier explicitly acknowledged Level 1 partial-pack import made no changes because every target policy name was already present. After same-name readback verification was hardened, a read-only live run correctly aborted before writes because the first existing policy contained 27 settings while the partial pack expected 1; names are no longer treated as proof of equivalence. The other 387 recommendations remain unresolved and nondeployable. This is a reviewed partial catalog, not a complete CIS baseline. See [docs/SUPPORTED-BENCHMARKS.md](docs/SUPPORTED-BENCHMARKS.md) for the benchmark roadmap.
+Choose a new pack folder name. Existing output is never overwritten automatically.
 
-## Public repository rules
+### “Runtime mapping validation failed”
 
-Never commit source PDFs, Build Kits, raw extraction JSON, private review/approval/report files, administrator decision files containing organizational details, tenant identifiers, credentials, diagnostic exports, or import-result logs. Public catalogs contain only minimal recommendation identifiers, mapping metadata, reviewed Graph identifiers/values, and original project code.
+A live Microsoft Graph definition or option differs from the reviewed catalog. The tool
+stops before creating policies. Export a fresh Settings Catalog snapshot and investigate
+the change; do not invent a replacement ID.
+
+### “Existing-policy verification failed”
+
+An Intune policy has the same name but different metadata or settings. The importer
+refuses to assume they are equivalent. Review the existing policy manually.
+
+### Microsoft says the sign-in code is invalid
+
+Use the newest code shown in PowerShell. Device codes expire and old codes cannot be
+reused.
+
+## Privacy and repository safety
+
+- CIS source PDFs stay in `private\pdf` and are ignored by Git.
+- Raw extracted recommendation text is private and is not included in generated packs.
+- Tenant snapshots stay in `private\graph` and are ignored by Git.
+- Generated packs contain no credentials, assignments, source PDF, or AI artifacts.
+- Before publishing changes, always check `git status` and ensure no private material is
+  staged.
+
+## Technical documentation
+
+- [Fail-closed policy](docs/FAIL-CLOSED-POLICY.md)
+- [PDF workflow](docs/PDF-WORKFLOW.md)
+- [Policy pack format](docs/PACK-FORMAT.md)
+- [Supported benchmark scope](docs/SUPPORTED-BENCHMARKS.md)
+- [Security model](docs/SECURITY-MODEL.md)
+- [Benchmark roadmap](docs/BENCHMARK-ROADMAP.md)
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Repository code is licensed under [LICENSE](LICENSE). CIS Benchmarks remain subject to
+CIS terms and licensing requirements.

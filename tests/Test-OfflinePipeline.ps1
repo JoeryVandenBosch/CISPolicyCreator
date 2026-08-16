@@ -665,6 +665,10 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
     $choiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $choiceSpec
     Assert-True ($choiceBody.settingInstance.choiceSettingValue.value -ceq 'synthetic_choice_enabled') 'Exact reviewed choice option must be emitted.'
+    $policyBody=New-CpcSettingsCatalogPolicyBody -Policy ([pscustomobject]@{name='Array shape test';description='';platforms='windows10';technologies='mdm';roleScopeTagIds=@('0')}) -Settings @($choiceBody)
+    Assert-True ($policyBody.roleScopeTagIds -is [array] -and $policyBody.roleScopeTagIds.Count -eq 1) 'A single role scope tag must remain a JSON array.'
+    Assert-True ($policyBody.settings -is [array] -and $policyBody.settings.Count -eq 1) 'A single Settings Catalog setting must remain a JSON array.'
+    Assert-True ($policyBody.settings[0].settingInstance.choiceSettingValue.children -is [array] -and $policyBody.settings[0].settingInstance.choiceSettingValue.children.Count -eq 0) 'An empty Settings Catalog children collection must remain a JSON array.'
     $badChoiceFailed=$false
     try { New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec ([pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='enabled' } }) | Out-Null } catch { $badChoiceFailed=$true }
     Assert-True $badChoiceFailed 'A plausible but non-exact choice ID must fail.'

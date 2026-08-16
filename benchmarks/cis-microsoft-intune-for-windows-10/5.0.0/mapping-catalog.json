@@ -1,0 +1,4559 @@
+{
+  "schemaVersion": "1.0",
+  "id": "cis-microsoft-intune-windows10-5.0.0",
+  "version": "0.1.0",
+  "benchmark": {
+    "id": "windows10-intune",
+    "version": "5.0.0",
+    "expectedRecommendationCount": 358
+  },
+  "pack": {
+    "id": "cis-microsoft-intune-windows10",
+    "name": "CIS Microsoft Intune for Windows 10 Benchmark",
+    "version": "5.0.0"
+  },
+  "sourceDocument": {
+    "requiredText": [
+      "Microsoft Intune for",
+      "Windows 10 Benchmark",
+      "v5.0.0"
+    ]
+  },
+  "recommendations": [
+    {
+      "recommendationId": "1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.1.3.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.1.3.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.4.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ms-security-guide-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "4.4.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.4.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.4.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.4.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.4",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.6",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.8",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.9",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.10",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.11",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.5.12",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.4.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.8.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.8.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.9.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.9.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.9.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.11.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.17.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.17.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.18.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.6.18.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.7.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.7.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.7.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.4.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.5.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.5.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.2",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.3",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.4",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.5",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.1.6",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.9.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.13.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.19.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.3",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.4",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.6",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.7",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.8",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.9",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.10",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.11",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.12",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.20.1.13",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.23.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.25.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.26.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.29.5.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.29.5.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.30.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.30.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.31.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.31.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.40.5.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.44.1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.10.44.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.3.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.3.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.5.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.5.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.6.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.6.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.6.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.2",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.3",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.4",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.5",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.6",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.7",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.1.8",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.2",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.3",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.4",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.5",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.6",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.7",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.8",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.2.9",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.3.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.3.2",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.4",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.5",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.7.6",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.8.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.8.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.8.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.2.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.2.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.3.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.3.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.4.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.15.4.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.18.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.18.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.18.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.18.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.23.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.27.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.30.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.34.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.3.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.2.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.3.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.3.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.3.3",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.3.4",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.9.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.9.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.9.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.9.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows-components-restrictions-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "4.11.35.4.9.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.10.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.10.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.35.4.11.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.36.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.41.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.41.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.48.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.49.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.51.2.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.53.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.53.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.1.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.2.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.2.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.2.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "4.11.54.2.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows-components-restrictions-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "4.11.55.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.8",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.9",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.10",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.11",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.12",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.13",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.14",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.15",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.16",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.17",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.18",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.19",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.20",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.21",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.22",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.23",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:auditing-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "6.24",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.25",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.26",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "6.27",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "8.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "8.2",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "8.3",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "12.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "22.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "23.1",
+      "profiles": [
+        "NG"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "23.2",
+      "profiles": [
+        "NG"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "23.3",
+      "profiles": [
+        "NG"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "23.4",
+      "profiles": [
+        "NG"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "27.1",
+      "profiles": [
+        "BL"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "33.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "33.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "33.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.8",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.9",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.10",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "37.11",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "46.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "47.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "49.5",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.7",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.8",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.11",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.12",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.13",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "49.14",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.15",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "49.16",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.17",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.18",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.19",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.20",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.21",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.22",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.23",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.24",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.25",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.26",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.27",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.28",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.29",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "49.30",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "49.31",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:local-policies-security-options-l1"
+      ],
+      "decisionRef": null,
+      "notes": "Exact Windows 10/Windows 11 v5 recommendation, profile, and remediation match; reused snapshot-validated mapping."
+    },
+    {
+      "recommendationId": "49.32",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "54.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.3",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.5",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "55.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "60.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "69.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "69.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "69.3",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "69.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "69.5",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "73.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "73.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "73.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "75.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "81.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "81.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "81.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "81.4",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "81.5",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.2",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.4",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.5",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.6",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.8",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.9",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.10",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.11",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.12",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.13",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.14",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.15",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.16",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.17",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.18",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.19",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.20",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.21",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.22",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.23",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.24",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.25",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.26",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.27",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.28",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.29",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.30",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.31",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.32",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.33",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.34",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.35",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.36",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.37",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.38",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.39",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.40",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.41",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.42",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.43",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.44",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "82.45",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.7",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.8",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.9",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.10",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.11",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.12",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.13",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.14",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.15",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.16",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.17",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.18",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.19",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.20",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.21",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.22",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.23",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.24",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.25",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.26",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.27",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.28",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "90.29",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "94.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "98.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "98.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "99.1",
+      "profiles": [
+        "L2"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "99.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "104.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "104.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "104.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "104.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "104.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "105.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.1.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.2.1.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.2.1.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.2.1.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "106.2.1.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Manual",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.1",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.2",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.3",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.4",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.5",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    },
+    {
+      "recommendationId": "107.6",
+      "profiles": [
+        "L1"
+      ],
+      "cisAssessmentMethod": "Automated",
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
+      "decisionRef": null,
+      "notes": null
+    }
+  ],
+  "administratorInputs": [],
+  "settingsCatalogPolicies": [
+    {
+      "id": "auditing-l1",
+      "name": "CIS - Auditing [L1] - Windows 10 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 10 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "local-policies-security-options-l1",
+      "name": "CIS - Local Policies Security Options [L1] - Windows 10 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 10 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ms-security-guide-l1",
+      "name": "CIS - MS Security Guide [L1] - Windows 10 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 10 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows-components-restrictions-l1",
+      "name": "CIS - Windows Components - Restrictions [L1] - Windows 10 - v5.0.0",
+      "description": "Evidence-backed CIS Windows 10 v5 Settings Catalog mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    }
+  ],
+  "settingsCatalogSettings": [
+    {
+      "recommendationId": "4.4.1",
+      "policyId": "ms-security-guide-l1",
+      "displayName": "Apply UAC restrictions to local accounts on network logons",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_mssecurityguide_applyuacrestrictionstolocalaccountsonnetworklogon",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSecurityGuide/ApplyUACRestrictionsToLocalAccountsOnNetworkLogon",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_mssecurityguide_applyuacrestrictionstolocalaccountsonnetworklogon_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.4",
+      "policyId": "windows-components-restrictions-l1",
+      "displayName": "Require user authentication for remote connections by using Network Level Authentication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_user_authentication_policy",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_USER_AUTHENTICATION_POLICY",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_user_authentication_policy_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.54.2.4",
+      "policyId": "windows-components-restrictions-l1",
+      "displayName": "Disallow WinRM from storing RunAs credentials",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotemanagement_disallowstoringofrunascredentials",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteManagement/DisallowStoringOfRunAsCredentials",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotemanagement_disallowstoringofrunascredentials_1"
+      }
+    },
+    {
+      "recommendationId": "6.23",
+      "policyId": "auditing-l1",
+      "displayName": "Privilege Use Audit Sensitive Privilege Use",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_audit_privilegeuse_auditsensitiveprivilegeuse",
+        "baseUri": null,
+        "offsetUri": null,
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_audit_privilegeuse_auditsensitiveprivilegeuse_1",
+        "decisionRef": null
+      }
+    },
+    {
+      "recommendationId": "49.2",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Accounts Limit Local Account Use Of Blank Passwords To Console Logon Only",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_accounts_limitlocalaccountuseofblankpasswordstoconsolelogononly",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/Accounts_LimitLocalAccountUseOfBlankPasswordsToConsoleLogonOnly",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_accounts_limitlocalaccountuseofblankpasswordstoconsolelogononly_1"
+      }
+    },
+    {
+      "recommendationId": "49.13",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Microsoft Network Client Send Unencrypted Password To Third Party SMB Servers",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_microsoftnetworkclient_sendunencryptedpasswordtothirdpartysmbservers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/MicrosoftNetworkClient_SendUnencryptedPasswordToThirdPartySMBServers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_microsoftnetworkclient_sendunencryptedpasswordtothirdpartysmbservers_0"
+      }
+    },
+    {
+      "recommendationId": "49.15",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "Network Access Do Not Allow Anonymous Enumeration Of SAM Accounts",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccounts",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkAccess_DoNotAllowAnonymousEnumerationOfSAMAccounts",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccounts_1"
+      }
+    },
+    {
+      "recommendationId": "49.30",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "User Account Control Switch To The Secure Desktop When Prompting For Elevation",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_switchtothesecuredesktopwhenpromptingforelevation",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_SwitchToTheSecureDesktopWhenPromptingForElevation",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_switchtothesecuredesktopwhenpromptingforelevation_1"
+      }
+    },
+    {
+      "recommendationId": "49.31",
+      "policyId": "local-policies-security-options-l1",
+      "displayName": "User Account Control Run All Administrators In Admin Approval Mode",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_runalladministratorsinadminapprovalmode",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_RunAllAdministratorsInAdminApprovalMode",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_runalladministratorsinadminapprovalmode_1"
+      }
+    }
+  ],
+  "graphObjects": []
+}
