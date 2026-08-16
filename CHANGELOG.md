@@ -11,6 +11,7 @@
 - Preserve empty and single-item JSON arrays in writable Graph payloads, including role scope tags, settings, and nested children.
 - Live dry-run all five new partial catalogs and import their nine policies with mapped settings into a test tenant without assignments.
 - Resolve relative pack output paths from PowerShell's visible current location instead of the hidden native process directory used by elevated shells.
+- Normalize only proven Microsoft Graph response decoration when verifying an existing Settings Catalog policy, while retaining exact semantic instance, definition, value, child, and template-reference checks.
 
 ## 0.2.1 - 2026-08-14
 

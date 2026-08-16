@@ -578,6 +578,17 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     )
     $equivalentPolicy=Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $actualSettings
     Assert-True ($equivalentPolicy.equivalent -and $equivalentPolicy.expectedSettingCount -eq 2 -and $equivalentPolicy.actualSettingCount -eq 2) 'Existing policy verification must ignore only response metadata, wrapper IDs, role-tag ordering, and an empty template reference.'
+    $graphNormalizedSettings=@(
+        [pscustomobject]@{id='server-setting-a';settingInstance=[pscustomobject]@{settingInstanceTemplateReference=$null;'@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance';settingDefinitionId='definition-a';simpleSettingValue=[pscustomobject]@{settingValueTemplateReference=$null;value=1};auditRuleInformation=$null}},
+        [pscustomobject]@{id='server-setting-b';settingInstance=[pscustomobject]@{settingInstanceTemplateReference=$null;'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance';settingDefinitionId='definition-b';choiceSettingValue=[pscustomobject]@{children=@();settingValueTemplateReference=$null;value='definition-b_enabled'};auditRuleInformation=$null}}
+    )
+    Assert-True (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $graphNormalizedSettings).equivalent 'Existing policy verification must normalize proven Graph response decoration without losing semantic setting comparison.'
+    $nonEmptyTemplateSettings=@($graphNormalizedSettings | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $nonEmptyTemplateSettings[1].settingInstance.settingInstanceTemplateReference=[pscustomobject]@{settingInstanceTemplateId='different-template'}
+    Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $nonEmptyTemplateSettings).equivalent) 'A non-empty setting template reference must remain part of existing-policy equivalence.'
+    $wrongInstanceTypeSettings=@($graphNormalizedSettings | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $wrongInstanceTypeSettings[1].settingInstance.'@odata.type'='#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance'
+    Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $wrongInstanceTypeSettings).equivalent) 'A different semantic setting instance type must not be normalized away.'
     $wrongValueSettings=@($actualSettings | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
     $wrongValueSettings[1].settingInstance.choiceSettingValue.value='definition-b_disabled'
     Assert-True (-not (Compare-CpcSettingsCatalogPolicy -ExpectedPolicy $expectedPolicy -ActualPolicy $actualPolicy -ActualSettings $wrongValueSettings).equivalent) 'An existing policy with a different exact choice ID must not be skipped.'
