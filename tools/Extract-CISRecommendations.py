@@ -18,7 +18,7 @@ from typing import Any
 
 REC_RE = re.compile(
     r"(?ms)^<<<PAGE (?P<page>\d+)>>>\s*"
-    r"(?:^Page \d+\s*)?"
+    r"(?:(?:^Page \d+\s*$|^Internal Only - General\s*$)\s*){0,4}"
     r"^(?P<id>\d+(?:\.\d+){1,6})\s+"
     r"(?:\([^\n]+\)\s+)?Ensure\s+"
     r"(?P<title>.{1,500}?)\s+\((?P<assessment>Automated|Manual)\)\s*"
@@ -38,7 +38,7 @@ HEADINGS = [
 ]
 
 MINIMUM_PYTHON = (3, 11)
-EXTRACTOR_VERSION = "0.2.2"
+EXTRACTOR_VERSION = "0.3.0"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 REQUIREMENTS_PATH = Path(__file__).with_name("requirements.txt")
 EXTRACTION_SCHEMA_PATH = REPOSITORY_ROOT / "schemas" / "extraction.schema.json"
@@ -139,6 +139,8 @@ def parse_profiles(profile_text: str) -> list[str]:
         profiles.append("L2")
     if re.search(r"(?i)\bBL\b|BitLocker", profile_text):
         profiles.append("BL")
+    if re.search(r"(?i)\bNG\b|Next Generation Windows Security", profile_text):
+        profiles.append("NG")
     return profiles
 
 

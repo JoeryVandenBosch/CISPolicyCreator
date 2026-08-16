@@ -7,6 +7,7 @@ param(
     [switch]$ContinueOnError,
     [string]$TenantId,
     [switch]$UseDeviceCode,
+    [switch]$UseExistingGraphContext,
     [switch]$ProbeOnly,
     [switch]$ConfirmUnassignedImport,
     [switch]$ConfirmTemporaryWriteProbe,
@@ -15,6 +16,7 @@ param(
 
 $ErrorActionPreference='Stop'
 if ($StopOnError -and $ContinueOnError) { throw 'StopOnError and ContinueOnError cannot be used together.' }
+if ($UseDeviceCode -and $UseExistingGraphContext) { throw 'UseDeviceCode and UseExistingGraphContext cannot be combined.' }
 if ($DryRun -and $ProbeOnly) { throw 'DryRun and ProbeOnly cannot be used together.' }
 if ($DryRun) {
     if ($ConfirmUnassignedImport -or $ConfirmTemporaryWriteProbe -or $ConfirmPartialPack) { throw 'DryRun is read-only and cannot be combined with an import or write acknowledgement.' }
@@ -58,13 +60,26 @@ if (-not $DryRun -and -not $ProbeOnly) {
 
 & (Join-Path $PSScriptRoot 'Import-CISGraphAuthentication.ps1')
 
-Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $graphScope=if ($DryRun -and -not $ProbeOnly) { 'DeviceManagementConfiguration.Read.All' } else { 'DeviceManagementConfiguration.ReadWrite.All' }
-$connectArgs=@{ Scopes=$graphScope; ContextScope='Process'; NoWelcome=$true }
-if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'Dry-run TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
-if ($UseDeviceCode) { $connectArgs.UseDeviceCode=$true }
-Connect-MgGraph @connectArgs
-$context=Get-MgContext
+$ownsGraphConnection=-not $UseExistingGraphContext
+if($UseExistingGraphContext){
+    $context=Get-MgContext
+    if(-not $context){throw 'UseExistingGraphContext requires an authenticated Microsoft Graph context.'}
+    $availableScopes=@($context.Scopes)
+    $scopeAccepted=if($graphScope -eq 'DeviceManagementConfiguration.Read.All'){
+        $availableScopes -contains 'DeviceManagementConfiguration.Read.All' -or $availableScopes -contains 'DeviceManagementConfiguration.ReadWrite.All'
+    }else{
+        $availableScopes -contains 'DeviceManagementConfiguration.ReadWrite.All'
+    }
+    if(-not $scopeAccepted){throw "The existing Microsoft Graph context lacks required scope '$graphScope'."}
+}else{
+    Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
+    $connectArgs=@{ Scopes=$graphScope; ContextScope='Process'; NoWelcome=$true }
+    if ($TenantId) { $connectArgs.TenantId=$TenantId } else { Write-Warning 'Dry-run TenantId was not pinned. For production-quality testing, pass -TenantId explicitly.' }
+    if ($UseDeviceCode) { $connectArgs.UseDeviceCode=$true }
+    Connect-MgGraph @connectArgs
+    $context=Get-MgContext
+}
 if ($TenantId -and $context.TenantId -ne $TenantId) { throw "Authenticated tenant '$($context.TenantId)' does not match requested TenantId '$TenantId'." }
 Write-Host "Graph account : $($context.Account)"
 Write-Host "Graph tenant  : $($context.TenantId)"
@@ -188,7 +203,7 @@ try {
                 continue
             }
             $dynamicEntries=if ($dynamicByPolicy.ContainsKey($name)) { @($dynamicByPolicy[$name]) } else { @() }
-            $static=@(ConvertTo-CpcWritablePayload -InputObject @($bundle.settings))
+            $static=ConvertTo-CpcWritablePayload -InputObject @($bundle.settings)
             $merged=Merge-CpcConfigurationSettings -StaticSettings $static -DynamicEntries $dynamicEntries
             if (@($merged).Count -eq 0) { throw "Selected policy '$name' has zero settings; Intune deep-create requires at least one setting." }
             $body=New-CpcSettingsCatalogPolicyBody -Policy $bundle.policy -Settings $merged
@@ -296,4 +311,4 @@ catch {
     if ($resultPath) { Write-Warning "Import aborted. Partial/preflight results: $resultPath" }
     throw $failure
 }
-finally { Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null }
+finally { if($ownsGraphConnection){Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null} }

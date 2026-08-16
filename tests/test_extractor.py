@@ -71,6 +71,33 @@ Synthetic remediation text.
         self.assertEqual(records[1]["cisAssessmentMethod"], "Automated")
         self.assertEqual(records[1]["profiles"], ["L2"])
 
+    def test_apple_page_banner_and_next_generation_profile_are_supported(self) -> None:
+        text = """
+<<<PAGE 20>>>
+Page 19
+Internal Only - General
+2.1.1 Ensure synthetic Apple setting is enabled (Manual)
+Profile Applicability:
+Level 1 - Supervised Devices
+Audit:
+Synthetic audit text.
+Remediation:
+Synthetic remediation text.
+<<<PAGE 21>>>
+Page 20
+23.1 Ensure synthetic Windows security setting is enabled (Automated)
+Profile Applicability:
+Next Generation Windows Security (NG)
+Audit:
+Synthetic audit text.
+Remediation:
+Synthetic remediation text.
+"""
+        records = MODULE.extract(text)
+        self.assertEqual([item["recommendationId"] for item in records], ["2.1.1", "23.1"])
+        self.assertEqual(records[0]["profiles"], ["L1"])
+        self.assertEqual(records[1]["profiles"], ["NG"])
+
     def test_empty_extraction_fails_closed(self) -> None:
         with self.assertRaisesRegex(ValueError, "No CIS Intune recommendations"):
             MODULE.extract("not a benchmark")

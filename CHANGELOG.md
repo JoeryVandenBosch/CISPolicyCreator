@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 - 2026-08-16
+
+- Add exact-version partial catalogs for Windows 10 v5.0.0, Microsoft Edge v1.0.0, Microsoft Office v1.1.0, Apple macOS 26 Tahoe Intune v1.0.0, and Apple iOS 26 / iPadOS 26 Intune v1.0.0.
+- Build all five supplied PDFs into validated, unassigned Settings Catalog policy packs while leaving every unproven recommendation unresolved.
+- Add a beginner-facing supported-benchmark wrapper with an explicit benchmark selector; source title/version checks remain mandatory.
+- Allow an explicitly requested, tenant- and scope-validated Graph context to be reused for safe multi-pack validation without repeated sign-ins.
+- Extend deterministic PDF extraction to Apple page banners and the Windows Next Generation Security profile, and bump the extractor contract to 0.3.0.
+- Replace the root README with a start-to-finish installation, build, dry-run, and unassigned-import guide.
+- Preserve empty and single-item JSON arrays in writable Graph payloads, including role scope tags, settings, and nested children.
+- Live dry-run all five new partial catalogs and import their nine policies with mapped settings into a test tenant without assignments.
+
 ## 0.2.1 - 2026-08-14
 
 - Add deterministic private mapping-review worklists that recursively validate historical definitions and values against a pinned snapshot, preserve ambiguous/no-match outcomes, and never modify mapping status.

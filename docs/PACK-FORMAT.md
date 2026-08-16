@@ -34,7 +34,7 @@ Schema version `2.0` records source and build provenance:
   },
   "build": {
     "toolVersion": "0.2.0",
-    "extractorVersion": "0.2.2",
+    "extractorVersion": "0.3.0",
     "pdfParser": "pypdf",
     "pdfParserVersion": "6.15.0",
     "mappingCatalogId": "catalog-id",
