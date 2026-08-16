@@ -133,6 +133,20 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
         AdministratorDecisionsPath=(Join-Path $fixtures 'administrator-decisions.json')
         SettingsCatalogSnapshotPath=(Join-Path $fixtures 'settings-catalog-snapshot.json')
     }
+    $powershellLocation=Join-Path $testRoot 'powershell-location'
+    $nativeCurrentDirectory=Join-Path $testRoot 'native-current-directory'
+    New-Item -ItemType Directory -Path $powershellLocation,$nativeCurrentDirectory | Out-Null
+    $originalNativeCurrentDirectory=[Environment]::CurrentDirectory
+    Push-Location -LiteralPath $powershellLocation
+    try {
+        [Environment]::CurrentDirectory=$nativeCurrentDirectory
+        & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -OutputPath '.\relative-pack'
+    } finally {
+        [Environment]::CurrentDirectory=$originalNativeCurrentDirectory
+        Pop-Location
+    }
+    Assert-True (Test-Path -LiteralPath (Join-Path $powershellLocation 'relative-pack\manifest.json')) 'A relative pack OutputPath must resolve from the PowerShell location.'
+    Assert-True (-not (Test-Path -LiteralPath (Join-Path $nativeCurrentDirectory 'relative-pack'))) 'A relative pack OutputPath must not resolve from the hidden native process directory.'
     $reviewCommon=@{
         ExtractionPath=(Join-Path $fixtures 'mapping-review-extraction.json')
         SettingsCatalogSnapshotPath=$common.SettingsCatalogSnapshotPath

@@ -12,7 +12,7 @@ param(
     [Parameter(Mandatory)][ValidatePattern('^[a-fA-F0-9]{64}$')][string]$MappingCatalogSha256
 )
 $ErrorActionPreference='Stop'
-$root=[IO.Path]::GetFullPath($OutputPath)
+$root=$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
 if (Test-Path -LiteralPath $root) { throw "OutputPath already exists: $root" }
 New-Item -ItemType Directory -Path (Join-Path $root 'policies\settings-catalog') -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $root 'spec') -Force | Out-Null

@@ -34,7 +34,10 @@ $pythonExecutable=if ($PythonPath) {
 }
 if (-not $pythonExecutable) { throw 'Python 3 is required for local PDF extraction. Run scripts/Initialize-CISPolicyCreator.ps1.' }
 $extractor = Join-Path $repoRoot 'tools\Extract-CISRecommendations.py'
-$outputRoot = [IO.Path]::GetFullPath($OutputPath)
+# Resolve relative paths from PowerShell's current location. In an elevated shell,
+# Environment.CurrentDirectory can remain C:\Windows\System32 even when $PWD points
+# at the repository; [IO.Path]::GetFullPath(relative) would therefore publish there.
+$outputRoot = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
 if (Test-Path -LiteralPath $outputRoot) { throw "OutputPath already exists: $outputRoot" }
 $parent = Split-Path -Parent $outputRoot
 if (-not (Test-Path -LiteralPath $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
