@@ -265,6 +265,12 @@ def wrap_dependencies(
             if len(options) != 1:
                 return None, "parent-option-not-exact"
             current_option = options[0]
+            current_child_id = str(current_node.get("resolve", {}).get("definitionId") or "")
+            missing_required_children = [
+                child_id for child_id in required_children(current_option) if child_id != current_child_id
+            ]
+            if missing_required_children:
+                return None, "parent-choice-has-unresolved-required-children"
             current_node = node(
                 parent,
                 {"kind": "choice", "optionId": option_id, "children": [current_node]},

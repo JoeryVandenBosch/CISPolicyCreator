@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-office-1.1.0",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "benchmark": {
     "id": "office-intune",
     "version": "1.1.0",
@@ -2136,7 +2136,7 @@
         "settings-catalog:office-verified-l1-part-2"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.6",
@@ -2150,7 +2150,7 @@
         "settings-catalog:office-verified-l1-part-3"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.7",
@@ -2164,7 +2164,7 @@
         "settings-catalog:office-verified-l1-part-4"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.8",
@@ -2178,7 +2178,7 @@
         "settings-catalog:office-verified-l1-part-5"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.9",
@@ -2192,7 +2192,7 @@
         "settings-catalog:office-verified-l1-part-6"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.10",
@@ -2206,7 +2206,7 @@
         "settings-catalog:office-verified-l1-part-7"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.11",
@@ -2220,7 +2220,7 @@
         "settings-catalog:office-verified-l1-part-8"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.12",
@@ -2234,7 +2234,7 @@
         "settings-catalog:office-verified-l1-part-9"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.13",
@@ -2248,7 +2248,7 @@
         "settings-catalog:office-verified-l1-part-10"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.14",
@@ -2262,7 +2262,7 @@
         "settings-catalog:office-verified-l1-part-11"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.15",
@@ -2276,7 +2276,7 @@
         "settings-catalog:office-verified-l1-part-12"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.16",
@@ -2290,7 +2290,7 @@
         "settings-catalog:office-verified-l1-part-13"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.17",
@@ -2304,7 +2304,7 @@
         "settings-catalog:office-verified-l1-part-14"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.18",
@@ -2318,7 +2318,7 @@
         "settings-catalog:office-verified-l1-part-15"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.19",
@@ -2332,7 +2332,7 @@
         "settings-catalog:office-verified-l1-part-16"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.20",
@@ -2346,7 +2346,7 @@
         "settings-catalog:office-verified-l1-part-17"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.21",
@@ -2360,7 +2360,7 @@
         "settings-catalog:office-verified-l1-part-18"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.22",
@@ -2374,7 +2374,7 @@
         "settings-catalog:office-verified-l1-part-19"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.23",
@@ -2402,7 +2402,7 @@
         "settings-catalog:office-verified-l1-part-21"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.25",
@@ -2416,7 +2416,7 @@
         "settings-catalog:office-verified-l1-part-22"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.26",
@@ -2430,7 +2430,7 @@
         "settings-catalog:office-verified-l1-part-23"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.27",
@@ -2456,7 +2456,7 @@
         "settings-catalog:office-verified-l1-part-24"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.29",
@@ -2470,7 +2470,7 @@
         "settings-catalog:office-verified-l1-part-25"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.30",
@@ -2484,7 +2484,7 @@
         "settings-catalog:office-verified-l1-part-26"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.3.31",
@@ -2498,7 +2498,7 @@
         "settings-catalog:office-verified-l1-part-27"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the snapshot-required Outlook Security Policy child uses the exact value independently prescribed by CIS recommendation 2.5.14.3.23."
     },
     {
       "recommendationId": "2.5.14.5",
@@ -9002,6 +9002,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Allow Active X One Off Forms (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security_l_allowactivexoneoffforms_v2",
@@ -9668,6 +9681,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Allow hyperlinks in suspected phishing e-mail messages (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_trustcenter_l_enablelinksinemailmessages_v2",
@@ -9947,6 +9973,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Allow scripts in one-off Outlook forms (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_misccustomformsettings_l_enablescriptsinoneoffforms_v2",
@@ -10013,6 +10052,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Allow users to demote attachments to Level 2 (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_miscattachmentsettings_l_allowuserstolowerattachments_v2",
@@ -10045,6 +10097,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Authentication with Exchange Server (User)",
             "resolve": {
@@ -10094,6 +10159,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Configure Outlook object model prompt when accessing an address book (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_programmaticsettings_l_oomaddressbook_v2",
@@ -10141,6 +10219,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Configure Outlook object model prompt When accessing the Formula property of a UserProperty object (User)",
             "resolve": {
@@ -10190,6 +10281,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Configure Outlook object model prompt when executing Save As (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_programmaticsettings_l_oomsaveas_v2",
@@ -10237,6 +10341,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Configure Outlook object model prompt when reading address information (User)",
             "resolve": {
@@ -10286,6 +10403,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Configure Outlook object model prompt when responding to meeting and task requests (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_programmaticsettings_l_oommeetingtaskrequest_v2",
@@ -10334,6 +10464,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Display Level 1 attachments (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_miscattachmentsettings_l_level1attachments_v2",
@@ -10366,6 +10509,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Configure Outlook object model prompt when sending mail (User)",
             "resolve": {
@@ -10415,6 +10571,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Do not allow Outlook object model scripts to run for public folders (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_outlookoptions~l_other~l_advanced_l_disableoutlookobjectmodelscriptsforpublicfolders_v2",
@@ -10447,6 +10616,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Do not allow Outlook object model scripts to run for shared folders (User)",
             "resolve": {
@@ -10481,6 +10663,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Enable RPC encryption (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_toolsaccounts~l_exchangesettings_l_enablerpcencryption_v2",
@@ -10514,6 +10709,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Include Internet in Safe Zones for Automatic Picture Download (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_automaticpicturedownloadsettings_l_blockinternet_v2",
@@ -10546,6 +10754,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Junk E-mail protection level (User)",
             "resolve": {
@@ -10594,6 +10815,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Minimum encryption settings (User)",
             "resolve": {
@@ -10676,6 +10910,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Prevent users from customizing attachment security settings (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security_l_preventusersfromcustomizingattachmentsecuritysettings_v2",
@@ -10708,6 +10955,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Remove file extensions blocked as Level 1 (User)",
             "resolve": {
@@ -10742,6 +11002,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Remove file extensions blocked as Level 2 (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_miscattachmentsettings_l_level2removefilepolicy_v2",
@@ -10774,6 +11047,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Security setting for macros (User)",
             "resolve": {
@@ -10823,6 +11109,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Set Outlook object model custom actions execution prompt (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings~l_misccustomformsettings_l_onexecutecustomactionoom_v2",
@@ -10871,6 +11170,19 @@
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
           {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
+          {
             "displayName": "Signature Warning (User)",
             "resolve": {
               "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_cryptography_l_signaturewarning_v2",
@@ -10918,6 +11230,19 @@
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
         "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          },
           {
             "displayName": "Use Unicode format when dragging e-mail message to file system (User)",
             "resolve": {
