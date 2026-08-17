@@ -536,6 +536,20 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -SettingsCatalogSnapshotPath $requiredChildSnapshotPath -OutputPath (Join-Path $testRoot 'missing-required-child-pack') } catch { $missingRequiredChildError=$_.Exception.Message }
     Assert-True ([string]$missingRequiredChildError -cmatch 'missing snapshot-required child definition') 'A choice that omits a snapshot-required child must fail during pack compilation.'
 
+    $requiredGroupSnapshot=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
+    $requiredGroupDefinition=@($requiredGroupSnapshot.definitions | Where-Object id -eq 'synthetic_group')[0]
+    $requiredGroupDefinition.dependedOnBy=@([pscustomobject]@{required=$true;dependedOnBy='synthetic_group_enabled'})
+    $requiredGroupSnapshotPath=Join-Path $testRoot 'required-group-child-snapshot.json'
+    $requiredGroupSnapshot | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $requiredGroupSnapshotPath -Encoding utf8
+    $missingGroupChildCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
+    $missingGroupChildSetting=@($missingGroupChildCatalog.settingsCatalogSettings | Where-Object displayName -eq 'Synthetic group')[0]
+    $missingGroupChildSetting.value.items[0].children=@($missingGroupChildSetting.value.items[0].children | Where-Object { [string]$_.resolve.definitionId -cne 'synthetic_group_enabled' })
+    $missingGroupChildCatalogPath=Join-Path $testRoot 'missing-required-group-child-catalog.json'
+    $missingGroupChildCatalog | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $missingGroupChildCatalogPath -Encoding utf8
+    $missingRequiredGroupChildError=$null
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -MappingCatalogPath $missingGroupChildCatalogPath -SettingsCatalogSnapshotPath $requiredGroupSnapshotPath -OutputPath (Join-Path $testRoot 'missing-required-group-child-pack') } catch { $missingRequiredGroupChildError=$_.Exception.Message }
+    Assert-True ([string]$missingRequiredGroupChildError -cmatch 'missing snapshot-required child definition') 'A group item that omits a snapshot-required child must fail during pack compilation.'
+
     $badCollectionCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
     $badCollection=@($badCollectionCatalog.settingsCatalogSettings | Where-Object displayName -eq 'Synthetic string collection')[0]
     $badCollection.value.values[0]=123
@@ -732,6 +746,15 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $completeRequiredSpec.value.children=@($completeRequiredSpec.value.children)+@($requiredSiblingSpec)
     $completeRequiredBody=New-CpcConfigurationSettingBody -Definition $liveRequiredParent -Spec $completeRequiredSpec -Definitions @() -DefinitionCache $definitionCache
     Assert-True (@($completeRequiredBody.settingInstance.choiceSettingValue.children).Count -eq 2) 'Live payload generation must accept an exact required child alongside the mapped dependent setting.'
+    $liveRequiredGroup=($groupDefinition | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $liveRequiredGroup.dependedOnBy=@([pscustomobject]@{required=$true;dependedOnBy='synthetic_group_enabled'})
+    $missingLiveGroupSpec=($groupSpec | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $missingLiveGroupSpec.value.items[0].children=@($missingLiveGroupSpec.value.items[0].children | Where-Object { [string]$_.resolve.definitionId -cne 'synthetic_group_enabled' })
+    $missingLiveRequiredGroupChildError=$null
+    try { New-CpcConfigurationSettingBody -Definition $liveRequiredGroup -Spec $missingLiveGroupSpec -Definitions @() -DefinitionCache $definitionCache | Out-Null } catch { $missingLiveRequiredGroupChildError=$_.Exception.Message }
+    Assert-True ([string]$missingLiveRequiredGroupChildError -cmatch 'missing live-required child definition') 'Live payload generation must reject a group item that omits a live-required child before POST.'
+    $completeRequiredGroupBody=New-CpcConfigurationSettingBody -Definition $liveRequiredGroup -Spec $groupSpec -Definitions @() -DefinitionCache $definitionCache
+    Assert-True (@($completeRequiredGroupBody.settingInstance.groupSettingCollectionValue[0].children).Count -eq 2) 'Live payload generation must accept a group item containing its exact required child.'
     $choiceDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_choice')[0]
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
     $choiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $choiceSpec

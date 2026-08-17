@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-apple-macos26-tahoe-intune-1.0.0",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "benchmark": {
     "id": "macos26-tahoe-intune",
     "version": "1.0.0",
@@ -60,7 +60,7 @@
         "settings-catalog:macos-verified-l1-part-1"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the required FileVault Enable child uses the exact On value independently prescribed by CIS recommendation 2.3.1.2."
     },
     {
       "recommendationId": "2.3.1.2",
@@ -102,7 +102,7 @@
         "settings-catalog:macos-verified-l1-part-3"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the required FileVault Enable child uses the exact On value independently prescribed by CIS recommendation 2.3.1.2."
     },
     {
       "recommendationId": "2.3.1.5",
@@ -116,7 +116,7 @@
         "settings-catalog:macos-verified-l1-part-4"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the required FileVault Enable child uses the exact On value independently prescribed by CIS recommendation 2.3.1.2."
     },
     {
       "recommendationId": "2.3.1.6",
@@ -130,7 +130,7 @@
         "settings-catalog:macos-verified-l1-part-5"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting/value and pinned-snapshot IDs; the required FileVault Enable child uses the exact On value independently prescribed by CIS recommendation 2.3.1.2."
     },
     {
       "recommendationId": "2.3.2.1",
@@ -210,7 +210,7 @@
         "settings-catalog:macos-verified-l1-part-1"
       ],
       "decisionRef": null,
-      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; the required Enable Firewall child is reused exactly from recommendation 2.6.2.2 without inference."
     },
     {
       "recommendationId": "2.6.2.2",
@@ -1901,6 +1901,19 @@
           {
             "children": [
               {
+                "displayName": "Enable",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_enable",
+                  "baseUri": "",
+                  "offsetUri": "Enable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_enable_0"
+                }
+              },
+              {
                 "displayName": "User Enters Missing Info",
                 "resolve": {
                   "definitionId": "com.apple.mcx.filevault2_userentersmissinginfo",
@@ -2026,6 +2039,19 @@
         "items": [
           {
             "children": [
+              {
+                "displayName": "Enable Firewall",
+                "resolve": {
+                  "definitionId": "com.apple.security.firewall_enablefirewall",
+                  "baseUri": "",
+                  "offsetUri": "EnableFirewall",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.security.firewall_enablefirewall_true"
+                }
+              },
               {
                 "displayName": "Enable Stealth Mode",
                 "resolve": {
@@ -2423,6 +2449,19 @@
           {
             "children": [
               {
+                "displayName": "Enable",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_enable",
+                  "baseUri": "",
+                  "offsetUri": "Enable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_enable_0"
+                }
+              },
+              {
                 "displayName": "Show Recovery Key",
                 "resolve": {
                   "definitionId": "com.apple.mcx.filevault2_showrecoverykey",
@@ -2495,6 +2534,19 @@
           {
             "children": [
               {
+                "displayName": "Enable",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_enable",
+                  "baseUri": "",
+                  "offsetUri": "Enable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_enable_0"
+                }
+              },
+              {
                 "displayName": "Force Enable In Setup Assistant",
                 "resolve": {
                   "definitionId": "com.apple.mcx.filevault2_forceenableinsetupassistant",
@@ -2566,6 +2618,19 @@
         "items": [
           {
             "children": [
+              {
+                "displayName": "Enable",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_enable",
+                  "baseUri": "",
+                  "offsetUri": "Enable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_enable_0"
+                }
+              },
               {
                 "displayName": "Defer",
                 "resolve": {

@@ -170,6 +170,12 @@ def required_children(option: dict[str, Any]) -> list[str]:
     return result
 
 
+def required_child_ids(
+    definition: dict[str, Any], selected_option: dict[str, Any] | None = None
+) -> list[str]:
+    return sorted(set(required_children(definition) + required_children(selected_option or {})))
+
+
 def definition_dependencies(
     definition: dict[str, Any], selected_option: dict[str, Any] | None
 ) -> list[dict[str, Any]]:
@@ -219,7 +225,7 @@ def leaf_value(
         selected = exact_option(definition, desired)
         if not selected:
             return None, None, "choice-value-not-exact"
-        if required_children(selected):
+        if required_child_ids(definition, selected):
             return None, None, "choice-has-required-children"
         return {"kind": "choice", "optionId": selected["itemId"]}, selected, None
     if definition_type == SIMPLE:
@@ -254,6 +260,12 @@ def wrap_dependencies(
         parent = by_id[parent_id]
         parent_type = parent.get("@odata.type")
         if parent_type == GROUP:
+            current_child_id = str(current_node.get("resolve", {}).get("definitionId") or "")
+            missing_required_children = [
+                child_id for child_id in required_child_ids(parent) if child_id != current_child_id
+            ]
+            if missing_required_children:
+                return None, "parent-group-has-unresolved-required-children"
             current_node = node(
                 parent,
                 {"kind": "group-collection", "items": [{"children": [current_node]}]},
@@ -267,7 +279,9 @@ def wrap_dependencies(
             current_option = options[0]
             current_child_id = str(current_node.get("resolve", {}).get("definitionId") or "")
             missing_required_children = [
-                child_id for child_id in required_children(current_option) if child_id != current_child_id
+                child_id
+                for child_id in required_child_ids(parent, current_option)
+                if child_id != current_child_id
             ]
             if missing_required_children:
                 return None, "parent-choice-has-unresolved-required-children"
@@ -290,7 +304,7 @@ def direct_candidate(
     if definition_type == CHOICE:
         selected = exact_option(definition, desired)
         if selected:
-            child_ids = required_children(selected)
+            child_ids = required_child_ids(definition, selected)
             if not child_ids:
                 value = {"kind": "choice", "optionId": selected["itemId"]}
                 return wrap_dependencies(node(definition, value), definition, selected, by_id)
@@ -302,7 +316,7 @@ def direct_candidate(
                     if not child_definition or child_definition.get("@odata.type") != CHOICE:
                         return None, "all-applications-child-not-choice"
                     child_option = exact_option(child_definition, "True")
-                    if not child_option or required_children(child_option):
+                    if not child_option or required_child_ids(child_definition, child_option):
                         return None, "all-applications-true-not-exact"
                     children.append(
                         node(child_definition, {"kind": "choice", "optionId": child_option["itemId"]})
@@ -333,7 +347,7 @@ def direct_candidate(
         parent_option = exact_option(definition, parent_label)
         if not parent_option:
             return None, "parent-choice-not-exact"
-        child_ids = required_children(parent_option)
+        child_ids = required_child_ids(definition, parent_option)
         if not child_ids:
             return None, "qualified-choice-has-no-required-child"
         children: list[dict[str, Any]] = []
@@ -351,7 +365,7 @@ def direct_candidate(
                 if not child_definition or child_definition.get("@odata.type") != CHOICE:
                     return None, "all-applications-child-not-choice"
                 child_option = exact_option(child_definition, "True")
-                if not child_option or required_children(child_option):
+                if not child_option or required_child_ids(child_definition, child_option):
                     return None, "all-applications-true-not-exact"
                 children.append(
                     node(child_definition, {"kind": "choice", "optionId": child_option["itemId"]})

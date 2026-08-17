@@ -111,7 +111,7 @@ Settings are assembled through the validated dynamic specification and embedded 
 
 During live dry run or import, a case-insensitive same-name Settings Catalog policy is not assumed equivalent. Graph must return exactly one match, and the importer reads its metadata and every setting. The importer canonicalizes property order and top-level setting order, treats role scope tag ordering as insignificant, treats an absent or empty template ID as no template, and ignores only Graph response metadata plus the server-generated outer setting ID. All other metadata and complete nested definition/option/value content must match the prepared bundle exactly or the operation aborts before writes.
 
-For every selected choice, compilation checks the pinned snapshot's required dependent children and live payload generation repeats that check against the current Graph definition. Missing required children abort before a policy POST.
+For every selected choice and every setting-group item, compilation checks the pinned snapshot's required dependent children and live payload generation repeats that check against the current Graph definition. Snapshot schema 1.2 preserves definition-level `childIds`, `dependentOn`, and `dependedOnBy` evidence. Missing required children abort before a policy POST.
 
 ## Validated Settings Catalog setting
 

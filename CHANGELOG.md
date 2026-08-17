@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.2 - 2026-08-17
+
+- Preserve `childIds`, `dependentOn`, and `dependedOnBy` for every Settings Catalog definition in snapshot schema 1.2 instead of discarding required group dependency evidence.
+- Enforce definition-level required children for every choice and every group item during pack compilation and again against live Microsoft Graph before policy POST.
+- Correct four macOS FileVault policy trees by adding the exact `Enable = On` child independently prescribed by CIS recommendation 2.3.1.2.
+- Correct the macOS Stealth Mode tree by adding the exact required `Enable Firewall = true` child independently prescribed by CIS recommendation 2.6.2.2.
+- Reject future exact-match candidates when an ancestor group has another unresolved required child.
+- Normalize absent Graph arrays to empty arrays and create a missing private output directory during Settings Catalog export.
+
 ## 0.4.1 - 2026-08-17
 
 - Enforce every snapshot- and live-Graph-required child of a selected Settings Catalog choice before pack publication or policy POST.

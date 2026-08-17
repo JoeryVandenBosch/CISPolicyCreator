@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "apiVersion": "beta",
   "capturedAt": "2026-08-14T00:00:00Z",
   "tenantId": "00000000-0000-0000-0000-000000000000",
@@ -19,10 +19,19 @@
       "offsetUri": "Choice",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
       "options": [
-        { "itemId": "synthetic_choice_enabled", "displayName": "Enabled" },
-        { "itemId": "synthetic_choice_disabled", "displayName": "Disabled" }
+        {
+          "itemId": "synthetic_choice_enabled",
+          "displayName": "Enabled"
+        },
+        {
+          "itemId": "synthetic_choice_disabled",
+          "displayName": "Disabled"
+        }
       ],
-      "valueDefinition": null
+      "valueDefinition": null,
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_retention",
@@ -31,7 +40,13 @@
       "offsetUri": "Retention",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition",
       "options": [],
-      "valueDefinition": { "minimumValue": 1, "maximumValue": 365 }
+      "valueDefinition": {
+        "minimumValue": 1,
+        "maximumValue": 365
+      },
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_group",
@@ -40,7 +55,10 @@
       "offsetUri": "Group",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition",
       "options": [],
-      "valueDefinition": null
+      "valueDefinition": null,
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_string_collection",
@@ -53,7 +71,10 @@
         "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
         "minimumLength": 1,
         "maximumLength": 64
-      }
+      },
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_group_enabled",
@@ -62,10 +83,19 @@
       "offsetUri": "Group/Enabled",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
       "options": [
-        { "itemId": "synthetic_group_enabled_true", "displayName": "Enabled" },
-        { "itemId": "synthetic_group_enabled_false", "displayName": "Disabled" }
+        {
+          "itemId": "synthetic_group_enabled_true",
+          "displayName": "Enabled"
+        },
+        {
+          "itemId": "synthetic_group_enabled_false",
+          "displayName": "Disabled"
+        }
       ],
-      "valueDefinition": null
+      "valueDefinition": null,
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_group_cadence",
@@ -78,7 +108,10 @@
         "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition",
         "minimumValue": 30,
         "maximumValue": 1440
-      }
+      },
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_parent_choice",
@@ -87,10 +120,19 @@
       "offsetUri": "ParentChoice",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition",
       "options": [
-        { "itemId": "synthetic_parent_choice_enabled", "displayName": "Enabled" },
-        { "itemId": "synthetic_parent_choice_disabled", "displayName": "Disabled" }
+        {
+          "itemId": "synthetic_parent_choice_enabled",
+          "displayName": "Enabled"
+        },
+        {
+          "itemId": "synthetic_parent_choice_disabled",
+          "displayName": "Disabled"
+        }
       ],
-      "valueDefinition": null
+      "valueDefinition": null,
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_nested_group",
@@ -99,7 +141,10 @@
       "offsetUri": "ParentChoice/Entries",
       "@odata.type": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition",
       "options": [],
-      "valueDefinition": null
+      "valueDefinition": null,
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_nested_key",
@@ -112,7 +157,10 @@
         "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
         "minimumLength": 1,
         "maximumLength": 64
-      }
+      },
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     },
     {
       "id": "synthetic_nested_value",
@@ -125,7 +173,10 @@
         "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition",
         "minimumLength": 1,
         "maximumLength": 64
-      }
+      },
+      "childIds": [],
+      "dependentOn": [],
+      "dependedOnBy": []
     }
   ]
 }
