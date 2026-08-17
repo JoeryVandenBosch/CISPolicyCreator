@@ -498,6 +498,140 @@ function Compare-CpcSettingsCatalogPolicy {
     }
 }
 
+function Get-CpcGraphObjectContract {
+    param(
+        [Parameter(Mandatory)][string]$ContractId,
+        [Parameter(Mandatory)][string]$RepoRoot,
+        [string]$ExpectedSha256
+    )
+    $contractRoot=Join-Path $RepoRoot 'contracts\graph'
+    if(-not (Test-Path -LiteralPath $contractRoot -PathType Container)){throw "Graph contract directory is missing: $contractRoot"}
+    $matches=[System.Collections.Generic.List[object]]::new()
+    foreach($file in Get-ChildItem -LiteralPath $contractRoot -Filter '*.json' -File){
+        try {$contract=Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json -Depth 100}
+        catch {throw "Graph contract '$($file.FullName)' is invalid JSON: $($_.Exception.Message)"}
+        if([string]$contract.id -ceq $ContractId){$matches.Add([pscustomobject]@{Path=$file.FullName;Contract=$contract}) | Out-Null}
+    }
+    if($matches.Count -ne 1){throw "Graph contract '$ContractId' did not resolve exactly once; matches=$($matches.Count)."}
+    $schemaPath=Join-Path $RepoRoot 'schemas\graph-object-contract.schema.json'
+    $raw=Get-Content -LiteralPath $matches[0].Path -Raw
+    if(-not ($raw | Test-Json -SchemaFile $schemaPath -ErrorAction Stop)){throw "Graph contract '$ContractId' failed schema validation."}
+    $hash=(Get-FileHash -LiteralPath $matches[0].Path -Algorithm SHA256).Hash.ToLowerInvariant()
+    if($ExpectedSha256 -and $hash -cne $ExpectedSha256){throw "Graph contract '$ContractId' hash differs from the pack binding."}
+    $contract=$matches[0].Contract
+    foreach($uri in @([string]$contract.endpoint,[string]$contract.listEndpoint,([string]$contract.itemEndpointTemplate).Replace('{id}','contract-validation-id'))){
+        if(-not (Test-CpcGraphEndpointSafe -Uri $uri)){throw "Graph contract '$ContractId' contains an unsafe endpoint."}
+    }
+    return [pscustomobject]@{Path=$matches[0].Path;Sha256=$hash;Contract=$contract}
+}
+
+function Assert-CpcGraphObjectMatchesContract {
+    param(
+        [Parameter(Mandatory)]$GraphObject,
+        [Parameter(Mandatory)]$Contract
+    )
+
+    function Get-ContractProperty($node,[string]$name,[switch]$Required){
+        $property=if($node -is [System.Collections.IDictionary]){
+            if($node.Contains($name)){[pscustomobject]@{Value=$node[$name]}}else{$null}
+        }else{$node.PSObject.Properties[$name]}
+        if($Required -and -not $property){throw "Graph object is missing required property '$name'."}
+        if($property){return $property.Value}
+        return $null
+    }
+
+    $name=[string](Get-ContractProperty $GraphObject 'name' -Required)
+    $endpoint=[string](Get-ContractProperty $GraphObject 'endpoint' -Required)
+    $listEndpoint=[string](Get-ContractProperty $GraphObject 'listEndpoint')
+    if([string]::IsNullOrWhiteSpace($listEndpoint)){$listEndpoint=$endpoint}
+    $nameProperty=[string](Get-ContractProperty $GraphObject 'nameProperty')
+    if([string]::IsNullOrWhiteSpace($nameProperty)){$nameProperty='displayName'}
+    if($endpoint -cne [string]$Contract.endpoint){throw "Graph object '$name' endpoint differs from its pinned contract."}
+    if($listEndpoint -cne [string]$Contract.listEndpoint){throw "Graph object '$name' listEndpoint differs from its pinned contract."}
+    if($nameProperty -cne [string]$Contract.nameProperty){throw "Graph object '$name' nameProperty differs from its pinned contract."}
+
+    $payload=Get-ContractProperty $GraphObject 'payload' -Required
+    if($payload -isnot [System.Collections.IDictionary] -and $payload -isnot [pscustomobject]){throw "Graph object '$name' payload must be an object."}
+    $payloadNames=if($payload -is [System.Collections.IDictionary]){@($payload.Keys | ForEach-Object {[string]$_})}else{@($payload.PSObject.Properties.Name | ForEach-Object {[string]$_})}
+    $contractNames=@($Contract.properties.PSObject.Properties.Name | ForEach-Object {[string]$_})
+    $unexpected=@($payloadNames | Where-Object {$contractNames -cnotcontains [string]$_})
+    if($unexpected.Count -gt 0){throw "Graph object '$name' contains properties absent from contract '$($Contract.id)': $($unexpected -join ', ')."}
+
+    foreach($contractProperty in $Contract.properties.PSObject.Properties){
+        $propertyName=[string]$contractProperty.Name
+        $rule=$contractProperty.Value
+        $payloadProperty=if($payload -is [System.Collections.IDictionary]){
+            if($payload.Contains($propertyName)){[pscustomobject]@{Value=$payload[$propertyName]}}else{$null}
+        }else{$payload.PSObject.Properties[$propertyName]}
+        if($rule.required -eq $true -and -not $payloadProperty){throw "Graph object '$name' is missing contract-required payload property '$propertyName'."}
+        if(-not $payloadProperty){continue}
+        $value=$payloadProperty.Value
+        switch([string]$rule.type){
+            'boolean' {if($value -isnot [bool]){throw "Graph object '$name' payload property '$propertyName' must be boolean."}}
+            'integer' {if($value -isnot [byte] -and $value -isnot [int16] -and $value -isnot [int32] -and $value -isnot [int64]){throw "Graph object '$name' payload property '$propertyName' must be integer."}}
+            'string' {if($value -isnot [string]){throw "Graph object '$name' payload property '$propertyName' must be string."}}
+            default {throw "Graph contract '$($Contract.id)' has unsupported type '$($rule.type)'."}
+        }
+        $constProperty=$rule.PSObject.Properties['const']
+        if($constProperty -and $value -cne $constProperty.Value){throw "Graph object '$name' payload property '$propertyName' differs from its contract constant."}
+        $enumProperty=$rule.PSObject.Properties['enum']
+        if($enumProperty -and @($enumProperty.Value | Where-Object {$_ -ceq $value}).Count -ne 1){throw "Graph object '$name' payload property '$propertyName' is outside its contract enum."}
+        $minimumProperty=$rule.PSObject.Properties['minimum']
+        $maximumProperty=$rule.PSObject.Properties['maximum']
+        if($minimumProperty -and [int64]$value -lt [int64]$minimumProperty.Value){throw "Graph object '$name' payload property '$propertyName' is below its contract minimum."}
+        if($maximumProperty -and [int64]$value -gt [int64]$maximumProperty.Value){throw "Graph object '$name' payload property '$propertyName' is above its contract maximum."}
+        $minLengthProperty=$rule.PSObject.Properties['minLength']
+        $maxLengthProperty=$rule.PSObject.Properties['maxLength']
+        if($minLengthProperty -and ([string]$value).Length -lt [int]$minLengthProperty.Value){throw "Graph object '$name' payload property '$propertyName' is shorter than its contract minimum."}
+        if($maxLengthProperty -and ([string]$value).Length -gt [int]$maxLengthProperty.Value){throw "Graph object '$name' payload property '$propertyName' is longer than its contract maximum."}
+    }
+    $payloadName=if($payload -is [System.Collections.IDictionary]){$payload[$nameProperty]}else{$payload.PSObject.Properties[$nameProperty].Value}
+    if([string]$payloadName -cne $name){throw "Graph object '$name' payload name does not exactly match its object name."}
+    $odataType=if($payload -is [System.Collections.IDictionary]){$payload['@odata.type']}else{$payload.PSObject.Properties['@odata.type'].Value}
+    if([string]$odataType -cne [string]$Contract.odataType){throw "Graph object '$name' @odata.type differs from its pinned contract."}
+}
+
+function Compare-CpcGenericGraphObject {
+    param(
+        [Parameter(Mandatory)]$ExpectedPayload,
+        [Parameter(Mandatory)]$ActualPayload,
+        [Parameter(Mandatory)]$Contract
+    )
+    $expectedWritable=ConvertTo-CpcWritablePayload -InputObject $ExpectedPayload
+    $actualWritable=ConvertTo-CpcWritablePayload -InputObject $ActualPayload
+    $actualProjection=[ordered]@{}
+    foreach($key in $expectedWritable.Keys){
+        if(-not $actualWritable.Contains($key)){
+            return [pscustomobject]@{equivalent=$false;expectedSha256=$null;actualSha256=$null;detail="Existing object is missing expected property '$key'."}
+        }
+        $actualProjection[$key]=$actualWritable[$key]
+    }
+    $expectedCanonical=ConvertTo-CpcCanonicalObject $expectedWritable
+    $actualCanonical=ConvertTo-CpcCanonicalObject $actualProjection
+    $expectedJson=$expectedCanonical | ConvertTo-Json -Depth 100 -Compress
+    $actualJson=$actualCanonical | ConvertTo-Json -Depth 100 -Compress
+    $sha=[Security.Cryptography.SHA256]::Create()
+    try {
+        $expectedHash=[Convert]::ToHexString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($expectedJson))).ToLowerInvariant()
+        $sha.Initialize()
+        $actualHash=[Convert]::ToHexString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($actualJson))).ToLowerInvariant()
+    } finally {$sha.Dispose()}
+    return [pscustomobject]@{
+        equivalent=($expectedHash -ceq $actualHash)
+        expectedSha256=$expectedHash
+        actualSha256=$actualHash
+        detail=if($expectedHash -ceq $actualHash){'Exact expected-property subset match.'}else{'Expected-property subset differs.'}
+    }
+}
+
+function Get-CpcGraphObjectItemUri {
+    param([Parameter(Mandatory)]$Contract,[Parameter(Mandatory)][string]$Id)
+    if([string]::IsNullOrWhiteSpace($Id)){throw 'Cannot create a Graph item URI from an empty object ID.'}
+    $uri=([string]$Contract.itemEndpointTemplate).Replace('{id}',[Uri]::EscapeDataString($Id))
+    if(-not (Test-CpcGraphEndpointSafe -Uri $uri)){throw "Pinned Graph item endpoint produced an unsafe URI."}
+    return $uri
+}
+
 function Assert-CpcNoGenericGraphObjectCollision {
     param(
         [Parameter(Mandatory)][string]$Name,

@@ -24,6 +24,20 @@ try {
     }
     Write-Host 'PASS: tracked JSON syntax.'
 
+    $graphContractSchema=Join-Path $repoRoot 'schemas/graph-object-contract.schema.json'
+    $graphContracts=@{}
+    $contractRoot=Join-Path $repoRoot 'contracts/graph'
+    foreach($path in @(Get-ChildItem -LiteralPath $contractRoot -Filter '*.json' -File | Select-Object -ExpandProperty FullName)){
+        $relativePath=[IO.Path]::GetRelativePath($repoRoot,$path)
+        $json=Get-Content -LiteralPath $path -Raw
+        if(-not ($json | Test-Json -SchemaFile $graphContractSchema -ErrorAction Stop)){throw "Published Graph contract failed schema validation: $relativePath"}
+        $contract=$json | ConvertFrom-Json -Depth 100
+        $contractId=[string]$contract.id
+        if($graphContracts.ContainsKey($contractId)){throw "Duplicate published Graph contract ID: $contractId"}
+        $graphContracts[$contractId]=$contract
+    }
+    Write-Host 'PASS: pinned Graph object contracts.'
+
     $catalogSchema=Join-Path $repoRoot 'schemas/mapping-catalog.schema.json'
     foreach($relativePath in @($tracked | Where-Object { $_ -match '^benchmarks/.+/mapping-catalog\.json$' })){
         $path=Join-Path $repoRoot $relativePath
@@ -33,6 +47,14 @@ try {
         $ids=@($catalog.recommendations.recommendationId)
         if($ids.Count -ne [int]$catalog.benchmark.expectedRecommendationCount){throw "Published mapping catalog count mismatch: $relativePath"}
         if(@($ids | Sort-Object -Unique).Count -ne $ids.Count){throw "Published mapping catalog contains duplicate recommendation IDs: $relativePath"}
+        foreach($graphObject in @($catalog.graphObjects)){
+            $contractId=[string]$graphObject.contractId
+            if(-not $graphContracts.ContainsKey($contractId)){throw "Published mapping catalog references missing Graph contract '$contractId': $relativePath"}
+            $contract=$graphContracts[$contractId]
+            if([string]$graphObject.endpoint -cne [string]$contract.endpoint){throw "Published mapping catalog Graph endpoint differs from contract '$contractId': $relativePath"}
+            $listEndpoint=if($graphObject.listEndpoint){[string]$graphObject.listEndpoint}else{[string]$graphObject.endpoint}
+            if($listEndpoint -cne [string]$contract.listEndpoint){throw "Published mapping catalog Graph list endpoint differs from contract '$contractId': $relativePath"}
+        }
     }
     Write-Host 'PASS: published mapping catalogs.'
 
@@ -58,7 +80,7 @@ try {
     $prerequisites=& (Join-Path $repoRoot 'scripts/Test-CISPrerequisites.ps1') @prerequisiteArgs
     $python=[string]$prerequisites.PythonPath
     $pythonVersion=[string]$prerequisites.PythonVersion
-    & $python -m unittest tests/test_extractor.py
+    & $python -m unittest discover -s tests -p 'test_*.py'
     if($LASTEXITCODE -ne 0){throw "Python extraction tests failed with exit code $LASTEXITCODE."}
     & (Join-Path $repoRoot 'tests/Test-PdfPipeline.ps1') -PythonPath $python
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-apple-ios26-ipados26-intune-1.0.0",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "benchmark": {
     "id": "ios26-ipados26-intune",
     "version": "1.0.0",
@@ -40,11 +40,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.1.3",
@@ -52,11 +54,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.2.1",
@@ -64,11 +68,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.2.2",
@@ -76,11 +82,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.1",
@@ -88,11 +96,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-verified-l1-part-3"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.2",
@@ -100,11 +110,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.3",
@@ -112,11 +124,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.4",
@@ -124,11 +138,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.5",
@@ -148,11 +164,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.7",
@@ -160,11 +178,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.3.8",
@@ -172,11 +192,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.4.1",
@@ -184,11 +206,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.4.2",
@@ -196,11 +220,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.4.3",
@@ -208,11 +234,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.1",
@@ -220,11 +248,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.2",
@@ -232,11 +262,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.3",
@@ -244,11 +276,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.4",
@@ -256,11 +290,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.5",
@@ -268,11 +304,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.5.6",
@@ -280,11 +318,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.6.1",
@@ -292,11 +332,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.6.2",
@@ -304,11 +346,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.6.3",
@@ -316,11 +360,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.6.4",
@@ -328,11 +374,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.7.1",
@@ -340,11 +388,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.7.2",
@@ -352,11 +402,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.7.3",
@@ -364,11 +416,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.7.4",
@@ -376,11 +430,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-passcode-minimum-length-l1"
+      ],
+      "decisionRef": "ios-passcode-minimum-length",
+      "notes": "CIS permits any value from 6 through the Graph-supported maximum of 14; an administrator must choose explicitly."
     },
     {
       "recommendationId": "2.7.5",
@@ -388,11 +444,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.7.6",
@@ -412,11 +470,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "2.8.1",
@@ -424,11 +484,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.1.1",
@@ -436,11 +498,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.1.2",
@@ -448,11 +512,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.1.3",
@@ -460,11 +526,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.1.4",
@@ -472,11 +540,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.1.5",
@@ -484,11 +554,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.2.1",
@@ -496,11 +568,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.2.2",
@@ -508,11 +582,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.1",
@@ -520,11 +596,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-verified-l1-part-4"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "3.3.2",
@@ -532,11 +610,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.3",
@@ -544,11 +624,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.4",
@@ -556,11 +638,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.5",
@@ -580,11 +664,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.7",
@@ -592,11 +678,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.8",
@@ -604,11 +692,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.9",
@@ -616,11 +706,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.10",
@@ -628,11 +720,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.3.11",
@@ -640,11 +734,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.4.1",
@@ -652,11 +748,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.4.2",
@@ -664,11 +762,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.4.3",
@@ -676,11 +776,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.4.4",
@@ -688,11 +790,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.4.5",
@@ -700,11 +804,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.1",
@@ -712,11 +818,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.2",
@@ -724,11 +832,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.3",
@@ -736,11 +846,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.4",
@@ -748,11 +860,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.5",
@@ -760,11 +874,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.6",
@@ -772,11 +888,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.7",
@@ -784,11 +902,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.8",
@@ -796,11 +916,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.9",
@@ -808,11 +930,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.10",
@@ -820,11 +944,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.5.11",
@@ -832,11 +958,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-verified-l1-part-5"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "3.5.12",
@@ -844,11 +972,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.6.1",
@@ -856,11 +986,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.6.2",
@@ -868,11 +1000,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.6.3",
@@ -880,11 +1014,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.6.4",
@@ -892,11 +1028,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.1",
@@ -904,11 +1042,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.2",
@@ -916,11 +1056,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.3",
@@ -928,11 +1070,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.4",
@@ -940,11 +1084,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-passcode-minimum-length-l1"
+      ],
+      "decisionRef": "ios-passcode-minimum-length",
+      "notes": "CIS permits any value from 6 through the Graph-supported maximum of 14; an administrator must choose explicitly."
     },
     {
       "recommendationId": "3.7.5",
@@ -952,11 +1098,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.6",
@@ -976,11 +1124,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.8",
@@ -988,11 +1138,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.9",
@@ -1000,11 +1152,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.7.10",
@@ -1012,11 +1166,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.8.1",
@@ -1024,11 +1180,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact CIS value mapped to a typed property in pinned Graph contract 'microsoft.graph.iosGeneralDeviceConfiguration.beta'; no assignment is included."
     },
     {
       "recommendationId": "3.9.1",
@@ -1151,12 +1309,86 @@
       "notes": null
     }
   ],
-  "administratorInputs": [],
+  "administratorInputs": [
+    {
+      "id": "ios-passcode-minimum-length",
+      "recommendationId": "2.7.4",
+      "prompt": "Choose the iOS/iPadOS minimum password length. CIS requires 6 or greater; Microsoft Graph permits 4 through 14.",
+      "valueType": "integer",
+      "minimum": 6,
+      "maximum": 14
+    }
+  ],
   "settingsCatalogPolicies": [
     {
       "id": "ios-managed-data-l1",
       "name": "CIS - iOS Security [L1] - 1.0.0",
       "description": "Evidence-backed CIS iOS Intune mapping.",
+      "platforms": "iOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-verified-l1-part-1",
+      "name": "CIS - iOS/iPadOS 26 Verified [L1] - v1.0.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "iOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-verified-l1-part-2",
+      "name": "CIS - iOS/iPadOS 26 Verified [L1] - v1.0.0 - Part 2",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "iOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-verified-l1-part-3",
+      "name": "CIS - iOS/iPadOS 26 Verified [L1] - v1.0.0 - Part 3",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "iOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-verified-l1-part-4",
+      "name": "CIS - iOS/iPadOS 26 Verified [L1] - v1.0.0 - Part 4",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "iOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-verified-l1-part-5",
+      "name": "CIS - iOS/iPadOS 26 Verified [L1] - v1.0.0 - Part 5",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
       "platforms": "iOS",
       "technologies": "mdm",
       "profiles": [
@@ -1203,7 +1435,361 @@
           }
         ]
       }
+    },
+    {
+      "recommendationId": "2.1.2",
+      "policyId": "ios-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Force AirDrop Unmanaged",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_forceairdropunmanaged",
+                  "baseUri": "",
+                  "offsetUri": "forceAirDropUnmanaged",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_forceairdropunmanaged_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.1.3",
+      "policyId": "ios-verified-l1-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Require Managed Pasteboard",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_requiremanagedpasteboard",
+                  "baseUri": "",
+                  "offsetUri": "requireManagedPasteboard",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_requiremanagedpasteboard_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1",
+      "policyId": "ios-verified-l1-part-3",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Force Encrypted Backup",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_forceencryptedbackup",
+                  "baseUri": "",
+                  "offsetUri": "forceEncryptedBackup",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_forceencryptedbackup_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "3.3.1",
+      "policyId": "ios-verified-l1-part-4",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Force Encrypted Backup",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_forceencryptedbackup",
+                  "baseUri": "",
+                  "offsetUri": "forceEncryptedBackup",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_forceencryptedbackup_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "3.5.11",
+      "policyId": "ios-verified-l1-part-5",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Force Automatic Date And Time",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_forceautomaticdateandtime",
+                  "baseUri": "",
+                  "offsetUri": "forceAutomaticDateAndTime",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_forceautomaticdateandtime_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
     }
   ],
-  "graphObjects": []
+  "graphObjects": [
+    {
+      "name": "CIS - iOS and iPadOS 26 Device Restrictions [L1] - 1.0.0",
+      "recommendationIds": [
+        "2.2.1",
+        "3.2.1",
+        "2.2.2",
+        "3.2.2",
+        "2.3.2",
+        "3.3.2",
+        "2.3.3",
+        "3.3.3",
+        "2.3.4",
+        "3.3.4",
+        "2.3.6",
+        "3.3.6",
+        "2.3.7",
+        "3.3.7",
+        "2.3.8",
+        "3.3.8",
+        "2.4.1",
+        "3.4.1",
+        "2.4.2",
+        "3.4.2",
+        "2.4.3",
+        "3.4.3",
+        "2.5.1",
+        "3.5.1",
+        "2.5.2",
+        "3.5.2",
+        "2.5.4",
+        "3.5.4",
+        "2.5.5",
+        "3.5.5",
+        "2.5.6",
+        "3.5.6",
+        "2.6.1",
+        "3.6.1",
+        "2.6.3",
+        "3.6.3",
+        "2.6.4",
+        "3.6.4",
+        "2.7.1",
+        "3.7.1",
+        "2.7.2",
+        "3.7.2",
+        "2.7.5",
+        "3.7.5",
+        "2.8.1",
+        "3.8.1",
+        "3.1.1",
+        "3.1.2",
+        "3.1.3",
+        "3.1.4",
+        "3.1.5",
+        "3.3.9",
+        "3.3.10",
+        "3.3.11",
+        "3.4.4",
+        "3.4.5",
+        "3.5.7",
+        "3.5.8",
+        "3.5.9",
+        "3.5.10",
+        "3.5.12",
+        "3.7.8",
+        "3.7.9",
+        "3.7.10"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosGeneralDeviceConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Device Restrictions [L1] - 1.0.0",
+        "description": "Deterministic CIS benchmark settings. Unassigned by design.",
+        "siriBlockedWhenLocked": true,
+        "safariRequireFraudWarning": true,
+        "iCloudBlockManagedAppsSync": true,
+        "enterpriseBookBlockBackup": true,
+        "enterpriseBookBlockMetadataSync": true,
+        "iCloudBlockPhotoLibrary": true,
+        "iCloudBlockPhotoStreamSync": true,
+        "iCloudBlockActivityContinuation": true,
+        "appleWatchForceWristDetection": true,
+        "airPlayForcePairingPasswordForOutgoingRequests": true,
+        "autoUnlockBlocked": true,
+        "diagnosticDataBlockSubmission": true,
+        "screenCaptureBlocked": true,
+        "privacyForceLimitAdTracking": true,
+        "enterpriseAppBlockTrust": true,
+        "applePersonalizedAdsBlocked": true,
+        "lockScreenBlockControlCenter": true,
+        "lockScreenBlockTodayView": true,
+        "lockScreenBlockPassbook": true,
+        "passcodeRequired": true,
+        "passcodeBlockSimple": true,
+        "passcodeMinutesOfInactivityBeforeLock": 0,
+        "voiceDialingBlocked": true,
+        "documentsBlockManagedDocumentsInUnmanagedApps": true,
+        "airDropForceUnmanagedDropTarget": true,
+        "managedPasteboardRequired": true,
+        "appStoreBlocked": true,
+        "filesNetworkDriveAccessBlocked": true,
+        "iCloudBlockBackup": true,
+        "iCloudBlockDocumentSync": true,
+        "keychainBlockCloudSync": true,
+        "airPrintBlockiBeaconDiscovery": true,
+        "filesUsbDriveAccessBlocked": true,
+        "deviceBlockEraseContentAndSettings": true,
+        "deviceBlockNameModification": true,
+        "configurationProfileBlockChanges": true,
+        "activationLockAllowWhenSupervised": true,
+        "vpnBlockCreation": true,
+        "passwordBlockProximityRequests": true,
+        "passwordBlockAirDropSharing": true,
+        "autoFillForceAuthentication": true
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Device Restrictions [L2] - 1.0.0",
+      "recommendationIds": [
+        "2.5.3",
+        "3.5.3",
+        "2.6.2",
+        "3.6.2",
+        "2.7.3",
+        "3.7.3",
+        "2.7.7",
+        "3.7.7"
+      ],
+      "profiles": [
+        "L2"
+      ],
+      "contractId": "microsoft.graph.iosGeneralDeviceConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Device Restrictions [L2] - 1.0.0",
+        "description": "Deterministic CIS benchmark settings. Unassigned by design.",
+        "certificatesBlockUntrustedTlsCertificates": true,
+        "lockScreenBlockNotificationView": true,
+        "passcodeRequiredType": "alphanumeric",
+        "passcodeBlockFingerprintUnlock": true
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Minimum Password Length [L1] - 1.0.0",
+      "recommendationIds": [
+        "2.7.4",
+        "3.7.4"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosGeneralDeviceConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Minimum Password Length [L1] - 1.0.0",
+        "description": "Administrator-selected CIS-compliant minimum password length. Unassigned by design.",
+        "passcodeMinimumLength": {
+          "$decision": "ios-passcode-minimum-length"
+        }
+      }
+    }
+  ]
 }

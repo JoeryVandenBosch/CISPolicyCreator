@@ -256,16 +256,37 @@ try {
                 if (-not (Test-CpcGraphEndpointSafe -Uri $endpoint) -or -not (Test-CpcGraphEndpointSafe -Uri $listEndpoint)) { throw "Unsafe Graph endpoint in '$name'." }
                 $payload=ConvertTo-CpcWritablePayload -InputObject $obj.payload
                 if (Test-CpcObjectContainsAssignments -InputObject $payload) { throw "Graph object '$name' contains assignments." }
+                $contractInfo=Get-CpcGraphObjectContract -ContractId ([string]$obj.contractId) -ExpectedSha256 ([string]$obj.contractSha256) -RepoRoot $repoRoot
+                Assert-CpcGraphObjectMatchesContract -GraphObject $obj -Contract $contractInfo.Contract
                 $nameProperty=if ($obj.nameProperty) { [string]$obj.nameProperty } else { 'displayName' }
                 $existingObjects=Invoke-CpcGraphPaged $listEndpoint
                 $match=@($existingObjects | Where-Object { [string]$_.$nameProperty -ieq $name })
-                try { Assert-CpcNoGenericGraphObjectCollision -Name $name -ExistingObjects $match }
-                catch {
-                    $detail=Get-CpcGraphErrorDetail $_
+                if($match.Count -gt 1){
+                    $detail="Found $($match.Count) existing objects with the same case-insensitive name. Exact identity is ambiguous."
                     Add-CpcResult -Results $results -Stage 'graph-object' -Name $name -Status 'failed-existing-verification' -Detail $detail
-                    throw "Generic Graph object collision for '$name': $detail No Intune objects were created."
+                    throw "Existing Graph-object verification failed for '$name': $detail No Intune objects were created."
                 }
-                $preparedGraphObjects.Add([pscustomobject]@{ name=$name; endpoint=$endpoint; payload=$payload })
+                $existingVerification=$null
+                if($match.Count -eq 1){
+                    $existingId=[string]$match[0].id
+                    if([string]::IsNullOrWhiteSpace($existingId)){throw "Existing Graph-object verification failed for '$name': Graph returned an empty object ID. No Intune objects were created."}
+                    try {
+                        $itemUri=Get-CpcGraphObjectItemUri -Contract $contractInfo.Contract -Id $existingId
+                        $existingDetail=Invoke-MgGraphRequest -Method GET -Uri $itemUri
+                        $comparison=Compare-CpcGenericGraphObject -ExpectedPayload $payload -ActualPayload $existingDetail -Contract $contractInfo.Contract
+                    } catch {
+                        $detail=Get-CpcGraphErrorDetail $_
+                        Add-CpcResult -Results $results -Stage 'graph-object' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                        throw "Existing Graph-object verification failed for '$name': $detail No Intune objects were created."
+                    }
+                    if(-not $comparison.equivalent){
+                        $detail="Existing object '$existingId' differs from the pack (expectedSha256=$($comparison.expectedSha256); actualSha256=$($comparison.actualSha256); $($comparison.detail))."
+                        Add-CpcResult -Results $results -Stage 'graph-object' -Name $name -Status 'failed-existing-verification' -Detail $detail
+                        throw "Existing Graph-object verification failed for '$name': $detail No Intune objects were created."
+                    }
+                    $existingVerification=[pscustomobject]@{id=$existingId;comparison=$comparison}
+                }
+                $preparedGraphObjects.Add([pscustomobject]@{ name=$name; endpoint=$endpoint; payload=$payload; existingVerification=$existingVerification })
             }
         }
     }
@@ -276,7 +297,8 @@ try {
             else { Write-Host "[DRY RUN] Would deep-create policy: $($p.name) ($($p.settingCount) embedded settings)"; Add-CpcResult -Results $results -Stage 'settings-catalog-policy' -Name $p.name -Status 'dry-run-deep-create' -Detail "$($p.settingCount) embedded settings" }
         }
         foreach ($o in $preparedGraphObjects) {
-            Write-Host "[DRY RUN] Would create Graph object: $($o.name) -> $($o.endpoint)"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'dry-run' -Detail $o.endpoint
+            if($o.existingVerification){Write-Host "[DRY RUN] Existing Graph object exactly matches; would skip: $($o.name) [$($o.existingVerification.id)]";Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'existing-equivalent' -Detail ([string]$o.existingVerification.id)}
+            else {Write-Host "[DRY RUN] Would create Graph object: $($o.name) -> $($o.endpoint)"; Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'dry-run' -Detail $o.endpoint}
         }
     } else {
         foreach ($p in $preparedPolicies) {
@@ -290,6 +312,7 @@ try {
             }
         }
         foreach ($o in $preparedGraphObjects) {
+            if($o.existingVerification){Write-Warning "Graph object already exists, exactly matches, and will not be modified: $($o.name)";Add-CpcResult -Results $results -Stage 'graph-object' -Name $o.name -Status 'existing-equivalent' -Detail ([string]$o.existingVerification.id);continue}
             try {
                 $created=Invoke-MgGraphRequest -Method POST -Uri $o.endpoint -ContentType 'application/json' -Body ($o.payload | ConvertTo-Json -Depth 100)
                 Write-Host "Created Graph object: $($o.name)"

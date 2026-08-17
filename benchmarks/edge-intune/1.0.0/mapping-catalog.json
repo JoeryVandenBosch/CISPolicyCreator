@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-edge-1.0.0",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "benchmark": {
     "id": "edge-intune",
     "version": "1.0.0",
@@ -26,11 +26,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.3.1",
@@ -38,11 +40,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.1",
@@ -50,11 +54,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.2",
@@ -62,11 +68,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.3",
@@ -74,11 +82,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.4",
@@ -86,11 +96,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.5",
@@ -98,11 +110,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.6",
@@ -110,11 +124,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.7",
@@ -122,11 +138,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.8",
@@ -134,11 +152,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.9",
@@ -146,11 +166,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.10",
@@ -158,11 +180,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.4.11",
@@ -170,11 +194,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.6.1",
@@ -182,11 +208,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.7.1",
@@ -194,11 +222,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.9.1",
@@ -206,11 +236,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.10.1",
@@ -218,11 +250,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.10.2",
@@ -242,11 +276,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.13.1",
@@ -254,11 +290,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.13.2",
@@ -290,11 +328,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.20.1",
@@ -314,11 +354,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.24.1",
@@ -326,11 +368,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.1",
@@ -338,11 +382,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.2",
@@ -350,11 +396,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.3",
@@ -362,11 +410,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.4",
@@ -374,11 +424,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.5",
@@ -386,11 +438,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.31.6",
@@ -398,11 +452,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.32.1",
@@ -410,11 +466,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.33",
@@ -434,11 +492,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.35",
@@ -446,11 +506,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.36",
@@ -486,11 +548,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.39",
@@ -498,11 +562,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.40",
@@ -510,11 +576,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.41",
@@ -522,11 +590,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.42",
@@ -534,11 +604,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.43",
@@ -546,11 +618,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.44",
@@ -558,11 +632,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.45",
@@ -570,11 +646,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.46",
@@ -596,11 +674,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.48",
@@ -608,11 +688,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.49",
@@ -620,11 +702,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.50",
@@ -632,11 +716,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.51",
@@ -644,11 +730,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.52",
@@ -656,11 +744,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.53",
@@ -668,11 +758,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.54",
@@ -680,11 +772,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.55",
@@ -720,11 +814,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.58",
@@ -732,11 +828,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.59",
@@ -744,11 +842,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.60",
@@ -756,11 +856,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.61",
@@ -768,11 +870,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.62",
@@ -780,11 +884,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.63",
@@ -792,11 +898,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.64",
@@ -816,11 +924,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.66",
@@ -828,11 +938,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.67",
@@ -840,11 +952,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.68",
@@ -852,11 +966,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.69",
@@ -864,11 +980,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.70",
@@ -876,11 +994,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.71",
@@ -888,11 +1008,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.72",
@@ -900,11 +1022,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.73",
@@ -938,11 +1062,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.76",
@@ -950,11 +1076,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.77",
@@ -974,11 +1102,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.79",
@@ -1012,11 +1142,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.82",
@@ -1038,11 +1170,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.84",
@@ -1050,11 +1184,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.85",
@@ -1062,11 +1198,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.86",
@@ -1074,11 +1212,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.87",
@@ -1086,11 +1226,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.88",
@@ -1098,11 +1240,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.89",
@@ -1110,11 +1254,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.90",
@@ -1122,11 +1268,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.91",
@@ -1134,11 +1282,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.92",
@@ -1160,11 +1310,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.94",
@@ -1172,11 +1324,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.95",
@@ -1184,11 +1338,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.96",
@@ -1196,11 +1352,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.97",
@@ -1208,11 +1366,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.98",
@@ -1220,11 +1380,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.99",
@@ -1232,11 +1394,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.100",
@@ -1244,11 +1408,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.101",
@@ -1256,11 +1422,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.102",
@@ -1268,11 +1436,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.103",
@@ -1280,11 +1450,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.104",
@@ -1306,11 +1478,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.106",
@@ -1318,11 +1492,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.107",
@@ -1330,11 +1506,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.108",
@@ -1342,11 +1520,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.109",
@@ -1366,11 +1546,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.111",
@@ -1378,11 +1560,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.112",
@@ -1390,11 +1574,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.113",
@@ -1402,11 +1588,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.114",
@@ -1426,11 +1614,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.116",
@@ -1438,11 +1628,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.117",
@@ -1450,11 +1642,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.118",
@@ -1462,11 +1656,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.119",
@@ -1488,11 +1684,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.121",
@@ -1500,11 +1698,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.122",
@@ -1512,11 +1712,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.123",
@@ -1524,11 +1726,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.124",
@@ -1536,11 +1740,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.125",
@@ -1548,11 +1754,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.126",
@@ -1560,11 +1768,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.127",
@@ -1572,11 +1782,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.128",
@@ -1598,11 +1810,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.130",
@@ -1624,11 +1838,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.132",
@@ -1636,11 +1852,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.133",
@@ -1648,11 +1866,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.134",
@@ -1660,11 +1880,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.135",
@@ -1672,11 +1894,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:edge-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "3.1.1",
@@ -1722,6 +1946,45 @@
       "id": "edge-security-l2",
       "name": "CIS - Microsoft Edge [L2] - v1.0.0",
       "description": "Evidence-backed CIS Microsoft Intune for Edge mappings.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "edge-verified-l1-part-1",
+      "name": "CIS - Microsoft Edge Verified [L1] - v1.0.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "edge-verified-l1-part-2",
+      "name": "CIS - Microsoft Edge Verified [L1] - v1.0.0 - Part 2",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "edge-verified-l2-part-1",
+      "name": "CIS - Microsoft Edge Verified [L2] - v1.0.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
       "platforms": "windows10",
       "technologies": "mdm",
       "profiles": [
@@ -1965,6 +2228,2382 @@
       "value": {
         "kind": "choice",
         "optionId": "device_vendor_msft_policy_config_microsoft_edgev114~policy~microsoft_edge_standalonehubssidebarenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.2.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable Google Cast",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~googlecast_enablemediarouter",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~GoogleCast/EnableMediaRouter",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~googlecast_enablemediarouter_0"
+      }
+    },
+    {
+      "recommendationId": "1.3.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow users to manage installed CA certificates.",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge~certificatemanagement_cacertificatemanagementallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev133~Policy~microsoft_edge~CertificateManagement/CACertificateManagementAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge~certificatemanagement_cacertificatemanagementallowed_1",
+        "children": [
+          {
+            "displayName": "Allow users to manage installed CA certificates. (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge~certificatemanagement_cacertificatemanagementallowed_cacertificatemanagementallowed",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev133~Policy~microsoft_edge~CertificateManagement/CACertificateManagementAllowed",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge~certificatemanagement_cacertificatemanagementallowed_cacertificatemanagementallowed_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.3",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Control use of insecure content exceptions",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~contentsettings_defaultinsecurecontentsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge~ContentSettings/DefaultInsecureContentSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~contentsettings_defaultinsecurecontentsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of insecure content exceptions (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~contentsettings_defaultinsecurecontentsetting_defaultinsecurecontentsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge~ContentSettings/DefaultInsecureContentSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~contentsettings_defaultinsecurecontentsetting_defaultinsecurecontentsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.6",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Control use of the File System API for writing",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemwriteguardsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/DefaultFileSystemWriteGuardSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemwriteguardsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of the File System API for writing (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemwriteguardsetting_defaultfilesystemwriteguardsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/DefaultFileSystemWriteGuardSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemwriteguardsetting_defaultfilesystemwriteguardsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.9",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Default automatic downloads setting",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev110~policy~microsoft_edge~contentsettings_defaultautomaticdownloadssetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev110~Policy~microsoft_edge~ContentSettings/DefaultAutomaticDownloadsSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev110~policy~microsoft_edge~contentsettings_defaultautomaticdownloadssetting_1",
+        "children": [
+          {
+            "displayName": "Default automatic downloads setting (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev110~policy~microsoft_edge~contentsettings_defaultautomaticdownloadssetting_defaultautomaticdownloadssetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev110~Policy~microsoft_edge~ContentSettings/DefaultAutomaticDownloadsSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev110~policy~microsoft_edge~contentsettings_defaultautomaticdownloadssetting_defaultautomaticdownloadssetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.10",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Default geolocation setting",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultgeolocationsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~ContentSettings/DefaultGeolocationSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultgeolocationsetting_1",
+        "children": [
+          {
+            "displayName": "Default geolocation setting (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultgeolocationsetting_defaultgeolocationsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~ContentSettings/DefaultGeolocationSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultgeolocationsetting_defaultgeolocationsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.6.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable insecure download warnings",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge~downloads_showdownloadsinsecurewarningsenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev128~Policy~microsoft_edge~Downloads/ShowDownloadsInsecureWarningsEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge~downloads_showdownloadsinsecurewarningsenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.7.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure Edge Website Typo Protection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge~typosquattingchecker_typosquattingcheckerenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev96~Policy~microsoft_edge~TyposquattingChecker/TyposquattingCheckerEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge~typosquattingchecker_typosquattingcheckerenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.9.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure users ability to override feature flags",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~experimentation_featureflagoverridescontrol",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev93~Policy~microsoft_edge~Experimentation/FeatureFlagOverridesControl",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~experimentation_featureflagoverridescontrol_1",
+        "children": [
+          {
+            "displayName": "Configure users ability to override feature flags (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~experimentation_featureflagoverridescontrol_featureflagoverridescontrol",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev93~Policy~microsoft_edge~Experimentation/FeatureFlagOverridesControl",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~experimentation_featureflagoverridescontrol_featureflagoverridescontrol_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.10.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Blocks external extensions from being installed",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge~extensions_blockexternalextensions",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev88~Policy~microsoft_edge~Extensions/BlockExternalExtensions",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge~extensions_blockexternalextensions_1"
+      }
+    },
+    {
+      "recommendationId": "1.11.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable Gamer Mode",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge~edgegames_gamermodeenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev117~Policy~microsoft_edge~EdgeGames/GamerModeEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge~edgegames_gamermodeenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.13.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow Basic authentication for HTTP",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev88.0.705.23~policy~microsoft_edge~httpauthentication_basicauthoverhttpenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev88.0.705.23~Policy~microsoft_edge~HTTPAuthentication/BasicAuthOverHttpEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev88.0.705.23~policy~microsoft_edge~httpauthentication_basicauthoverhttpenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.14.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Guided Switch Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev103~policy~microsoft_edge~identity_guidedswitchenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev103~Policy~microsoft_edge~Identity/GuidedSwitchEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev103~policy~microsoft_edge~identity_guidedswitchenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.21.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable saving passwords to the password manager",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~passwordmanager_passwordmanagerenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~PasswordManager/PasswordManagerEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~passwordmanager_passwordmanagerenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.24.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable startup boost",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge~performance_startupboostenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev88~Policy~microsoft_edge~Performance/StartupBoostEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge~performance_startupboostenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.31.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure Microsoft Defender SmartScreen",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_smartscreenenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~SmartScreen/SmartScreenEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_smartscreenenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.31.2",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure Microsoft Defender SmartScreen to block potentially unwanted apps",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~smartscreen_smartscreenpuaenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge~SmartScreen/SmartScreenPuaEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge~smartscreen_smartscreenpuaenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.31.3",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable Microsoft Defender SmartScreen DNS requests",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev97~policy~microsoft_edge~smartscreen_smartscreendnsrequestsenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev97~Policy~microsoft_edge~SmartScreen/SmartScreenDnsRequestsEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev97~policy~microsoft_edge~smartscreen_smartscreendnsrequestsenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.31.4",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Force Microsoft Defender SmartScreen checks on downloads from trusted sources",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge~smartscreen_smartscreenfortrusteddownloadsenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev78diff~Policy~microsoft_edge~SmartScreen/SmartScreenForTrustedDownloadsEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge~smartscreen_smartscreenfortrusteddownloadsenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.31.5",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Prevent bypassing Microsoft Defender SmartScreen prompts for sites",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_preventsmartscreenpromptoverride",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~SmartScreen/PreventSmartScreenPromptOverride",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_preventsmartscreenpromptoverride_1"
+      }
+    },
+    {
+      "recommendationId": "1.31.6",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Prevent bypassing of Microsoft Defender SmartScreen warnings about downloads",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_preventsmartscreenpromptoverrideforfiles",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~SmartScreen/PreventSmartScreenPromptOverrideForFiles",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~smartscreen_preventsmartscreenpromptoverrideforfiles_1"
+      }
+    },
+    {
+      "recommendationId": "1.32.1",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Disable Bing chat entry-points on Microsoft Edge Enterprise new tab page",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev118~policy~microsoft_edge~startup_newtabpagebingchatenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev118~Policy~microsoft_edge~Startup/NewTabPageBingChatEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev118~policy~microsoft_edge~startup_newtabpagebingchatenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.34",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow download restrictions",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgeupdates.2~policy~microsoft_edge_downloadrestrictions",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgeUpdates.2~Policy~microsoft_edge/DownloadRestrictions",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgeupdates.2~policy~microsoft_edge_downloadrestrictions_1",
+        "children": [
+          {
+            "displayName": "Download restrictions (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgeupdates.2~policy~microsoft_edge_downloadrestrictions_downloadrestrictions",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgeUpdates.2~Policy~microsoft_edge/DownloadRestrictions",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgeupdates.2~policy~microsoft_edge_downloadrestrictions_downloadrestrictions_4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.38",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow import of data from other browsers on each Microsoft Edge launch",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_importoneachlaunch",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev104~Policy~microsoft_edge/ImportOnEachLaunch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_importoneachlaunch_0"
+      }
+    },
+    {
+      "recommendationId": "1.39",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of autofill form data",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importautofillformdata",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ImportAutofillFormData",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importautofillformdata_0"
+      }
+    },
+    {
+      "recommendationId": "1.40",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of browser settings",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_importbrowsersettings",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev78diff~Policy~microsoft_edge/ImportBrowserSettings",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_importbrowsersettings_0"
+      }
+    },
+    {
+      "recommendationId": "1.41",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of home page settings",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importhomepage",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ImportHomepage",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importhomepage_0"
+      }
+    },
+    {
+      "recommendationId": "1.42",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of payment info",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importpaymentinfo",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ImportPaymentInfo",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importpaymentinfo_0"
+      }
+    },
+    {
+      "recommendationId": "1.43",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of saved passwords",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importsavedpasswords",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ImportSavedPasswords",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importsavedpasswords_0"
+      }
+    },
+    {
+      "recommendationId": "1.44",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow importing of search engine settings",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importsearchengine",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ImportSearchEngine",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_importsearchengine_0"
+      }
+    },
+    {
+      "recommendationId": "1.45",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow managed extensions to use the Enterprise Hardware Platform API",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_enterprisehardwareplatformapienabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev78diff~Policy~microsoft_edge/EnterpriseHardwarePlatformAPIEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_enterprisehardwareplatformapienabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.49",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow personalization of ads, search and news by sending browsing history to Microsoft",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_personalizationreportingenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge/PersonalizationReportingEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_personalizationreportingenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.50",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow queries to a Browser Network Time service",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsernetworktimequeriesenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BrowserNetworkTimeQueriesEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsernetworktimequeriesenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.51",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow remote debugging",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge_remotedebuggingallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev93~Policy~microsoft_edge/RemoteDebuggingAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge_remotedebuggingallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.52",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow the audio sandbox to run",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev81diff~policy~microsoft_edge_audiosandboxenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev81diff~Policy~microsoft_edge/AudioSandboxEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev81diff~policy~microsoft_edge_audiosandboxenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.54",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow user feedback",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_userfeedbackallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/UserFeedbackAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_userfeedbackallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.58",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow Web Authentication requests on sites with broken TLS certificates.",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge_allowwebauthnwithbrokentlscerts",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev133~Policy~microsoft_edge/AllowWebAuthnWithBrokenTlsCerts",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev133~policy~microsoft_edge_allowwebauthnwithbrokentlscerts_0"
+      }
+    },
+    {
+      "recommendationId": "1.59",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Allow websites to query for available payment methods",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_paymentmethodqueryenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge/PaymentMethodQueryEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_paymentmethodqueryenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.61",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Automatically import another browser's data and settings at first run",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autoimportatfirstrun",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/AutoImportAtFirstRun",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autoimportatfirstrun_1",
+        "children": [
+          {
+            "displayName": "Automatically import another browser's data and settings at first run (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autoimportatfirstrun_autoimportatfirstrun",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/AutoImportAtFirstRun",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autoimportatfirstrun_autoimportatfirstrun_4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.62",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Automatically open downloaded MHT or MHTML files from the web in Internet Explorer mode",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_internetexplorerintegrationzoneidentifiermhtfileallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev117~Policy~microsoft_edge/InternetExplorerIntegrationZoneIdentifierMhtFileAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_internetexplorerintegrationzoneidentifiermhtfileallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.66",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Clear browsing data when Microsoft Edge closes",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_clearbrowsingdataonexit",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev78diff~Policy~microsoft_edge/ClearBrowsingDataOnExit",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_clearbrowsingdataonexit_0"
+      }
+    },
+    {
+      "recommendationId": "1.67",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Clear cached images and files when Microsoft Edge closes",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_clearcachedimagesandfilesonexit",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev83diff~Policy~microsoft_edge/ClearCachedImagesAndFilesOnExit",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_clearcachedimagesandfilesonexit_0"
+      }
+    },
+    {
+      "recommendationId": "1.68",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Clear history for IE and IE mode every time you exit",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev111~policy~microsoft_edge_internetexplorermodecleardataonexitenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev111~Policy~microsoft_edge/InternetExplorerModeClearDataOnExitEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev111~policy~microsoft_edge_internetexplorermodecleardataonexitenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.69",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure browser process code integrity guard setting",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_browsercodeintegritysetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev104~Policy~microsoft_edge/BrowserCodeIntegritySetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_browsercodeintegritysetting_1",
+        "children": [
+          {
+            "displayName": "Configure browser process code integrity guard setting (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_browsercodeintegritysetting_browsercodeintegritysetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev104~Policy~microsoft_edge/BrowserCodeIntegritySetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_browsercodeintegritysetting_browsercodeintegritysetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.70",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure InPrivate mode availability",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_inprivatemodeavailability",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/InPrivateModeAvailability",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_inprivatemodeavailability_1",
+        "children": [
+          {
+            "displayName": "Configure InPrivate mode availability (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_inprivatemodeavailability_inprivatemodeavailability",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/InPrivateModeAvailability",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_inprivatemodeavailability_inprivatemodeavailability_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.75",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Configure the Share experience",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_configureshare",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev83diff~Policy~microsoft_edge/ConfigureShare",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_configureshare_1",
+        "children": [
+          {
+            "displayName": "Configure the Share experience (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_configureshare_configureshare",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev83diff~Policy~microsoft_edge/ConfigureShare",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_configureshare_configureshare_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.76",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Continue running background apps after Microsoft Edge closes",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_backgroundmodeenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BackgroundModeEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_backgroundmodeenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.83",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Disable saving browser history",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_savingbrowserhistorydisabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SavingBrowserHistoryDisabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_savingbrowserhistorydisabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.84",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Disable synchronization of data using Microsoft sync services",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_syncdisabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SyncDisabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_syncdisabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.85",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "DNS interception checks enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_dnsinterceptionchecksenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge/DNSInterceptionChecksEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_dnsinterceptionchecksenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.86",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Dynamic Code Settings",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge_dynamiccodesettings",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev128~Policy~microsoft_edge/DynamicCodeSettings",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge_dynamiccodesettings_1",
+        "children": [
+          {
+            "displayName": "Dynamic Code Settings (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge_dynamiccodesettings_dynamiccodesettings",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev128~Policy~microsoft_edge/DynamicCodeSettings",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev128~policy~microsoft_edge_dynamiccodesettings_dynamiccodesettings_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.87",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Edge 3P SERP Telemetry Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev120~policy~microsoft_edge_edge3pserptelemetryenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev120~Policy~microsoft_edge/Edge3PSerpTelemetryEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev120~policy~microsoft_edge_edge3pserptelemetryenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.88",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Edge Wallet E-Tree Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_edgewalletetreeenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev117~Policy~microsoft_edge/EdgeWalletEtreeEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_edgewalletetreeenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.89",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable Application Bound Encryption",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev128.1~policy~microsoft_edge_applicationboundencryptionenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev128.1~Policy~microsoft_edge/ApplicationBoundEncryptionEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev128.1~policy~microsoft_edge_applicationboundencryptionenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.90",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable AutoFill for addresses",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autofilladdressenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/AutofillAddressEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autofilladdressenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.91",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable AutoFill for payment instruments",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autofillcreditcardenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/AutofillCreditCardEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_autofillcreditcardenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.93",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable component updates in Microsoft Edge",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_componentupdatesenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ComponentUpdatesEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_componentupdatesenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.94",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable deleting browser and download history",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_allowdeletingbrowserhistory",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/AllowDeletingBrowserHistory",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_allowdeletingbrowserhistory_0"
+      }
+    },
+    {
+      "recommendationId": "1.96",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable globally scoped HTTP auth cache",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev81diff~policy~microsoft_edge_globallyscopehttpauthcacheenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev81diff~Policy~microsoft_edge/GloballyScopeHTTPAuthCacheEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev81diff~policy~microsoft_edge_globallyscopehttpauthcacheenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.98",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable network prediction",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_networkpredictionoptions",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/NetworkPredictionOptions",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_networkpredictionoptions_1",
+        "children": [
+          {
+            "displayName": "Enable network prediction (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_networkpredictionoptions_networkpredictionoptions",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/NetworkPredictionOptions",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_networkpredictionoptions_networkpredictionoptions_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.99",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable profile creation from the Identity flyout menu or the Settings page",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browseraddprofileenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BrowserAddProfileEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browseraddprofileenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.100",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable resolution of navigation errors using a web service",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_resolvenavigationerrorsusewebservice",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ResolveNavigationErrorsUseWebService",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_resolvenavigationerrorsusewebservice_0"
+      }
+    },
+    {
+      "recommendationId": "1.102",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable security warnings for command-line flags",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_commandlineflagsecuritywarningsenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev78diff~Policy~microsoft_edge/CommandLineFlagSecurityWarningsEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev78diff~policy~microsoft_edge_commandlineflagsecuritywarningsenabled_1"
+      }
+    },
+    {
+      "recommendationId": "1.103",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable site isolation for every site",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_siteperprocess",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SitePerProcess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_siteperprocess_1"
+      }
+    },
+    {
+      "recommendationId": "1.105",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable tab organization suggestions",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev113~policy~microsoft_edge_tabservicesenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev113~Policy~microsoft_edge/TabServicesEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev113~policy~microsoft_edge_tabservicesenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.107",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable upload files from mobile in Microsoft Edge desktop",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_uploadfromphoneenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev117~Policy~microsoft_edge/UploadFromPhoneEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev117~policy~microsoft_edge_uploadfromphoneenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.108",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enable use of ephemeral profiles",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forceephemeralprofiles",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ForceEphemeralProfiles",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forceephemeralprofiles_0"
+      }
+    },
+    {
+      "recommendationId": "1.111",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Enables DALL-E themes generation",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev122~policy~microsoft_edge_aigenthemesenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev122~Policy~microsoft_edge/AIGenThemesEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev122~policy~microsoft_edge_aigenthemesenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.116",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Hide the First-run experience and splash screen",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_hidefirstrunexperience",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge/HideFirstRunExperience",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_hidefirstrunexperience_1"
+      }
+    },
+    {
+      "recommendationId": "1.117",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "In-app support Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev98~policy~microsoft_edge_inappsupportenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev98~Policy~microsoft_edge/InAppSupportEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev98~policy~microsoft_edge_inappsupportenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.120",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Notify a user that a browser restart is recommended or required for pending updates",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotification",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/RelaunchNotification",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotification_1",
+        "children": [
+          {
+            "displayName": "Notify a user that a browser restart is recommended or required for pending updates (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotification_relaunchnotification",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/RelaunchNotification",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotification_relaunchnotification_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.121",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Set disk cache size, in bytes",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_diskcachesize",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/DiskCacheSize",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_diskcachesize_1",
+        "children": [
+          {
+            "displayName": "Set disk cache size: (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_diskcachesize_diskcachesize",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/DiskCacheSize",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+            },
+            "value": {
+              "kind": "integer",
+              "value": 250609664
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.122",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Set the time period for update notifications",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotificationperiod",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/RelaunchNotificationPeriod",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotificationperiod_1",
+        "children": [
+          {
+            "displayName": "Set the time period for update notifications: (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_relaunchnotificationperiod_relaunchnotificationperiod",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/RelaunchNotificationPeriod",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+            },
+            "value": {
+              "kind": "integer",
+              "value": 86400000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.123",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Shopping in Microsoft Edge Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev87~policy~microsoft_edge_edgeshoppingassistantenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev87~Policy~microsoft_edge/EdgeShoppingAssistantEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev87~policy~microsoft_edge_edgeshoppingassistantenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.125",
+      "policyId": "edge-verified-l1-part-1",
+      "displayName": "Show Microsoft Rewards experiences",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge_showmicrosoftrewards",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev88~Policy~microsoft_edge/ShowMicrosoftRewards",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev88~policy~microsoft_edge_showmicrosoftrewards_0"
+      }
+    },
+    {
+      "recommendationId": "1.126",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Show the Reload in Internet Explorer mode button in the toolbar",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge_internetexplorermodetoolbarbuttonenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev96~Policy~microsoft_edge/InternetExplorerModeToolbarButtonEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge_internetexplorermodetoolbarbuttonenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.127",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Specifies whether SharedArrayBuffers can be used in a non cross-origin-isolated context",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev111~policy~microsoft_edge_sharedarraybufferunrestrictedaccessallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev111~Policy~microsoft_edge/SharedArrayBufferUnrestrictedAccessAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev111~policy~microsoft_edge_sharedarraybufferunrestrictedaccessallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.131",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Suggest similar pages when a webpage can’t be found",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_alternateerrorpagesenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev80diff~Policy~microsoft_edge/AlternateErrorPagesEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev80diff~policy~microsoft_edge_alternateerrorpagesenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.132",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Suppress the unsupported OS warning",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_suppressunsupportedoswarning",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SuppressUnsupportedOSWarning",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_suppressunsupportedoswarning_0"
+      }
+    },
+    {
+      "recommendationId": "1.134",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Wait for Internet Explorer mode tabs to completely unload before ending the browser session",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev105~policy~microsoft_edge_internetexplorerintegrationalwayswaitforunload",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev105~Policy~microsoft_edge/InternetExplorerIntegrationAlwaysWaitForUnload",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev105~policy~microsoft_edge_internetexplorerintegrationalwayswaitforunload_0"
+      }
+    },
+    {
+      "recommendationId": "1.135",
+      "policyId": "edge-verified-l1-part-2",
+      "displayName": "Wallet Donation Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev115~policy~microsoft_edge_walletdonationenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev115~Policy~microsoft_edge/WalletDonationEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev115~policy~microsoft_edge_walletdonationenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.4.1",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow read access via the File System API on these sites",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_filesystemreadaskforurls",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/FileSystemReadAskForUrls",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_filesystemreadaskforurls_0"
+      }
+    },
+    {
+      "recommendationId": "1.4.2",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Choose whether users can receive customized background images and text, suggestions, notifications,\r\nand tips for Microsoft services",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_spotlightexperiencesandrecommendationsenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/SpotlightExperiencesAndRecommendationsEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_spotlightexperiencesandrecommendationsenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.4.4",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Control use of JavaScript JIT",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~contentsettings_defaultjavascriptjitsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev93~Policy~microsoft_edge~ContentSettings/DefaultJavaScriptJitSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~contentsettings_defaultjavascriptjitsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of JavaScript JIT (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~contentsettings_defaultjavascriptjitsetting_defaultjavascriptjitsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev93~Policy~microsoft_edge~ContentSettings/DefaultJavaScriptJitSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev93~policy~microsoft_edge~contentsettings_defaultjavascriptjitsetting_defaultjavascriptjitsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.5",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Control use of the File System API for reading",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemreadguardsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/DefaultFileSystemReadGuardSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemreadguardsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of the File System API for reading (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemreadguardsetting_defaultfilesystemreadguardsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge~ContentSettings/DefaultFileSystemReadGuardSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge~contentsettings_defaultfilesystemreadguardsetting_defaultfilesystemreadguardsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.7",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Control use of the Web Bluetooth API",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultwebbluetoothguardsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~ContentSettings/DefaultWebBluetoothGuardSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultwebbluetoothguardsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of the Web Bluetooth API (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultwebbluetoothguardsetting_defaultwebbluetoothguardsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge~ContentSettings/DefaultWebBluetoothGuardSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge~contentsettings_defaultwebbluetoothguardsetting_defaultwebbluetoothguardsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.8",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Control use of the WebHID API",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev100~policy~microsoft_edge~contentsettings_defaultwebhidguardsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev100~Policy~microsoft_edge~ContentSettings/DefaultWebHidGuardSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev100~policy~microsoft_edge~contentsettings_defaultwebhidguardsetting_1",
+        "children": [
+          {
+            "displayName": "Control use of the WebHID API (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev100~policy~microsoft_edge~contentsettings_defaultwebhidguardsetting_defaultwebhidguardsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev100~Policy~microsoft_edge~ContentSettings/DefaultWebHidGuardSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev100~policy~microsoft_edge~contentsettings_defaultwebhidguardsetting_defaultwebhidguardsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.4.11",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Default setting for third-party storage partitioning",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev116~policy~microsoft_edge~contentsettings_defaultthirdpartystoragepartitioningsetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev116~Policy~microsoft_edge~ContentSettings/DefaultThirdPartyStoragePartitioningSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev116~policy~microsoft_edge~contentsettings_defaultthirdpartystoragepartitioningsetting_1",
+        "children": [
+          {
+            "displayName": "Default setting for third-party storage partitioning (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev116~policy~microsoft_edge~contentsettings_defaultthirdpartystoragepartitioningsetting_defaultthirdpartystoragepartitioningsetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev116~Policy~microsoft_edge~ContentSettings/DefaultThirdPartyStoragePartitioningSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev116~policy~microsoft_edge~contentsettings_defaultthirdpartystoragepartitioningsetting_defaultthirdpartystoragepartitioningsetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.35",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow features to download assets from the Asset Delivery Service",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev101~policy~microsoft_edge_edgeassetdeliveryserviceenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev101~Policy~microsoft_edge/EdgeAssetDeliveryServiceEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev101~policy~microsoft_edge_edgeassetdeliveryserviceenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.47",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow or block video capture",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_videocaptureallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/VideoCaptureAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_videocaptureallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.48",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow or deny screen capture",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_screencaptureallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev83diff~Policy~microsoft_edge/ScreenCaptureAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev83diff~policy~microsoft_edge_screencaptureallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.53",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow unconfigured sites to be reloaded in Internet Explorer mode",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev92~policy~microsoft_edge_internetexplorerintegrationreloadiniemodeallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev92~Policy~microsoft_edge/InternetExplorerIntegrationReloadInIEModeAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev92~policy~microsoft_edge_internetexplorerintegrationreloadiniemodeallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.57",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Allow users to proceed from the HTTPS warning page",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_sslerroroverrideallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SSLErrorOverrideAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_sslerroroverrideallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.60",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "AutoLaunch Protocols Component Enabled",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge_autolaunchprotocolscomponentenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev96~Policy~microsoft_edge/AutoLaunchProtocolsComponentEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev96~policy~microsoft_edge_autolaunchprotocolscomponentenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.63",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Block third party cookies",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_blockthirdpartycookies",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BlockThirdPartyCookies",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_blockthirdpartycookies_1"
+      }
+    },
+    {
+      "recommendationId": "1.65",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Browser sign-in settings",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsersignin",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BrowserSignin",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsersignin_1",
+        "children": [
+          {
+            "displayName": "Browser sign-in settings (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsersignin_browsersignin",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BrowserSignin",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browsersignin_browsersignin_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.71",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Configure Online Text To Speech",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_configureonlinetexttospeech",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ConfigureOnlineTextToSpeech",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_configureonlinetexttospeech_0"
+      }
+    },
+    {
+      "recommendationId": "1.72",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Configure Speech Recognition",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev87~policy~microsoft_edge_speechrecognitionenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev87~Policy~microsoft_edge/SpeechRecognitionEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev87~policy~microsoft_edge_speechrecognitionenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.78",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Control use of the Headless Mode",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev92~policy~microsoft_edge_headlessmodeenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev92~Policy~microsoft_edge/HeadlessModeEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev92~policy~microsoft_edge_headlessmodeenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.81",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Default sensors setting",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge_defaultsensorssetting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge/DefaultSensorsSetting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge_defaultsensorssetting_1",
+        "children": [
+          {
+            "displayName": "Default sensors setting (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge_defaultsensorssetting_defaultsensorssetting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edgev86~Policy~microsoft_edge/DefaultSensorsSetting",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edgev86~policy~microsoft_edge_defaultsensorssetting_defaultsensorssetting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.95",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enable Drop feature in Microsoft Edge",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_edgeedropenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev104~Policy~microsoft_edge/EdgeEDropEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_edgeedropenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.97",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enable guest mode",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browserguestmodeenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/BrowserGuestModeEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_browserguestmodeenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.101",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enable search suggestions",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_searchsuggestenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/SearchSuggestEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_searchsuggestenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.106",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enable Translate",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_translateenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/TranslateEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_translateenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.110",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enable QR Code Generator",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev125~policy~microsoft_edge_qrcodegeneratorenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev125~Policy~microsoft_edge/QRCodeGeneratorEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev125~policy~microsoft_edge_qrcodegeneratorenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.112",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enforce Bing SafeSearch",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcebingsafesearch",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ForceBingSafeSearch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcebingsafesearch_1",
+        "children": [
+          {
+            "displayName": "Enforce Bing SafeSearch (Device)",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcebingsafesearch_forcebingsafesearch",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ForceBingSafeSearch",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcebingsafesearch_forcebingsafesearch_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "1.113",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enforce Google SafeSearch",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcegooglesafesearch",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edge~Policy~microsoft_edge/ForceGoogleSafeSearch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edge~policy~microsoft_edge_forcegooglesafesearch_1"
+      }
+    },
+    {
+      "recommendationId": "1.115",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Enhanced Security Mode configuration for Intranet zone sites",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev107~policy~microsoft_edge_enhancesecuritymodebypassintranet",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev107~Policy~microsoft_edge/EnhanceSecurityModeBypassIntranet",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev107~policy~microsoft_edge_enhancesecuritymodebypassintranet_0"
+      }
+    },
+    {
+      "recommendationId": "1.118",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Live captions allowed",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev103~policy~microsoft_edge_livecaptionsallowed",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev103~Policy~microsoft_edge/LiveCaptionsAllowed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev103~policy~microsoft_edge_livecaptionsallowed_0"
+      }
+    },
+    {
+      "recommendationId": "1.124",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Show an \"Always open\" checkbox in external protocol dialog",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev79diff~policy~microsoft_edge_externalprotocoldialogshowalwaysopencheckbox",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev79diff~Policy~microsoft_edge/ExternalProtocolDialogShowAlwaysOpenCheckbox",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev79diff~policy~microsoft_edge_externalprotocoldialogshowalwaysopencheckbox_0"
+      }
+    },
+    {
+      "recommendationId": "1.129",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Spell checking provided by Microsoft Editor",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev105~policy~microsoft_edge_microsofteditorproofingenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev105~Policy~microsoft_edge/MicrosoftEditorProofingEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev105~policy~microsoft_edge_microsofteditorproofingenabled_0"
+      }
+    },
+    {
+      "recommendationId": "1.133",
+      "policyId": "edge-verified-l2-part-1",
+      "displayName": "Text prediction enabled by default",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_textpredictionenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/microsoft_edgev104~Policy~microsoft_edge/TextPredictionEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_microsoft_edgev104~policy~microsoft_edge_textpredictionenabled_0"
       }
     }
   ],

@@ -227,6 +227,7 @@
       "name": "Synthetic compliance [L1]",
       "recommendationIds": ["1.1"],
       "profiles": ["L1"],
+      "contractId": "microsoft.graph.windows10CompliancePolicy.beta",
       "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
       "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies?$select=id,displayName",
       "nameProperty": "displayName",

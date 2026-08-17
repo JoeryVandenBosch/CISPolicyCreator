@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-for-windows-11-5.0.0-mappings",
-  "version": "0.3.0",
+  "version": "0.2.0",
   "benchmark": {
     "id": "cis-microsoft-intune-for-windows-11",
     "version": "5.0.0",
@@ -26,11 +26,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "1.2",
@@ -50,11 +52,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.1.3.2",
@@ -62,11 +66,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.4.1",
@@ -88,11 +94,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.4.3",
@@ -100,11 +108,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.4.4",
@@ -112,11 +122,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.4.5",
@@ -136,11 +148,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.2",
@@ -148,11 +162,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.3",
@@ -160,11 +176,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.4",
@@ -184,11 +202,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.6",
@@ -208,11 +228,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.8",
@@ -220,11 +242,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.9",
@@ -232,11 +256,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.5.10",
@@ -280,11 +306,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.8.1",
@@ -292,11 +320,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.8.2",
@@ -316,11 +346,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.9.2",
@@ -328,11 +360,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.9.3",
@@ -340,11 +374,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.11.1",
@@ -364,11 +400,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.17.2",
@@ -388,11 +426,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.6.18.2",
@@ -400,11 +440,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.7.1",
@@ -412,11 +454,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.7.2",
@@ -496,11 +540,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.7.9",
@@ -544,11 +590,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.5.1",
@@ -556,11 +604,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.5.2",
@@ -568,11 +618,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.9.1.1",
@@ -628,11 +680,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.19.1",
@@ -640,11 +694,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.20.1.1",
@@ -688,11 +744,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.20.1.5",
@@ -724,11 +782,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.20.1.8",
@@ -736,11 +796,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.20.1.9",
@@ -784,11 +846,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.20.1.13",
@@ -796,11 +860,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.23.1",
@@ -808,11 +874,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.24.1",
@@ -834,11 +902,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.1",
@@ -846,11 +916,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.2",
@@ -858,11 +930,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.3",
@@ -870,11 +944,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.4",
@@ -882,11 +958,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.5",
@@ -894,11 +972,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.6",
@@ -906,11 +986,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.26.7",
@@ -918,11 +1000,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.29.5.1",
@@ -930,11 +1014,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.29.5.2",
@@ -942,11 +1028,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.30.1",
@@ -954,11 +1042,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.30.2",
@@ -966,11 +1056,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.31.1",
@@ -978,11 +1070,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.31.2",
@@ -990,11 +1084,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.40.5.1",
@@ -1002,11 +1098,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.44.1.1",
@@ -1014,11 +1112,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.10.44.1.2",
@@ -1026,11 +1126,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.3.1",
@@ -1038,11 +1140,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.3.2",
@@ -1050,11 +1154,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.5.1",
@@ -1398,11 +1504,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.8.3",
@@ -1410,11 +1518,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.10.1",
@@ -1422,11 +1532,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.10.2",
@@ -1434,11 +1546,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.10.3",
@@ -1446,11 +1560,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.15.1.1",
@@ -1554,11 +1670,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.18.2",
@@ -1566,11 +1684,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.18.3",
@@ -1578,11 +1698,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.18.4",
@@ -1602,11 +1724,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.30.1",
@@ -1626,11 +1750,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.3.2",
@@ -1650,11 +1776,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.3.1",
@@ -1662,11 +1790,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.3.2",
@@ -1674,11 +1804,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.3.3",
@@ -1686,11 +1818,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.3.4",
@@ -1698,11 +1832,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.3.5",
@@ -1722,11 +1858,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.9.2",
@@ -1734,11 +1872,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.9.3",
@@ -1746,11 +1886,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.9.4",
@@ -1772,11 +1914,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.35.4.10.1",
@@ -1808,11 +1952,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.36.1",
@@ -1856,11 +2002,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.49.1",
@@ -1880,11 +2028,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.51.2.1",
@@ -1952,11 +2102,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.54.2.1",
@@ -1976,11 +2128,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "4.11.54.2.3",
@@ -2014,11 +2168,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "6.1",
@@ -2388,11 +2544,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "15.1",
@@ -2436,11 +2594,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "23.2",
@@ -2462,11 +2622,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "23.4",
@@ -2486,11 +2648,13 @@
         "BL"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-bl-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "33.1",
@@ -2498,11 +2662,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "33.2",
@@ -2534,11 +2700,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "33.5",
@@ -2546,11 +2714,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "37.1",
@@ -2974,11 +3144,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "46.5",
@@ -3028,11 +3200,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.1",
@@ -3066,11 +3240,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.6",
@@ -3178,11 +3354,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.17",
@@ -3202,11 +3380,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.19",
@@ -3214,11 +3394,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.20",
@@ -3226,11 +3408,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.21",
@@ -3274,11 +3458,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.25",
@@ -3298,11 +3484,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "49.27",
@@ -3374,11 +3562,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "50.1",
@@ -3400,11 +3590,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.1",
@@ -3412,11 +3604,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.2",
@@ -3424,11 +3618,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.3",
@@ -3436,11 +3632,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.4",
@@ -3448,11 +3646,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.5",
@@ -3460,11 +3660,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "55.6",
@@ -3510,11 +3712,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "69.2",
@@ -3522,11 +3726,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "69.3",
@@ -3534,11 +3740,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "69.4",
@@ -3558,11 +3766,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "73.1",
@@ -3570,11 +3780,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "73.2",
@@ -3582,11 +3794,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "73.3",
@@ -3594,11 +3808,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "73.4",
@@ -3606,11 +3822,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "75.1",
@@ -3618,11 +3836,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "77.1.1",
@@ -3630,11 +3850,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "77.1.2",
@@ -3642,11 +3864,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "77.1.3",
@@ -3654,11 +3878,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "77.1.4",
@@ -3666,11 +3892,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "80.1",
@@ -3678,11 +3906,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "81.1",
@@ -3726,11 +3956,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "81.5",
@@ -3738,11 +3970,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "81.6",
@@ -4702,11 +4936,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "94.1",
@@ -4714,11 +4950,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "95.1",
@@ -4726,11 +4964,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "98.1",
@@ -4786,11 +5026,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "99.2",
@@ -4810,11 +5052,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "102.2",
@@ -4822,11 +5066,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "104.1",
@@ -4858,11 +5104,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "104.4",
@@ -4870,11 +5118,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "104.5",
@@ -4882,11 +5132,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:windows11-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "105.1",
@@ -5184,6 +5436,58 @@
       "technologies": "mdm",
       "profiles": [
         "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows11-verified-bl-part-1",
+      "name": "CIS - Windows 11 Verified [BL] - v0.3.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "BL"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows11-verified-l1-part-1",
+      "name": "CIS - Windows 11 Verified [L1] - v0.3.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows11-verified-l1-part-2",
+      "name": "CIS - Windows 11 Verified [L1] - v0.3.0 - Part 2",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "windows11-verified-l2-part-1",
+      "name": "CIS - Windows 11 Verified [L2] - v0.3.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
       ],
       "roleScopeTagIds": [
         "0"
@@ -5711,6 +6015,2439 @@
       "value": {
         "kind": "choice",
         "optionId": "device_vendor_msft_policy_config_localsecurityauthority_configurelsaprotectedprocess_1"
+      }
+    },
+    {
+      "recommendationId": "27.1",
+      "policyId": "windows11-verified-bl-part-1",
+      "displayName": "Device Enumeration Policy",
+      "profiles": [
+        "BL"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_dmaguard_deviceenumerationpolicy",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DmaGuard/DeviceEnumerationPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_dmaguard_deviceenumerationpolicy_0"
+      }
+    },
+    {
+      "recommendationId": "1.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Cortana Above Lock",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_abovelock_allowcortanaabovelock",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/AboveLock/AllowCortanaAboveLock",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_abovelock_allowcortanaabovelock_0"
+      }
+    },
+    {
+      "recommendationId": "4.1.3.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prevent enabling lock screen camera",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_devicelock_preventenablinglockscreencamera",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DeviceLock/PreventEnablingLockScreenCamera",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_devicelock_preventenablinglockscreencamera_1"
+      }
+    },
+    {
+      "recommendationId": "4.1.3.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prevent enabling lock screen slide show",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_devicelock_preventlockscreenslideshow",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DeviceLock/PreventLockScreenSlideShow",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_devicelock_preventlockscreenslideshow_1"
+      }
+    },
+    {
+      "recommendationId": "4.4.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure SMB v1 client driver",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1clientdriver",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSecurityGuide/ConfigureSMBV1ClientDriver",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1clientdriver_1",
+        "children": [
+          {
+            "displayName": "Configure MrxSmb10 driver",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1clientdriver_pol_secguide_smb1clientdriver",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/MSSecurityGuide/ConfigureSMBV1ClientDriver",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1clientdriver_pol_secguide_smb1clientdriver_4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.4.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure SMB v1 server",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1server",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSecurityGuide/ConfigureSMBV1Server",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_mssecurityguide_configuresmbv1server_0"
+      }
+    },
+    {
+      "recommendationId": "4.4.4",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable Structured Exception Handling Overwrite Protection (SEHOP)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_mssecurityguide_enablestructuredexceptionhandlingoverwriteprotection",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSecurityGuide/EnableStructuredExceptionHandlingOverwriteProtection",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_mssecurityguide_enablestructuredexceptionhandlingoverwriteprotection_1"
+      }
+    },
+    {
+      "recommendationId": "4.5.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_autoadminlogon",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSS-legacy/Pol_MSS_AutoAdminLogon",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_autoadminlogon_0"
+      }
+    },
+    {
+      "recommendationId": "4.5.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_msslegacy_ipv6sourceroutingprotectionlevel",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSLegacy/IPv6SourceRoutingProtectionLevel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_msslegacy_ipv6sourceroutingprotectionlevel_1",
+        "children": [
+          {
+            "displayName": "DisableIPSourceRoutingIPv6",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_msslegacy_ipv6sourceroutingprotectionlevel_disableipsourceroutingipv6",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/MSSLegacy/IPv6SourceRoutingProtectionLevel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_msslegacy_ipv6sourceroutingprotectionlevel_disableipsourceroutingipv6_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.5.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_msslegacy_ipsourceroutingprotectionlevel",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSLegacy/IPSourceRoutingProtectionLevel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_msslegacy_ipsourceroutingprotectionlevel_1",
+        "children": [
+          {
+            "displayName": "DisableIPSourceRouting",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_msslegacy_ipsourceroutingprotectionlevel_disableipsourcerouting",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/MSSLegacy/IPSourceRoutingProtectionLevel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_msslegacy_ipsourceroutingprotectionlevel_disableipsourcerouting_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.5.5",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_msslegacy_allowicmpredirectstooverrideospfgeneratedroutes",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSLegacy/AllowICMPRedirectsToOverrideOSPFGeneratedRoutes",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_msslegacy_allowicmpredirectstooverrideospfgeneratedroutes_0"
+      }
+    },
+    {
+      "recommendationId": "4.5.7",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_msslegacy_allowthecomputertoignorenetbiosnamereleaserequestsexceptfromwinsservers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/MSSLegacy/AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_msslegacy_allowthecomputertoignorenetbiosnamereleaserequestsexceptfromwinsservers_1"
+      }
+    },
+    {
+      "recommendationId": "4.5.9",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_safedllsearchmode",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSS-legacy/Pol_MSS_SafeDllSearchMode",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_safedllsearchmode_1"
+      }
+    },
+    {
+      "recommendationId": "4.6.4.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn off multicast name resolution",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_dnsclient_turn_off_multicast",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_DnsClient/Turn_Off_Multicast",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_dnsclient_turn_off_multicast_1"
+      }
+    },
+    {
+      "recommendationId": "4.6.9.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prohibit installation and configuration of Network Bridge on your DNS domain network",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_connectivity_prohibitinstallationandconfigurationofnetworkbridge",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Connectivity/ProhibitInstallationAndConfigurationOfNetworkBridge",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_connectivity_prohibitinstallationandconfigurationofnetworkbridge_1"
+      }
+    },
+    {
+      "recommendationId": "4.6.9.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prohibit use of Internet Connection Sharing on your DNS domain network",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_networkconnections_nc_showsharedaccessui",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_NetworkConnections/NC_ShowSharedAccessUI",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_networkconnections_nc_showsharedaccessui_1"
+      }
+    },
+    {
+      "recommendationId": "4.6.9.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Require domain users to elevate when setting a network's location",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_networkconnections_nc_stddomainusersetlocation",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_NetworkConnections/NC_StdDomainUserSetLocation",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_networkconnections_nc_stddomainusersetlocation_1"
+      }
+    },
+    {
+      "recommendationId": "4.6.18.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Minimize the number of simultaneous connections to the Internet or a Windows Domain",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_wcm_wcm_minimizeconnections",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_WCM/WCM_MinimizeConnections",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_wcm_wcm_minimizeconnections_1",
+        "children": [
+          {
+            "displayName": "Minimize Policy Options",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_admx_wcm_wcm_minimizeconnections_wcm_minimizeconnections_options",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ADMX_WCM/WCM_MinimizeConnections",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_admx_wcm_wcm_minimizeconnections_wcm_minimizeconnections_options_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.6.18.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prohibit connection to non-domain networks when connected to domain authenticated network",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowsconnectionmanager_prohitconnectiontonondomainnetworkswhenconnectedtodomainauthenticatednetwork",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsConnectionManager/ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatedNetwork",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowsconnectionmanager_prohitconnectiontonondomainnetworkswhenconnectedtodomainauthenticatednetwork_1"
+      }
+    },
+    {
+      "recommendationId": "4.7.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Print Spooler to accept client connections",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_printing2_registerspoolerremoterpcendpoint",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_Printing2/RegisterSpoolerRemoteRpcEndPoint",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_printing2_registerspoolerremoterpcendpoint_0"
+      }
+    },
+    {
+      "recommendationId": "4.7.8",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Limits print driver installation to Administrators",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_printers_restrictdriverinstallationtoadministrators",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Printers/RestrictDriverInstallationToAdministrators",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_printers_restrictdriverinstallationtoadministrators_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.4.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Include command line in process creation events",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_auditsettings_includecmdline",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_AuditSettings/IncludeCmdLine",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_auditsettings_includecmdline_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.5.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Encryption Oracle Remediation",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_credssp_allowencryptionoracle",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_CredSsp/AllowEncryptionOracle",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_credssp_allowencryptionoracle_1",
+        "children": [
+          {
+            "displayName": "Protection Level:",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_admx_credssp_allowencryptionoracle_allowencryptionoracledrop",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ADMX_CredSsp/AllowEncryptionOracle",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_admx_credssp_allowencryptionoracle_allowencryptionoracledrop_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.10.5.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Remote host allows delegation of non-exportable credentials",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_credentialsdelegation_remotehostallowsdelegationofnonexportablecredentials",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/CredentialsDelegation/RemoteHostAllowsDelegationOfNonExportableCredentials",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_credentialsdelegation_remotehostallowsdelegationofnonexportablecredentials_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.13.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Boot-Start Driver Initialization Policy",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_system_bootstartdriverinitialization",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/System/BootStartDriverInitialization",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_system_bootstartdriverinitialization_1",
+        "children": [
+          {
+            "displayName": "Choose the boot-start drivers that can be initialized:",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_system_bootstartdriverinitialization_selectdriverloadpolicy",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/System/BootStartDriverInitialization",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_system_bootstartdriverinitialization_selectdriverloadpolicy_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.10.19.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Continue experiences on this device",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_grouppolicy_enablecdp",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_GroupPolicy/EnableCDP",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_grouppolicy_enablecdp_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Block user from showing account details on sign-in",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_logon_blockuserfromshowingaccountdetailsonsignin",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_Logon/BlockUserFromShowingAccountDetailsOnSignin",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_logon_blockuserfromshowingaccountdetailsonsignin_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Do not display network selection UI",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowslogon_dontdisplaynetworkselectionui",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsLogon/DontDisplayNetworkSelectionUI",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowslogon_dontdisplaynetworkselectionui_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Do not enumerate connected users on domain-joined computers",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_logon_dontenumerateconnectedusers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_Logon/DontEnumerateConnectedUsers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_logon_dontenumerateconnectedusers_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.4",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enumerate local users on domain-joined computers",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowslogon_enumeratelocalusersondomainjoinedcomputers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsLogon/EnumerateLocalUsersOnDomainJoinedComputers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowslogon_enumeratelocalusersondomainjoinedcomputers_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.5",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn off app notifications on the lock screen",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowslogon_disablelockscreenappnotifications",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsLogon/DisableLockScreenAppNotifications",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowslogon_disablelockscreenappnotifications_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.6",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn off picture password sign-in",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_credentialproviders_blockpicturepassword",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/CredentialProviders/BlockPicturePassword",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_credentialproviders_blockpicturepassword_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.26.7",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn on convenience PIN sign-in",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_credentialproviders_allowpinlogon",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/CredentialProviders/AllowPINLogon",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_credentialproviders_allowpinlogon_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.29.5.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Require a password when a computer wakes (on battery)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_power_requirepasswordwhencomputerwakesonbattery",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Power/RequirePasswordWhenComputerWakesOnBattery",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_power_requirepasswordwhencomputerwakesonbattery_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.29.5.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Require a password when a computer wakes (plugged in)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_power_requirepasswordwhencomputerwakespluggedin",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Power/RequirePasswordWhenComputerWakesPluggedIn",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_power_requirepasswordwhencomputerwakespluggedin_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.30.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure Offer Remote Assistance",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remoteassistance_unsolicitedremoteassistance",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteAssistance/UnsolicitedRemoteAssistance",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remoteassistance_unsolicitedremoteassistance_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.30.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure Solicited Remote Assistance",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remoteassistance_solicitedremoteassistance",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteAssistance/SolicitedRemoteAssistance",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remoteassistance_solicitedremoteassistance_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.31.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable RPC Endpoint Mapper Client Authentication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remoteprocedurecall_rpcendpointmapperclientauthentication",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteProcedureCall/RPCEndpointMapperClientAuthentication",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remoteprocedurecall_rpcendpointmapperclientauthentication_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.31.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Restrict Unauthenticated RPC clients",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remoteprocedurecall_restrictunauthenticatedrpcclients",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteProcedureCall/RestrictUnauthenticatedRPCClients",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remoteprocedurecall_restrictunauthenticatedrpcclients_1",
+        "children": [
+          {
+            "displayName": "RPC Runtime Unauthenticated Client Restriction to Apply:",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_remoteprocedurecall_restrictunauthenticatedrpcclients_rpcrestrictremoteclientslist",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/RemoteProcedureCall/RestrictUnauthenticatedRPCClients",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_remoteprocedurecall_restrictunauthenticatedrpcclients_rpcrestrictremoteclientslist_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.10.44.1.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable Windows NTP Client",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_w32time_w32time_policy_enable_ntpclient",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_W32Time/W32TIME_POLICY_ENABLE_NTPCLIENT",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_w32time_w32time_policy_enable_ntpclient_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.44.1.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable Windows NTP Server",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_w32time_w32time_policy_enable_ntpserver",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_W32Time/W32TIME_POLICY_ENABLE_NTPSERVER",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_w32time_w32time_policy_enable_ntpserver_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.3.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Microsoft accounts to be optional",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_appruntime_allowmicrosoftaccountstobeoptional",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/AppRuntime/AllowMicrosoftAccountsToBeOptional",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_appruntime_allowmicrosoftaccountstobeoptional_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.8.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enumerate administrator accounts on elevation",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_credentialsui_enumerateadministrators",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/CredentialsUI/EnumerateAdministrators",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_credentialsui_enumerateadministrators_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.8.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Prevent the use of security questions for local accounts",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_credui_nolocalpasswordresetquestions",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_CredUI/NoLocalPasswordResetQuestions",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_credui_nolocalpasswordresetquestions_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.10.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable App Installer Experimental Features",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_desktopappinstaller_enableexperimentalfeatures",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DesktopAppInstaller/EnableExperimentalFeatures",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_desktopappinstaller_enableexperimentalfeatures_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.10.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable App Installer Hash Override",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_desktopappinstaller_enablehashoverride",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DesktopAppInstaller/EnableHashOverride",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_desktopappinstaller_enablehashoverride_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.10.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable App Installer ms-appinstaller protocol",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_desktopappinstaller_enablemsappinstallerprotocol",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DesktopAppInstaller/EnableMSAppInstallerProtocol",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_desktopappinstaller_enablemsappinstallerprotocol_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.18.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure Windows Defender SmartScreen",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_windowsexplorer_enablesmartscreen",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_WindowsExplorer/EnableSmartScreen",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_windowsexplorer_enablesmartscreen_1",
+        "children": [
+          {
+            "displayName": "Pick one of the following settings:",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_admx_windowsexplorer_enablesmartscreen_enablesmartscreendropdown",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ADMX_WindowsExplorer/EnableSmartScreen",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_admx_windowsexplorer_enablesmartscreen_enablesmartscreendropdown_block"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.11.18.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn off Data Execution Prevention for Explorer",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_fileexplorer_turnoffdataexecutionpreventionforexplorer",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/FileExplorer/TurnOffDataExecutionPreventionForExplorer",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_fileexplorer_turnoffdataexecutionpreventionforexplorer_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.18.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Turn off heap termination on corruption",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_fileexplorer_turnoffheapterminationoncorruption",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/FileExplorer/TurnOffHeapTerminationOnCorruption",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_fileexplorer_turnoffheapterminationoncorruption_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.27.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Block all consumer Microsoft account user authentication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_msapolicy_microsoftaccount_disableuserauth",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSAPolicy/MicrosoftAccount_DisableUserAuth",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_msapolicy_microsoftaccount_disableuserauth_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.3.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Do not allow drive redirection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_donotallowdriveredirection",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteDesktopServices/DoNotAllowDriveRedirection",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotedesktopservices_donotallowdriveredirection_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Always prompt for password upon connection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_promptforpassworduponconnection",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteDesktopServices/PromptForPasswordUponConnection",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotedesktopservices_promptforpassworduponconnection_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Require secure RPC communication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_requiresecurerpccommunication",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteDesktopServices/RequireSecureRPCCommunication",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotedesktopservices_requiresecurerpccommunication_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Require use of specific security layer for remote (RDP) connections",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_security_layer_policy",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_SECURITY_LAYER_POLICY",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_security_layer_policy_1",
+        "children": [
+          {
+            "displayName": "Security Layer",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_security_layer_policy_ts_security_layer",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ADMX_TerminalServer/TS_SECURITY_LAYER_POLICY",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_security_layer_policy_ts_security_layer_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.9.5",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Set client connection encryption level",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_clientconnectionencryptionlevel",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteDesktopServices/ClientConnectionEncryptionLevel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotedesktopservices_clientconnectionencryptionlevel_1",
+        "children": [
+          {
+            "displayName": "Encryption Level",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_clientconnectionencryptionlevel_ts_encryption_level",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/RemoteDesktopServices/ClientConnectionEncryptionLevel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_remotedesktopservices_clientconnectionencryptionlevel_ts_encryption_level_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.11.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Do not delete temp folders upon exit",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_temp_delete",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_TEMP_DELETE",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_temp_delete_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.49.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Sign-in and lock last interactive user automatically after a restart",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsLogon/AllowAutomaticRestartSignOn",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.54.1.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Disallow Digest authentication",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotemanagement_disallowdigestauthentication",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteManagement/DisallowDigestAuthentication",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotemanagement_disallowdigestauthentication_1"
+      }
+    },
+    {
+      "recommendationId": "23.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Configure System Guard Launch",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_deviceguard_configuresystemguardlaunch",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DeviceGuard/ConfigureSystemGuardLaunch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_deviceguard_configuresystemguardlaunch_1"
+      }
+    },
+    {
+      "recommendationId": "23.3",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable Virtualization Based Security",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_deviceguard_enablevirtualizationbasedsecurity",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/DeviceGuard/EnableVirtualizationBasedSecurity",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_deviceguard_enablevirtualizationbasedsecurity_1"
+      }
+    },
+    {
+      "recommendationId": "33.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Cortana",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_experience_allowcortana",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Experience/AllowCortana",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_experience_allowcortana_0"
+      }
+    },
+    {
+      "recommendationId": "33.4",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Disable Consumer Account State Content",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_experience_disableconsumeraccountstatecontent",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Experience/DisableConsumerAccountStateContent",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_experience_disableconsumeraccountstatecontent_1"
+      }
+    },
+    {
+      "recommendationId": "33.5",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Do Not Show Feedback Notifications",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_experience_donotshowfeedbacknotifications",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Experience/DoNotShowFeedbackNotifications",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_experience_donotshowfeedbacknotifications_1"
+      }
+    },
+    {
+      "recommendationId": "46.4",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Enable Insecure Guest Logons",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_lanmanworkstation_enableinsecureguestlogons",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LanmanWorkstation/EnableInsecureGuestLogons",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_lanmanworkstation_enableinsecureguestlogons_0"
+      }
+    },
+    {
+      "recommendationId": "49.16",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Network Access Do Not Allow Anonymous Enumeration Of Sam Accounts And Shares",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccountsandshares",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkAccess_DoNotAllowAnonymousEnumerationOfSamAccountsAndShares",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_donotallowanonymousenumerationofsamaccountsandshares_1"
+      }
+    },
+    {
+      "recommendationId": "49.18",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Network Access Restrict Clients Allowed To Make Remote Calls To SAM",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networkaccess_restrictclientsallowedtomakeremotecallstosam",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkAccess_RestrictClientsAllowedToMakeRemoteCallsToSAM",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+      },
+      "value": {
+        "kind": "string",
+        "value": "Administrators: Remote Access: Allow"
+      }
+    },
+    {
+      "recommendationId": "49.19",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Network Security Allow Local System To Use Computer Identity For NTLM",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_allowlocalsystemtousecomputeridentityforntlm",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkSecurity_AllowLocalSystemToUseComputerIdentityForNTLM",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_allowlocalsystemtousecomputeridentityforntlm_1"
+      }
+    },
+    {
+      "recommendationId": "49.20",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Network Security Allow PKU2U Authentication Requests",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_allowpku2uauthenticationrequests",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkSecurity_AllowPKU2UAuthenticationRequests",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_allowpku2uauthenticationrequests_0"
+      }
+    },
+    {
+      "recommendationId": "49.24",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Network Security Restrict NTLM Audit Incoming NTLM Traffic",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_restrictntlm_auditincomingntlmtraffic",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/NetworkSecurity_RestrictNTLM_AuditIncomingNTLMTraffic",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_networksecurity_restrictntlm_auditincomingntlmtraffic_2"
+      }
+    },
+    {
+      "recommendationId": "49.26",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "User Account Control Behavior Of The Elevation Prompt For Standard Users",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_behavioroftheelevationpromptforstandardusers",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_BehaviorOfTheElevationPromptForStandardUsers",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_behavioroftheelevationpromptforstandardusers_0"
+      }
+    },
+    {
+      "recommendationId": "49.32",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "User Account Control Virtualize File And Registry Write Failures To Per User Locations",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_virtualizefileandregistrywritefailurestoperuserlocations",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/UserAccountControl_VirtualizeFileAndRegistryWriteFailuresToPerUserLocations",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_useraccountcontrol_virtualizefileandregistrywritefailurestoperuserlocations_1"
+      }
+    },
+    {
+      "recommendationId": "55.1",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow apps from the Microsoft app store to auto update",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_applicationmanagement_allowappstoreautoupdate",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ApplicationManagement/AllowAppStoreAutoUpdate",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_applicationmanagement_allowappstoreautoupdate_1"
+      }
+    },
+    {
+      "recommendationId": "55.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Game DVR",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_applicationmanagement_allowgamedvr",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ApplicationManagement/AllowGameDVR",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_applicationmanagement_allowgamedvr_0"
+      }
+    },
+    {
+      "recommendationId": "55.4",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Block Non Admin User Install",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_applicationmanagement_blocknonadminuserinstall",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ApplicationManagement/BlockNonAdminUserInstall",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_applicationmanagement_blocknonadminuserinstall_1"
+      }
+    },
+    {
+      "recommendationId": "69.2",
+      "policyId": "windows11-verified-l1-part-1",
+      "displayName": "Allow Input Personalization",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_privacy_allowinputpersonalization",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Privacy/AllowInputPersonalization",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_privacy_allowinputpersonalization_0"
+      }
+    },
+    {
+      "recommendationId": "73.2",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Allow Indexing Encrypted Stores Or Items",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_search_allowindexingencryptedstoresoritems",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Search/AllowIndexingEncryptedStoresOrItems",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_search_allowindexingencryptedstoresoritems_0"
+      }
+    },
+    {
+      "recommendationId": "73.3",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Allow Search To Use Location",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_search_allowsearchtouselocation",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Search/AllowSearchToUseLocation",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_search_allowsearchtouselocation_0"
+      }
+    },
+    {
+      "recommendationId": "77.1.1",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Notify Malicious",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_webthreatdefense_notifymalicious",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WebThreatDefense/NotifyMalicious",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_webthreatdefense_notifymalicious_1"
+      }
+    },
+    {
+      "recommendationId": "77.1.2",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Notify Password Reuse",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_webthreatdefense_notifypasswordreuse",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WebThreatDefense/NotifyPasswordReuse",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_webthreatdefense_notifypasswordreuse_1"
+      }
+    },
+    {
+      "recommendationId": "77.1.3",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Notify Unsafe App",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_webthreatdefense_notifyunsafeapp",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WebThreatDefense/NotifyUnsafeApp",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_webthreatdefense_notifyunsafeapp_1"
+      }
+    },
+    {
+      "recommendationId": "77.1.4",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Service Enabled",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_webthreatdefense_serviceenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WebThreatDefense/ServiceEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_webthreatdefense_serviceenabled_1"
+      }
+    },
+    {
+      "recommendationId": "80.1",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Enable Sudo",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_sudo_enablesudo",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Sudo/EnableSudo",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_sudo_enablesudo_0"
+      }
+    },
+    {
+      "recommendationId": "91.2",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Require UEFI Memory Attributes Table",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_virtualizationbasedtechnology_requireuefimemoryattributestable",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/VirtualizationBasedTechnology/RequireUEFIMemoryAttributesTable",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_virtualizationbasedtechnology_requireuefimemoryattributestable_1"
+      }
+    },
+    {
+      "recommendationId": "94.1",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Allow Auto Connect To Wi Fi Sense Hotspots",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_wifi_allowautoconnecttowifisensehotspots",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Wifi/AllowAutoConnectToWiFiSenseHotspots",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_wifi_allowautoconnecttowifisensehotspots_0"
+      }
+    },
+    {
+      "recommendationId": "102.1",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Allow Clipboard Redirection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowssandbox_allowclipboardredirection",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsSandbox/AllowClipboardRedirection",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowssandbox_allowclipboardredirection_0"
+      }
+    },
+    {
+      "recommendationId": "102.2",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Allow Networking",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowssandbox_allownetworking",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsSandbox/AllowNetworking",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowssandbox_allownetworking_0"
+      }
+    },
+    {
+      "recommendationId": "104.3",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Manage Preview Builds",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_update_managepreviewbuilds",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Update/ManagePreviewBuilds",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_update_managepreviewbuilds_0"
+      }
+    },
+    {
+      "recommendationId": "104.4",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Scheduled Install Day",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_update_scheduledinstallday",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Update/ScheduledInstallDay",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_update_scheduledinstallday_0"
+      }
+    },
+    {
+      "recommendationId": "104.5",
+      "policyId": "windows11-verified-l1-part-2",
+      "displayName": "Block \"Pause Updates\" ability",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_update_setdisablepauseuxaccess",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Update/SetDisablePauseUXAccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_update_setdisablepauseuxaccess_1"
+      }
+    },
+    {
+      "recommendationId": "4.5.8",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_performrouterdiscovery",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSS-legacy/Pol_MSS_PerformRouterDiscovery",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_mss-legacy_pol_mss_performrouterdiscovery_0"
+      }
+    },
+    {
+      "recommendationId": "4.6.8.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn on Mapper I/O (LLTDIO) driver",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_linklayertopologydiscovery_lltd_enablelltdio",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_LinkLayerTopologyDiscovery/LLTD_EnableLLTDIO",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_linklayertopologydiscovery_lltd_enablelltdio_0"
+      }
+    },
+    {
+      "recommendationId": "4.6.17.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Configuration of wireless settings using Windows Connect Now",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_windowsconnectnow_wcn_enableregistrar",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_WindowsConnectNow/WCN_EnableRegistrar",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_windowsconnectnow_wcn_enableregistrar_0"
+      }
+    },
+    {
+      "recommendationId": "4.10.20.1.4",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_icm_nc_exitonisp",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_ICM/NC_ExitOnISP",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_icm_nc_exitonisp_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.20.1.7",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Registration if URL connection is referring to Microsoft.com",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_icm_nc_noregistration",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_ICM/NC_NoRegistration",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_icm_nc_noregistration_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.20.1.8",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Search Companion content file updates",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_icm_searchcompanion_disablefileupdates",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_ICM/SearchCompanion_DisableFileUpdates",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_icm_searchcompanion_disablefileupdates_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.20.1.12",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Windows Customer Experience Improvement Program",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_icm_ceipenable",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_ICM/CEIPEnable",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_icm_ceipenable_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.20.1.13",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Windows Error Reporting",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_icm_pch_donotreport",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_ICM/PCH_DoNotReport",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_icm_pch_donotreport_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.23.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Support device authentication using certificate",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_kerberos_devicepkinitenabled",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_Kerberos/DevicePKInitEnabled",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_kerberos_devicepkinitenabled_1",
+        "children": [
+          {
+            "displayName": "Device authentication behavior using certificate:",
+            "resolve": {
+              "definitionId": "device_vendor_msft_policy_config_admx_kerberos_devicepkinitenabled_devicepkinitbehavior",
+              "baseUri": "./Device/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ADMX_Kerberos/DevicePKInitEnabled",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "device_vendor_msft_policy_config_admx_kerberos_devicepkinitenabled_devicepkinitbehavior_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "4.10.25.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disallow copying of user input methods to the system account for sign-in",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_globalization_blockuserinputmethodsforsignin",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_Globalization/BlockUserInputMethodsForSignIn",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_globalization_blockuserinputmethodsforsignin_1"
+      }
+    },
+    {
+      "recommendationId": "4.10.40.5.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Microsoft Support Diagnostic Tool: Turn on MSDT interactive communication with support provider",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_msdt_msdtsupportprovider",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSDT/MsdtSupportProvider",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_msdt_msdtsupportprovider_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.3.2",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Block launching Universal Windows apps with Windows Runtime API access from hosted content.",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_appxruntime_appxruntimeblockhostedappaccesswinrt",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_AppXRuntime/AppxRuntimeBlockHostedAppAccessWinRT",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_appxruntime_appxruntimeblockhostedappaccesswinrt_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.34.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Turn off Push To Install service",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_pushtoinstall_disablepushtoinstall",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_PushToInstall/DisablePushToInstall",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_pushtoinstall_disablepushtoinstall_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.2.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow users to connect remotely by using Remote Desktop Services",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotedesktopservices_allowuserstoconnectremotely",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteDesktopServices/AllowUsersToConnectRemotely",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotedesktopservices_allowuserstoconnectremotely_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.3.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Do not allow COM port redirection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_com",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_CLIENT_COM",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_com_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.3.3",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Do not allow LPT port redirection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_lpt",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_CLIENT_LPT",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_lpt_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.35.4.3.4",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Do not allow supported Plug and Play device redirection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_pnp",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_TerminalServer/TS_CLIENT_PNP",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_terminalserver_ts_client_pnp_1"
+      }
+    },
+    {
+      "recommendationId": "4.11.48.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Prevent Internet Explorer security prompt for Windows Installer scripts",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_admx_msi_safeforscripting",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ADMX_MSI/SafeForScripting",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_admx_msi_safeforscripting_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.54.2.2",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow remote server management through WinRM",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remotemanagement_allowremoteservermanagement",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteManagement/AllowRemoteServerManagement",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remotemanagement_allowremoteservermanagement_0"
+      }
+    },
+    {
+      "recommendationId": "4.11.55.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Remote Shell Access",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_remoteshell_allowremoteshellaccess",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/RemoteShell/AllowRemoteShellAccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_remoteshell_allowremoteshellaccess_0"
+      }
+    },
+    {
+      "recommendationId": "12.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Camera",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_camera_allowcamera",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Camera/AllowCamera",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_camera_allowcamera_0"
+      }
+    },
+    {
+      "recommendationId": "47.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disallow KMS Client Online AVS Validation",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_licensing_disallowkmsclientonlineavsvalidation",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Licensing/DisallowKMSClientOnlineAVSValidation",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_licensing_disallowkmsclientonlineavsvalidation_1"
+      }
+    },
+    {
+      "recommendationId": "49.5",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Devices Prevent Users From Installing Printer Drivers When Connecting To Shared Printers",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_devices_preventusersfrominstallingprinterdriverswhenconnectingtosharedprinters",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/LocalPoliciesSecurityOptions/Devices_PreventUsersFromInstallingPrinterDriversWhenConnectingToSharedPrinters",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_localpoliciessecurityoptions_devices_preventusersfrominstallingprinterdriverswhenconnectingtosharedprinters_1"
+      }
+    },
+    {
+      "recommendationId": "54.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Message Sync",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_messaging_allowmessagesync",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Messaging/AllowMessageSync",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_messaging_allowmessagesync_0"
+      }
+    },
+    {
+      "recommendationId": "55.3",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Shared User App Data",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_applicationmanagement_allowshareduserappdata",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ApplicationManagement/AllowSharedUserAppData",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_applicationmanagement_allowshareduserappdata_0"
+      }
+    },
+    {
+      "recommendationId": "55.5",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disable Store Originated Apps",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_applicationmanagement_disablestoreoriginatedapps",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ApplicationManagement/DisableStoreOriginatedApps",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_applicationmanagement_disablestoreoriginatedapps_1"
+      }
+    },
+    {
+      "recommendationId": "69.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Cross Device Clipboard",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_privacy_allowcrossdeviceclipboard",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Privacy/AllowCrossDeviceClipboard",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_privacy_allowcrossdeviceclipboard_0"
+      }
+    },
+    {
+      "recommendationId": "69.3",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disable Advertising ID",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_privacy_disableadvertisingid",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Privacy/DisableAdvertisingId",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_privacy_disableadvertisingid_1"
+      }
+    },
+    {
+      "recommendationId": "69.5",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Upload User Activities",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_privacy_uploaduseractivities",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Privacy/UploadUserActivities",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_privacy_uploaduseractivities_0"
+      }
+    },
+    {
+      "recommendationId": "73.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Cloud Search",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_search_allowcloudsearch",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Search/AllowCloudSearch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_search_allowcloudsearch_0"
+      }
+    },
+    {
+      "recommendationId": "73.4",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Search Highlights",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_search_allowsearchhighlights",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Search/AllowSearchHighlights",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+      },
+      "value": {
+        "kind": "integer",
+        "value": 0
+      }
+    },
+    {
+      "recommendationId": "75.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Online Tips",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_settings_allowonlinetips",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/Settings/AllowOnlineTips",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_settings_allowonlinetips_0"
+      }
+    },
+    {
+      "recommendationId": "81.4",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disable Enterprise Auth Proxy",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_system_disableenterpriseauthproxy",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/System/DisableEnterpriseAuthProxy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_system_disableenterpriseauthproxy_1"
+      }
+    },
+    {
+      "recommendationId": "81.5",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Disable One Drive File Sync",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_system_disableonedrivefilesync",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/System/DisableOneDriveFileSync",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_system_disableonedrivefilesync_1"
+      }
+    },
+    {
+      "recommendationId": "95.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow widgets",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_newsandinterests_allownewsandinterests",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/NewsAndInterests/AllowNewsAndInterests",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_newsandinterests_allownewsandinterests_0"
+      }
+    },
+    {
+      "recommendationId": "99.1",
+      "policyId": "windows11-verified-l2-part-1",
+      "displayName": "Allow Suggested Apps In Windows Ink Workspace",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "device_vendor_msft_policy_config_windowsinkworkspace_allowsuggestedappsinwindowsinkworkspace",
+        "baseUri": "./Device/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/WindowsInkWorkspace/AllowSuggestedAppsInWindowsInkWorkspace",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "device_vendor_msft_policy_config_windowsinkworkspace_allowsuggestedappsinwindowsinkworkspace_0"
       }
     }
   ],

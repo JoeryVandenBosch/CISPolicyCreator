@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0 - 2026-08-17
+
+- Expand the six exact-version benchmark catalogs through deterministic exact-name, exact-value, complete-tree matching against the pinned 18,227-definition Settings Catalog snapshot: Windows 11 now maps 154 recommendations, Windows 10 maps 121, Edge maps 125, Office maps 203, and macOS maps 57.
+- Add hash-bound private exact-candidate generation and independently regenerated promotion tooling; ambiguous definitions, incomplete dependencies, empty definition labels, non-exact values, and modified worklists remain nondeployable.
+- Add a pinned Microsoft Graph contract for `iosGeneralDeviceConfiguration` and expand the iOS/iPadOS catalog to 78 mapped recommendations, 2 explicit administrator-input recommendations, and 14 unresolved recommendations.
+- Bind generic Graph objects to exact contract hashes, reject unknown properties/types/ranges/endpoints, and compare a unique same-name object's complete expected-property subset before an idempotent skip. Existing objects are never patched and assignments remain forbidden.
+- Fix single-property administrator decision markers being unwrapped by PowerShell, and validate both the omitted-decision and supplied-decision iOS/iPadOS builds.
+- Rebuild all six supplied real PDFs into offline-validated unassigned packs, then live dry-run all 738 mapped recommendations (666 Settings Catalog entries plus 72 recommendations in two contract-bound iOS/iPadOS objects) in the pinned test tenant with zero writes and zero assignments. One exactly matching existing macOS policy was safely identified for an idempotent skip.
+
 ## 0.3.0 - 2026-08-16
 
 - Add exact-version partial catalogs for Windows 10 v5.0.0, Microsoft Edge v1.0.0, Microsoft Office v1.1.0, Apple macOS 26 Tahoe Intune v1.0.0, and Apple iOS 26 / iPadOS 26 Intune v1.0.0.

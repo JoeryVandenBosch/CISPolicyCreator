@@ -31,7 +31,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 5. Live definition/value resolution completes before the first create request.
 6. Graph URLs must use HTTPS, the exact `graph.microsoft.com` host, an allowed API version, and a `deviceManagement` path.
 7. Encoded or plain assignment path segments and assignment payload properties are rejected.
-8. A same-name Settings Catalog policy is skipped only after an exact read-only metadata and complete setting/value comparison; duplicate names or any difference abort before writes. A same-name generic Graph object always aborts because the endpoint-agnostic adapter cannot prove equivalence; it is never patched.
+8. A same-name Settings Catalog policy is skipped only after an exact read-only metadata and complete setting/value comparison. Generic Graph objects require a hash-bound type/endpoint/property contract and are skipped only after a unique same-name object's complete expected-property subset compares exactly. Duplicate names, missing properties, or any difference abort before writes; existing objects are never patched.
 9. Import stops on the first create error unless `-ContinueOnError` is explicit.
 10. A probe must exactly match a generated reviewed leaf setting and policy platform/technology; cleanup is attempted even if later probe processing fails.
 11. No automatic assignments or group creation are implemented.

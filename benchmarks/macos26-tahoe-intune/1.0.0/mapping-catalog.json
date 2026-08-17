@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-apple-macos26-tahoe-intune-1.0.0",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "benchmark": {
     "id": "macos26-tahoe-intune",
     "version": "1.0.0",
@@ -40,11 +40,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.1",
@@ -52,11 +54,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.2",
@@ -64,11 +68,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.3",
@@ -76,11 +82,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.4",
@@ -88,11 +96,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-3"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.5",
@@ -100,11 +110,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-4"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.1.6",
@@ -112,11 +124,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-5"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.3.2.1",
@@ -124,11 +138,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.4.1.1",
@@ -136,11 +152,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.4.2.1",
@@ -172,11 +190,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.6.2.1",
@@ -184,11 +204,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.6.2.2",
@@ -196,11 +218,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.7.1",
@@ -220,11 +244,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.2",
@@ -232,11 +258,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.3",
@@ -244,11 +272,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-3"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.4",
@@ -256,11 +286,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-4"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.5",
@@ -268,11 +300,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-5"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.6",
@@ -280,11 +314,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-6"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.7",
@@ -292,11 +328,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-7"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.8",
@@ -304,11 +342,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-8"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.9",
@@ -316,11 +356,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-9"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.10",
@@ -328,11 +370,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-10"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.11",
@@ -340,11 +384,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-11"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.12",
@@ -352,11 +398,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-12"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.13",
@@ -364,11 +412,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-13"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.14",
@@ -376,11 +426,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l2-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.15",
@@ -388,11 +440,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-14"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.16",
@@ -400,11 +454,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-15"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.17",
@@ -412,11 +468,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-16"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.18",
@@ -424,11 +482,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-17"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.19",
@@ -436,11 +496,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-18"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.20",
@@ -448,11 +510,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l2-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.21",
@@ -460,11 +524,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-19"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.22",
@@ -472,11 +538,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-20"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.23",
@@ -484,11 +552,13 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l2-part-3"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.24",
@@ -496,11 +566,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-21"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.25",
@@ -508,11 +580,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-22"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.26",
@@ -520,11 +594,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-23"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.27",
@@ -532,11 +608,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-24"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.28",
@@ -544,11 +622,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-25"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.29",
@@ -568,11 +648,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-26"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.31",
@@ -580,11 +662,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-27"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.32",
@@ -592,11 +676,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-28"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.33",
@@ -604,11 +690,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-29"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.34",
@@ -616,11 +704,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-30"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.35",
@@ -628,11 +718,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-31"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.36",
@@ -640,11 +732,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-32"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.37",
@@ -652,11 +746,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-33"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.38",
@@ -664,11 +760,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-34"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.8.39",
@@ -676,11 +774,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-35"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.9.1.1",
@@ -808,11 +908,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.9.1.12",
@@ -832,11 +934,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.10.1.1",
@@ -976,11 +1080,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.11.2.1",
@@ -1000,11 +1106,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.12.1.1",
@@ -1012,11 +1120,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.12.1.2",
@@ -1048,11 +1158,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:macos-verified-l1-part-1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact PDF setting name/value and pinned-snapshot definition/value IDs; complete dependency tree validated without inference."
     },
     {
       "recommendationId": "2.13.1",
@@ -1237,6 +1349,500 @@
       "roleScopeTagIds": [
         "0"
       ]
+    },
+    {
+      "id": "macos-verified-l1-part-1",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-2",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 2",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-3",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 3",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-4",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 4",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-5",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 5",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-6",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 6",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-7",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 7",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-8",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 8",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-9",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 9",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-10",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 10",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-11",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 11",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-12",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 12",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-13",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 13",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-14",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 14",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-15",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 15",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-16",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 16",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-17",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 17",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-18",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 18",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-19",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 19",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-20",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 20",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-21",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 21",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-22",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 22",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-23",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 23",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-24",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 24",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-25",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 25",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-26",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 26",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-27",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 27",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-28",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 28",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-29",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 29",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-30",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 30",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-31",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 31",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-32",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 32",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-33",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 33",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-34",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 34",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l1-part-35",
+      "name": "CIS - macOS 26 Tahoe Verified [L1] - v1.0.0 - Part 35",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l2-part-1",
+      "name": "CIS - macOS 26 Tahoe Verified [L2] - v1.0.0 - Part 1",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l2-part-2",
+      "name": "CIS - macOS 26 Tahoe Verified [L2] - v1.0.0 - Part 2",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "macos-verified-l2-part-3",
+      "name": "CIS - macOS 26 Tahoe Verified [L2] - v1.0.0 - Part 3",
+      "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
+      "platforms": "macOS",
+      "technologies": "mdm",
+      "profiles": [
+        "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
     }
   ],
   "settingsCatalogSettings": [
@@ -1269,6 +1875,2004 @@
                 "value": {
                   "kind": "choice",
                   "optionId": "com.apple.mcx_disableguestaccount_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_com.apple.mcx.filevault2",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX.FileVault2",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "User Enters Missing Info",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_userentersmissinginfo",
+                  "baseUri": "",
+                  "offsetUri": "UserEntersMissingInfo",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_userentersmissinginfo_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.3",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Defer Force At User Login Max Bypass Attempts",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_deferforceatuserloginmaxbypassattempts",
+        "baseUri": "",
+        "offsetUri": "DeferForceAtUserLoginMaxBypassAttempts",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+      },
+      "value": {
+        "kind": "integer",
+        "value": 0
+      }
+    },
+    {
+      "recommendationId": "2.3.2.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx_com.apple.mcx-fdefilevaultoptions",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Prevent FileVault From Being Disabled",
+                "resolve": {
+                  "definitionId": "com.apple.mcx_dontallowfdedisable",
+                  "baseUri": "",
+                  "offsetUri": "dontAllowFDEDisable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx_dontallowfdedisable_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.4.1.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.loginwindow_com.apple.loginwindow",
+        "baseUri": "",
+        "offsetUri": "com.apple.loginwindow",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Show Full Name",
+                "resolve": {
+                  "definitionId": "com.apple.loginwindow_showfullname",
+                  "baseUri": "",
+                  "offsetUri": "SHOWFULLNAME",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.loginwindow_showfullname_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.2.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.security.firewall_com.apple.security.firewall",
+        "baseUri": "",
+        "offsetUri": "com.apple.security.firewall",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Enable Stealth Mode",
+                "resolve": {
+                  "definitionId": "com.apple.security.firewall_enablestealthmode",
+                  "baseUri": "",
+                  "offsetUri": "EnableStealthMode",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.security.firewall_enablestealthmode_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Bluetooth Sharing Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowbluetoothsharingmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowBluetoothSharingModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowbluetoothsharingmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.9.1.11",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mobiledevice.passwordpolicy_com.apple.mobiledevice.passwordpolicy",
+        "baseUri": "",
+        "offsetUri": "com.apple.mobiledevice.passwordpolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Require Alphanumeric Passcode",
+                "resolve": {
+                  "definitionId": "com.apple.mobiledevice.passwordpolicy_requirealphanumeric",
+                  "baseUri": "",
+                  "offsetUri": "requireAlphanumeric",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mobiledevice.passwordpolicy_requirealphanumeric_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.11.1.5",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx_com.apple.mcx-energysaver",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Destroy FV Key On Standby",
+                "resolve": {
+                  "definitionId": "com.apple.mcx_destroyfvkeyonstandby",
+                  "baseUri": "",
+                  "offsetUri": "DestroyFVKeyOnStandby",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx_destroyfvkeyonstandby_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.11.3.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.system-extension-policy_com.apple.system-extension-policy",
+        "baseUri": "",
+        "offsetUri": "com.apple.system-extension-policy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow User Overrides",
+                "resolve": {
+                  "definitionId": "com.apple.system-extension-policy_allowuseroverrides",
+                  "baseUri": "",
+                  "offsetUri": "AllowUserOverrides",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.system-extension-policy_allowuseroverrides_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.12.1.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.systempolicy.control_com.apple.systempolicy.control",
+        "baseUri": "",
+        "offsetUri": "com.apple.systempolicy.control",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Enable XProtect Malware Upload",
+                "resolve": {
+                  "definitionId": "com.apple.systempolicy.control_enablexprotectmalwareupload",
+                  "baseUri": "",
+                  "offsetUri": "EnableXProtectMalwareUpload",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.systempolicy.control_enablexprotectmalwareupload_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.12.2.1",
+      "policyId": "macos-verified-l1-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.systempolicy.managed_com.apple.systempolicy.managed",
+        "baseUri": "",
+        "offsetUri": "com.apple.systempolicy.managed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Disable Override",
+                "resolve": {
+                  "definitionId": "com.apple.systempolicy.managed_disableoverride",
+                  "baseUri": "",
+                  "offsetUri": "DisableOverride",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.systempolicy.managed_disableoverride_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.2",
+      "policyId": "macos-verified-l1-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_com.apple.mcx.filevault2",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX.FileVault2",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Enable",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_enable",
+                  "baseUri": "",
+                  "offsetUri": "Enable",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_enable_0"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.2.2",
+      "policyId": "macos-verified-l1-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.security.firewall_com.apple.security.firewall",
+        "baseUri": "",
+        "offsetUri": "com.apple.security.firewall",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Enable Firewall",
+                "resolve": {
+                  "definitionId": "com.apple.security.firewall_enablefirewall",
+                  "baseUri": "",
+                  "offsetUri": "EnableFirewall",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.security.firewall_enablefirewall_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.2",
+      "policyId": "macos-verified-l1-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Password Sharing",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowpasswordsharing",
+                  "baseUri": "",
+                  "offsetUri": "allowPasswordSharing",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowpasswordsharing_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.9.1.13",
+      "policyId": "macos-verified-l1-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mobiledevice.passwordpolicy_com.apple.mobiledevice.passwordpolicy",
+        "baseUri": "",
+        "offsetUri": "com.apple.mobiledevice.passwordpolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Change At Next Auth",
+                "resolve": {
+                  "definitionId": "com.apple.mobiledevice.passwordpolicy_changeatnextauth",
+                  "baseUri": "",
+                  "offsetUri": "changeAtNextAuth",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mobiledevice.passwordpolicy_changeatnextauth_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.4",
+      "policyId": "macos-verified-l1-part-3",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_com.apple.mcx.filevault2",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX.FileVault2",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Show Recovery Key",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_showrecoverykey",
+                  "baseUri": "",
+                  "offsetUri": "ShowRecoveryKey",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_showrecoverykey_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.3",
+      "policyId": "macos-verified-l1-part-3",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow File Sharing Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowfilesharingmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowFileSharingModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowfilesharingmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.5",
+      "policyId": "macos-verified-l1-part-4",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_com.apple.mcx.filevault2",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX.FileVault2",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Force Enable In Setup Assistant",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_forceenableinsetupassistant",
+                  "baseUri": "",
+                  "offsetUri": "ForceEnableInSetupAssistant",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_forceenableinsetupassistant_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.4",
+      "policyId": "macos-verified-l1-part-4",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Erase Content And Settings",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowerasecontentandsettings",
+                  "baseUri": "",
+                  "offsetUri": "allowEraseContentAndSettings",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowerasecontentandsettings_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.1.6",
+      "policyId": "macos-verified-l1-part-5",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.mcx.filevault2_com.apple.mcx.filevault2",
+        "baseUri": "",
+        "offsetUri": "com.apple.MCX.FileVault2",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Defer",
+                "resolve": {
+                  "definitionId": "com.apple.mcx.filevault2_defer",
+                  "baseUri": "",
+                  "offsetUri": "Defer",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.mcx.filevault2_defer_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.5",
+      "policyId": "macos-verified-l1-part-5",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Air Play Incoming Requests",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowairplayincomingrequests",
+                  "baseUri": "",
+                  "offsetUri": "allowAirPlayIncomingRequests",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowairplayincomingrequests_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.6",
+      "policyId": "macos-verified-l1-part-6",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Media Sharing Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowmediasharingmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowMediaSharingModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowmediasharingmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.7",
+      "policyId": "macos-verified-l1-part-7",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Photo Library",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudphotolibrary",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudPhotoLibrary",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudphotolibrary_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.8",
+      "policyId": "macos-verified-l1-part-8",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Document Sync",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowclouddocumentsync",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudDocumentSync",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowclouddocumentsync_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.9",
+      "policyId": "macos-verified-l1-part-9",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Activity Continuation",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowactivitycontinuation",
+                  "baseUri": "",
+                  "offsetUri": "allowActivityContinuation",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowactivitycontinuation_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.10",
+      "policyId": "macos-verified-l1-part-10",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Bookmarks",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudbookmarks",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudBookmarks",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudbookmarks_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.11",
+      "policyId": "macos-verified-l1-part-11",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Freeform",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudfreeform",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudFreeform",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudfreeform_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.12",
+      "policyId": "macos-verified-l1-part-12",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Calendar",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudcalendar",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudCalendar",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudcalendar_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.13",
+      "policyId": "macos-verified-l1-part-13",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow ARD Remote Management Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowardremotemanagementmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowARDRemoteManagementModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowardremotemanagementmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.15",
+      "policyId": "macos-verified-l1-part-14",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Auto Unlock",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowautounlock",
+                  "baseUri": "",
+                  "offsetUri": "allowAutoUnlock",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowautounlock_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.16",
+      "policyId": "macos-verified-l1-part-15",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Startup Disk Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowstartupdiskmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowStartupDiskModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowstartupdiskmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.17",
+      "policyId": "macos-verified-l1-part-16",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow UI Configuration Profile Installation",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowuiconfigurationprofileinstallation",
+                  "baseUri": "",
+                  "offsetUri": "allowUIConfigurationProfileInstallation",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowuiconfigurationprofileinstallation_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.18",
+      "policyId": "macos-verified-l1-part-17",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Device Name Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowdevicenamemodification",
+                  "baseUri": "",
+                  "offsetUri": "allowDeviceNameModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowdevicenamemodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.19",
+      "policyId": "macos-verified-l1-part-18",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Internet Sharing Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowinternetsharingmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowInternetSharingModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowinternetsharingmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.21",
+      "policyId": "macos-verified-l1-part-19",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Find My Friends",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowfindmyfriends",
+                  "baseUri": "",
+                  "offsetUri": "allowFindMyFriends",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowfindmyfriends_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.22",
+      "policyId": "macos-verified-l1-part-20",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow AirDrop",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowairdrop",
+                  "baseUri": "",
+                  "offsetUri": "allowAirDrop",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowairdrop_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.24",
+      "policyId": "macos-verified-l1-part-21",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Notes",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudnotes",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudNotes",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudnotes_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.25",
+      "policyId": "macos-verified-l1-part-22",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Multiplayer Gaming",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowmultiplayergaming",
+                  "baseUri": "",
+                  "offsetUri": "allowMultiplayerGaming",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowmultiplayergaming_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.26",
+      "policyId": "macos-verified-l1-part-23",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Local User Creation",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowlocalusercreation",
+                  "baseUri": "",
+                  "offsetUri": "allowLocalUserCreation",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowlocalusercreation_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.27",
+      "policyId": "macos-verified-l1-part-24",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Apple Personalized Advertising",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowapplepersonalizedadvertising",
+                  "baseUri": "",
+                  "offsetUri": "allowApplePersonalizedAdvertising",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowapplepersonalizedadvertising_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.28",
+      "policyId": "macos-verified-l1-part-25",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Printer Sharing Modification",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowprintersharingmodification",
+                  "baseUri": "",
+                  "offsetUri": "allowPrinterSharingModification",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowprintersharingmodification_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.30",
+      "policyId": "macos-verified-l1-part-26",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Diagnostic Submission",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowdiagnosticsubmission",
+                  "baseUri": "",
+                  "offsetUri": "allowDiagnosticSubmission",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowdiagnosticsubmission_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.31",
+      "policyId": "macos-verified-l1-part-27",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Reminders",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudreminders",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudReminders",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudreminders_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.32",
+      "policyId": "macos-verified-l1-part-28",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Password Proximity Requests",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowpasswordproximityrequests",
+                  "baseUri": "",
+                  "offsetUri": "allowPasswordProximityRequests",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowpasswordproximityrequests_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.33",
+      "policyId": "macos-verified-l1-part-29",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow iPhone Mirroring",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowiphonemirroring",
+                  "baseUri": "",
+                  "offsetUri": "allowiPhoneMirroring",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowiphonemirroring_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.34",
+      "policyId": "macos-verified-l1-part-30",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Mail",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudmail",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudMail",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudmail_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.35",
+      "policyId": "macos-verified-l1-part-31",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Universal Control",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowuniversalcontrol",
+                  "baseUri": "",
+                  "offsetUri": "allowUniversalControl",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowuniversalcontrol_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.36",
+      "policyId": "macos-verified-l1-part-32",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Address Book",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudaddressbook",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudAddressBook",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudaddressbook_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.37",
+      "policyId": "macos-verified-l1-part-33",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Desktop And Documents",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowclouddesktopanddocuments",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudDesktopAndDocuments",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowclouddesktopanddocuments_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.38",
+      "policyId": "macos-verified-l1-part-34",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow iTunes File Sharing",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowitunesfilesharing",
+                  "baseUri": "",
+                  "offsetUri": "allowiTunesFileSharing",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowitunesfilesharing_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.39",
+      "policyId": "macos-verified-l1-part-35",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Cloud Keychain Sync",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcloudkeychainsync",
+                  "baseUri": "",
+                  "offsetUri": "allowCloudKeychainSync",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcloudkeychainsync_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.1",
+      "policyId": "macos-verified-l2-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.appstore_com.apple.appstore",
+        "baseUri": "",
+        "offsetUri": "com.apple.appstore",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Restrict Store Software Update Only",
+                "resolve": {
+                  "definitionId": "com.apple.appstore_restrict-store-softwareupdate-only",
+                  "baseUri": "",
+                  "offsetUri": "restrict-store-softwareupdate-only",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.appstore_restrict-store-softwareupdate-only_true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.1.1",
+      "policyId": "macos-verified-l2-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.assetcache.managed_com.apple.assetcache.managed",
+        "baseUri": "",
+        "offsetUri": "com.apple.AssetCache.managed",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Auto Activation",
+                "resolve": {
+                  "definitionId": "com.apple.assetcache.managed_autoactivation",
+                  "baseUri": "",
+                  "offsetUri": "AutoActivation",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.assetcache.managed_autoactivation_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.14",
+      "policyId": "macos-verified-l2-part-1",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Game Center",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowgamecenter",
+                  "baseUri": "",
+                  "offsetUri": "allowGameCenter",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowgamecenter_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.20",
+      "policyId": "macos-verified-l2-part-2",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Content Caching",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowcontentcaching",
+                  "baseUri": "",
+                  "offsetUri": "allowContentCaching",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowcontentcaching_false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.23",
+      "policyId": "macos-verified-l2-part-3",
+      "displayName": "Top Level Setting Group Collection",
+      "profiles": [
+        "L2"
+      ],
+      "resolve": {
+        "definitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "baseUri": "",
+        "offsetUri": "com.apple.applicationaccess",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition"
+      },
+      "value": {
+        "kind": "group-collection",
+        "items": [
+          {
+            "children": [
+              {
+                "displayName": "Allow Password Auto Fill",
+                "resolve": {
+                  "definitionId": "com.apple.applicationaccess_allowpasswordautofill",
+                  "baseUri": "",
+                  "offsetUri": "allowPasswordAutoFill",
+                  "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+                },
+                "value": {
+                  "kind": "choice",
+                  "optionId": "com.apple.applicationaccess_allowpasswordautofill_false"
                 }
               }
             ]

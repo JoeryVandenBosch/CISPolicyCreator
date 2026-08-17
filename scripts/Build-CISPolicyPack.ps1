@@ -10,6 +10,7 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repoRoot = Split-Path -Parent $PSScriptRoot
+Import-Module (Join-Path $repoRoot 'src\CISPolicyCreator.psm1') -Force -DisableNameChecking
 
 function Read-ValidatedJson {
     param([Parameter(Mandatory)][string]$Path,[Parameter(Mandatory)][string]$Schema,[Parameter(Mandatory)][string]$Label)
@@ -71,7 +72,7 @@ function Resolve-DecisionMarkers($Node,$DecisionById) {
     if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [System.Collections.IDictionary] -and $Node -isnot [pscustomobject]) {
         return @($Node | ForEach-Object { Resolve-DecisionMarkers $_ $DecisionById })
     }
-    $properties = if ($Node -is [System.Collections.IDictionary]) { @($Node.Keys | ForEach-Object { [pscustomobject]@{ Name=[string]$_; Value=$Node[$_] } }) } else { @($Node.PSObject.Properties) }
+    [object[]]$properties = if ($Node -is [System.Collections.IDictionary]) { @($Node.Keys | ForEach-Object { [pscustomobject]@{ Name=[string]$_; Value=$Node[$_] } }) } else { @($Node.PSObject.Properties) }
     if ($properties.Count -eq 1 -and $properties[0].Name -ceq '$decision') {
         $id = [string]$properties[0].Value
         if (-not $DecisionById.ContainsKey($id)) { throw "Graph payload requires missing administrator decision '$id'." }
@@ -378,11 +379,16 @@ foreach ($graphObject in @($catalog.graphObjects)) {
     $ids = @($graphObject.recommendationIds | ForEach-Object { [string]$_ })
     foreach ($id in $ids) { if (-not $finalById.ContainsKey($id)) { throw "Graph object '$($graphObject.name)' references unknown recommendation '$id'." } }
     if (@($ids | Where-Object { [string]$finalById[$_].mappingStatus -ne 'mapped' }).Count -gt 0) { continue }
-    $generatedGraphObjects.Add([pscustomobject][ordered]@{
+    $contractId=[string]$graphObject.contractId
+    $contractInfo=Get-CpcGraphObjectContract -ContractId $contractId -RepoRoot $repoRoot
+    $generatedGraphObject=[pscustomobject][ordered]@{
         name=[string]$graphObject.name; mappingStatus='mapped'; recommendationIds=$ids; profiles=@($graphObject.profiles)
+        contractId=$contractId; contractSha256=[string]$contractInfo.Sha256
         endpoint=[string]$graphObject.endpoint; listEndpoint=(Get-OptionalProperty $graphObject 'listEndpoint'); nameProperty=(Get-OptionalProperty $graphObject 'nameProperty')
         payload=(Resolve-DecisionMarkers $graphObject.payload $decisionById)
-    })
+    }
+    Assert-CpcGraphObjectMatchesContract -GraphObject $generatedGraphObject -Contract $contractInfo.Contract
+    $generatedGraphObjects.Add($generatedGraphObject)
 }
 
 $outputRoot = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
