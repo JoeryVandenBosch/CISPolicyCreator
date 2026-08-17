@@ -526,6 +526,16 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -MappingCatalogPath $badNestedChoicePath -OutputPath (Join-Path $testRoot 'bad-nested-choice-pack') } catch { $badNestedChoiceFailed=$true }
     Assert-True $badNestedChoiceFailed 'A plausible but non-exact nested choice ID must fail closed.'
 
+    $requiredChildSnapshot=Read-Json (Join-Path $fixtures 'settings-catalog-snapshot.json')
+    $requiredParentDefinition=@($requiredChildSnapshot.definitions | Where-Object id -eq 'synthetic_parent_choice')[0]
+    $requiredParentOption=@($requiredParentDefinition.options | Where-Object itemId -eq 'synthetic_parent_choice_enabled')[0]
+    $requiredParentOption | Add-Member -NotePropertyName dependedOnBy -NotePropertyValue @([pscustomobject]@{required=$true;dependedOnBy='synthetic_group_enabled'})
+    $requiredChildSnapshotPath=Join-Path $testRoot 'required-child-snapshot.json'
+    $requiredChildSnapshot | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $requiredChildSnapshotPath -Encoding utf8
+    $missingRequiredChildError=$null
+    try { & (Join-Path $repoRoot 'scripts\Build-CISPolicyPack.ps1') @common -SettingsCatalogSnapshotPath $requiredChildSnapshotPath -OutputPath (Join-Path $testRoot 'missing-required-child-pack') } catch { $missingRequiredChildError=$_.Exception.Message }
+    Assert-True ([string]$missingRequiredChildError -cmatch 'missing snapshot-required child definition') 'A choice that omits a snapshot-required child must fail during pack compilation.'
+
     $badCollectionCatalog=Read-Json (Join-Path $fixtures 'mapping-catalog.json')
     $badCollection=@($badCollectionCatalog.settingsCatalogSettings | Where-Object displayName -eq 'Synthetic string collection')[0]
     $badCollection.value.values[0]=123
@@ -711,6 +721,17 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $parentBody=New-CpcConfigurationSettingBody -Definition $parentDefinition -Spec $nestedChoiceSpec -Definitions @() -DefinitionCache $definitionCache
     $nestedGroupInstance=@($parentBody.settingInstance.choiceSettingValue.children)[0]
     Assert-True ([string]$nestedGroupInstance.settingDefinitionId -ceq 'synthetic_nested_group' -and @($nestedGroupInstance.groupSettingCollectionValue).Count -eq 2) 'Choice-dependent nested group must emit all reviewed rows.'
+    $liveRequiredParent=($parentDefinition | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $liveRequiredOption=@($liveRequiredParent.options | Where-Object itemId -eq 'synthetic_parent_choice_enabled')[0]
+    $liveRequiredOption | Add-Member -NotePropertyName dependedOnBy -NotePropertyValue @([pscustomobject]@{required=$true;dependedOnBy='synthetic_group_enabled'})
+    $missingLiveRequiredChildError=$null
+    try { New-CpcConfigurationSettingBody -Definition $liveRequiredParent -Spec $nestedChoiceSpec -Definitions @() -DefinitionCache $definitionCache | Out-Null } catch { $missingLiveRequiredChildError=$_.Exception.Message }
+    Assert-True ([string]$missingLiveRequiredChildError -cmatch 'missing live-required child definition') 'Live payload generation must reject a choice that omits a live-required child before POST.'
+    $completeRequiredSpec=($nestedChoiceSpec | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $requiredSiblingSpec=($groupSpec.value.items[0].children[0] | ConvertTo-Json -Depth 100 | ConvertFrom-Json -Depth 100)
+    $completeRequiredSpec.value.children=@($completeRequiredSpec.value.children)+@($requiredSiblingSpec)
+    $completeRequiredBody=New-CpcConfigurationSettingBody -Definition $liveRequiredParent -Spec $completeRequiredSpec -Definitions @() -DefinitionCache $definitionCache
+    Assert-True (@($completeRequiredBody.settingInstance.choiceSettingValue.children).Count -eq 2) 'Live payload generation must accept an exact required child alongside the mapped dependent setting.'
     $choiceDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_choice')[0]
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
     $choiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $choiceSpec

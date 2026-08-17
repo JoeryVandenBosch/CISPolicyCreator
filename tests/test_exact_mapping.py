@@ -211,6 +211,59 @@ class ExactMappingToolsTests(unittest.TestCase):
             self.assertIn("differs from an independent regeneration", completed.stderr)
             self.assertFalse(output.exists())
 
+    def test_parent_choice_with_unresolved_required_sibling_is_not_a_candidate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            extraction, snapshot_path, catalog = self.fixtures(root)
+            snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+            target = snapshot["definitions"][0]
+            parent_id = "device_vendor_msft_policy_config_synthetic_parent"
+            parent_option_id = f"{parent_id}_enabled"
+            required_child_id = "device_vendor_msft_policy_config_synthetic_required"
+            target["options"][0]["dependentOn"] = [
+                {"parentSettingId": parent_id, "dependentOn": parent_option_id}
+            ]
+            snapshot["definitions"].extend(
+                [
+                    {
+                        "id": parent_id,
+                        "displayName": "Synthetic parent",
+                        "@odata.type": CHOICE,
+                        "options": [
+                            {
+                                "displayName": "Enabled",
+                                "name": "Enabled",
+                                "itemId": parent_option_id,
+                                "optionValue": {"value": True},
+                                "dependedOnBy": [
+                                    {"required": True, "dependedOnBy": required_child_id}
+                                ],
+                            }
+                        ],
+                    },
+                    {
+                        "id": required_child_id,
+                        "displayName": "Synthetic required",
+                        "@odata.type": CHOICE,
+                        "options": [],
+                    },
+                ]
+            )
+            snapshot["retrieval"]["definitionCount"] = len(snapshot["definitions"])
+            self.write_json(snapshot_path, snapshot)
+
+            worklist = root / "review.private-mapping-candidates.json"
+            self.run_generator(extraction, snapshot_path, catalog, worklist)
+            review = json.loads(worklist.read_text(encoding="utf-8"))
+            block_foo = next(
+                item for item in review["recommendations"] if item["recommendationId"] == "1.1"
+            )
+            self.assertEqual(block_foo["status"], "definition-found-value-unresolved")
+            self.assertEqual(
+                block_foo["failures"][0]["reason"],
+                "parent-choice-has-unresolved-required-children",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 - 2026-08-17
+
+- Enforce every snapshot- and live-Graph-required child of a selected Settings Catalog choice before pack publication or policy POST.
+- Correct 25 Office Outlook dependency trees by including the exact `Use Outlook Security Group Policy` child required by `Outlook Security Mode = Enabled`, using the already mapped CIS recommendation 2.5.14.3.23 as evidence.
+- Reject future exact-match candidates when an ancestor choice has another required child that the recommendation does not deterministically supply.
+
 ## 0.4.0 - 2026-08-17
 
 - Expand the six exact-version benchmark catalogs through deterministic exact-name, exact-value, complete-tree matching against the pinned 18,227-definition Settings Catalog snapshot: Windows 11 now maps 154 recommendations, Windows 10 maps 121, Edge maps 125, Office maps 203, and macOS maps 57.

@@ -205,7 +205,20 @@ function New-CpcConfigurationSettingInstance {
             throw "Exact choice optionId '$($valueSpec.optionId)' was not uniquely present for '$($Spec.displayName)'. Available: $available"
         }
         $childrenProperty=$valueSpec.PSObject.Properties['children']
-        $children=if($childrenProperty){@(New-CpcConfigurationSettingInstances -Specs @($childrenProperty.Value) -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Choice '$($Spec.displayName)'")}else{@()}
+        [object[]]$children=@()
+        if($childrenProperty){$children=@(New-CpcConfigurationSettingInstances -Specs @($childrenProperty.Value) -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Choice '$($Spec.displayName)'")}
+        $dependenciesProperty=$candidate[0].PSObject.Properties['dependedOnBy']
+        $optionDependencies=if($dependenciesProperty){@($dependenciesProperty.Value)}else{@()}
+        $requiredChildIds=@($optionDependencies | Where-Object {
+            $requiredProperty=$_.PSObject.Properties['required']
+            $childProperty=$_.PSObject.Properties['dependedOnBy']
+            $requiredProperty -and $requiredProperty.Value -eq $true -and $childProperty -and [string]$childProperty.Value
+        } | ForEach-Object { [string]$_.PSObject.Properties['dependedOnBy'].Value } | Sort-Object -Unique)
+        $actualChildIds=@($children | ForEach-Object { [string]$_.settingDefinitionId })
+        $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
+        if($missingRequiredChildIds.Count -gt 0){
+            throw "Choice '$($Spec.displayName)' option '$($valueSpec.optionId)' is missing live-required child definition(s): $($missingRequiredChildIds -join ', ')."
+        }
         return @{
             '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance'
             settingDefinitionId=[string]$Definition.id

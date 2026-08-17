@@ -180,7 +180,18 @@ function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
             if($options.Count -ne 1){throw "$Context optionId '$resolvedValue' was not uniquely present in the pinned snapshot."}
             $outputValue.optionId=[string]$resolvedValue
             $children=@(Get-OptionalProperty $value 'children' @())
-            if($children.Count -gt 0){$outputValue.children=@(Resolve-CatalogSettingNodes $children $Context ($Depth+1))}
+            [object[]]$resolvedChildren=@()
+            if($children.Count -gt 0){$resolvedChildren=@(Resolve-CatalogSettingNodes $children $Context ($Depth+1))}
+            $optionDependencies=@(Get-OptionalProperty $options[0] 'dependedOnBy' @())
+            $requiredChildIds=@($optionDependencies | Where-Object {
+                (Get-OptionalProperty $_ 'required' $false) -eq $true -and (Get-OptionalProperty $_ 'dependedOnBy')
+            } | ForEach-Object { [string](Get-OptionalProperty $_ 'dependedOnBy') } | Sort-Object -Unique)
+            $actualChildIds=@($resolvedChildren | ForEach-Object { [string]$_.resolve.definitionId })
+            $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
+            if($missingRequiredChildIds.Count -gt 0){
+                throw "$Context choice '$resolvedValue' is missing snapshot-required child definition(s): $($missingRequiredChildIds -join ', ')."
+            }
+            if($resolvedChildren.Count -gt 0){$outputValue.children=$resolvedChildren}
         }
         {$_ -in @('integer','string')} {
             $resolvedValue=if($decisionRef){
