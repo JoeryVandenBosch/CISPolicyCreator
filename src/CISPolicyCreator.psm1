@@ -187,6 +187,31 @@ function New-CpcConfigurationSettingInstances {
     return @($instances)
 }
 
+function Get-CpcRequiredChildDefinitionIds {
+    param([Parameter(Mandatory)]$Definition,$SelectedOption=$null)
+    $dependencies=[System.Collections.Generic.List[object]]::new()
+    foreach($source in @($Definition,$SelectedOption)){
+        if($null -eq $source){continue}
+        $property=$source.PSObject.Properties['dependedOnBy']
+        if($property){foreach($dependency in @($property.Value)){$dependencies.Add($dependency) | Out-Null}}
+    }
+    return @($dependencies | Where-Object {
+        $requiredProperty=$_.PSObject.Properties['required']
+        $childProperty=$_.PSObject.Properties['dependedOnBy']
+        $requiredProperty -and $requiredProperty.Value -eq $true -and $childProperty -and [string]$childProperty.Value
+    } | ForEach-Object { [string]$_.PSObject.Properties['dependedOnBy'].Value } | Sort-Object -Unique)
+}
+
+function Assert-CpcRequiredChildDefinitions {
+    param([Parameter(Mandatory)]$Definition,$SelectedOption=$null,[Parameter(Mandatory)]$Children,[Parameter(Mandatory)][string]$Context)
+    $requiredChildIds=@(Get-CpcRequiredChildDefinitionIds -Definition $Definition -SelectedOption $SelectedOption)
+    $actualChildIds=@($Children | ForEach-Object { [string]$_.settingDefinitionId })
+    $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
+    if($missingRequiredChildIds.Count -gt 0){
+        throw "$Context is missing live-required child definition(s): $($missingRequiredChildIds -join ', ')."
+    }
+}
+
 function New-CpcConfigurationSettingInstance {
     param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions,[hashtable]$DefinitionCache,[int]$Depth=0)
     if($Depth -gt 16){throw "'$($Spec.displayName)' exceeds the maximum nested Settings Catalog depth."}
@@ -207,18 +232,7 @@ function New-CpcConfigurationSettingInstance {
         $childrenProperty=$valueSpec.PSObject.Properties['children']
         [object[]]$children=@()
         if($childrenProperty){$children=@(New-CpcConfigurationSettingInstances -Specs @($childrenProperty.Value) -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Choice '$($Spec.displayName)'")}
-        $dependenciesProperty=$candidate[0].PSObject.Properties['dependedOnBy']
-        $optionDependencies=if($dependenciesProperty){@($dependenciesProperty.Value)}else{@()}
-        $requiredChildIds=@($optionDependencies | Where-Object {
-            $requiredProperty=$_.PSObject.Properties['required']
-            $childProperty=$_.PSObject.Properties['dependedOnBy']
-            $requiredProperty -and $requiredProperty.Value -eq $true -and $childProperty -and [string]$childProperty.Value
-        } | ForEach-Object { [string]$_.PSObject.Properties['dependedOnBy'].Value } | Sort-Object -Unique)
-        $actualChildIds=@($children | ForEach-Object { [string]$_.settingDefinitionId })
-        $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
-        if($missingRequiredChildIds.Count -gt 0){
-            throw "Choice '$($Spec.displayName)' option '$($valueSpec.optionId)' is missing live-required child definition(s): $($missingRequiredChildIds -join ', ')."
-        }
+        Assert-CpcRequiredChildDefinitions -Definition $Definition -SelectedOption $candidate[0] -Children $children -Context "Choice '$($Spec.displayName)' option '$($valueSpec.optionId)'"
         return @{
             '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance'
             settingDefinitionId=[string]$Definition.id
@@ -271,6 +285,7 @@ function New-CpcConfigurationSettingInstance {
             $childSpecs=if($childrenProperty){@($childrenProperty.Value)}else{@()}
             if($childSpecs.Count -eq 0){throw "Group '$($Spec.displayName)' item $itemIndex requires at least one child."}
             $children=@(New-CpcConfigurationSettingInstances -Specs $childSpecs -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Group '$($Spec.displayName)' item $itemIndex")
+            Assert-CpcRequiredChildDefinitions -Definition $Definition -Children $children -Context "Group '$($Spec.displayName)' item $itemIndex"
             $groupValues.Add(@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationGroupSettingValue';children=@($children)}) | Out-Null
         }
         return @{

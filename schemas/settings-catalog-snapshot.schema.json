@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["schemaVersion", "apiVersion", "capturedAt", "tenantId", "retrieval", "definitions"],
   "properties": {
-    "schemaVersion": { "const": "1.1" },
+    "schemaVersion": { "const": "1.2" },
     "apiVersion": { "enum": ["beta", "v1.0"] },
     "capturedAt": { "type": "string", "minLength": 1 },
     "tenantId": { "type": "string", "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$" },
@@ -27,7 +27,7 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "displayName", "baseUri", "offsetUri", "@odata.type", "options", "valueDefinition"],
+        "required": ["id", "displayName", "baseUri", "offsetUri", "@odata.type", "options", "valueDefinition", "childIds", "dependentOn", "dependedOnBy"],
         "properties": {
           "id": { "type": "string", "minLength": 1 },
           "displayName": { "type": "string" },
@@ -35,7 +35,32 @@
           "offsetUri": { "type": ["string", "null"] },
           "@odata.type": { "type": "string", "minLength": 1 },
           "options": { "type": "array" },
-          "valueDefinition": {}
+          "valueDefinition": {},
+          "childIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+          "dependentOn": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["parentSettingId", "dependentOn"],
+              "properties": {
+                "parentSettingId": { "type": "string", "minLength": 1 },
+                "dependentOn": { "type": "string", "minLength": 1 }
+              },
+              "additionalProperties": true
+            }
+          },
+          "dependedOnBy": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["dependedOnBy", "required"],
+              "properties": {
+                "dependedOnBy": { "type": "string", "minLength": 1 },
+                "required": { "type": "boolean" }
+              },
+              "additionalProperties": true
+            }
+          }
         },
         "additionalProperties": true
       }

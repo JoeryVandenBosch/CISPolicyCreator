@@ -167,6 +167,10 @@ mean the tool is still working normally. Leave PowerShell open and wait until it
 If that output file already exists, give the new export a different filename. The tool
 does not silently replace evidence files.
 
+Snapshots created before schema 1.2 do not contain the group-dependency evidence needed
+for fail-closed builds. If the tool reports an older snapshot schema, export a fresh
+snapshot with the current script rather than editing the JSON manually.
+
 ## Step 8: choose one benchmark
 
 This example uses Windows 10:

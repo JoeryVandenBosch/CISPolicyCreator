@@ -138,6 +138,26 @@ function Resolve-CatalogSettingNodes($Nodes,[string]$Context,[int]$Depth) {
     return @($resolved)
 }
 
+function Get-SnapshotRequiredChildIds($Definition,$SelectedOption=$null) {
+    $dependencies=[System.Collections.Generic.List[object]]::new()
+    foreach($source in @($Definition,$SelectedOption)){
+        if($null -eq $source){continue}
+        foreach($dependency in @(Get-OptionalProperty $source 'dependedOnBy' @())){$dependencies.Add($dependency) | Out-Null}
+    }
+    return @($dependencies | Where-Object {
+        (Get-OptionalProperty $_ 'required' $false) -eq $true -and (Get-OptionalProperty $_ 'dependedOnBy')
+    } | ForEach-Object { [string](Get-OptionalProperty $_ 'dependedOnBy') } | Sort-Object -Unique)
+}
+
+function Assert-SnapshotRequiredChildren($Definition,$SelectedOption,$ResolvedChildren,[string]$Context) {
+    $requiredChildIds=@(Get-SnapshotRequiredChildIds $Definition $SelectedOption)
+    $actualChildIds=@($ResolvedChildren | ForEach-Object { [string]$_.resolve.definitionId })
+    $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
+    if($missingRequiredChildIds.Count -gt 0){
+        throw "$Context is missing snapshot-required child definition(s): $($missingRequiredChildIds -join ', ')."
+    }
+}
+
 function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
     if($Depth -gt 16){throw "$Context exceeds the maximum nested Settings Catalog depth."}
     if(-not $snapshot){throw "A Settings Catalog snapshot is required to validate $Context."}
@@ -182,15 +202,7 @@ function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
             $children=@(Get-OptionalProperty $value 'children' @())
             [object[]]$resolvedChildren=@()
             if($children.Count -gt 0){$resolvedChildren=@(Resolve-CatalogSettingNodes $children $Context ($Depth+1))}
-            $optionDependencies=@(Get-OptionalProperty $options[0] 'dependedOnBy' @())
-            $requiredChildIds=@($optionDependencies | Where-Object {
-                (Get-OptionalProperty $_ 'required' $false) -eq $true -and (Get-OptionalProperty $_ 'dependedOnBy')
-            } | ForEach-Object { [string](Get-OptionalProperty $_ 'dependedOnBy') } | Sort-Object -Unique)
-            $actualChildIds=@($resolvedChildren | ForEach-Object { [string]$_.resolve.definitionId })
-            $missingRequiredChildIds=@($requiredChildIds | Where-Object { $actualChildIds -notcontains [string]$_ })
-            if($missingRequiredChildIds.Count -gt 0){
-                throw "$Context choice '$resolvedValue' is missing snapshot-required child definition(s): $($missingRequiredChildIds -join ', ')."
-            }
+            Assert-SnapshotRequiredChildren $definition $options[0] $resolvedChildren "$Context choice '$resolvedValue'"
             if($resolvedChildren.Count -gt 0){$outputValue.children=$resolvedChildren}
         }
         {$_ -in @('integer','string')} {
@@ -225,7 +237,9 @@ function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
                 $itemIndex++
                 $children=@(Get-OptionalProperty $item 'children' @())
                 if($children.Count -eq 0){throw "$Context group item $itemIndex requires at least one child."}
-                $outputItems.Add([pscustomobject][ordered]@{children=@(Resolve-CatalogSettingNodes $children "$Context group item $itemIndex" ($Depth+1))}) | Out-Null
+                $resolvedChildren=@(Resolve-CatalogSettingNodes $children "$Context group item $itemIndex" ($Depth+1))
+                Assert-SnapshotRequiredChildren $definition $null $resolvedChildren "$Context group item $itemIndex"
+                $outputItems.Add([pscustomobject][ordered]@{children=$resolvedChildren}) | Out-Null
             }
             $outputValue.items=@($outputItems)
         }

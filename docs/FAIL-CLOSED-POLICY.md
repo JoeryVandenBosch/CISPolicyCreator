@@ -52,7 +52,7 @@ Only final `mapped` recommendations are deployable. When an administrator suppli
 4. Require the exact expected recommendation count and an explicit catalog classification for every extracted ID; incomplete catalogs fail.
 5. Validate explicit administrator decisions against type/range/allowed-value constraints.
 6. Resolve each Settings Catalog mapping against a pinned definition snapshot.
-7. Require every child that the selected snapshot choice marks as required; a missing required child aborts compilation.
+7. Require every child that the selected snapshot definition or choice marks as required, including every item in a setting group collection; a missing required child aborts compilation.
 8. Generate deterministic pack files and provenance hashes.
 9. Evaluate JSON Schemas and semantic cross-file rules.
 10. During live dry run, validate the exact current Graph definition and option before any create request.

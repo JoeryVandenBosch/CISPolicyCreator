@@ -7,7 +7,12 @@ param(
     [ValidateRange(1,500)][int]$PageSize=500
 )
 $ErrorActionPreference = 'Stop'
+$OutputPath=[IO.Path]::GetFullPath($OutputPath)
 if (Test-Path -LiteralPath $OutputPath) { throw "OutputPath already exists: $OutputPath" }
+$outputDirectory=Split-Path -Parent $OutputPath
+if (-not (Test-Path -LiteralPath $outputDirectory)) {
+    New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
+}
 & (Join-Path $PSScriptRoot 'Import-CISGraphAuthentication.ps1')
 Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 $args = @{ Scopes='DeviceManagementConfiguration.Read.All'; ContextScope='Process'; NoWelcome=$true }
@@ -53,7 +58,7 @@ try {
         })
     }
     $snapshot=[ordered]@{
-        schemaVersion='1.1'
+        schemaVersion='1.2'
         apiVersion='beta'
         capturedAt=(Get-Date).ToUniversalTime().ToString('o')
         tenantId=[string]$context.TenantId
@@ -68,7 +73,10 @@ try {
         definitions=@($items | ForEach-Object {
             [ordered]@{
                 id=[string]$_.id; displayName=[string]$_.displayName; baseUri=$_.baseUri; offsetUri=$_.offsetUri
-                '@odata.type'=[string]$_.'@odata.type'; options=@($_.options); valueDefinition=$_.valueDefinition
+                '@odata.type'=[string]$_.'@odata.type'; options=@($_.options | Where-Object { $null -ne $_ }); valueDefinition=$_.valueDefinition
+                childIds=@($_.childIds | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) })
+                dependentOn=@($_.dependentOn | Where-Object { $null -ne $_ })
+                dependedOnBy=@($_.dependedOnBy | Where-Object { $null -ne $_ })
             }
         })
     }
