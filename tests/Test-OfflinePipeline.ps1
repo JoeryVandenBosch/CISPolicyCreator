@@ -390,8 +390,11 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
         name='Invalid pre-existing synthetic object'
         recommendationIds=@('missing-recommendation')
         profiles=@('L1')
+        contractId='microsoft.graph.windows10CompliancePolicy.beta'
         endpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies'
-        payload=[pscustomobject]@{}
+        listEndpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies?$select=id,displayName'
+        nameProperty='displayName'
+        payload=[pscustomobject]@{'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Invalid pre-existing synthetic object'}
     })
     $invalidExistingCatalogPath=Join-Path $testRoot 'invalid-existing-catalog.json'
     $invalidExistingCatalog | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $invalidExistingCatalogPath -Encoding utf8
@@ -603,6 +606,28 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $genericCollisionError=$null
     try { Assert-CpcNoGenericGraphObjectCollision -Name 'Existing generic object' -ExistingObjects @([pscustomobject]@{id='existing-object-id'}) } catch { $genericCollisionError=$_.Exception.Message }
     Assert-True ([string]$genericCollisionError -cmatch 'cannot prove their content equivalent') 'A same-name generic Graph object must fail closed because endpoint-agnostic equivalence cannot be proven.'
+    $genericContractInfo=Get-CpcGraphObjectContract -ContractId 'microsoft.graph.windows10CompliancePolicy.beta' -RepoRoot $repoRoot
+    $expectedGenericObject=[pscustomobject]@{
+        name='Synthetic compliance [L1]'
+        endpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies'
+        listEndpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies?$select=id,displayName'
+        nameProperty='displayName'
+        payload=[pscustomobject]@{'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Synthetic compliance [L1]'}
+    }
+    Assert-CpcGraphObjectMatchesContract -GraphObject $expectedGenericObject -Contract $genericContractInfo.Contract
+    $actualGenericObject=[pscustomobject]@{id='server-id';'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Synthetic compliance [L1]';createdDateTime='server-managed'}
+    Assert-True (Compare-CpcGenericGraphObject -ExpectedPayload $expectedGenericObject.payload -ActualPayload $actualGenericObject -Contract $genericContractInfo.Contract).equivalent 'Contract-bound generic Graph comparison must ignore server-only response properties.'
+    $changedGenericObject=$actualGenericObject.PSObject.Copy();$changedGenericObject.displayName='Different name'
+    Assert-True (-not (Compare-CpcGenericGraphObject -ExpectedPayload $expectedGenericObject.payload -ActualPayload $changedGenericObject -Contract $genericContractInfo.Contract).equivalent) 'A changed expected generic Graph property must not be treated as equivalent.'
+    $unknownGenericProperty=$expectedGenericObject | ConvertTo-Json -Depth 20 | ConvertFrom-Json -Depth 20
+    $unknownGenericProperty.payload | Add-Member -NotePropertyName guessedSetting -NotePropertyValue $true
+    $unknownGenericFailed=$false
+    try { Assert-CpcGraphObjectMatchesContract -GraphObject $unknownGenericProperty -Contract $genericContractInfo.Contract } catch {$unknownGenericFailed=$true}
+    Assert-True $unknownGenericFailed 'A generic Graph payload property absent from the pinned contract must fail closed.'
+    $contractHashFailed=$false
+    try { Get-CpcGraphObjectContract -ContractId 'microsoft.graph.windows10CompliancePolicy.beta' -RepoRoot $repoRoot -ExpectedSha256 ('0'*64) | Out-Null } catch {$contractHashFailed=$true}
+    Assert-True $contractHashFailed 'A Graph contract hash mismatch must fail closed.'
+    Assert-True ((Get-CpcGraphObjectItemUri -Contract $genericContractInfo.Contract -Id 'id with spaces') -ceq 'https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/id%20with%20spaces') 'Graph item lookup must use the pinned contract template and URL-encode the object ID.'
     $cpcModule=Get-Module CISPolicyCreator
     $pagingResult=& $cpcModule {
         $script:CpcMockCalls=0

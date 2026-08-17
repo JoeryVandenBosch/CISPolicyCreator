@@ -13,19 +13,19 @@ The supported PDFs are recognized completely: every extracted CIS recommendation
 recorded and classified. Only recommendations with an exact, evidence-backed Microsoft
 Graph setting and value are emitted as policy settings.
 
-| Supported CIS PDF | Version | Mapped settings | Unresolved | Unassigned policies |
-|---|---:|---:|---:|---:|
-| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 28 | 387 | 10 |
-| CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 9 | 349 | 4 |
-| CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 13 | 125 | 2 |
-| CIS Microsoft Intune for Office Benchmark | 1.1.0 | 2 | 236 | 1 |
-| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 1 | 99 | 1 |
-| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 1 | 93 | 1 |
+| Supported CIS PDF | Version | Mapped recommendations | Requires input | Unresolved | Generated unassigned policy objects |
+|---|---:|---:|---:|---:|---:|
+| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 261 | 14 |
+| CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 121 | 0 | 237 | 8 |
+| CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 125 | 0 | 13 | 5 |
+| CIS Microsoft Intune for Office Benchmark | 1.1.0 | 203 | 0 | 35 | 29 |
+| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 57 | 0 | 43 | 39 |
+| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 78 | 2 | 14 | 8 |
 
-The five additional Windows 10, Edge, Office, macOS, and iOS/iPadOS packs have passed
-live dry-run validation and a real unassigned import with all mapped settings. The
-Windows 11 pack has separately passed live mapping validation. No assignments are
-created by any pack.
+All six current catalogs have been rebuilt from the exact real PDFs, pass offline pack
+validation, and pass a live read-only dry run against a test tenant. Earlier, smaller
+mapped subsets also passed real unassigned test-tenant imports. Always run Step 11
+against your own tenant before importing. No assignments are created by any pack.
 
 These numbers do **not** describe complete CIS baselines. Unresolved recommendations do
 not create settings. More exact mappings can be added later without weakening the
@@ -195,6 +195,29 @@ validates the exact mappings against the snapshot, creates the unassigned policy
 payloads, and validates the finished pack.
 
 The output folder must not already exist. Use a new output name when rebuilding.
+
+The iOS/iPadOS catalog has one organization-controlled password-length choice shared by
+two duplicate CIS recommendations. Without a decision file, both remain
+`requires-input` and no password-length policy is emitted. To include that policy,
+first create a private decision template:
+
+```powershell
+$DecisionPath = '.\private\ios26-ipados26-decisions.json'
+.\scripts\New-CISAdministratorDecisions.ps1 `
+  -MappingCatalogPath .\benchmarks\ios26-ipados26-intune\1.0.0\mapping-catalog.json `
+  -OutputPath $DecisionPath
+notepad $DecisionPath
+```
+
+Choose an integer from `6` through `14`, change `acknowledged` to `true`, and write a
+short justification. Then rebuild to a new `$PackPath` and add this line to the build
+command before `-OutputPath`:
+
+```powershell
+  -AdministratorDecisionsPath $DecisionPath `
+```
+
+Never commit the private decision file.
 
 ## Step 10: inspect the result
 

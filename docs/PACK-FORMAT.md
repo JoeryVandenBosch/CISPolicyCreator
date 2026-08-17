@@ -175,7 +175,9 @@ Supported value kinds are `choice`, `integer`, `string`, `integer-collection`, `
 
 ## Generic Graph objects
 
-Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. They must reference only final `mapped` recommendations, may contain exact decision markers during catalog authoring, and cannot contain assignment data. Because these adapters may represent different resource types, a universal response-to-payload equivalence comparison is not safe. Any case-insensitive same-name object aborts preflight; it is never skipped as successful, updated, or assigned.
+Generic objects remain restricted to reviewed Microsoft Graph `deviceManagement` create endpoints. Every object names a repository-owned contract and the generated pack binds that contract by SHA-256. The contract fixes the collection, list, and item endpoints, `@odata.type`, writable property names, primitive types, ranges, and enums. Unknown properties, changed contracts, or assignment data fail closed.
+
+Generic objects must reference only final `mapped` recommendations and may contain exact decision markers during catalog authoring. A decision-backed object is omitted until its acknowledged administrator value passes the contract. For a unique same-name live object, the importer reads the contract-defined item endpoint and compares every property present in the expected payload. An exact expected-property match is skipped without modification; duplicates, missing properties, or different values abort before writes. Existing objects are never patched or assigned.
 
 ## Profiles
 

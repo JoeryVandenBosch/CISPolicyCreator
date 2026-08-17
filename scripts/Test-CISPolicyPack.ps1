@@ -301,6 +301,10 @@ if ($manifest.graphObjects) {
             if (@($o.profiles).Count -eq 0) { $issues.Add("Graph object '$name' missing profiles") }
             if (@($o.recommendationIds).Count -eq 0) { $issues.Add("Graph object '$name' missing recommendationIds") }
             foreach ($rid in @($o.recommendationIds)) { Assert-MappedRecommendation ([string]$rid) "Graph object '$name'" $o.profiles }
+            try {
+                $contractInfo=Get-CpcGraphObjectContract -ContractId ([string]$o.contractId) -ExpectedSha256 ([string]$o.contractSha256) -RepoRoot (Split-Path -Parent $PSScriptRoot)
+                Assert-CpcGraphObjectMatchesContract -GraphObject $o -Contract $contractInfo.Contract
+            } catch {$issues.Add("Graph object '$name' failed its pinned contract: $($_.Exception.Message)")}
             if (-not $o.endpoint -or -not (Test-CpcGraphEndpointSafe -Uri ([string]$o.endpoint))) { $issues.Add("Graph object '$name' has unsafe/non-deviceManagement endpoint '$($o.endpoint)'") }
             if ($o.listEndpoint -and -not (Test-CpcGraphEndpointSafe -Uri ([string]$o.listEndpoint))) { $issues.Add("Graph object '$name' has unsafe listEndpoint '$($o.listEndpoint)'") }
             if (-not $o.payload) { $issues.Add("Graph object '$name' missing payload") }
