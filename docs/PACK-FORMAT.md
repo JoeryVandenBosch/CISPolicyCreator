@@ -55,6 +55,19 @@ All manifest paths must be relative and remain inside the pack root.
 
 When a pack contains a mapped top-level `choice`, `integer`, or `string` setting without dependent children, the compiler deterministically copies the first eligible snapshot-resolved setting into `settingsCatalogProbe`. The probe records its originating recommendation and policy plus the exact definition, value, platform, and technology. Offline validation requires it to match the generated dynamic setting and policy bundle exactly. If no eligible mapped leaf setting exists, the field remains `null`; no probe is invented.
 
+## Portable Intune JSON bundle
+
+`Export-CISPortablePolicyBundle.ps1` materializes the validated pack as a deterministic ZIP. The exporter requires the exact Settings Catalog snapshot whose SHA-256 is bound into the pack manifest. It resolves every explicit definition and value from that snapshot, creates the complete Microsoft Graph request bodies, and then runs `Test-CISPortablePolicyBundle.ps1` before publishing the ZIP atomically.
+
+The portable ZIP contains request-ready JSON rather than a raw tenant response:
+
+- `SettingsCatalog/*.json` contains complete configuration policy create bodies;
+- `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or `GraphObjects/*.json` contains pinned-contract generic Graph create bodies when present;
+- `mapping-report.json` records every selected recommendation without benchmark prose;
+- `bundle-manifest.json` binds every file hash to the pack, source PDF hash, snapshot hash, profile, and mapping counts.
+
+The bundle never includes assignments, tenant IDs, credentials, the source PDF, raw benchmark prose, server-generated object IDs/timestamps, or Graph navigation metadata. ZIP entry names, JSON ordering, UTF-8 encoding, timestamps, compression order, and hashes are deterministic. A compatible consumer can use the contained request bodies, but must still apply its own authentication, current-tenant validation, collision handling, and assignment decisions.
+
 ## Recommendation inventory
 
 ```json

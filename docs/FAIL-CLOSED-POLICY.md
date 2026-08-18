@@ -64,6 +64,8 @@ The generated manifest records the source PDF name/hash/page count, compiler/ext
 
 Mapping audit reports are derived only after the complete pack validator succeeds. Invalid or tampered packs produce no report; report outputs are deterministic and never overwrite existing files.
 
+Portable policy JSON export requires a valid pack and the exact snapshot hash recorded by that pack. The exporter resolves every setting offline from that snapshot, strips tenant-generated response metadata, forbids assignments, hashes every request body, validates the finished ZIP independently, and publishes it atomically without overwriting an existing output.
+
 The standalone compiler and pack orchestrator publish from unique staging directories using same-parent atomic moves. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
 
 Pack validation rejects a symbolic link, junction, or other reparse point used as the pack root or anywhere inside it before reading the manifest. Manifest-relative paths must remain lexically inside the pack as well; linked paths cannot be used to read mutable content outside the validated pack.

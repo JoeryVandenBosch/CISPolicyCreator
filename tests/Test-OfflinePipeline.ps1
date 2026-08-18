@@ -461,6 +461,22 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     Assert-True ([string]$manifest.settingsCatalogProbe.resolve.definitionId -ceq 'synthetic_choice' -and [string]$manifest.settingsCatalogProbe.value.optionId -ceq 'synthetic_choice_enabled') 'The probe must copy an exact snapshot-resolved definition and reviewed option.'
     Assert-True ([string]$manifest.settingsCatalogProbe.platforms -ceq 'windows10' -and [string]$manifest.settingsCatalogProbe.technologies -ceq 'mdm') 'The probe must copy its policy platform and technology.'
 
+    $portableBundleA=Join-Path $testRoot 'portable-a.zip'
+    $portableBundleB=Join-Path $testRoot 'portable-b.zip'
+    & (Join-Path $repoRoot 'scripts\Export-CISPortablePolicyBundle.ps1') -PackRoot $packA -SettingsCatalogSnapshotPath $common.SettingsCatalogSnapshotPath -OutputPath $portableBundleA -Profile ALL
+    & (Join-Path $repoRoot 'scripts\Export-CISPortablePolicyBundle.ps1') -PackRoot $packA -SettingsCatalogSnapshotPath $common.SettingsCatalogSnapshotPath -OutputPath $portableBundleB -Profile ALL
+    $portableValidation=& (Join-Path $repoRoot 'scripts\Test-CISPortablePolicyBundle.ps1') -BundlePath $portableBundleA -PassThru
+    Assert-True ($portableValidation.IsValid -and $portableValidation.SettingsCatalogPolicyCount -eq 1 -and $portableValidation.GraphObjectCount -eq 1 -and $portableValidation.RecommendationCount -eq 3) 'Portable export must include validated request-ready Settings Catalog and generic Graph JSON without losing recommendation coverage.'
+    Assert-True (((Get-FileHash -LiteralPath $portableBundleA -Algorithm SHA256).Hash) -ceq ((Get-FileHash -LiteralPath $portableBundleB -Algorithm SHA256).Hash)) 'Repeated portable policy bundle exports must be byte-identical.'
+    $wrongPortableSnapshot=Read-Json $common.SettingsCatalogSnapshotPath
+    $wrongPortableSnapshot.capturedAt='2026-01-02T00:00:00Z'
+    $wrongPortableSnapshotPath=Join-Path $testRoot 'wrong-portable-snapshot.json'
+    $wrongPortableSnapshot | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $wrongPortableSnapshotPath -Encoding utf8
+    $wrongPortableOutput=Join-Path $testRoot 'wrong-portable.zip'
+    $wrongPortableFailed=$false
+    try { & (Join-Path $repoRoot 'scripts\Export-CISPortablePolicyBundle.ps1') -PackRoot $packA -SettingsCatalogSnapshotPath $wrongPortableSnapshotPath -OutputPath $wrongPortableOutput -Profile ALL } catch { $wrongPortableFailed=$true }
+    Assert-True ($wrongPortableFailed -and -not (Test-Path -LiteralPath $wrongPortableOutput)) 'Portable export must reject a snapshot that is not hash-bound to the pack and leave no output.'
+
     $tamperedProbePack=Join-Path $testRoot 'tampered-probe-pack'
     Copy-Item -LiteralPath $packA -Destination $tamperedProbePack -Recurse
     $tamperedProbeManifestPath=Join-Path $tamperedProbePack 'manifest.json'
