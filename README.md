@@ -13,11 +13,11 @@ AI service is **not** required at runtime.
 
 ## What is complete, and what is intentionally skipped
 
-The five newly completed Intune catalogs convert every recommendation that has a real,
-deterministic Intune implementation. Recommendations that tell a human to review,
-inspect, document, or run an operational process remain `manual` and produce no fake
-JSON. Organization-specific values remain `requires-input` until an administrator
-chooses them explicitly.
+The supported Intune catalogs convert every recommendation that has a real,
+deterministic and independently deployable Intune implementation. Recommendations that
+tell a human to review, inspect, document, or run an operational process remain
+`manual` and produce no fake JSON. Organization-specific values remain
+`requires-input` until an administrator chooses them explicitly.
 
 | Supported CIS PDF | Version | Mapped | Requires input | Manual | Unresolved | Policy JSON files with all inputs |
 |---|---:|---:|---:|---:|---:|---:|
@@ -25,13 +25,18 @@ chooses them explicitly.
 | CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
 | CIS Microsoft Intune for Office Benchmark | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
 | CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
-| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 85 | 8 | 1 | 0 | 61 |
+| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
 | CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 0 | 261 | 154 |
 
-The five rows with zero unresolved recommendations are complete for policy creation:
-every actual Intune-configurable recommendation is either mapped or waiting for an
-explicit administrator value. Windows 11 is the older partial catalog and is clearly
-listed separately by its 261 unresolved recommendations.
+The four non-Windows-11 rows with zero unresolved recommendations are complete for
+policy creation: every actual Intune-configurable recommendation is either mapped or
+waiting for an explicit administrator value. iOS/iPadOS has one intentionally
+unresolved recommendation: 3.10.1, Locked enrollment. Its exact Intune setting is
+known, but Microsoft requires 40 settings in the ADE enrollment policy. The required
+companion settings include organization-specific choices without template defaults, so
+the tool does not invent them or emit a JSON policy that Intune would reject. Windows
+11 is the older partial catalog and is clearly listed separately by its 261 unresolved
+recommendations.
 
 The number of JSON files can be lower than the number of recommendations because some
 CIS recommendations are duplicates or must be bundled with required dependent settings.
@@ -325,15 +330,22 @@ Only continue after the dry run succeeds:
 ```
 
 The importer validates the entire ZIP before signing in, validates every exact live
-Graph definition and value before its first write, and refuses a different same-name
-policy. An exactly matching policy is left unchanged. Creation stops on the first
-Graph error unless you explicitly add `-ContinueOnError`.
+Graph definition and value before its first write, validates exact template references
+and all live-required companion settings, and refuses a different same-name policy. An
+exactly matching policy is left unchanged. Creation stops on the first Graph error
+unless you explicitly add `-ContinueOnError`.
 
-The iOS/iPadOS bundle also contains two tenant-wide Intune settings. They are not
-assignable policies. For the safest policy-only import, add `-SkipTenantWideSettings`.
+The iOS/iPadOS bundle contains 58 assignable policy objects plus two tenant-wide Intune
+settings. They are not assignable policies. For the safest policy-only import, add
+`-SkipTenantWideSettings`.
 To apply those two settings instead, review them and explicitly add
 `-ConfirmTenantWideSettingsUpdate`. The importer refuses to choose between these two
 options for you.
+
+The bundle does not contain CIS recommendation 3.10.1 (Locked enrollment). Microsoft
+requires a complete 40-setting ADE profile for that one setting, including enrollment
+and Setup Assistant decisions that CIS does not choose. It remains `unresolved`; it is
+not mislabeled as a human-only control, and the tool emits no fake or incomplete JSON.
 
 The policies are created without assignments. CISPolicyCreator does not select users,
 devices, or groups, and the importer contains no assignment operation. Assignments and

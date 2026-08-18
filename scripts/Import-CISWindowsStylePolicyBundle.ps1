@@ -63,6 +63,65 @@ function Get-CpcObjectPropertyValue($Object,[string]$Name){
     return $value
 }
 
+function Assert-CpcLivePolicyTemplate {
+    param(
+        [Parameter(Mandatory)]$Item,
+        [Parameter(Mandatory)][hashtable]$PolicyTemplateCache,
+        [Parameter(Mandatory)][hashtable]$SettingTemplateCache
+    )
+    $policy=$Item.policy
+    $template=Get-CpcObjectPropertyValue $policy 'templateReference'
+    $templateId=if($template){[string](Get-CpcObjectPropertyValue $template 'templateId')}else{''}
+    $instanceTemplateId=[string](Get-CpcObjectPropertyValue $Item.spec.resolve 'settingInstanceTemplateId')
+    $valueTemplateId=[string](Get-CpcObjectPropertyValue $Item.spec.value 'settingValueTemplateId')
+    $technologies=[string](Get-CpcObjectPropertyValue $policy 'technologies')
+    if([string]::IsNullOrWhiteSpace($templateId)){
+        if($technologies -ceq 'enrollment'){throw 'Enrollment technology requires an exact reviewed policy template ID.'}
+        if($instanceTemplateId -or $valueTemplateId){throw 'Setting template IDs are present without an exact policy template ID.'}
+        return
+    }
+    if([string]$Item.spec.value.kind -cne 'choice'){throw 'Only explicitly verified template-bound choice settings are supported.'}
+    if([string]::IsNullOrWhiteSpace($instanceTemplateId) -or [string]::IsNullOrWhiteSpace($valueTemplateId)){throw 'Template-bound policy requires both exact setting instance and setting value template IDs.'}
+
+    if(-not $PolicyTemplateCache.ContainsKey($templateId)){
+        $encoded=[Uri]::EscapeDataString($templateId)
+        $PolicyTemplateCache[$templateId]=Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicyTemplates/$encoded"
+    }
+    $liveTemplate=$PolicyTemplateCache[$templateId]
+    $expectedTemplateValues=[ordered]@{
+        id=$templateId
+        templateFamily=[string](Get-CpcObjectPropertyValue $template 'templateFamily')
+        displayName=[string](Get-CpcObjectPropertyValue $template 'templateDisplayName')
+        displayVersion=[string](Get-CpcObjectPropertyValue $template 'templateDisplayVersion')
+        platforms=[string](Get-CpcObjectPropertyValue $policy 'platforms')
+        technologies=$technologies
+        lifecycleState='active'
+    }
+    foreach($expected in $expectedTemplateValues.GetEnumerator()){
+        $actual=[string](Get-CpcObjectPropertyValue $liveTemplate ([string]$expected.Key))
+        if($actual -cne [string]$expected.Value){throw "Live policy template '$templateId' has $($expected.Key)='$actual', expected '$($expected.Value)'."}
+    }
+
+    if(-not $SettingTemplateCache.ContainsKey($templateId)){
+        $encoded=[Uri]::EscapeDataString($templateId)
+        $SettingTemplateCache[$templateId]=@(Invoke-CpcGraphPaged "https://graph.microsoft.com/beta/deviceManagement/configurationPolicyTemplates/$encoded/settingTemplates?`$top=500")
+    }
+    $definitionId=[string]$Item.spec.resolve.definitionId
+    $missingRequired=@($SettingTemplateCache[$templateId] | Where-Object {$_.settingInstanceTemplate.isRequired -eq $true -and [string]$_.settingInstanceTemplate.settingDefinitionId -cne $definitionId})
+    if($missingRequired.Count -gt 0){
+        $missingIds=@($missingRequired|ForEach-Object{[string]$_.settingInstanceTemplate.settingDefinitionId}|Sort-Object -Unique)
+        throw "Template-bound JSON omits $($missingRequired.Count) live-required companion setting(s): $($missingIds -join ', '). A complete explicit administrator configuration is required."
+    }
+    $matches=@($SettingTemplateCache[$templateId] | Where-Object {[string]$_.settingInstanceTemplate.settingDefinitionId -ceq $definitionId})
+    if($matches.Count -ne 1){throw "Live policy template '$templateId' contains $($matches.Count) setting templates for exact definition '$definitionId'."}
+    $liveInstance=$matches[0].settingInstanceTemplate
+    if([string]$liveInstance.'@odata.type' -cne '#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate'){throw "Live setting template '$definitionId' is not the verified choice-template type."}
+    if($liveInstance.isRequired -isnot [bool] -or -not $liveInstance.isRequired){throw "Live setting template '$definitionId' is not marked required as reviewed."}
+    if([string]$liveInstance.settingInstanceTemplateId -cne $instanceTemplateId){throw "Live setting instance template ID for '$definitionId' differs from the reviewed ID."}
+    $liveValue=$liveInstance.choiceSettingValueTemplate
+    if($null -eq $liveValue -or [string]$liveValue.settingValueTemplateId -cne $valueTemplateId){throw "Live setting value template ID for '$definitionId' differs from the reviewed ID."}
+}
+
 $preparedSettings=[System.Collections.Generic.List[object]]::new()
 $preparedGraph=[System.Collections.Generic.List[object]]::new()
 $archive=[IO.Compression.ZipFile]::OpenRead($BundlePath)
@@ -170,9 +229,12 @@ function Save-CpcBundleImportResults {
 try{
     # Resolve and validate every Settings Catalog definition/value before any write.
     $definitionCache=@{}
+    $policyTemplateCache=@{}
+    $settingTemplateCache=@{}
     $settingsReady=[System.Collections.Generic.List[object]]::new()
     foreach($item in $preparedSettings){
         try{
+            Assert-CpcLivePolicyTemplate -Item $item -PolicyTemplateCache $policyTemplateCache -SettingTemplateCache $settingTemplateCache
             $definition=Get-CpcSettingDefinition -Spec $item.spec -Definitions @() -Cache $definitionCache
             $settingBody=New-CpcConfigurationSettingBody -Definition $definition -Spec $item.spec -Definitions @() -DefinitionCache $definitionCache
             $policyBody=New-CpcSettingsCatalogPolicyBody -Policy $item.policy -Settings @($settingBody)

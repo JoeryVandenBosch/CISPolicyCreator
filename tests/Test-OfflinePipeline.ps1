@@ -786,6 +786,35 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $choiceSpec=[pscustomobject]@{ displayName='Synthetic choice'; value=[pscustomobject]@{ kind='choice'; optionId='synthetic_choice_enabled' } }
     $choiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $choiceSpec
     Assert-True ($choiceBody.settingInstance.choiceSettingValue.value -ceq 'synthetic_choice_enabled') 'Exact reviewed choice option must be emitted.'
+    $templateChoiceSpec=[pscustomobject]@{
+        displayName='Synthetic template-bound choice'
+        resolve=[pscustomobject]@{
+            definitionId='synthetic_choice'
+            baseUri=$null
+            offsetUri=$null
+            expectedType='#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition'
+            settingInstanceTemplateId='11111111-1111-1111-1111-111111111111'
+        }
+        value=[pscustomobject]@{
+            kind='choice'
+            optionId='synthetic_choice_enabled'
+            settingValueTemplateId='22222222-2222-2222-2222-222222222222'
+        }
+    }
+    $templateChoiceBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $templateChoiceSpec
+    Assert-True ([string]$templateChoiceBody.settingInstance.settingInstanceTemplateReference.settingInstanceTemplateId -ceq '11111111-1111-1111-1111-111111111111') 'Template-bound choice must emit the exact reviewed setting instance template ID.'
+    Assert-True ([string]$templateChoiceBody.settingInstance.choiceSettingValue.settingValueTemplateReference.settingValueTemplateId -ceq '22222222-2222-2222-2222-222222222222' -and $templateChoiceBody.settingInstance.choiceSettingValue.settingValueTemplateReference.useTemplateDefault -eq $false) 'Template-bound choice must emit the exact reviewed value template ID and explicit CIS value.'
+    $roundTripTemplateSpec=ConvertTo-CpcSettingSpecFromExportInstance -Instance $templateChoiceBody.settingInstance -Context 'Exported synthetic template choice'
+    Assert-True ([string]$roundTripTemplateSpec.resolve.settingInstanceTemplateId -ceq '11111111-1111-1111-1111-111111111111' -and [string]$roundTripTemplateSpec.value.settingValueTemplateId -ceq '22222222-2222-2222-2222-222222222222') 'Exported template references must round-trip without losing their exact IDs.'
+    $roundTripTemplateBody=New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec $roundTripTemplateSpec
+    Assert-True ([string]$roundTripTemplateBody.settingInstance.choiceSettingValue.settingValueTemplateReference.settingValueTemplateId -ceq '22222222-2222-2222-2222-222222222222') 'Round-tripped template-bound choice must remain importable.'
+    $templatePolicyBody=New-CpcSettingsCatalogPolicyBody -Policy ([pscustomobject]@{name='Template policy';description='';platforms='iOS';technologies='enrollment';roleScopeTagIds=@('0');templateReference=[pscustomobject]@{templateId='33333333-3333-3333-3333-333333333333_1';templateFamily='enrollmentConfiguration';templateDisplayName='Reviewed template';templateDisplayVersion='Version 1'}}) -Settings @($templateChoiceBody)
+    Assert-True ([string]$templatePolicyBody.templateReference.templateId -ceq '33333333-3333-3333-3333-333333333333_1' -and @($templatePolicyBody.templateReference.Keys).Count -eq 1) 'Template policy request must send only the exact writable template ID; reviewed display metadata is preflight evidence.'
+    $incompleteTemplateFailed=$false
+    try {
+        New-CpcConfigurationSettingBody -Definition $choiceDefinition -Spec ([pscustomobject]@{displayName='Incomplete template choice';resolve=[pscustomobject]@{settingInstanceTemplateId='11111111-1111-1111-1111-111111111111'};value=[pscustomobject]@{kind='choice';optionId='synthetic_choice_enabled'}}) | Out-Null
+    } catch {$incompleteTemplateFailed=$true}
+    Assert-True $incompleteTemplateFailed 'A template-bound choice with only one of the two exact template IDs must fail closed.'
     $policyBody=New-CpcSettingsCatalogPolicyBody -Policy ([pscustomobject]@{name='Array shape test';description='';platforms='windows10';technologies='mdm';roleScopeTagIds=@('0')}) -Settings @($choiceBody)
     Assert-True ($policyBody.roleScopeTagIds -is [array] -and $policyBody.roleScopeTagIds.Count -eq 1) 'A single role scope tag must remain a JSON array.'
     Assert-True ($policyBody.settings -is [array] -and $policyBody.settings.Count -eq 1) 'A single Settings Catalog setting must remain a JSON array.'

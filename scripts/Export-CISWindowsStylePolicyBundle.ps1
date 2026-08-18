@@ -196,11 +196,34 @@ function ConvertTo-RawSimpleValue($Value) {
     }
 }
 
+function ConvertTo-RawSettingInstanceTemplateReference($Reference) {
+    if($null -eq $Reference){return $null}
+    $id=[string](Get-OptionalProperty $Reference 'settingInstanceTemplateId' '')
+    if([string]::IsNullOrWhiteSpace($id)){throw 'A compiled setting instance template reference has no exact ID.'}
+    return [ordered]@{
+        '@odata.type'='#microsoft.graph.deviceManagementConfigurationSettingInstanceTemplateReference'
+        settingInstanceTemplateId=$id
+    }
+}
+
+function ConvertTo-RawSettingValueTemplateReference($Reference) {
+    if($null -eq $Reference){return $null}
+    $id=[string](Get-OptionalProperty $Reference 'settingValueTemplateId' '')
+    $useDefault=Get-OptionalProperty $Reference 'useTemplateDefault'
+    if([string]::IsNullOrWhiteSpace($id)){throw 'A compiled setting value template reference has no exact ID.'}
+    if($useDefault -isnot [bool] -or $useDefault){throw 'A compiled CIS value template reference must explicitly set useTemplateDefault to false.'}
+    return [ordered]@{
+        '@odata.type'='#microsoft.graph.deviceManagementConfigurationSettingValueTemplateReference'
+        settingValueTemplateId=$id
+        useTemplateDefault=$false
+    }
+}
+
 function ConvertTo-RawSettingInstance($Instance) {
     $result=[ordered]@{
         '@odata.type'=[string](Get-OptionalProperty $Instance '@odata.type' '')
         settingDefinitionId=[string](Get-OptionalProperty $Instance 'settingDefinitionId' '')
-        settingInstanceTemplateReference=$null
+        settingInstanceTemplateReference=ConvertTo-RawSettingInstanceTemplateReference (Get-OptionalProperty $Instance 'settingInstanceTemplateReference')
         auditRuleInformation=$null
     }
     if(Test-ObjectProperty $Instance 'choiceSettingValue'){
@@ -208,7 +231,7 @@ function ConvertTo-RawSettingInstance($Instance) {
         $children=@((Get-OptionalProperty $choice 'children' @()) | ForEach-Object {ConvertTo-RawSettingInstance $_})
         $result.choiceSettingValue=[ordered]@{
             '@odata.type'=[string](Get-OptionalProperty $choice '@odata.type' '')
-            settingValueTemplateReference=$null
+            settingValueTemplateReference=ConvertTo-RawSettingValueTemplateReference (Get-OptionalProperty $choice 'settingValueTemplateReference')
             value=[string](Get-OptionalProperty $choice 'value' '')
             'children@odata.type'='#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)'
             children=$children
@@ -232,7 +255,7 @@ function ConvertTo-RawSettingInstance($Instance) {
     return $result
 }
 
-function New-RawSettingsCatalogPolicy([string]$Name,[string]$Description,[string]$Platforms,[string]$Technologies,$Setting,[string]$Seed) {
+function New-RawSettingsCatalogPolicy([string]$Name,[string]$Description,[string]$Platforms,[string]$Technologies,$Setting,[string]$Seed,$TemplateReference) {
     $id=New-DeterministicGuid "policy|$Seed|$Name"
     $relative="deviceManagement/configurationPolicies('$id')"
     $absolute="https://graph.microsoft.com/beta/$relative"
@@ -246,6 +269,31 @@ function New-RawSettingsCatalogPolicy([string]$Name,[string]$Description,[string
         settingInstance=ConvertTo-RawSettingInstance $Setting.settingInstance
         'settingDefinitions@odata.associationLink'="$settingAbsolute/settingDefinitions/`$ref"
         'settingDefinitions@odata.navigationLink'="$settingAbsolute/settingDefinitions"
+    }
+    $rawTemplateReference=if($null -eq $TemplateReference){
+        [ordered]@{
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationPolicyTemplateReference'
+            templateId=''
+            'templateFamily@odata.type'='#microsoft.graph.deviceManagementConfigurationTemplateFamily'
+            templateFamily='none'
+            templateDisplayName=$null
+            templateDisplayVersion=$null
+        }
+    }else{
+        $templateId=[string](Get-OptionalProperty $TemplateReference 'templateId' '')
+        $templateFamily=[string](Get-OptionalProperty $TemplateReference 'templateFamily' '')
+        $templateDisplayName=[string](Get-OptionalProperty $TemplateReference 'templateDisplayName' '')
+        $templateDisplayVersion=[string](Get-OptionalProperty $TemplateReference 'templateDisplayVersion' '')
+        $missingTemplateValues=@(@($templateId,$templateFamily,$templateDisplayName,$templateDisplayVersion) | Where-Object {[string]::IsNullOrWhiteSpace([string]$_)})
+        if($missingTemplateValues.Count -gt 0){throw "Template-bound policy '$Name' has incomplete exact template metadata."}
+        [ordered]@{
+            '@odata.type'='#microsoft.graph.deviceManagementConfigurationPolicyTemplateReference'
+            templateId=$templateId
+            'templateFamily@odata.type'='#microsoft.graph.deviceManagementConfigurationTemplateFamily'
+            templateFamily=$templateFamily
+            templateDisplayName=$templateDisplayName
+            templateDisplayVersion=$templateDisplayVersion
+        }
     }
     return [ordered]@{
         '@odata.context'='https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies(assignments(),settings())/$entity'
@@ -268,14 +316,7 @@ function New-RawSettingsCatalogPolicy([string]$Name,[string]$Description,[string
         'technologies@odata.type'='#microsoft.graph.deviceManagementConfigurationTechnologies'
         technologies=$Technologies
         id=$id
-        templateReference=[ordered]@{
-            '@odata.type'='#microsoft.graph.deviceManagementConfigurationPolicyTemplateReference'
-            templateId=''
-            'templateFamily@odata.type'='#microsoft.graph.deviceManagementConfigurationTemplateFamily'
-            templateFamily='none'
-            templateDisplayName=$null
-            templateDisplayVersion=$null
-        }
+        templateReference=$rawTemplateReference
         'assignments@odata.context'="https://graph.microsoft.com/beta/`$metadata#$relative/assignments"
         'assignments@odata.associationLink'="$absolute/assignments/`$ref"
         'assignments@odata.navigationLink'="$absolute/assignments"
@@ -406,7 +447,7 @@ foreach($spec in $settingsSpecs | Sort-Object recommendationId,displayName){
     $seed="$($manifest.id)|$($recommendationIds -join ',')|$definitionId"
     $name=Limit-PolicyName $name $seed
     $description="Generated from $($manifest.name) $($manifest.version), recommendation(s) $($recommendationIds -join ', '). Exact setting/value identifiers are compiled from the validated pack and pinned snapshot. Unassigned. Not an official CIS Build Kit."
-    $raw=New-RawSettingsCatalogPolicy -Name $name -Description $description -Platforms ([string]$policy.platforms) -Technologies ([string]$policy.technologies) -Setting $body -Seed $seed
+    $raw=New-RawSettingsCatalogPolicy -Name $name -Description $description -Platforms ([string]$policy.platforms) -Technologies ([string]$policy.technologies) -Setting $body -Seed $seed -TemplateReference (Get-OptionalProperty $policy 'templateReference')
     $null=Add-Entry 'SettingsCatalog' $name $raw $seed
     $settingsCount++
 }

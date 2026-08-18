@@ -27,15 +27,34 @@ function Test-SafeEntryPath([string]$Path) {
 function Test-SettingInstance($Instance,[string]$Path) {
     if($null -eq $Instance){$issues.Add("$Path has no setting instance.");return}
     if([string]::IsNullOrWhiteSpace([string]$Instance.settingDefinitionId)){$issues.Add("$Path has a setting instance without an explicit settingDefinitionId.")}
+    $instanceTemplateId=''
+    $instanceReferenceProperty=$Instance.PSObject.Properties['settingInstanceTemplateReference']
+    if($instanceReferenceProperty -and $null -ne $instanceReferenceProperty.Value){
+        $instanceReference=$instanceReferenceProperty.Value
+        $instanceTemplateId=[string]$instanceReference.settingInstanceTemplateId
+        if([string]$instanceReference.'@odata.type' -cne '#microsoft.graph.deviceManagementConfigurationSettingInstanceTemplateReference' -or [string]::IsNullOrWhiteSpace($instanceTemplateId)){$issues.Add("$Path has an invalid setting instance template reference.")}
+    }
     if($Instance.PSObject.Properties['choiceSettingValue']){
-        if([string]::IsNullOrWhiteSpace([string]$Instance.choiceSettingValue.value)){$issues.Add("$Path has a choice without an explicit value ID.")}
-        foreach($child in @($Instance.choiceSettingValue.children)){Test-SettingInstance $child $Path}
+        $choice=$Instance.choiceSettingValue
+        if([string]::IsNullOrWhiteSpace([string]$choice.value)){$issues.Add("$Path has a choice without an explicit value ID.")}
+        $valueTemplateId=''
+        $valueReferenceProperty=$choice.PSObject.Properties['settingValueTemplateReference']
+        if($valueReferenceProperty -and $null -ne $valueReferenceProperty.Value){
+            $valueReference=$valueReferenceProperty.Value
+            $valueTemplateId=[string]$valueReference.settingValueTemplateId
+            if([string]$valueReference.'@odata.type' -cne '#microsoft.graph.deviceManagementConfigurationSettingValueTemplateReference' -or [string]::IsNullOrWhiteSpace($valueTemplateId) -or $valueReference.useTemplateDefault -isnot [bool] -or $valueReference.useTemplateDefault){$issues.Add("$Path has an invalid setting value template reference.")}
+        }
+        if(([string]::IsNullOrWhiteSpace($instanceTemplateId)) -ne ([string]::IsNullOrWhiteSpace($valueTemplateId))){$issues.Add("$Path must contain both setting instance and setting value template references, or neither.")}
+        foreach($child in @($choice.children)){Test-SettingInstance $child $Path}
     } elseif($Instance.PSObject.Properties['simpleSettingValue']){
+        if($instanceTemplateId){$issues.Add("$Path uses an unsupported template-bound simple setting.")}
         if($null -eq $Instance.simpleSettingValue.value){$issues.Add("$Path has a null simple value.")}
     } elseif($Instance.PSObject.Properties['simpleSettingCollectionValue']){
+        if($instanceTemplateId){$issues.Add("$Path uses an unsupported template-bound simple collection setting.")}
         $values=@($Instance.simpleSettingCollectionValue)
         if($values.Count -eq 0 -or @($values | Where-Object {$null -eq $_.value}).Count -gt 0){$issues.Add("$Path has an empty or null simple collection value.")}
     } elseif($Instance.PSObject.Properties['groupSettingCollectionValue']){
+        if($instanceTemplateId){$issues.Add("$Path uses an unsupported template-bound group collection setting.")}
         $groups=@($Instance.groupSettingCollectionValue)
         if($groups.Count -eq 0){$issues.Add("$Path has an empty group collection.")}
         foreach($group in $groups){foreach($child in @($group.children)){Test-SettingInstance $child $Path}}
@@ -74,9 +93,27 @@ try {
                 if([string]$json.name -cne $nameFromFile){$issues.Add("$path filename does not exactly match its JSON policy name.")}
                 if([string]$json.'@odata.type' -cne '#microsoft.graph.deviceManagementConfigurationPolicy'){$issues.Add("$path is not an export-shaped Settings Catalog policy.")}
                 if([string]::IsNullOrWhiteSpace([string]$json.id) -or [string]$json.'@odata.id' -notmatch [regex]::Escape([string]$json.id)){$issues.Add("$path has missing or incoherent export IDs.")}
+                $templateReference=$json.PSObject.Properties['templateReference']
+                $isEnrollment=[string]$json.technologies -ceq 'enrollment'
+                if($isEnrollment){
+                    if(-not $templateReference -or $null -eq $templateReference.Value){$issues.Add("$path is an enrollment policy without an exact template reference.")}
+                    else{
+                        $template=$templateReference.Value
+                        if([string]$template.'@odata.type' -cne '#microsoft.graph.deviceManagementConfigurationPolicyTemplateReference' -or [string]::IsNullOrWhiteSpace([string]$template.templateId) -or [string]$template.templateFamily -cne 'enrollmentConfiguration' -or [string]::IsNullOrWhiteSpace([string]$template.templateDisplayName) -or [string]::IsNullOrWhiteSpace([string]$template.templateDisplayVersion)){$issues.Add("$path has invalid or incomplete enrollment template metadata.")}
+                    }
+                }
                 $settings=@($json.settings)
                 if($settings.Count -ne 1 -or [int]$json.settingCount -ne 1){$issues.Add("$path must contain exactly one top-level setting.")}
-                if($settings.Count -eq 1){Test-SettingInstance $settings[0].settingInstance $path}
+                if($settings.Count -eq 1){
+                    $instance=$settings[0].settingInstance
+                    Test-SettingInstance $instance $path
+                    if($isEnrollment){
+                        $instanceReference=$instance.PSObject.Properties['settingInstanceTemplateReference']
+                        $choiceProperty=$instance.PSObject.Properties['choiceSettingValue']
+                        $valueReference=if($choiceProperty){$choiceProperty.Value.PSObject.Properties['settingValueTemplateReference']}else{$null}
+                        if(-not $instanceReference -or $null -eq $instanceReference.Value -or -not $valueReference -or $null -eq $valueReference.Value){$issues.Add("$path is an enrollment policy without both exact setting template references.")}
+                    }
+                }
             }
             {$_ -in @('DeviceConfigurations','CompliancePolicies','GraphObjects')} {
                 $graphCount++

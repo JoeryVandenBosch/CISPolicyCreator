@@ -17,7 +17,22 @@
         "platforms": { "type": "string", "minLength": 1 },
         "technologies": { "type": "string", "minLength": 1 },
         "roleScopeTagIds": { "type": "array", "items": { "type": "string" } },
-        "templateReference": { "type": ["object", "null"] }
+        "templateReference": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["templateId", "templateFamily", "templateDisplayName", "templateDisplayVersion"],
+              "properties": {
+                "templateId": { "type": "string", "minLength": 1 },
+                "templateFamily": { "type": "string", "minLength": 1 },
+                "templateDisplayName": { "type": "string", "minLength": 1 },
+                "templateDisplayVersion": { "type": "string", "minLength": 1 }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
       },
       "additionalProperties": false
     },
