@@ -134,7 +134,7 @@ function Test-DynamicSettingNode($Node,[string]$Label,[int]$Depth=0) {
     $kind=[string]$Node.value.kind
     if($kind -notin @('choice','integer','string','integer-collection','string-collection','group-collection')){$issues.Add("$Label has unsupported or missing value kind");return}
     $allowedValueProperties=switch($kind){
-        'choice' {@('kind','optionId','children')}
+        'choice' {@('kind','optionId','children','settingValueTemplateId')}
         {$_ -in @('integer','string')} {@('kind','value')}
         {$_ -in @('integer-collection','string-collection')} {@('kind','values')}
         'group-collection' {@('kind','items')}
@@ -204,6 +204,8 @@ if ($manifest.settingsCatalogPolicyDirectory) {
             else { $policyMetadata[[string]$b.policy.name]=$b.policy }
             if (-not $b.policy.platforms) { $issues.Add("$($file.Name): policy.platforms is required") }
             if (-not $b.policy.technologies) { $issues.Add("$($file.Name): policy.technologies is required") }
+            $policyTemplateProperty=$b.policy.PSObject.Properties['templateReference']
+            if([string]$b.policy.technologies -ceq 'enrollment' -and (-not $policyTemplateProperty -or $null -eq $policyTemplateProperty.Value)){$issues.Add("$($file.Name): enrollment policy requires an exact reviewed templateReference")}
             if (@($b.profiles).Count -eq 0) { $issues.Add("$($file.Name): profiles is required") }
             $settings=@($b.settings)
             if ($settings.Count -gt 0) { $issues.Add("$($file.Name): static embedded settings are not allowed in schema 2.0; use the validated dynamic Settings Catalog spec") }
@@ -238,6 +240,19 @@ if ($manifest.settingsCatalogSpec) {
             }
             Test-DynamicSettingNode $s "Dynamic setting '$label'" 0
             if ($s.policy -and -not $policyNames.Contains([string]$s.policy)) { $issues.Add("Dynamic setting '$label' targets policy '$($s.policy)' that has no policy bundle") }
+            elseif($s.policy){
+                $targetPolicy=$policyMetadata[[string]$s.policy]
+                $templateProperty=$targetPolicy.PSObject.Properties['templateReference']
+                $hasPolicyTemplate=$templateProperty -and $null -ne $templateProperty.Value
+                $instanceTemplateProperty=$s.resolve.PSObject.Properties['settingInstanceTemplateId']
+                $valueTemplateProperty=$s.value.PSObject.Properties['settingValueTemplateId']
+                $hasInstanceTemplate=$instanceTemplateProperty -and -not [string]::IsNullOrWhiteSpace([string]$instanceTemplateProperty.Value)
+                $hasValueTemplate=$valueTemplateProperty -and -not [string]::IsNullOrWhiteSpace([string]$valueTemplateProperty.Value)
+                if($hasPolicyTemplate){
+                    if([string]$s.value.kind -cne 'choice'){$issues.Add("Dynamic setting '$label' targets a template-bound policy with an unsupported non-choice value kind")}
+                    if(-not $hasInstanceTemplate -or -not $hasValueTemplate){$issues.Add("Dynamic setting '$label' targets a template-bound policy without both exact setting template IDs")}
+                }elseif($hasInstanceTemplate -or $hasValueTemplate){$issues.Add("Dynamic setting '$label' contains setting template IDs but its policy has no templateReference")}
+            }
         }
     }
 }

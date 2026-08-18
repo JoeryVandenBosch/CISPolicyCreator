@@ -179,7 +179,7 @@ function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
     $decisionRef=Get-OptionalProperty $value 'decisionRef'
     if($decisionRef -and $kind -notin @('choice','integer','string')){throw "$Context cannot use an administrator decision for collection or group values."}
     $allowedValueProperties=switch($kind){
-        'choice' {@('kind','optionId','children','decisionRef')}
+        'choice' {@('kind','optionId','children','decisionRef','settingValueTemplateId')}
         {$_ -in @('integer','string')} {@('kind','value','decisionRef')}
         {$_ -in @('integer-collection','string-collection')} {@('kind','values','decisionRef')}
         'group-collection' {@('kind','items','decisionRef')}
@@ -251,6 +251,13 @@ function Resolve-CatalogSettingNode($Node,[string]$Context,[int]$Depth=0) {
         baseUri=(Get-OptionalProperty $definition 'baseUri')
         offsetUri=(Get-OptionalProperty $definition 'offsetUri')
         expectedType=$definitionType
+    }
+    $settingInstanceTemplateId=Get-OptionalProperty $Node.resolve 'settingInstanceTemplateId'
+    if($settingInstanceTemplateId){$resolve.settingInstanceTemplateId=[string]$settingInstanceTemplateId}
+    $settingValueTemplateId=Get-OptionalProperty $value 'settingValueTemplateId'
+    if($settingValueTemplateId){
+        if($kind -cne 'choice'){throw "$Context uses a setting value template on unsupported value kind '$kind'."}
+        $outputValue.settingValueTemplateId=[string]$settingValueTemplateId
     }
     return [pscustomobject][ordered]@{displayName=[string]$Node.displayName;resolve=[pscustomobject]$resolve;value=[pscustomobject]$outputValue}
 }
@@ -381,6 +388,18 @@ foreach ($setting in @($catalog.settingsCatalogSettings)) {
     if (-not $snapshot) { throw "A Settings Catalog snapshot is required to validate mapped setting '$id'." }
 
     $resolvedNode=Resolve-CatalogSettingNode $setting "Settings Catalog entry '$id'" 0
+    $policyDefinition=$policyById[[string]$setting.policyId]
+    $templateReference=Get-OptionalProperty $policyDefinition 'templateReference'
+    $settingInstanceTemplateId=Get-OptionalProperty $resolvedNode.resolve 'settingInstanceTemplateId'
+    $settingValueTemplateId=Get-OptionalProperty $resolvedNode.value 'settingValueTemplateId'
+    if($templateReference){
+        if([string]$resolvedNode.value.kind -cne 'choice'){throw "Settings Catalog entry '$id' uses a policy template on an unsupported non-choice value kind."}
+        if(-not $settingInstanceTemplateId -or -not $settingValueTemplateId){throw "Settings Catalog entry '$id' targets a template-bound policy but lacks exact setting instance/value template IDs."}
+        if([string]::IsNullOrWhiteSpace([string]$templateReference.templateId) -or [string]$templateReference.templateFamily -ceq 'none'){throw "Settings Catalog policy '$($policyDefinition.id)' has an invalid template reference."}
+    }else{
+        if([string]$policyDefinition.technologies -ceq 'enrollment'){throw "Enrollment policy '$($policyDefinition.id)' requires an exact reviewed template reference."}
+        if($settingInstanceTemplateId -or $settingValueTemplateId){throw "Settings Catalog entry '$id' contains setting template IDs but its policy has no template reference."}
+    }
     $settingKey=([string]$setting.policyId)+"`n"+([string]$resolvedNode.resolve.definitionId)
     if (-not $settingKeys.Add($settingKey)) { throw "Policy '$($setting.policyId)' contains multiple mappings for definition '$($resolvedNode.resolve.definitionId)'." }
     $generated = [pscustomobject][ordered]@{
@@ -446,9 +465,19 @@ try {
         $policy = $policyById[$policyId]
         $safeName = $policyId -replace '[^a-zA-Z0-9._-]','-'
         if (-not $generatedFileNames.Add($safeName)) { throw "Settings Catalog policy IDs collide after filename sanitization: $policyId" }
+        $policyData=[ordered]@{ name=[string]$policy.name; description=[string]$policy.description; platforms=[string]$policy.platforms; technologies=[string]$policy.technologies; roleScopeTagIds=@(Get-OptionalProperty $policy 'roleScopeTagIds' @('0')) }
+        $templateReference=Get-OptionalProperty $policy 'templateReference'
+        if($templateReference){
+            $policyData.templateReference=[ordered]@{
+                templateId=[string]$templateReference.templateId
+                templateFamily=[string]$templateReference.templateFamily
+                templateDisplayName=[string]$templateReference.templateDisplayName
+                templateDisplayVersion=[string]$templateReference.templateDisplayVersion
+            }
+        }
         $bundle = [ordered]@{
             mappingStatus='mapped'; recommendationIds=@($settingsByPolicy[$policyId] | Sort-Object -Unique); profiles=@($policy.profiles)
-            policy=[ordered]@{ name=[string]$policy.name; description=[string]$policy.description; platforms=[string]$policy.platforms; technologies=[string]$policy.technologies; roleScopeTagIds=@(Get-OptionalProperty $policy 'roleScopeTagIds' @('0')) }
+            policy=$policyData
             settings=@()
         }
         Write-StableJson (Join-Path $buildRoot "policies\settings-catalog\$safeName.json") $bundle

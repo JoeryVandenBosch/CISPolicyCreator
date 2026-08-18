@@ -11,7 +11,8 @@
         "definitionId": { "type": "string", "minLength": 1 },
         "baseUri": { "type": ["string", "null"] },
         "offsetUri": { "type": ["string", "null"] },
-        "expectedType": { "type": "string", "minLength": 1 }
+        "expectedType": { "type": "string", "minLength": 1 },
+        "settingInstanceTemplateId": { "type": ["string", "null"], "minLength": 1 }
       },
       "additionalProperties": false
     },
@@ -22,7 +23,8 @@
           "required": ["kind", "optionId"],
           "properties": {
             "kind": { "const": "choice" },
-            "optionId": { "type": "string", "minLength": 1 }
+            "optionId": { "type": "string", "minLength": 1 },
+            "settingValueTemplateId": { "type": ["string", "null"], "minLength": 1 }
           },
           "additionalProperties": false
         },

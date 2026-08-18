@@ -10,7 +10,8 @@
         "definitionId": { "type": ["string", "null"] },
         "baseUri": { "type": ["string", "null"] },
         "offsetUri": { "type": ["string", "null"] },
-        "expectedType": { "type": "string", "minLength": 1 }
+        "expectedType": { "type": "string", "minLength": 1 },
+        "settingInstanceTemplateId": { "type": ["string", "null"], "minLength": 1 }
       },
       "required": ["definitionId", "baseUri", "offsetUri", "expectedType"],
       "additionalProperties": false
@@ -31,6 +32,7 @@
       "properties": {
         "kind": { "enum": ["choice", "integer", "string", "integer-collection", "string-collection", "group-collection"] },
         "optionId": { "type": ["string", "null"] },
+        "settingValueTemplateId": { "type": ["string", "null"], "minLength": 1 },
         "value": {},
         "values": { "type": "array", "minItems": 1, "items": { "type": ["integer", "string"] } },
         "children": { "type": "array", "items": { "$ref": "#/$defs/settingsCatalogNode" } },
@@ -133,7 +135,18 @@
           "platforms": { "type": "string", "minLength": 1 },
           "technologies": { "type": "string", "minLength": 1 },
           "profiles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
-          "roleScopeTagIds": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          "roleScopeTagIds": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "templateReference": {
+            "type": "object",
+            "required": ["templateId", "templateFamily", "templateDisplayName", "templateDisplayVersion"],
+            "properties": {
+              "templateId": { "type": "string", "minLength": 1 },
+              "templateFamily": { "type": "string", "minLength": 1 },
+              "templateDisplayName": { "type": "string", "minLength": 1 },
+              "templateDisplayVersion": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          }
         },
         "additionalProperties": false
       }

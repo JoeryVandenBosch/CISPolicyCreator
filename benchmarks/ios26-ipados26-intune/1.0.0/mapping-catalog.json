@@ -1216,13 +1216,11 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "mapped",
-      "implementationType": "settings-catalog",
-      "implementationRefs": [
-        "settings-catalog:ios-locked-enrollment-l1"
-      ],
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
       "decisionRef": null,
-      "notes": "Exact pinned-snapshot Automated Device Enrollment definition and Yes option."
+      "notes": "The Locked enrollment definition and Yes option are exact, but Microsoft requires 40 settings in an ADE policy. The other required settings include organization-specific enrollment and Setup Assistant choices without template defaults, so a deployable standalone policy cannot be emitted without a complete explicit administrator decision model."
     },
     {
       "recommendationId": "3.10.2",
@@ -1479,19 +1477,6 @@
       "roleScopeTagIds": [
         "0"
       ]
-    },
-    {
-      "id": "ios-locked-enrollment-l1",
-      "name": "CIS - iOS/iPadOS 26 Locked Enrollment [L1] - v1.0.0",
-      "description": "Exact CIS Automated Device Enrollment setting. Unassigned by design.",
-      "platforms": "iOS",
-      "technologies": "enrollment",
-      "profiles": [
-        "L1"
-      ],
-      "roleScopeTagIds": [
-        "0"
-      ]
     }
   ],
   "settingsCatalogSettings": [
@@ -1709,24 +1694,6 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "recommendationId": "3.10.1",
-      "policyId": "ios-locked-enrollment-l1",
-      "displayName": "Locked enrollment",
-      "profiles": [
-        "L1"
-      ],
-      "resolve": {
-        "definitionId": "ade_lockedenrollment",
-        "baseUri": "./enrollment/ade",
-        "offsetUri": "/lockedEnrollment",
-        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
-      },
-      "value": {
-        "kind": "choice",
-        "optionId": "ade_lockedenrollment_1"
       }
     }
   ],

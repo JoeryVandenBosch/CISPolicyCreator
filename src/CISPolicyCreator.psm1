@@ -212,12 +212,40 @@ function Assert-CpcRequiredChildDefinitions {
     }
 }
 
+function Add-CpcChoiceTemplateReferences {
+    param([Parameter(Mandatory)]$Instance,[Parameter(Mandatory)]$ChoiceValue,[Parameter(Mandatory)]$Spec)
+    $resolveProperty=$Spec.PSObject.Properties['resolve']
+    $instanceTemplateProperty=if($resolveProperty -and $null -ne $resolveProperty.Value){$resolveProperty.Value.PSObject.Properties['settingInstanceTemplateId']}else{$null}
+    $valueTemplateProperty=$Spec.value.PSObject.Properties['settingValueTemplateId']
+    $instanceTemplateId=if($instanceTemplateProperty){[string]$instanceTemplateProperty.Value}else{''}
+    $valueTemplateId=if($valueTemplateProperty){[string]$valueTemplateProperty.Value}else{''}
+    if([string]::IsNullOrWhiteSpace($instanceTemplateId) -and [string]::IsNullOrWhiteSpace($valueTemplateId)){return}
+    if([string]::IsNullOrWhiteSpace($instanceTemplateId) -or [string]::IsNullOrWhiteSpace($valueTemplateId)){
+        throw "Template-bound choice '$($Spec.displayName)' requires both exact setting instance and setting value template IDs."
+    }
+    $Instance['settingInstanceTemplateReference']=[ordered]@{
+        '@odata.type'='#microsoft.graph.deviceManagementConfigurationSettingInstanceTemplateReference'
+        settingInstanceTemplateId=$instanceTemplateId
+    }
+    $ChoiceValue['settingValueTemplateReference']=[ordered]@{
+        '@odata.type'='#microsoft.graph.deviceManagementConfigurationSettingValueTemplateReference'
+        settingValueTemplateId=$valueTemplateId
+        useTemplateDefault=$false
+    }
+}
+
 function New-CpcConfigurationSettingInstance {
     param([Parameter(Mandatory)]$Definition,[Parameter(Mandatory)]$Spec,[Parameter(Mandatory)]$Definitions,[hashtable]$DefinitionCache,[int]$Depth=0)
     if($Depth -gt 16){throw "'$($Spec.displayName)' exceeds the maximum nested Settings Catalog depth."}
     $type=[string]$Definition.'@odata.type'
     $valueSpec=$Spec.value
     $kind=[string]$valueSpec.kind
+    $resolveProperty=$Spec.PSObject.Properties['resolve']
+    $instanceTemplateProperty=if($resolveProperty -and $null -ne $resolveProperty.Value){$resolveProperty.Value.PSObject.Properties['settingInstanceTemplateId']}else{$null}
+    $valueTemplateProperty=$valueSpec.PSObject.Properties['settingValueTemplateId']
+    if($kind -cne 'choice' -and (($instanceTemplateProperty -and $instanceTemplateProperty.Value) -or ($valueTemplateProperty -and $valueTemplateProperty.Value))){
+        throw "Template references on non-choice setting '$($Spec.displayName)' are not explicitly supported."
+    }
 
     if($type -match 'ChoiceSettingDefinition$'){
         if($kind -ne 'choice'){throw "Value kind '$kind' does not match choice definition '$($Spec.displayName)'."}
@@ -233,11 +261,14 @@ function New-CpcConfigurationSettingInstance {
         [object[]]$children=@()
         if($childrenProperty){$children=@(New-CpcConfigurationSettingInstances -Specs @($childrenProperty.Value) -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Choice '$($Spec.displayName)'")}
         Assert-CpcRequiredChildDefinitions -Definition $Definition -SelectedOption $candidate[0] -Children $children -Context "Choice '$($Spec.displayName)' option '$($valueSpec.optionId)'"
-        return @{
+        $choiceValue=[ordered]@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue';value=[string]$candidate[0].itemId;children=@($children)}
+        $instance=[ordered]@{
             '@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance'
             settingDefinitionId=[string]$Definition.id
-            choiceSettingValue=@{'@odata.type'='#microsoft.graph.deviceManagementConfigurationChoiceSettingValue';value=[string]$candidate[0].itemId;children=@($children)}
+            choiceSettingValue=$choiceValue
         }
+        Add-CpcChoiceTemplateReferences -Instance $instance -ChoiceValue $choiceValue -Spec $Spec
+        return $instance
     }
 
     if($type -match 'SimpleSettingCollectionDefinition$'){
@@ -375,7 +406,9 @@ function New-CpcSettingsCatalogPolicyBody {
     }
     $templateProperty=$Policy.PSObject.Properties['templateReference']
     if ($templateProperty -and $templateProperty.Value -and $templateProperty.Value.templateId) {
-        $body.templateReference = ConvertTo-CpcWritablePayload -InputObject $templateProperty.Value
+        # Graph's create contract needs the exact template ID. Display/family fields
+        # are read-only evidence used by fail-closed preflight, not writable payload.
+        $body.templateReference = [ordered]@{templateId=[string]$templateProperty.Value.templateId}
     }
     return $body
 }
@@ -551,11 +584,31 @@ function ConvertTo-CpcSettingSpecFromExportInstance {
         $value=Get-ExportProperty $Node $Name
         if($null -ne $value){throw "$NodeContext contains a non-null '$Name'; template-bound imports are not supported."}
     }
+    function Get-SettingInstanceTemplateId($Node,[string]$NodeContext){
+        $reference=Get-ExportProperty $Node 'settingInstanceTemplateReference'
+        if($null -eq $reference){return ''}
+        Assert-ExportProperties $reference @('@odata.type','settingInstanceTemplateId') "$NodeContext setting instance template reference"
+        if([string](Get-ExportProperty $reference '@odata.type' -Required) -cne '#microsoft.graph.deviceManagementConfigurationSettingInstanceTemplateReference'){throw "$NodeContext has an unexpected setting instance template reference type."}
+        $id=[string](Get-ExportProperty $reference 'settingInstanceTemplateId' -Required)
+        if([string]::IsNullOrWhiteSpace($id)){throw "$NodeContext has an empty setting instance template ID."}
+        return $id
+    }
+    function Get-SettingValueTemplateId($Node,[string]$NodeContext){
+        $reference=Get-ExportProperty $Node 'settingValueTemplateReference'
+        if($null -eq $reference){return ''}
+        Assert-ExportProperties $reference @('@odata.type','settingValueTemplateId','useTemplateDefault') "$NodeContext setting value template reference"
+        if([string](Get-ExportProperty $reference '@odata.type' -Required) -cne '#microsoft.graph.deviceManagementConfigurationSettingValueTemplateReference'){throw "$NodeContext has an unexpected setting value template reference type."}
+        $id=[string](Get-ExportProperty $reference 'settingValueTemplateId' -Required)
+        if([string]::IsNullOrWhiteSpace($id)){throw "$NodeContext has an empty setting value template ID."}
+        $useDefault=Get-ExportProperty $reference 'useTemplateDefault' -Required
+        if($useDefault -isnot [bool] -or $useDefault){throw "$NodeContext must explicitly set useTemplateDefault to false when supplying a CIS value."}
+        return $id
+    }
 
     $instanceType=[string](Get-ExportProperty $Instance '@odata.type' -Required)
     $definitionId=[string](Get-ExportProperty $Instance 'settingDefinitionId' -Required)
     if([string]::IsNullOrWhiteSpace($definitionId)){throw "$Context has an empty settingDefinitionId."}
-    Assert-NullTemplateReference $Instance 'settingInstanceTemplateReference' $Context
+    $settingInstanceTemplateId=Get-SettingInstanceTemplateId $Instance $Context
     $audit=Get-ExportProperty $Instance 'auditRuleInformation'
     if($null -ne $audit){throw "$Context contains non-null auditRuleInformation."}
     $displayName="$Context [$definitionId]"
@@ -568,16 +621,19 @@ function ConvertTo-CpcSettingSpecFromExportInstance {
             $choice=Get-ExportProperty $Instance 'choiceSettingValue' -Required
             Assert-ExportProperties $choice @('@odata.type','children','children@odata.type','settingValueTemplateReference','value') "$Context choice value"
             if([string](Get-ExportProperty $choice '@odata.type' -Required) -cne '#microsoft.graph.deviceManagementConfigurationChoiceSettingValue'){throw "$Context has an unexpected choice value type."}
-            Assert-NullTemplateReference $choice 'settingValueTemplateReference' "$Context choice value"
+            $settingValueTemplateId=Get-SettingValueTemplateId $choice "$Context choice value"
+            if(([string]::IsNullOrWhiteSpace($settingInstanceTemplateId)) -ne ([string]::IsNullOrWhiteSpace($settingValueTemplateId))){throw "$Context must contain both setting instance and setting value template references, or neither."}
             $optionId=[string](Get-ExportProperty $choice 'value' -Required)
             if([string]::IsNullOrWhiteSpace($optionId)){throw "$Context has an empty choice option ID."}
             [object[]]$children=@()
             $childrenValue=Get-ExportProperty $choice 'children'
             if($null -ne $childrenValue){$children=@($childrenValue|ForEach-Object{ConvertTo-CpcSettingSpecFromExportInstance -Instance $_ -Context "$Context child" -Depth ($Depth+1)})}
             $valueSpec=[ordered]@{kind='choice';optionId=$optionId;children=@($children)}
+            if($settingValueTemplateId){$valueSpec.settingValueTemplateId=$settingValueTemplateId}
             $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition'
         }
         '#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance' {
+            if($settingInstanceTemplateId){throw "$Context uses an unsupported template-bound simple setting."}
             Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','settingDefinitionId','settingInstanceTemplateReference','simpleSettingValue') $Context
             $simple=Get-ExportProperty $Instance 'simpleSettingValue' -Required
             Assert-ExportProperties $simple @('@odata.type','settingValueTemplateReference','value') "$Context simple value"
@@ -595,6 +651,7 @@ function ConvertTo-CpcSettingSpecFromExportInstance {
             $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'
         }
         '#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance' {
+            if($settingInstanceTemplateId){throw "$Context uses an unsupported template-bound simple collection setting."}
             Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','settingDefinitionId','settingInstanceTemplateReference','simpleSettingCollectionValue','simpleSettingCollectionValue@odata.type') $Context
             [object[]]$values=@(Get-ExportProperty $Instance 'simpleSettingCollectionValue' -Required)
             if($values.Count -eq 0){throw "$Context has an empty simple setting collection."}
@@ -620,6 +677,7 @@ function ConvertTo-CpcSettingSpecFromExportInstance {
             $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition'
         }
         '#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance' {
+            if($settingInstanceTemplateId){throw "$Context uses an unsupported template-bound group collection setting."}
             Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','groupSettingCollectionValue','groupSettingCollectionValue@odata.type','settingDefinitionId','settingInstanceTemplateReference') $Context
             [object[]]$groups=@(Get-ExportProperty $Instance 'groupSettingCollectionValue' -Required)
             if($groups.Count -eq 0){throw "$Context has an empty setting group collection."}
@@ -643,9 +701,11 @@ function ConvertTo-CpcSettingSpecFromExportInstance {
         default {throw "$Context has unsupported setting instance type '$instanceType'."}
     }
 
+    $resolve=[ordered]@{definitionId=$definitionId;baseUri=$null;offsetUri=$null;expectedType=$expectedDefinitionType}
+    if($settingInstanceTemplateId){$resolve.settingInstanceTemplateId=$settingInstanceTemplateId}
     return [pscustomobject][ordered]@{
         displayName=$displayName
-        resolve=[pscustomobject][ordered]@{definitionId=$definitionId;baseUri=$null;offsetUri=$null;expectedType=$expectedDefinitionType}
+        resolve=[pscustomobject]$resolve
         value=[pscustomobject]$valueSpec
     }
 }

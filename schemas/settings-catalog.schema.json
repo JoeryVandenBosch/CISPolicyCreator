@@ -12,7 +12,8 @@
         "definitionId": { "type": ["string", "null"] },
         "baseUri": { "type": ["string", "null"] },
         "offsetUri": { "type": ["string", "null"] },
-        "expectedType": { "type": ["string", "null"] }
+        "expectedType": { "type": ["string", "null"] },
+        "settingInstanceTemplateId": { "type": ["string", "null"], "minLength": 1 }
       },
       "additionalProperties": false
     },
@@ -32,6 +33,7 @@
       "properties": {
         "kind": { "enum": ["choice", "integer", "string", "integer-collection", "string-collection", "group-collection"] },
         "optionId": { "type": ["string", "null"] },
+        "settingValueTemplateId": { "type": ["string", "null"], "minLength": 1 },
         "value": {},
         "values": { "type": "array", "minItems": 1, "items": { "type": ["integer", "string"] } },
         "children": { "type": "array", "items": { "$ref": "#/$defs/node" } },
