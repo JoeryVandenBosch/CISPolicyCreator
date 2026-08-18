@@ -21,6 +21,7 @@ CISPolicyCreator treats the PDF, candidate worklist, private mapping approvals, 
 15. Compiler and orchestrator pack publication use atomic same-parent directory moves, and failure cleanup is ownership-scoped so raced output paths belonging to another process are never deleted.
 16. Policy packs using filesystem links, junctions, or reparse points as their root or internally are rejected before manifest processing, preventing linked content from escaping the validated pack root.
 17. Filesystem containment follows platform case semantics, and private reviewer artifacts require exact lowercase ignored suffixes so case-sensitive systems cannot place them outside repository privacy guards.
+18. Portable JSON bundles require the pack-bound Settings Catalog snapshot, contain only validated create-request bodies plus public-safe provenance, exclude assignments and tenant-generated metadata, and are independently validated before atomic publication.
 
 ## Runtime invariants
 

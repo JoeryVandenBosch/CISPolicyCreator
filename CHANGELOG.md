@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 - 2026-08-18
+
+- Add deterministic offline export of a validated policy pack to portable, request-ready Intune JSON ZIP files.
+- Bind each portable file to the original pack manifest and exact Settings Catalog snapshot with SHA-256 evidence.
+- Include Settings Catalog policy bodies, pinned-contract generic Graph bodies, a public-safe mapping report, and a strict bundle manifest without tenant-generated metadata or assignments.
+- Add independent portable-bundle validation, atomic output publication, repeated-export byte reproducibility checks, and snapshot-mismatch rejection tests.
+- Make portable JSON creation the primary documented outcome; retain live dry run and unassigned import as optional validation steps.
+
 ## 0.4.2 - 2026-08-17
 
 - Preserve `childIds`, `dependentOn`, and `dependedOnBy` for every Settings Catalog definition in snapshot schema 1.2 instead of discarding required group dependency evidence.

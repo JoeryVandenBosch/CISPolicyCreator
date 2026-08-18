@@ -1,8 +1,12 @@
 # CISPolicyCreator
 
 CISPolicyCreator reads a legitimately obtained CIS Benchmark PDF written specifically
-for Microsoft Intune and builds a validated Intune policy pack. The pack can then be
-imported into Microsoft Intune as real, unassigned policies with settings.
+for Microsoft Intune and builds a validated Intune policy pack. It can then export that
+pack as a portable ZIP containing request-ready Intune policy JSON files. No tenant
+login is needed to create the JSON bundle.
+
+The repository also includes an optional fail-closed importer for test-tenant validation,
+but importing or assigning policies is not required to use the policy-creation tool.
 
 The tool runs entirely from the scripts in this repository. ChatGPT, Codex, or another
 AI service is **not** required at runtime.
@@ -24,7 +28,7 @@ Graph setting and value are emitted as policy settings.
 
 All six current catalogs have been rebuilt from the exact real PDFs, pass offline pack
 validation, and pass a live read-only dry run against a test tenant. Earlier, smaller
-mapped subsets also passed real unassigned test-tenant imports. Always run Step 11
+mapped subsets also passed real unassigned test-tenant imports. Always run Step 12
 against your own tenant before importing. No assignments are created by any pack.
 
 These numbers do **not** describe complete CIS baselines. Unresolved recommendations do
@@ -233,7 +237,38 @@ Never commit the private decision file.
 The report shows which recommendations are mapped, unresolved, require administrator
 input, remain manual, or are not applicable.
 
-## Step 11: perform a read-only Intune dry run
+## Step 11: create the portable Intune policy JSON ZIP
+
+```powershell
+$BundlePath = ".\work\exports\$Benchmark-portable.zip"
+
+.\scripts\Export-CISPortablePolicyBundle.ps1 `
+  -PackRoot $PackPath `
+  -SettingsCatalogSnapshotPath .\private\graph\settings-catalog-snapshot.json `
+  -OutputPath $BundlePath `
+  -Profile ALL
+
+.\scripts\Test-CISPortablePolicyBundle.ps1 -BundlePath $BundlePath
+```
+
+The ZIP contains:
+
+- `SettingsCatalog\*.json`: request-ready Settings Catalog policy JSON with settings;
+- `DeviceConfigurations\*.json`, when required: request-ready typed configuration JSON;
+- `mapping-report.json`: every recommendation and its mapping status;
+- `bundle-manifest.json`: source/pack hashes, file hashes, counts, and endpoints.
+
+The ZIP contains no CIS PDF, raw benchmark prose, credentials, assignments, tenant IDs,
+server-generated object IDs, timestamps, or Graph navigation links. The JSON represents
+Microsoft Graph create-request bodies, not a raw export copied from a tenant.
+
+The output path must end in lowercase `.zip` and must not already exist. Repeating the
+same export with the same pack, snapshot, and profile produces the same ZIP bytes.
+
+If you only want CISPolicyCreator to create portable policy JSON files, you are finished.
+The remaining steps are optional tenant validation and import steps.
+
+## Step 12: optionally perform a read-only Intune dry run
 
 ```powershell
 .\scripts\Import-CISPolicyPack.ps1 `
@@ -248,7 +283,7 @@ The dry run signs in to Microsoft Graph, verifies the live setting definitions a
 values, checks for same-name policies, and shows what would be created. It does not
 write or assign anything.
 
-## Step 12: import the unassigned policies
+## Step 13: optionally import the unassigned policies
 
 Only continue after the dry run succeeds:
 
@@ -268,7 +303,7 @@ Unresolved recommendations remain absent.
 The policies are created without assignments. CISPolicyCreator does not select users,
 devices, or groups. Assignments and production rollout remain administrator actions.
 
-## Step 13: check Intune
+## Step 14: check Intune
 
 1. Open the Microsoft Intune admin center.
 2. Go to **Devices**.
@@ -279,7 +314,7 @@ devices, or groups. Assignments and production rollout remain administrator acti
 
 ## Build the other supported PDFs
 
-Repeat Steps 8 through 13 for each PDF. Always use the matching selector, exact PDF
+Repeat Steps 8 through 14 for each PDF. Always use the matching selector, exact PDF
 version, and a different pack output folder.
 
 ## Common problems
