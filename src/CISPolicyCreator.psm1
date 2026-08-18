@@ -526,6 +526,143 @@ function Compare-CpcSettingsCatalogPolicy {
     }
 }
 
+function ConvertTo-CpcSettingSpecFromExportInstance {
+    param(
+        [Parameter(Mandatory)]$Instance,
+        [string]$Context='exported Settings Catalog setting',
+        [int]$Depth=0
+    )
+    if($Depth -gt 16){throw "$Context exceeds the maximum nested Settings Catalog depth."}
+
+    function Get-ExportProperty($Node,[string]$Name,[switch]$Required){
+        $property=if($Node -is [System.Collections.IDictionary]){
+            if($Node.Contains($Name)){[pscustomobject]@{Value=$Node[$Name]}}else{$null}
+        }else{$Node.PSObject.Properties[$Name]}
+        if($Required -and -not $property){throw "$Context is missing required property '$Name'."}
+        if($property){return $property.Value}
+        return $null
+    }
+    function Assert-ExportProperties($Node,[string[]]$Allowed,[string]$NodeContext){
+        $names=if($Node -is [System.Collections.IDictionary]){@($Node.Keys|ForEach-Object{[string]$_})}else{@($Node.PSObject.Properties.Name)}
+        $unexpected=@($names|Where-Object{$Allowed -cnotcontains [string]$_})
+        if($unexpected.Count -gt 0){throw "$NodeContext contains unsupported properties: $($unexpected -join ', ')."}
+    }
+    function Assert-NullTemplateReference($Node,[string]$Name,[string]$NodeContext){
+        $value=Get-ExportProperty $Node $Name
+        if($null -ne $value){throw "$NodeContext contains a non-null '$Name'; template-bound imports are not supported."}
+    }
+
+    $instanceType=[string](Get-ExportProperty $Instance '@odata.type' -Required)
+    $definitionId=[string](Get-ExportProperty $Instance 'settingDefinitionId' -Required)
+    if([string]::IsNullOrWhiteSpace($definitionId)){throw "$Context has an empty settingDefinitionId."}
+    Assert-NullTemplateReference $Instance 'settingInstanceTemplateReference' $Context
+    $audit=Get-ExportProperty $Instance 'auditRuleInformation'
+    if($null -ne $audit){throw "$Context contains non-null auditRuleInformation."}
+    $displayName="$Context [$definitionId]"
+    $expectedDefinitionType=''
+    $valueSpec=$null
+
+    switch($instanceType){
+        '#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance' {
+            Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','choiceSettingValue','settingDefinitionId','settingInstanceTemplateReference') $Context
+            $choice=Get-ExportProperty $Instance 'choiceSettingValue' -Required
+            Assert-ExportProperties $choice @('@odata.type','children','children@odata.type','settingValueTemplateReference','value') "$Context choice value"
+            if([string](Get-ExportProperty $choice '@odata.type' -Required) -cne '#microsoft.graph.deviceManagementConfigurationChoiceSettingValue'){throw "$Context has an unexpected choice value type."}
+            Assert-NullTemplateReference $choice 'settingValueTemplateReference' "$Context choice value"
+            $optionId=[string](Get-ExportProperty $choice 'value' -Required)
+            if([string]::IsNullOrWhiteSpace($optionId)){throw "$Context has an empty choice option ID."}
+            [object[]]$children=@()
+            $childrenValue=Get-ExportProperty $choice 'children'
+            if($null -ne $childrenValue){$children=@($childrenValue|ForEach-Object{ConvertTo-CpcSettingSpecFromExportInstance -Instance $_ -Context "$Context child" -Depth ($Depth+1)})}
+            $valueSpec=[ordered]@{kind='choice';optionId=$optionId;children=@($children)}
+            $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition'
+        }
+        '#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance' {
+            Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','settingDefinitionId','settingInstanceTemplateReference','simpleSettingValue') $Context
+            $simple=Get-ExportProperty $Instance 'simpleSettingValue' -Required
+            Assert-ExportProperties $simple @('@odata.type','settingValueTemplateReference','value') "$Context simple value"
+            Assert-NullTemplateReference $simple 'settingValueTemplateReference' "$Context simple value"
+            $valueType=[string](Get-ExportProperty $simple '@odata.type' -Required)
+            $value=Get-ExportProperty $simple 'value' -Required
+            if($valueType -ceq '#microsoft.graph.deviceManagementConfigurationIntegerSettingValue'){
+                $kind='integer'
+                if($value -isnot [byte] -and $value -isnot [int16] -and $value -isnot [int32] -and $value -isnot [int64]){throw "$Context integer value is not an integer."}
+            }elseif($valueType -ceq '#microsoft.graph.deviceManagementConfigurationStringSettingValue'){
+                $kind='string'
+                if($value -isnot [string]){throw "$Context string value is not a string."}
+            }else{throw "$Context has unsupported simple value type '$valueType'."}
+            $valueSpec=[ordered]@{kind=$kind;value=$value}
+            $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition'
+        }
+        '#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance' {
+            Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','settingDefinitionId','settingInstanceTemplateReference','simpleSettingCollectionValue','simpleSettingCollectionValue@odata.type') $Context
+            [object[]]$values=@(Get-ExportProperty $Instance 'simpleSettingCollectionValue' -Required)
+            if($values.Count -eq 0){throw "$Context has an empty simple setting collection."}
+            $kind=$null
+            $rawValues=[System.Collections.Generic.List[object]]::new()
+            foreach($item in $values){
+                Assert-ExportProperties $item @('@odata.type','settingValueTemplateReference','value') "$Context collection value"
+                Assert-NullTemplateReference $item 'settingValueTemplateReference' "$Context collection value"
+                $valueType=[string](Get-ExportProperty $item '@odata.type' -Required)
+                $itemKind=switch($valueType){
+                    '#microsoft.graph.deviceManagementConfigurationIntegerSettingValue' {'integer'}
+                    '#microsoft.graph.deviceManagementConfigurationStringSettingValue' {'string'}
+                    default {throw "$Context has unsupported collection value type '$valueType'."}
+                }
+                if($kind -and $kind -cne $itemKind){throw "$Context mixes integer and string collection values."}
+                $kind=$itemKind
+                $rawValue=Get-ExportProperty $item 'value' -Required
+                if($kind -eq 'integer' -and $rawValue -isnot [byte] -and $rawValue -isnot [int16] -and $rawValue -isnot [int32] -and $rawValue -isnot [int64]){throw "$Context collection integer value is not an integer."}
+                if($kind -eq 'string' -and $rawValue -isnot [string]){throw "$Context collection string value is not a string."}
+                $rawValues.Add($rawValue)|Out-Null
+            }
+            $valueSpec=[ordered]@{kind="$kind-collection";values=@($rawValues)}
+            $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition'
+        }
+        '#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance' {
+            Assert-ExportProperties $Instance @('@odata.type','auditRuleInformation','groupSettingCollectionValue','groupSettingCollectionValue@odata.type','settingDefinitionId','settingInstanceTemplateReference') $Context
+            [object[]]$groups=@(Get-ExportProperty $Instance 'groupSettingCollectionValue' -Required)
+            if($groups.Count -eq 0){throw "$Context has an empty setting group collection."}
+            $items=[System.Collections.Generic.List[object]]::new()
+            foreach($group in $groups){
+                Assert-ExportProperties $group @('@odata.type','children','children@odata.type','settingValueTemplateReference') "$Context group value"
+                if([string](Get-ExportProperty $group '@odata.type' -Required) -cne '#microsoft.graph.deviceManagementConfigurationGroupSettingValue'){throw "$Context has an unexpected group value type."}
+                Assert-NullTemplateReference $group 'settingValueTemplateReference' "$Context group value"
+                [object[]]$children=@(Get-ExportProperty $group 'children' -Required)
+                if($children.Count -eq 0){throw "$Context has a group item without children."}
+                $childSpecs=@($children|ForEach-Object{ConvertTo-CpcSettingSpecFromExportInstance -Instance $_ -Context "$Context group child" -Depth ($Depth+1)})
+                # Keep each group row as a property-bearing object. An OrderedDictionary
+                # preserves JSON correctly but does not expose its keys through
+                # PSObject.Properties, which the live payload builder intentionally uses
+                # for strict shape checks.
+                $items.Add([pscustomobject][ordered]@{children=@($childSpecs)})|Out-Null
+            }
+            $valueSpec=[ordered]@{kind='group-collection';items=@($items)}
+            $expectedDefinitionType='#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition'
+        }
+        default {throw "$Context has unsupported setting instance type '$instanceType'."}
+    }
+
+    return [pscustomobject][ordered]@{
+        displayName=$displayName
+        resolve=[pscustomobject][ordered]@{definitionId=$definitionId;baseUri=$null;offsetUri=$null;expectedType=$expectedDefinitionType}
+        value=[pscustomobject]$valueSpec
+    }
+}
+
+function Get-CpcGraphObjectContractByOdataType {
+    param([Parameter(Mandatory)][string]$OdataType,[Parameter(Mandatory)][string]$RepoRoot)
+    if([string]::IsNullOrWhiteSpace($OdataType)){throw 'A Graph object @odata.type is required.'}
+    $contractRoot=Join-Path $RepoRoot 'contracts\graph'
+    $matches=[System.Collections.Generic.List[string]]::new()
+    foreach($file in @(Get-ChildItem -LiteralPath $contractRoot -Filter '*.json' -File)){
+        try{$contract=Get-Content -LiteralPath $file.FullName -Raw|ConvertFrom-Json -Depth 100}catch{throw "Graph contract '$($file.FullName)' is invalid JSON: $($_.Exception.Message)"}
+        if([string]$contract.odataType -ceq $OdataType){$matches.Add([string]$contract.id)|Out-Null}
+    }
+    if($matches.Count -ne 1){throw "Graph @odata.type '$OdataType' did not resolve to exactly one pinned contract; matches=$($matches.Count)."}
+    return Get-CpcGraphObjectContract -ContractId $matches[0] -RepoRoot $RepoRoot
+}
+
 function Get-CpcGraphObjectContract {
     param(
         [Parameter(Mandatory)][string]$ContractId,

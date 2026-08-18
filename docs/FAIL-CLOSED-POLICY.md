@@ -66,6 +66,8 @@ Mapping audit reports are derived only after the complete pack validator succeed
 
 Windows-style split-policy JSON export requires a valid pack, its private extraction only while the export is running, and the exact snapshot hash recorded by that pack. The exporter resolves every setting offline, emits only mapped or explicitly decided Intune-configurable recommendations, preserves required dependency bundles, forbids assignments, validates the finished ZIP independently, and publishes it atomically without overwriting an existing output. Human/process controls and unresolved recommendations emit no JSON.
 
+Optional split-policy ZIP import is a separate trust boundary. `Import-CISWindowsStylePolicyBundle.ps1` validates the complete archive before authentication, reconstructs Settings Catalog request bodies from explicit definition/value IDs, resolves typed Graph objects only through an exact SHA-256-bound repository contract, and validates all live definitions, values, dependency trees, and same-name collisions before its first write. Actual import requires an explicit tenant ID and `-ConfirmUnassignedImport`. Unknown types, unexpected properties, duplicate names, different same-name objects, assignments, or ambiguous mappings fail closed. Tenant-wide singleton updates require the additional `-ConfirmTenantWideSettingsUpdate` acknowledgement or must be explicitly omitted with `-SkipTenantWideSettings`.
+
 The standalone compiler and pack orchestrator publish from unique staging directories using same-parent atomic moves. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
 
 Pack validation rejects a symbolic link, junction, or other reparse point used as the pack root or anywhere inside it before reading the manifest. Manifest-relative paths must remain lexically inside the pack as well; linked paths cannot be used to read mutable content outside the validated pack.
@@ -91,6 +93,7 @@ An actual import of a pack that still contains `unresolved` or `requires-input` 
 - Creation stops on the first Graph error by default.
 - Partial/preflight results are preserved when possible.
 - Import never creates assignments.
+- ZIP import never calls an assignment endpoint and never adds an assignment property.
 
 ## Definition of done
 
