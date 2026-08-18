@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "id": "microsoft.graph.deviceManagementSettings.v1.0",
+  "sourceUrl": "https://learn.microsoft.com/en-us/graph/api/resources/intune-deviceconfig-devicemanagementsettings?view=graph-rest-1.0",
+  "lastReviewed": "2026-08-18",
+  "endpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+  "listEndpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+  "itemEndpointTemplate": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+  "nameProperty": null,
+  "operation": "update-singleton",
+  "odataType": "#microsoft.graph.deviceManagementSettings",
+  "properties": {
+    "@odata.type": { "type": "string", "required": true, "const": "#microsoft.graph.deviceManagementSettings" },
+    "secureByDefault": { "type": "boolean", "required": false },
+    "deviceComplianceCheckinThresholdDays": { "type": "integer", "required": false, "minimum": 1, "maximum": 7 }
+  }
+}

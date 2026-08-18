@@ -15,6 +15,9 @@ param(
     [Parameter(Mandatory)][string]$OutputPath,
     [string]$PythonPath,
     [string]$AdministratorDecisionsPath,
+    [string]$PolicyJsonBundlePath,
+    [string]$PolicyJsonBundleName,
+    [ValidateSet('L1','L2','BL','L1BL','ALL')][string]$Profile='ALL',
     [switch]$KeepPrivateExtraction
 )
 
@@ -42,6 +45,9 @@ $arguments=@{
 }
 if($PythonPath){$arguments.PythonPath=$PythonPath}
 if($AdministratorDecisionsPath){$arguments.AdministratorDecisionsPath=$AdministratorDecisionsPath}
+if($PolicyJsonBundlePath){$arguments.PolicyJsonBundlePath=$PolicyJsonBundlePath}
+if($PolicyJsonBundleName){$arguments.PolicyJsonBundleName=$PolicyJsonBundleName}
+$arguments.Profile=$Profile
 if($KeepPrivateExtraction){$arguments.KeepPrivateExtraction=$true}
 
 & (Join-Path $PSScriptRoot 'Invoke-CISPolicyPipeline.ps1') @arguments

@@ -16,6 +16,21 @@
       "endpoint": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
       "listEndpoint": { "type": ["string", "null"], "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
       "nameProperty": { "type": ["string", "null"] },
+      "operation": { "enum": ["create", "update-singleton"] },
+      "propertyMappings": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["propertyName", "recommendationIds"],
+          "properties": {
+            "propertyName": { "type": "string", "minLength": 1 },
+            "bundleId": { "type": "string", "minLength": 1 },
+            "recommendationIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true }
+          },
+          "additionalProperties": false
+        }
+      },
       "payload": { "type": "object" }
     },
     "additionalProperties": false

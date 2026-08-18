@@ -6,6 +6,9 @@ param(
     [string]$PythonPath,
     [string]$AdministratorDecisionsPath,
     [string]$SettingsCatalogSnapshotPath,
+    [string]$PolicyJsonBundlePath,
+    [string]$PolicyJsonBundleName,
+    [ValidateSet('L1','L2','BL','L1BL','ALL')][string]$Profile='ALL',
     [ValidateRange(1,4096)][int]$MaxPdfSizeMiB=250,
     [ValidateRange(1,10000)][int]$MaxPdfPages=2000,
     [switch]$KeepPrivateExtraction
@@ -46,8 +49,11 @@ $packStaging = Join-Path $stagingRoot 'pack'
 $extractionPath = Join-Path $stagingRoot 'source-extraction.private.json'
 $privatePath = if ($KeepPrivateExtraction) { "$outputRoot.private-extraction.json" } else { $null }
 if ($privatePath -and (Test-Path -LiteralPath $privatePath)) { throw "Private extraction output already exists: $privatePath" }
+$bundlePath = if ($PolicyJsonBundlePath) { $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($PolicyJsonBundlePath) } else { $null }
+if ($bundlePath -and -not $SettingsCatalogSnapshotPath) { throw 'SettingsCatalogSnapshotPath is required when PolicyJsonBundlePath is supplied.' }
 $completed=$false
 $privatePublished=$false
+$bundlePublished=$false
 
 try {
     New-Item -ItemType Directory -Path $stagingRoot | Out-Null
@@ -66,6 +72,18 @@ try {
     if ($SettingsCatalogSnapshotPath) { $buildArgs.SettingsCatalogSnapshotPath=(Resolve-Path -LiteralPath $SettingsCatalogSnapshotPath).Path }
     & (Join-Path $PSScriptRoot 'Build-CISPolicyPack.ps1') @buildArgs
 
+    if ($bundlePath) {
+        $exportArgs=@{
+            PackRoot=$packStaging
+            PrivateExtractionPath=$extractionPath
+            SettingsCatalogSnapshotPath=(Resolve-Path -LiteralPath $SettingsCatalogSnapshotPath).Path
+            OutputPath=$bundlePath
+            Profile=$Profile
+        }
+        if ($PolicyJsonBundleName) { $exportArgs.BundleName=$PolicyJsonBundleName }
+        & (Join-Path $PSScriptRoot 'Export-CISWindowsStylePolicyBundle.ps1') @exportArgs
+        $bundlePublished=$true
+    }
     if ($KeepPrivateExtraction) {
         [IO.File]::Move($extractionPath,$privatePath)
         $privatePublished=$true
@@ -75,8 +93,10 @@ try {
     $completed=$true
     if ($KeepPrivateExtraction) { Write-Warning "Private benchmark text retained outside the pack: $privatePath" }
     Write-Host "Reproducible pipeline complete: $outputRoot"
+    if ($bundlePath) { Write-Host "Importable policy JSON ZIP: $bundlePath" }
     Write-Host 'The generated pack contains no source PDF, raw benchmark prose, credentials, assignments, or AI-generated runtime artifacts.'
 } finally {
     if (Test-Path -LiteralPath $stagingRoot) { Remove-Item -LiteralPath $stagingRoot -Recurse -Force }
     if (-not $completed -and $privatePublished -and (Test-Path -LiteralPath $privatePath)) { Remove-Item -LiteralPath $privatePath -Force }
+    if (-not $completed -and $bundlePublished -and (Test-Path -LiteralPath $bundlePath)) { Remove-Item -LiteralPath $bundlePath -Force }
 }

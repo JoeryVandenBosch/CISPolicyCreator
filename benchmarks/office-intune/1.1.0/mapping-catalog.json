@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "id": "cis-microsoft-intune-office-1.1.0",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "benchmark": {
     "id": "office-intune",
     "version": "1.1.0",
@@ -362,11 +362,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.1.4.2",
@@ -542,11 +544,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.2.2",
@@ -708,11 +712,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.2.14",
@@ -776,11 +782,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.3.5",
@@ -788,11 +796,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.3.6",
@@ -842,11 +852,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.6",
@@ -868,11 +880,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.2.8",
@@ -950,11 +964,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.4",
@@ -962,11 +978,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.2.4.7.5",
@@ -988,11 +1006,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.6.2",
@@ -1000,11 +1020,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.9.1",
@@ -1012,11 +1034,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.19.1",
@@ -1108,11 +1132,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.24.1",
@@ -1232,11 +1258,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.27.9",
@@ -1300,11 +1328,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.27.14",
@@ -1312,11 +1342,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.27.15",
@@ -1338,11 +1370,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.3.27.17",
@@ -1798,11 +1832,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.5.10.8.1.2.5",
@@ -2118,11 +2154,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.5.14.3.5",
@@ -2438,11 +2476,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.5.14.3.28",
@@ -2590,11 +2630,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.2.2.1",
@@ -2630,11 +2672,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.2.2.4",
@@ -2642,11 +2686,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.2.2.5",
@@ -2710,11 +2756,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.2.6",
@@ -2750,11 +2798,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.3",
@@ -2776,11 +2826,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.5",
@@ -2788,11 +2840,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.6.6.6.6",
@@ -2856,11 +2910,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-verified-l1-part-2"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.8.4.1.4",
@@ -2868,11 +2924,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.8.4.2",
@@ -2880,11 +2938,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.6.2",
@@ -2948,11 +3008,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.8.7.2.1.2",
@@ -3100,11 +3162,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.8.7.2.2.4",
@@ -3112,11 +3176,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.8.7.2.2.5",
@@ -3222,11 +3288,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.8.7.2.9",
@@ -3248,11 +3316,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Automated",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:office-reviewed-completion-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Reviewed remediation path, exact pinned-snapshot definition/value IDs, and complete required dependency tree."
     },
     {
       "recommendationId": "2.11.8.7.3",
@@ -3657,6 +3727,19 @@
       "technologies": "mdm",
       "profiles": [
         "L2"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "office-reviewed-completion-l1",
+      "name": "CIS - Microsoft Office Reviewed Completion [L1] - v1.1.0",
+      "description": "Reviewed deterministic Office settings including required dependent values.",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "profiles": [
+        "L1"
       ],
       "roleScopeTagIds": [
         "0"
@@ -9393,8 +9476,27 @@
       },
       "value": {
         "kind": "choice",
-        "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_requirethatapplicationextensionsaresigned_1"
-      }
+        "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_requirethatapplicationextensionsaresigned_1",
+        "children": [
+          {
+            "displayName": "Disable Trust Bar Notification for unsigned application add-ins (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_disabletrustbarnotificationforunsigned_v2",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/pub16v2~Policy~L_MicrosoftOfficePublisher~L_Security~L_TrustCenter/L_DisableTrustBarNotificationforunsigned",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_disabletrustbarnotificationforunsigned_v2_1"
+            }
+          }
+        ]
+      },
+      "recommendationIds": [
+        "2.8.4.1.2",
+        "2.8.4.1.3"
+      ]
     },
     {
       "recommendationId": "2.11.8.1.2",
@@ -11521,6 +11623,1182 @@
       "value": {
         "kind": "choice",
         "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_trustedlocations_l_disabletrustedloc_1"
+      }
+    },
+    {
+      "recommendationId": "2.1.4.1",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Default file format (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_access16v2~policy~l_microsoftofficeaccess~l_miscellaneous_l_defaultfileformat",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/access16v2~Policy~L_MicrosoftOfficeaccess~L_Miscellaneous/L_DefaultFileFormat",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_access16v2~policy~l_microsoftofficeaccess~l_miscellaneous_l_defaultfileformat_1",
+        "children": [
+          {
+            "displayName": "Default file format (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_access16v2~policy~l_microsoftofficeaccess~l_miscellaneous_l_defaultfileformat_l_empty87",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/access16v2~Policy~L_MicrosoftOfficeaccess~L_Miscellaneous/L_DefaultFileFormat",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_access16v2~policy~l_microsoftofficeaccess~l_miscellaneous_l_defaultfileformat_l_empty87_12"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.2.2.1",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "dBase III / IV files (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_dbaseiiiandivfiles",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_DBaseIIIANDIVFiles",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_dbaseiiiandivfiles_1",
+        "children": [
+          {
+            "displayName": "File block setting: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_dbaseiiiandivfiles_l_dbaseiiiandivfilesdropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_DBaseIIIANDIVFiles",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_dbaseiiiandivfiles_l_dbaseiiiandivfilesdropid_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.2.2.13",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set default file block behavior (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_1",
+        "children": [
+          {
+            "displayName": "Set default file block behavior (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.2.3.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set document behavior if file validation fails (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_1",
+        "children": [
+          {
+            "displayName": "Set document behavior if file validation fails (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid_1"
+            }
+          },
+          {
+            "displayName": "Checked: Allow edit.  Unchecked: Do not allow edit. (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3_0"
+            }
+          }
+        ]
+      },
+      "recommendationIds": [
+        "2.2.4.7.2.3.4",
+        "2.2.4.7.2.3.5"
+      ]
+    },
+    {
+      "recommendationId": "2.2.4.7.2.5",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Block Excel XLL Add-ins that come from an untrusted source (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v8~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_blockxllfrominternet",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v8~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter/L_BlockXLLFromInternet",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v8~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_blockxllfrominternet_1",
+        "children": [
+          {
+            "displayName": "Block Excel XLL Add-ins that come from an untrusted source (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v8~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_blockxllfrominternet_l_blockxllfrominternetenum",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v8~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter/L_BlockXLLFromInternet",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v8~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_blockxllfrominternet_l_blockxllfrominternetenum_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.2.7",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "VBA Macro Notification Settings (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_vbawarningspolicy",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_vbawarningspolicy_1",
+        "children": [
+          {
+            "displayName": "VBA Macro Notification Settings (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty4",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty4_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.3",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Force file extension to match file type (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_forcefileextenstionstomatch",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_Forcefileextenstionstomatch",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_forcefileextenstionstomatch_1",
+        "children": [
+          {
+            "displayName": "Force file extension to match file type (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_forcefileextenstionstomatch_l_empty",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_Forcefileextenstionstomatch",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_forcefileextenstionstomatch_l_empty_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Scan encrypted macros in Excel Open XML workbooks (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_determinewhethertoforceencryptedexcel",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_DeterminewhethertoforceencryptedExcel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_determinewhethertoforceencryptedexcel_1",
+        "children": [
+          {
+            "displayName": "Scan encrypted macros in Excel Open XML workbooks (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_determinewhethertoforceencryptedexcel_l_determinewhethertoforceencryptedexceldropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_DeterminewhethertoforceencryptedExcel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_determinewhethertoforceencryptedexcel_l_determinewhethertoforceencryptedexceldropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.2.4.7.6",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "WEBSERVICE Function Notification Settings (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_webcontentwarninglevel",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_WebContentWarningLevel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_webcontentwarninglevel_1",
+        "children": [
+          {
+            "displayName": "WEBSERVICE Function Notification Settings (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_webcontentwarninglevel_l_webcontentwarninglevelvalue",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/excel16v2~Policy~L_MicrosoftOfficeExcel~L_ExcelOptions~L_Security/L_WebContentWarningLevel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_excel16v2~policy~l_microsoftofficeexcel~l_exceloptions~l_security_l_webcontentwarninglevel_l_webcontentwarninglevelvalue_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.6.2",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Disable UI extending from documents and templates (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_1",
+        "children": [
+          {
+            "displayName": "Disallow in Word (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyword",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyword_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Excel (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyexcel",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyexcel_1"
+            }
+          },
+          {
+            "displayName": "Disallow in PowerPoint (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicypowerpoint",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicypowerpoint_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Access (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyaccess",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyaccess_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Outlook (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyoutlook",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyoutlook_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Publisher (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicypublisher",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicypublisher_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Project (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyproject",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyproject_1"
+            }
+          },
+          {
+            "displayName": "Disallow in Visio (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyvisio",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyvisio_1"
+            }
+          },
+          {
+            "displayName": "Disallow in InfoPath (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyinfopath",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_GloablOptions~L_Customize/L_NoExtensibilityCustomizationFromDocumentPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_gloabloptions~l_customize_l_noextensibilitycustomizationfromdocumentpolicy_l_noextensibilitycustomizationfromdocumentpolicyinfopath_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.9.1",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Document Information Panel Beaconing UI (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_documentinformationpanel_l_documentinformationpanelbeaconingui",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_DocumentInformationpanel/L_DocumentInformationpanelBeaconingUI",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_documentinformationpanel_l_documentinformationpanelbeaconingui_1",
+        "children": [
+          {
+            "displayName": "Document Information Panel Beaconing UI (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_documentinformationpanel_l_documentinformationpanelbeaconingui_l_empty423",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_DocumentInformationpanel/L_DocumentInformationpanelBeaconingUI",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_documentinformationpanel_l_documentinformationpanelbeaconingui_l_empty423_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.23.3",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Control Blogging (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_miscellaneous437_l_controlblogging",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_miscellaneous437/L_ControlBlogging",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_miscellaneous437_l_controlblogging_1",
+        "children": [
+          {
+            "displayName": "Control Blogging (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_miscellaneous437_l_controlblogging_l_empty503",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_miscellaneous437/L_ControlBlogging",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_miscellaneous437_l_controlblogging_l_empty503_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.27.8",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Control how Office handles form-based sign-in prompts (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v5~policy~l_microsoftofficesystem~l_securitysettings_l_authenticationfbabehavior",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v5~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_AuthenticationFBABehavior",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v5~policy~l_microsoftofficesystem~l_securitysettings_l_authenticationfbabehavior_1",
+        "children": [
+          {
+            "displayName": "Behavior: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v5~policy~l_microsoftofficesystem~l_securitysettings_l_authenticationfbabehavior_l_authenticationfbabehaviorenum",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v5~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_AuthenticationFBABehavior",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v5~policy~l_microsoftofficesystem~l_securitysettings_l_authenticationfbabehavior_l_authenticationfbabehaviorenum_1"
+            }
+          },
+          {
+            "displayName": "Specify hosts allowed to show form-based sign-in prompts to users: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v5~policy~l_microsoftofficesystem~l_securitysettings_l_authenticationfbabehavior_l_authenticationfbaenabledhostsid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v5~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_AuthenticationFBABehavior",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+            },
+            "value": {
+              "kind": "string",
+              "value": ""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.27.13",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Encryption type for password protected Office 97-2003 files (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedoffice972003",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_Encryptiontypeforpasswordprotectedoffice972003",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedoffice972003_1",
+        "children": [
+          {
+            "displayName": "Encryption type: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedoffice972003_l_encryptiontypecolon318",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_Encryptiontypeforpasswordprotectedoffice972003",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+            },
+            "value": {
+              "kind": "string",
+              "value": "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.27.14",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Encryption type for password protected Office Open XML files (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedofficeopen",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_Encryptiontypeforpasswordprotectedofficeopen",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedofficeopen_1",
+        "children": [
+          {
+            "displayName": "Encryption type: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_encryptiontypeforpasswordprotectedofficeopen_l_encryptiontypecolon",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_Encryptiontypeforpasswordprotectedofficeopen",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition"
+            },
+            "value": {
+              "kind": "string",
+              "value": "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.3.27.16",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Macro Runtime Scan Scope (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_macroruntimescanscope",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_MacroRuntimeScanScope",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_macroruntimescanscope_1",
+        "children": [
+          {
+            "displayName": "Macro Runtime Scan Scope (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_macroruntimescanscope_l_macroruntimescanscopeenum",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/office16v2~Policy~L_MicrosoftOfficeSystem~L_SecuritySettings/L_MacroRuntimeScanScope",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_office16v2~policy~l_microsoftofficesystem~l_securitysettings_l_macroruntimescanscope_l_macroruntimescanscopeenum_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.5.10.8.1.2.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Restrict level of calendar details users can publish (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_outlookoptions~l_preferences~l_calendaroptions~l_microsoftofficeonlinesharing_l_restrictlevelofcalendardetails",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_OutlookOptions~L_Preferences~L_Calendaroptions~L_MicrosoftOfficeOnlineSharing/L_Restrictlevelofcalendardetails",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_outlookoptions~l_preferences~l_calendaroptions~l_microsoftofficeonlinesharing_l_restrictlevelofcalendardetails_1",
+        "children": [
+          {
+            "displayName": "Restrict level of calendar details users can publish (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_outlookoptions~l_preferences~l_calendaroptions~l_microsoftofficeonlinesharing_l_restrictlevelofcalendardetails_l_empty4",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_OutlookOptions~L_Preferences~L_Calendaroptions~L_MicrosoftOfficeOnlineSharing/L_Restrictlevelofcalendardetails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_outlookoptions~l_preferences~l_calendaroptions~l_microsoftofficeonlinesharing_l_restrictlevelofcalendardetails_l_empty4_16384"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.5.14.3.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Outlook Security Mode (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_1",
+        "children": [
+          {
+            "displayName": "Outlook Security Policy: (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_SecurityFormsettings/L_OutlookSecurityMode",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_securityformsettings_l_outlooksecuritymode_l_outlooksecuritypolicy_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.5.14.3.27",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Retrieving CRLs (Certificate Revocation Lists) (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_cryptography~l_signaturestatusdialog_l_retrievingcrlscertificaterevocationlists_v2",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_Cryptography~L_SignatureStatusDialog/L_RetrievingCRLsCertificateRevocationLists",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_cryptography~l_signaturestatusdialog_l_retrievingcrlscertificaterevocationlists_v2_1",
+        "children": [
+          {
+            "displayName": "Retrieving CRLs (Certificate Revocation Lists) (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_cryptography~l_signaturestatusdialog_l_retrievingcrlscertificaterevocationlists_v2_l_empty31",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/outlk16v2~Policy~L_MicrosoftOfficeOutlook~L_Security~L_Cryptography~L_SignatureStatusDialog/L_RetrievingCRLsCertificateRevocationLists",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_outlk16v2~policy~l_microsoftofficeoutlook~l_security~l_cryptography~l_signaturestatusdialog_l_retrievingcrlscertificaterevocationlists_v2_l_empty31_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.6.6.2.1.2",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set default file block behavior (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_1",
+        "children": [
+          {
+            "displayName": "Set default file block behavior (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.6.6.2.2.3",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set document behavior if file validation fails (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_1",
+        "children": [
+          {
+            "displayName": "Set document behavior if file validation fails (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid_1"
+            }
+          },
+          {
+            "displayName": "Checked: Allow edit.  Unchecked: Do not allow edit. (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3_0"
+            }
+          }
+        ]
+      },
+      "recommendationIds": [
+        "2.6.6.6.2.2.3",
+        "2.6.6.6.2.2.4"
+      ]
+    },
+    {
+      "recommendationId": "2.6.6.6.2.5",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Require that application add-ins are signed by Trusted Publisher (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_requirethatapplicationextensionsaresigned",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter/L_RequirethatApplicationExtensionsaresigned",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_requirethatapplicationextensionsaresigned_1"
+      }
+    },
+    {
+      "recommendationId": "2.6.6.6.2.8",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "VBA Macro Notification Settings (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_vbawarningspolicy",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_vbawarningspolicy_1",
+        "children": [
+          {
+            "displayName": "VBA Macro Notification Settings (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty3",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty3_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.6.6.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Run Programs (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_runprograms",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security/L_RunPrograms",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_runprograms_1",
+        "children": [
+          {
+            "displayName": "Run Programs (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_runprograms_l_empty",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security/L_RunPrograms",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_runprograms_l_empty_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.6.6.6.5",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Scan encrypted macros in PowerPoint Open XML presentations (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_determinewhethertoforceencryptedppt",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security/L_Determinewhethertoforceencryptedppt",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_determinewhethertoforceencryptedppt_1",
+        "children": [
+          {
+            "displayName": "Scan encrypted macros in PowerPoint Open XML presentations (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_determinewhethertoforceencryptedppt_l_determinewhethertoforceencryptedpptdropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/ppt16v2~Policy~L_MicrosoftOfficePowerPoint~L_PowerPointOptions~L_Security/L_Determinewhethertoforceencryptedppt",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_ppt16v2~policy~l_microsoftofficepowerpoint~l_powerpointoptions~l_security_l_determinewhethertoforceencryptedppt_l_determinewhethertoforceencryptedpptdropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.4.1.4",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "VBA Macro Notification Settings (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_vbawarningspolicy",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/pub16v2~Policy~L_MicrosoftOfficePublisher~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_vbawarningspolicy_1",
+        "children": [
+          {
+            "displayName": "VBA Macro Notification Settings (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_vbawarningspolicy_l_empty0",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/pub16v2~Policy~L_MicrosoftOfficePublisher~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security~l_trustcenter_l_vbawarningspolicy_l_empty0_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.8.4.2",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Publisher Automation Security Level (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security_l_publisherautomationsecuritylevel",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/pub16v2~Policy~L_MicrosoftOfficePublisher~L_Security/L_PublisherAutomationSecurityLevel",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security_l_publisherautomationsecuritylevel_1",
+        "children": [
+          {
+            "displayName": "Publisher Automation Security Level (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security_l_publisherautomationsecuritylevel_l_empty",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/pub16v2~Policy~L_MicrosoftOfficePublisher~L_Security/L_PublisherAutomationSecurityLevel",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_pub16v2~policy~l_microsoftofficepublisher~l_security_l_publisherautomationsecuritylevel_l_empty_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.11.8.7.2.1.1",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set default file block behavior (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_1",
+        "children": [
+          {
+            "displayName": "Set default file block behavior (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter~L_FileBlockSettings/L_SetDefaultFileBlockBehavior",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_fileblocksettings_l_setdefaultfileblockbehavior_l_setdefaultfileblockbehaviordropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.11.8.7.2.2.3",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Set document behavior if file validation fails (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_1",
+        "children": [
+          {
+            "displayName": "Set document behavior if file validation fails (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsdropid_1"
+            }
+          },
+          {
+            "displayName": "Checked: Allow edit.  Unchecked: Do not allow edit. (User)",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter~L_ProtectedView/L_SetDocumentBehaviorIfFileValidationFails",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter~l_protectedview_l_setdocumentbehavioriffilevalidationfails_l_setdocumentbehavioriffilevalidationfailsstr3_0"
+            }
+          }
+        ]
+      },
+      "recommendationIds": [
+        "2.11.8.7.2.2.3",
+        "2.11.8.7.2.2.4"
+      ]
+    },
+    {
+      "recommendationId": "2.11.8.7.2.8",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "Scan encrypted macros in Word Open XML documents (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_determinewhethertoforceencryptedword",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter/L_DeterminewhethertoforceencryptedWord",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_determinewhethertoforceencryptedword_1",
+        "children": [
+          {
+            "displayName": "Scan encrypted macros in Word Open XML documents (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_determinewhethertoforceencryptedword_l_determinewhethertoforceencryptedworddropid",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter/L_DeterminewhethertoforceencryptedWord",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_determinewhethertoforceencryptedword_l_determinewhethertoforceencryptedworddropid_0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recommendationId": "2.11.8.7.2.10",
+      "policyId": "office-reviewed-completion-l1",
+      "displayName": "VBA Macro Notification Settings (User)",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_vbawarningspolicy",
+        "baseUri": "./User/Vendor/MSFT/Policy",
+        "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_vbawarningspolicy_1",
+        "children": [
+          {
+            "displayName": "VBA Macro Notification Settings (User) dependent value",
+            "resolve": {
+              "definitionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty19",
+              "baseUri": "./User/Vendor/MSFT/Policy",
+              "offsetUri": "/Config/word16v2~Policy~L_MicrosoftOfficeWord~L_WordOptions~L_Security~L_TrustCenter/L_VBAWarningsPolicy",
+              "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+            },
+            "value": {
+              "kind": "choice",
+              "optionId": "user_vendor_msft_policy_config_word16v2~policy~l_microsoftofficeword~l_wordoptions~l_security~l_trustcenter_l_vbawarningspolicy_l_empty19_3"
+            }
+          }
+        ]
       }
     }
   ],

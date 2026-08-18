@@ -233,7 +233,21 @@
       "nameProperty": "displayName",
       "payload": {
         "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
-        "displayName": "Synthetic compliance [L1]"
+        "displayName": "Synthetic compliance [L1]",
+        "description": "Synthetic compliance description",
+        "scheduledActionsForRule": [
+          {
+            "ruleName": "PasswordRequired",
+            "scheduledActionConfigurations": [
+              {
+                "actionType": "block",
+                "gracePeriodHours": 0,
+                "notificationTemplateId": "",
+                "notificationMessageCCList": []
+              }
+            ]
+          }
+        ]
       }
     }
   ]

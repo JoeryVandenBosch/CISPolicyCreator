@@ -251,6 +251,8 @@ try {
                     Add-CpcResult -Results $results -Stage 'graph-object' -Name $name -Status 'skipped-profile' -Detail "Profile selector: $Profile"
                     continue
                 }
+                $operation=if($obj.PSObject.Properties['operation']){[string]$obj.operation}else{'create'}
+                if($operation -ne 'create'){throw "Graph object '$name' uses operation '$operation'. The current importer only supports create operations; no Intune objects were created."}
                 $endpoint=[string]$obj.endpoint
                 $listEndpoint=if ($obj.listEndpoint) { [string]$obj.listEndpoint } else { $endpoint }
                 if (-not (Test-CpcGraphEndpointSafe -Uri $endpoint) -or -not (Test-CpcGraphEndpointSafe -Uri $listEndpoint)) { throw "Unsafe Graph endpoint in '$name'." }

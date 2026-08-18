@@ -55,18 +55,16 @@ All manifest paths must be relative and remain inside the pack root.
 
 When a pack contains a mapped top-level `choice`, `integer`, or `string` setting without dependent children, the compiler deterministically copies the first eligible snapshot-resolved setting into `settingsCatalogProbe`. The probe records its originating recommendation and policy plus the exact definition, value, platform, and technology. Offline validation requires it to match the generated dynamic setting and policy bundle exactly. If no eligible mapped leaf setting exists, the field remains `null`; no probe is invented.
 
-## Portable Intune JSON bundle
+## Windows-style split-policy JSON bundle
 
-`Export-CISPortablePolicyBundle.ps1` materializes the validated pack as a deterministic ZIP. The exporter requires the exact Settings Catalog snapshot whose SHA-256 is bound into the pack manifest. It resolves every explicit definition and value from that snapshot, creates the complete Microsoft Graph request bodies, and then runs `Test-CISPortablePolicyBundle.ps1` before publishing the ZIP atomically.
+`Export-CISWindowsStylePolicyBundle.ps1` materializes the validated pack as a deterministic ZIP whose filenames and JSON shapes follow the proven Windows reference export. The exporter requires the private extraction and exact Settings Catalog snapshot whose SHA-256 is bound into the pack manifest. It resolves every explicit definition and value, creates one policy JSON per configurable setting unless duplicate/dependent settings must be bundled, and runs `Test-CISWindowsStylePolicyBundle.ps1` before publishing the ZIP atomically. The normal pipeline performs this export while the private extraction is still in staging and deletes the extraction afterward.
 
-The portable ZIP contains request-ready JSON rather than a raw tenant response:
+The split-policy ZIP contains importable export-shaped JSON:
 
-- `SettingsCatalog/*.json` contains complete configuration policy create bodies;
-- `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or `GraphObjects/*.json` contains pinned-contract generic Graph create bodies when present;
-- `mapping-report.json` records every selected recommendation without benchmark prose;
-- `bundle-manifest.json` binds every file hash to the pack, source PDF hash, snapshot hash, profile, and mapping counts.
+- `SettingsCatalog/*.json` contains complete Settings Catalog policies with one top-level setting and any required nested dependencies;
+- `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or `GraphObjects/*.json` contains typed policy objects split by reviewed property mapping when present.
 
-The bundle never includes assignments, tenant IDs, credentials, the source PDF, raw benchmark prose, server-generated object IDs/timestamps, or Graph navigation metadata. ZIP entry names, JSON ordering, UTF-8 encoding, timestamps, compression order, and hashes are deterministic. A compatible consumer can use the contained request bodies, but must still apply its own authentication, current-tenant validation, collision handling, and assignment decisions.
+The bundle never includes assignments, tenant IDs, credentials, the source PDF, or raw benchmark prose. Export-shaped IDs and navigation fields are generated deterministically rather than copied from a tenant. ZIP entry names, JSON ordering, UTF-8 encoding, timestamps, and compression order are deterministic. A compatible consumer must still apply its own authentication, current-tenant validation, collision handling, and assignment decisions.
 
 ## Recommendation inventory
 

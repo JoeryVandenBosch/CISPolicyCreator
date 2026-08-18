@@ -14,6 +14,7 @@
       "mappingStatus": { "enum": ["mapped", "unresolved", "requires-input", "manual", "not-applicable"] },
       "catalogMappingStatus": { "enum": ["mapped", "unresolved", "requires-input", "manual", "not-applicable"] },
       "decisionRef": { "type": ["string", "null"] },
+      "decisionRefs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
       "implementationType": { "type": ["string", "null"] },
       "implementationRefs": { "type": "array", "items": { "type": "string" } },
       "notes": { "type": ["string", "null"] }

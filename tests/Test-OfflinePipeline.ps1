@@ -652,10 +652,15 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
         endpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies'
         listEndpoint='https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies?$select=id,displayName'
         nameProperty='displayName'
-        payload=[pscustomobject]@{'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Synthetic compliance [L1]'}
+        payload=[pscustomobject]@{
+            '@odata.type'='#microsoft.graph.windows10CompliancePolicy'
+            displayName='Synthetic compliance [L1]'
+            description='Synthetic compliance description'
+            scheduledActionsForRule=@([pscustomobject]@{ruleName='PasswordRequired';scheduledActionConfigurations=@([pscustomobject]@{actionType='block';gracePeriodHours=0;notificationTemplateId='';notificationMessageCCList=@()})})
+        }
     }
     Assert-CpcGraphObjectMatchesContract -GraphObject $expectedGenericObject -Contract $genericContractInfo.Contract
-    $actualGenericObject=[pscustomobject]@{id='server-id';'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Synthetic compliance [L1]';createdDateTime='server-managed'}
+    $actualGenericObject=[pscustomobject]@{id='server-id';'@odata.type'='#microsoft.graph.windows10CompliancePolicy';displayName='Synthetic compliance [L1]';description='Synthetic compliance description';scheduledActionsForRule=@([pscustomobject]@{ruleName='PasswordRequired';scheduledActionConfigurations=@([pscustomobject]@{actionType='block';gracePeriodHours=0;notificationTemplateId='';notificationMessageCCList=@()})});createdDateTime='server-managed'}
     Assert-True (Compare-CpcGenericGraphObject -ExpectedPayload $expectedGenericObject.payload -ActualPayload $actualGenericObject -Contract $genericContractInfo.Contract).equivalent 'Contract-bound generic Graph comparison must ignore server-only response properties.'
     $changedGenericObject=$actualGenericObject.PSObject.Copy();$changedGenericObject.displayName='Different name'
     Assert-True (-not (Compare-CpcGenericGraphObject -ExpectedPayload $expectedGenericObject.payload -ActualPayload $changedGenericObject -Contract $genericContractInfo.Contract).equivalent) 'A changed expected generic Graph property must not be treated as equivalent.'

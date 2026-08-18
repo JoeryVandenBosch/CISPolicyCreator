@@ -11,13 +11,27 @@ if (-not ($json | Test-Json -SchemaFile (Join-Path $repoRoot 'schemas\mapping-ca
 $catalog=$json | ConvertFrom-Json -Depth 100
 $output=[IO.Path]::GetFullPath($OutputPath)
 if (Test-Path -LiteralPath $output) { throw "OutputPath already exists: $output" }
-$requiredIds=@($catalog.recommendations | Where-Object mappingStatus -eq 'requires-input' | ForEach-Object { [string]$_.decisionRef } | Sort-Object -Unique)
+$requiredIds=@($catalog.recommendations | Where-Object mappingStatus -eq 'requires-input' | ForEach-Object {
+    $refsProperty=$_.PSObject.Properties['decisionRefs']
+    if($refsProperty){@($refsProperty.Value|ForEach-Object{[string]$_})}else{[string]$_.decisionRef}
+} | Where-Object {$_} | Sort-Object -Unique)
 $definitions=@{}
 foreach($definition in @($catalog.administratorInputs)){ $definitions[[string]$definition.id]=$definition }
 $items=@($requiredIds | ForEach-Object {
     if (-not $_ -or -not $definitions.ContainsKey($_)) { throw "Catalog requires an undeclared administrator input: $_" }
     $definition=$definitions[$_]
-    $constraint=if ($definition.allowedValues) { "allowed: $(@($definition.allowedValues) -join ', ')" } else { "type: $($definition.valueType)" }
+    $allowedProperty=$definition.PSObject.Properties['allowedValues']
+    $minimumProperty=$definition.PSObject.Properties['minimum']
+    $maximumProperty=$definition.PSObject.Properties['maximum']
+    $constraint=if ($allowedProperty) {
+        "allowed: $(@($allowedProperty.Value) -join ', ')"
+    } elseif($minimumProperty -or $maximumProperty) {
+        $minimum=if($minimumProperty){$minimumProperty.Value}else{'no minimum'}
+        $maximum=if($maximumProperty){$maximumProperty.Value}else{'no maximum'}
+        "type: $($definition.valueType); range: $minimum through $maximum"
+    } else {
+        "type: $($definition.valueType)"
+    }
     Write-Host "$($_): $($definition.prompt) [$constraint]"
     [ordered]@{ id=$_; value=$null; acknowledged=$false; justification='' }
 })

@@ -147,7 +147,8 @@ function Test-DynamicSettingNode($Node,[string]$Label,[int]$Depth=0) {
         'choice' {
             if(-not $Node.value.optionId){$issues.Add("$Label requires an exact reviewed optionId")}
             $childrenProperty=$Node.value.PSObject.Properties['children']
-            $children=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+            $children=@()
+            if($childrenProperty){$children=@($childrenProperty.Value)}
             $childIndex=0
             foreach($child in $children){$childIndex++;Test-DynamicSettingNode $child "$Label choice child $childIndex" ($Depth+1)}
         }
@@ -159,7 +160,8 @@ function Test-DynamicSettingNode($Node,[string]$Label,[int]$Depth=0) {
         }
         {$_ -in @('integer-collection','string-collection')} {
             $valuesProperty=$Node.value.PSObject.Properties['values']
-            $values=if($valuesProperty){@($valuesProperty.Value)}else{@()}
+            $values=@()
+            if($valuesProperty){$values=@($valuesProperty.Value)}
             if($values.Count -eq 0){$issues.Add("$Label requires at least one collection value")}
             $valueIndex=0
             foreach($itemValue in $values){
@@ -170,13 +172,15 @@ function Test-DynamicSettingNode($Node,[string]$Label,[int]$Depth=0) {
         }
         'group-collection' {
             $itemsProperty=$Node.value.PSObject.Properties['items']
-            $items=if($itemsProperty){@($itemsProperty.Value)}else{@()}
+            $items=@()
+            if($itemsProperty){$items=@($itemsProperty.Value)}
             if($items.Count -eq 0){$issues.Add("$Label requires at least one group item")}
             $itemIndex=0
             foreach($item in $items){
                 $itemIndex++
                 $childrenProperty=$item.PSObject.Properties['children']
-                $children=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+                $children=@()
+                if($childrenProperty){$children=@($childrenProperty.Value)}
                 if($children.Count -eq 0){$issues.Add("$Label group item $itemIndex requires at least one child")}
                 $childIndex=0
                 foreach($child in $children){$childIndex++;Test-DynamicSettingNode $child "$Label group item $itemIndex child $childIndex" ($Depth+1)}
@@ -219,7 +223,11 @@ if ($manifest.settingsCatalogSpec) {
         foreach ($s in $settingsCatalogSpecs) {
             $label=if ($s.recommendationId) { [string]$s.recommendationId } else { [string]$s.displayName }
             if ([string]$s.mappingStatus -ne 'mapped') { $issues.Add("Dynamic setting '$label' mappingStatus must be mapped") }
-            Assert-MappedRecommendation ([string]$s.recommendationId) "Dynamic setting '$label'" $s.profiles
+            $settingIdsProperty=$s.PSObject.Properties['recommendationIds']
+            $settingIds=if($settingIdsProperty){@($settingIdsProperty.Value|ForEach-Object{[string]$_})}else{@([string]$s.recommendationId)}
+            $settingIds=@($settingIds)
+            if($settingIds -notcontains [string]$s.recommendationId){$issues.Add("Dynamic setting '$label' recommendationIds must include its primary recommendationId")}
+            foreach($settingId in $settingIds){Assert-MappedRecommendation $settingId "Dynamic setting '$label'" $s.profiles}
             if (-not $s.policy) { $issues.Add("Dynamic setting '$label' missing policy") }
             if (-not $s.displayName) { $issues.Add("Dynamic setting '$label' missing displayName") }
             if (@($s.profiles).Count -eq 0) { $issues.Add("Dynamic setting '$label' missing profiles") }
@@ -309,6 +317,28 @@ if ($manifest.graphObjects) {
             if ($o.listEndpoint -and -not (Test-CpcGraphEndpointSafe -Uri ([string]$o.listEndpoint))) { $issues.Add("Graph object '$name' has unsafe listEndpoint '$($o.listEndpoint)'") }
             if (-not $o.payload) { $issues.Add("Graph object '$name' missing payload") }
             elseif (Test-CpcObjectContainsAssignments -InputObject $o.payload) { $issues.Add("Graph object '$name' payload contains assignments") }
+            $propertyMappingsProperty=$o.PSObject.Properties['propertyMappings']
+            if($propertyMappingsProperty){
+                $mappedProperties=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+                $mappedRecommendationIds=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+                foreach($propertyMapping in @($propertyMappingsProperty.Value)){
+                    $propertyName=[string]$propertyMapping.propertyName
+                    if(-not $mappedProperties.Add($propertyName)){$issues.Add("Graph object '$name' repeats property mapping '$propertyName'")}
+                    if(-not $o.payload.PSObject.Properties[$propertyName]){$issues.Add("Graph object '$name' property mapping '$propertyName' is absent from its payload")}
+                    foreach($rid in @($propertyMapping.recommendationIds)){
+                        $rid=[string]$rid
+                        if(@($o.recommendationIds) -cnotcontains $rid){$issues.Add("Graph object '$name' property mapping '$propertyName' references recommendation '$rid' outside the object")}
+                        $null=$mappedRecommendationIds.Add($rid)
+                    }
+                }
+                $excludedProperties=@('@odata.type',[string]$o.nameProperty,'description','roleScopeTagIds')
+                foreach($payloadProperty in @($o.payload.PSObject.Properties.Name|Where-Object{$excludedProperties -cnotcontains [string]$_})){
+                    if(-not $mappedProperties.Contains([string]$payloadProperty)){$issues.Add("Graph object '$name' payload property '$payloadProperty' has no recommendation mapping")}
+                }
+                foreach($rid in @($o.recommendationIds)){
+                    if(-not $mappedRecommendationIds.Contains([string]$rid)){$issues.Add("Graph object '$name' recommendation '$rid' is not associated with a payload property")}
+                }
+            }
         }
     }
 }
