@@ -70,7 +70,7 @@ function Test-DecisionValue($Definition,$Decision) {
 function Resolve-DecisionMarkers($Node,$DecisionById) {
     if ($null -eq $Node -or $Node -is [string] -or $Node -is [ValueType]) { return $Node }
     if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [System.Collections.IDictionary] -and $Node -isnot [pscustomobject]) {
-        return @($Node | ForEach-Object { Resolve-DecisionMarkers $_ $DecisionById })
+        return ,@($Node | ForEach-Object { Resolve-DecisionMarkers $_ $DecisionById })
     }
     [object[]]$properties = if ($Node -is [System.Collections.IDictionary]) { @($Node.Keys | ForEach-Object { [pscustomobject]@{ Name=[string]$_; Value=$Node[$_] } }) } else { @($Node.PSObject.Properties) }
     if ($properties.Count -eq 1 -and $properties[0].Name -ceq '$decision') {
@@ -315,7 +315,10 @@ foreach ($definition in @($catalog.administratorInputs)) {
     if (-not $catalogById.ContainsKey([string]$definition.recommendationId)) { throw "Administrator input '$($definition.id)' references unknown recommendation '$($definition.recommendationId)'." }
     $inputDefinitions[[string]$definition.id] = $definition
 }
-$requiredDecisionRefs=@($catalog.recommendations | Where-Object mappingStatus -eq 'requires-input' | ForEach-Object { [string]$_.decisionRef } | Sort-Object -Unique)
+$requiredDecisionRefs=@($catalog.recommendations | Where-Object mappingStatus -eq 'requires-input' | ForEach-Object {
+    $refsProperty=$_.PSObject.Properties['decisionRefs']
+    if($refsProperty){@($refsProperty.Value|ForEach-Object{[string]$_})}else{[string]$_.decisionRef}
+} | Where-Object {$_} | Sort-Object -Unique)
 $unusedInputDefinitions=@($inputDefinitions.Keys | Where-Object { $requiredDecisionRefs -notcontains [string]$_ })
 if ($unusedInputDefinitions.Count -gt 0) { throw "Administrator input definitions are not referenced by requires-input recommendations: $($unusedInputDefinitions -join ', ')." }
 $decisionById = @{}
@@ -339,15 +342,19 @@ foreach ($extracted in @($extraction.recommendations)) {
     $status = [string]$mapped.mappingStatus
     $catalogStatus = $status
     $decisionRef = if ($null -ne $mapped.PSObject.Properties['decisionRef']) { [string]$mapped.decisionRef } else { $null }
+    $decisionRefsProperty=$mapped.PSObject.Properties['decisionRefs']
+    $decisionRefs=if($decisionRefsProperty){@($decisionRefsProperty.Value|ForEach-Object{[string]$_})}elseif($decisionRef){@($decisionRef)}else{@()}
+    $decisionRefs=@($decisionRefs)
     if ($status -eq 'requires-input') {
-        if (-not $decisionRef -or -not $inputDefinitions.ContainsKey($decisionRef)) { throw "Recommendation '$id' requires input but has no valid decisionRef." }
-        if ($decisionById.ContainsKey($decisionRef)) { $status = 'mapped' }
-    } elseif ($decisionRef) { throw "Recommendation '$id' has decisionRef but mappingStatus is '$status'." }
+        if (-not $decisionRef -or $decisionRefs -notcontains $decisionRef) { throw "Recommendation '$id' requires input but has no valid primary decisionRef." }
+        foreach($requiredRef in $decisionRefs){if(-not $inputDefinitions.ContainsKey($requiredRef)){throw "Recommendation '$id' references missing administrator input '$requiredRef'."}}
+        if (@($decisionRefs|Where-Object{-not $decisionById.ContainsKey($_)}).Count -eq 0) { $status = 'mapped' }
+    } elseif ($decisionRefs.Count -gt 0) { throw "Recommendation '$id' has decision references but mappingStatus is '$status'." }
     $record = [ordered]@{
         recommendationId=$id; profiles=@($extracted.profiles); cisAssessmentMethod=[string]$extracted.cisAssessmentMethod
         mappingStatus=$status; implementationType=(Get-OptionalProperty $mapped 'implementationType'); implementationRefs=@($mapped.implementationRefs); notes=(Get-OptionalProperty $mapped 'notes')
     }
-    if ($catalogStatus -eq 'requires-input') { $record.catalogMappingStatus='requires-input'; $record.decisionRef=$decisionRef }
+    if ($catalogStatus -eq 'requires-input') { $record.catalogMappingStatus='requires-input'; $record.decisionRef=$decisionRef; $record.decisionRefs=$decisionRefs }
     $object = [pscustomobject]$record
     $finalRecommendations.Add($object)
     $finalById[$id] = $object
@@ -364,8 +371,12 @@ $settingsByPolicy = @{}
 $settingKeys=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 foreach ($setting in @($catalog.settingsCatalogSettings)) {
     $id = [string]$setting.recommendationId
-    if (-not $finalById.ContainsKey($id)) { throw "Settings Catalog entry references unknown recommendation '$id'." }
-    if ([string]$finalById[$id].mappingStatus -ne 'mapped') { continue }
+    $idsProperty=$setting.PSObject.Properties['recommendationIds']
+    $ids=if($idsProperty){@($idsProperty.Value|ForEach-Object{[string]$_})}else{@($id)}
+    $ids=@($ids)
+    if($ids -notcontains $id){throw "Settings Catalog entry '$id' recommendationIds must include its primary recommendationId."}
+    foreach($mappedId in $ids){if(-not $finalById.ContainsKey($mappedId)){throw "Settings Catalog entry '$id' references unknown recommendation '$mappedId'."}}
+    if (@($ids|Where-Object{[string]$finalById[$_].mappingStatus -ne 'mapped'}).Count -gt 0) { continue }
     if (-not $policyById.ContainsKey([string]$setting.policyId)) { throw "Settings Catalog entry '$id' references unknown policy '$($setting.policyId)'." }
     if (-not $snapshot) { throw "A Settings Catalog snapshot is required to validate mapped setting '$id'." }
 
@@ -373,7 +384,7 @@ foreach ($setting in @($catalog.settingsCatalogSettings)) {
     $settingKey=([string]$setting.policyId)+"`n"+([string]$resolvedNode.resolve.definitionId)
     if (-not $settingKeys.Add($settingKey)) { throw "Policy '$($setting.policyId)' contains multiple mappings for definition '$($resolvedNode.resolve.definitionId)'." }
     $generated = [pscustomobject][ordered]@{
-        recommendationId=$id; mappingStatus='mapped'; policy=[string]$policyById[[string]$setting.policyId].name
+        recommendationId=$id; recommendationIds=$ids; mappingStatus='mapped'; policy=[string]$policyById[[string]$setting.policyId].name
         displayName=[string]$resolvedNode.displayName; profiles=@($setting.profiles); resolve=$resolvedNode.resolve; value=$resolvedNode.value
     }
     $generatedSettings.Add($generated)
@@ -396,7 +407,7 @@ foreach ($setting in @($catalog.settingsCatalogSettings)) {
         }) | Out-Null
     }
     if (-not $settingsByPolicy.ContainsKey([string]$setting.policyId)) { $settingsByPolicy[[string]$setting.policyId] = [System.Collections.Generic.List[string]]::new() }
-    $settingsByPolicy[[string]$setting.policyId].Add($id)
+    foreach($mappedId in $ids){$settingsByPolicy[[string]$setting.policyId].Add($mappedId)}
 }
 
 $generatedGraphObjects = [System.Collections.Generic.List[object]]::new()
@@ -406,12 +417,17 @@ foreach ($graphObject in @($catalog.graphObjects)) {
     if (@($ids | Where-Object { [string]$finalById[$_].mappingStatus -ne 'mapped' }).Count -gt 0) { continue }
     $contractId=[string]$graphObject.contractId
     $contractInfo=Get-CpcGraphObjectContract -ContractId $contractId -RepoRoot $repoRoot
-    $generatedGraphObject=[pscustomobject][ordered]@{
+    $generatedGraphObjectData=[ordered]@{
         name=[string]$graphObject.name; mappingStatus='mapped'; recommendationIds=$ids; profiles=@($graphObject.profiles)
         contractId=$contractId; contractSha256=[string]$contractInfo.Sha256
         endpoint=[string]$graphObject.endpoint; listEndpoint=(Get-OptionalProperty $graphObject 'listEndpoint'); nameProperty=(Get-OptionalProperty $graphObject 'nameProperty')
         payload=(Resolve-DecisionMarkers $graphObject.payload $decisionById)
     }
+    $operation=Get-OptionalProperty $graphObject 'operation'
+    if($operation){$generatedGraphObjectData.operation=[string]$operation}
+    $propertyMappings=Get-OptionalProperty $graphObject 'propertyMappings'
+    if($null -ne $propertyMappings){$generatedGraphObjectData.propertyMappings=@($propertyMappings)}
+    $generatedGraphObject=[pscustomobject]$generatedGraphObjectData
     Assert-CpcGraphObjectMatchesContract -GraphObject $generatedGraphObject -Contract $contractInfo.Contract
     $generatedGraphObjects.Add($generatedGraphObject)
 }

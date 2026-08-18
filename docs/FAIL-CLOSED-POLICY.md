@@ -64,7 +64,7 @@ The generated manifest records the source PDF name/hash/page count, compiler/ext
 
 Mapping audit reports are derived only after the complete pack validator succeeds. Invalid or tampered packs produce no report; report outputs are deterministic and never overwrite existing files.
 
-Portable policy JSON export requires a valid pack and the exact snapshot hash recorded by that pack. The exporter resolves every setting offline from that snapshot, strips tenant-generated response metadata, forbids assignments, hashes every request body, validates the finished ZIP independently, and publishes it atomically without overwriting an existing output.
+Windows-style split-policy JSON export requires a valid pack, its private extraction only while the export is running, and the exact snapshot hash recorded by that pack. The exporter resolves every setting offline, emits only mapped or explicitly decided Intune-configurable recommendations, preserves required dependency bundles, forbids assignments, validates the finished ZIP independently, and publishes it atomically without overwriting an existing output. Human/process controls and unresolved recommendations emit no JSON.
 
 The standalone compiler and pack orchestrator publish from unique staging directories using same-parent atomic moves. Output paths are never overwritten, and cleanup removes only staging/private artifacts owned by the current run; a path created by another process after preflight is preserved.
 

@@ -243,7 +243,7 @@ function New-CpcConfigurationSettingInstance {
     if($type -match 'SimpleSettingCollectionDefinition$'){
         if($kind -notin @('integer-collection','string-collection')){throw "Value kind '$kind' does not match simple collection definition '$($Spec.displayName)'."}
         $valuesProperty=$valueSpec.PSObject.Properties['values']
-        $values=if($valuesProperty){@($valuesProperty.Value)}else{@()}
+        [object[]]$values=if($valuesProperty){@($valuesProperty.Value)}else{@()}
         if($values.Count -eq 0){throw "At least one collection value is required for '$($Spec.displayName)'."}
         $elementKind=if($kind -eq 'integer-collection'){'integer'}else{'string'}
         $settingValues=[System.Collections.Generic.List[object]]::new()
@@ -275,14 +275,14 @@ function New-CpcConfigurationSettingInstance {
     if($type -match 'SettingGroupCollectionDefinition$'){
         if($kind -ne 'group-collection'){throw "Value kind '$kind' does not match group collection definition '$($Spec.displayName)'."}
         $itemsProperty=$valueSpec.PSObject.Properties['items']
-        $items=if($itemsProperty){@($itemsProperty.Value)}else{@()}
+        [object[]]$items=if($itemsProperty){@($itemsProperty.Value)}else{@()}
         if($items.Count -eq 0){throw "At least one group item is required for '$($Spec.displayName)'."}
         $groupValues=[System.Collections.Generic.List[object]]::new()
         $itemIndex=0
         foreach($item in $items){
             $itemIndex++
             $childrenProperty=$item.PSObject.Properties['children']
-            $childSpecs=if($childrenProperty){@($childrenProperty.Value)}else{@()}
+            [object[]]$childSpecs=if($childrenProperty){@($childrenProperty.Value)}else{@()}
             if($childSpecs.Count -eq 0){throw "Group '$($Spec.displayName)' item $itemIndex requires at least one child."}
             $children=@(New-CpcConfigurationSettingInstances -Specs $childSpecs -Definitions $Definitions -DefinitionCache $DefinitionCache -Depth ($Depth+1) -Context "Group '$($Spec.displayName)' item $itemIndex")
             Assert-CpcRequiredChildDefinitions -Definition $Definition -Children $children -Context "Group '$($Spec.displayName)' item $itemIndex"
@@ -572,11 +572,16 @@ function Assert-CpcGraphObjectMatchesContract {
     $endpoint=[string](Get-ContractProperty $GraphObject 'endpoint' -Required)
     $listEndpoint=[string](Get-ContractProperty $GraphObject 'listEndpoint')
     if([string]::IsNullOrWhiteSpace($listEndpoint)){$listEndpoint=$endpoint}
-    $nameProperty=[string](Get-ContractProperty $GraphObject 'nameProperty')
-    if([string]::IsNullOrWhiteSpace($nameProperty)){$nameProperty='displayName'}
+    $namePropertyValue=Get-ContractProperty $GraphObject 'nameProperty'
+    $nameProperty=if($null -eq $namePropertyValue){$null}else{[string]$namePropertyValue}
+    $contractNameProperty=if($null -eq $Contract.nameProperty){$null}else{[string]$Contract.nameProperty}
+    $operation=[string](Get-ContractProperty $GraphObject 'operation')
+    if([string]::IsNullOrWhiteSpace($operation)){$operation='create'}
+    $contractOperation=if($Contract.PSObject.Properties['operation']){[string]$Contract.operation}else{'create'}
     if($endpoint -cne [string]$Contract.endpoint){throw "Graph object '$name' endpoint differs from its pinned contract."}
     if($listEndpoint -cne [string]$Contract.listEndpoint){throw "Graph object '$name' listEndpoint differs from its pinned contract."}
-    if($nameProperty -cne [string]$Contract.nameProperty){throw "Graph object '$name' nameProperty differs from its pinned contract."}
+    if($nameProperty -cne $contractNameProperty){throw "Graph object '$name' nameProperty differs from its pinned contract."}
+    if($operation -cne $contractOperation){throw "Graph object '$name' operation differs from its pinned contract."}
 
     $payload=Get-ContractProperty $GraphObject 'payload' -Required
     if($payload -isnot [System.Collections.IDictionary] -and $payload -isnot [pscustomobject]){throw "Graph object '$name' payload must be an object."}
@@ -598,6 +603,8 @@ function Assert-CpcGraphObjectMatchesContract {
             'boolean' {if($value -isnot [bool]){throw "Graph object '$name' payload property '$propertyName' must be boolean."}}
             'integer' {if($value -isnot [byte] -and $value -isnot [int16] -and $value -isnot [int32] -and $value -isnot [int64]){throw "Graph object '$name' payload property '$propertyName' must be integer."}}
             'string' {if($value -isnot [string]){throw "Graph object '$name' payload property '$propertyName' must be string."}}
+            'array' {if($value -isnot [System.Collections.IEnumerable] -or $value -is [string] -or $value -is [System.Collections.IDictionary]){throw "Graph object '$name' payload property '$propertyName' must be an array."}}
+            'object' {if($value -isnot [System.Collections.IDictionary] -and $value -isnot [pscustomobject]){throw "Graph object '$name' payload property '$propertyName' must be an object."}}
             default {throw "Graph contract '$($Contract.id)' has unsupported type '$($rule.type)'."}
         }
         $constProperty=$rule.PSObject.Properties['const']
@@ -613,8 +620,10 @@ function Assert-CpcGraphObjectMatchesContract {
         if($minLengthProperty -and ([string]$value).Length -lt [int]$minLengthProperty.Value){throw "Graph object '$name' payload property '$propertyName' is shorter than its contract minimum."}
         if($maxLengthProperty -and ([string]$value).Length -gt [int]$maxLengthProperty.Value){throw "Graph object '$name' payload property '$propertyName' is longer than its contract maximum."}
     }
-    $payloadName=if($payload -is [System.Collections.IDictionary]){$payload[$nameProperty]}else{$payload.PSObject.Properties[$nameProperty].Value}
-    if([string]$payloadName -cne $name){throw "Graph object '$name' payload name does not exactly match its object name."}
+    if($nameProperty){
+        $payloadName=if($payload -is [System.Collections.IDictionary]){$payload[$nameProperty]}else{$payload.PSObject.Properties[$nameProperty].Value}
+        if([string]$payloadName -cne $name){throw "Graph object '$name' payload name does not exactly match its object name."}
+    }
     $odataType=if($payload -is [System.Collections.IDictionary]){$payload['@odata.type']}else{$payload.PSObject.Properties['@odata.type'].Value}
     if([string]$odataType -cne [string]$Contract.odataType){throw "Graph object '$name' @odata.type differs from its pinned contract."}
 }

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "id": "microsoft.graph.iosCompliancePolicy.beta",
+  "sourceUrl": "https://learn.microsoft.com/en-us/graph/api/resources/intune-deviceconfig-ioscompliancepolicy?view=graph-rest-beta",
+  "lastReviewed": "2026-08-18",
+  "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+  "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+  "itemEndpointTemplate": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/{id}",
+  "nameProperty": "displayName",
+  "odataType": "#microsoft.graph.iosCompliancePolicy",
+  "properties": {
+    "@odata.type": { "type": "string", "required": true, "const": "#microsoft.graph.iosCompliancePolicy" },
+    "displayName": { "type": "string", "required": true, "minLength": 1 },
+    "description": { "type": "string", "required": true, "minLength": 1 },
+    "securityBlockJailbrokenDevices": { "type": "boolean", "required": false },
+    "osMinimumVersion": { "type": "string", "required": false, "minLength": 1 },
+    "osMinimumBuildVersion": { "type": "string", "required": false, "minLength": 1 },
+    "scheduledActionsForRule": { "type": "array", "required": true }
+  }
+}

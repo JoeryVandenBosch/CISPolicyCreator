@@ -11,6 +11,7 @@ try{
     New-Item -ItemType Directory -Path $testRoot | Out-Null
     $pdf=Join-Path $testRoot 'synthetic.pdf'
     $pack=Join-Path $testRoot 'pack'
+    $bundle=Join-Path $testRoot 'synthetic-policies.zip'
     $autoPack=Join-Path $testRoot 'pack-auto-runtime'
     & $python (Join-Path $PSScriptRoot 'Create-SyntheticBenchmarkPdf.py') $pdf
     if($LASTEXITCODE -ne 0){ throw 'Synthetic PDF creation failed.' }
@@ -20,6 +21,8 @@ try{
         -SettingsCatalogSnapshotPath (Join-Path $fixtures 'settings-catalog-snapshot.json') `
         -AdministratorDecisionsPath (Join-Path $fixtures 'administrator-decisions.json') `
         -OutputPath $pack `
+        -PolicyJsonBundlePath $bundle `
+        -PolicyJsonBundleName synthetic-policies `
         -PythonPath $python
     & (Join-Path $repoRoot 'scripts\Invoke-CISPolicyPipeline.ps1') `
         -PdfPath $pdf `
@@ -29,6 +32,9 @@ try{
         -OutputPath $autoPack
     $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $pack -PassThru
     if(-not $validation.IsValid){ throw 'PDF-to-pack result failed validation.' }
+    $bundleValidation=& (Join-Path $repoRoot 'scripts\Test-CISWindowsStylePolicyBundle.ps1') -BundlePath $bundle -PassThru
+    if(-not $bundleValidation.IsValid){ throw 'One-command PDF-to-policy-JSON result failed validation.' }
+    if(Test-Path -LiteralPath "$pack.private-extraction.json"){throw 'Policy JSON export retained private benchmark text without explicit authorization.'}
     $manifest=Get-Content -LiteralPath (Join-Path $pack 'manifest.json') -Raw | ConvertFrom-Json -Depth 100
     $actualHash=(Get-FileHash -LiteralPath $pdf -Algorithm SHA256).Hash.ToLowerInvariant()
     if([string]$manifest.source.sha256 -cne $actualHash){ throw 'Generated manifest does not contain the actual PDF hash.' }
@@ -40,7 +46,7 @@ try{
         $autoHash=(Get-FileHash -LiteralPath (Join-Path $autoPack $relativePath) -Algorithm SHA256).Hash
         if($explicitHash -cne $autoHash){throw "Automatic runtime discovery produced different bytes: $relativePath"}
     }
-    Write-Host 'PASS: real PDF extraction and top-level pipeline orchestration.'
+    Write-Host 'PASS: real PDF extraction, pack compilation, and split-policy JSON orchestration.'
 } finally {
     $resolved=[IO.Path]::GetFullPath($testRoot)
     if(-not $resolved.StartsWith($tempBase,$pathComparison)){ throw "Refusing unsafe cleanup path: $resolved" }

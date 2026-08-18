@@ -4,23 +4,28 @@ CISPolicyCreator intentionally supports only CIS benchmarks whose remediation gu
 
 ## In scope
 
-| Benchmark family | Version currently in project workflow | Status |
-|---|---:|---|
-| CIS Microsoft Intune for Windows 11 | 5.0.0 | Partial catalog: 154 mapped in 14 unassigned policies; 261 unresolved |
-| CIS Microsoft Intune for Windows 10 | 5.0.0 | Partial catalog: 121 mapped in 8 unassigned policies; 237 unresolved |
-| CIS Microsoft Intune for Edge | 1.0.0 | Partial catalog: 125 mapped in 5 unassigned policies; 13 unresolved |
-| CIS Microsoft Intune for Office | 1.1.0 | Partial catalog: 203 mapped in 29 unassigned policies; 35 unresolved |
-| CIS Apple macOS 26 Tahoe Intune | 1.0.0 | Partial catalog: 57 mapped in 39 unassigned policies; 43 unresolved |
-| CIS Apple iOS 26 and iPadOS 26 Intune | 1.0.0 | Partial catalog: 78 mapped in 8 unassigned policy objects, 2 require one explicit administrator decision, and 14 remain unresolved |
+| Benchmark family | Version | Mapped | Requires input | Manual | Unresolved | Split policy JSON files with all inputs |
+|---|---:|---:|---:|---:|---:|---:|
+| CIS Microsoft Intune for Windows 10 | 5.0.0 | 312 | 5 | 41 | 0 | 278 |
+| CIS Microsoft Intune for Edge | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
+| CIS Microsoft Intune for Office | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
+| CIS Apple macOS 26 Tahoe Intune | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
+| CIS Apple iOS 26 and iPadOS 26 Intune | 1.0.0 | 85 | 8 | 1 | 0 | 61 |
+| CIS Microsoft Intune for Windows 11 | 5.0.0 | 154 | 0 | 0 | 261 | 154 |
 
-Every row above has passed extraction-bound real-PDF compilation, offline pack
-validation, and a live read-only test-tenant dry run. A fresh dry run against the
+The five zero-unresolved catalogs have passed extraction-bound real-PDF compilation,
+offline pack validation, and deterministic split-policy ZIP validation. The Edge
+catalog has also passed the complete one-command PDF-to-ZIP path. Earlier mapped subsets
+passed live dry runs and unassigned test-tenant creation. A fresh dry run against the
 administrator's own tenant remains required before import.
 
-“Supported” means the exact PDF version is recognized, every extracted recommendation
-is explicitly classified, and the mapped subset builds into validated unassigned
-policies. It does not mean the complete CIS baseline is implemented. Unresolved rows
-never emit settings.
+“Supported for policy creation” means the exact PDF version is recognized, every
+extracted recommendation is explicitly classified, and every actual Intune-configurable
+recommendation has a deterministic policy mapping or an explicit administrator-input
+gate. Human review/process controls remain `manual` and emit no JSON. Duplicate CIS
+rows and required dependency trees can share one policy file, so recommendation and JSON
+counts need not match. Windows 11 remains a clearly identified partial catalog;
+unresolved rows never emit settings.
 
 The repository may support later versions of these families after review and validation.
 

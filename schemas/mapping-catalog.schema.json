@@ -98,6 +98,7 @@
           "implementationType": { "type": ["string", "null"] },
           "implementationRefs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
           "decisionRef": { "type": ["string", "null"] },
+          "decisionRefs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
           "notes": { "type": ["string", "null"] }
         },
         "additionalProperties": false
@@ -144,6 +145,7 @@
         "required": ["recommendationId", "policyId", "displayName", "profiles", "resolve", "value"],
         "properties": {
           "recommendationId": { "type": "string", "minLength": 1 },
+          "recommendationIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
           "policyId": { "type": "string", "minLength": 1 },
           "displayName": { "type": "string", "minLength": 1 },
           "profiles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
@@ -166,6 +168,21 @@
           "endpoint": { "type": "string", "minLength": 1 },
           "listEndpoint": { "type": ["string", "null"] },
           "nameProperty": { "type": ["string", "null"] },
+          "operation": { "enum": ["create", "update-singleton"] },
+          "propertyMappings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["propertyName", "recommendationIds"],
+              "properties": {
+                "propertyName": { "type": "string", "minLength": 1 },
+                "bundleId": { "type": "string", "minLength": 1 },
+                "recommendationIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true }
+              },
+              "additionalProperties": false
+            }
+          },
           "payload": { "type": "object" }
         },
         "additionalProperties": false

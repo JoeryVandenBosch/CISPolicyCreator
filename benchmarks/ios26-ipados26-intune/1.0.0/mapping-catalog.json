@@ -152,11 +152,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "The CIS control and the adjacent iCloud Photo Library control resolve to the same explicit Intune property and are bundled in one policy JSON."
     },
     {
       "recommendationId": "2.3.6",
@@ -458,11 +460,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-passcode-screen-timeout-l1"
+      ],
+      "decisionRef": "ios-passcode-screen-timeout-minutes",
+      "notes": "CIS permits any supported value from 0 through 2 minutes; the administrator must choose explicitly."
     },
     {
       "recommendationId": "2.7.7",
@@ -652,11 +656,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-device-restrictions-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "The CIS control and the adjacent iCloud Photo Library control resolve to the same explicit Intune property and are bundled in one policy JSON."
     },
     {
       "recommendationId": "3.3.6",
@@ -1112,11 +1118,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-passcode-screen-timeout-l1"
+      ],
+      "decisionRef": "ios-passcode-screen-timeout-minutes",
+      "notes": "CIS permits any supported value from 0 through 2 minutes; the administrator must choose explicitly."
     },
     {
       "recommendationId": "3.7.7",
@@ -1194,11 +1202,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-lock-screen-message-l1"
+      ],
+      "decisionRef": "ios-lock-screen-message",
+      "notes": "The lock-screen text is organization-specific and must be supplied explicitly."
     },
     {
       "recommendationId": "3.10.1",
@@ -1206,11 +1216,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "settings-catalog",
+      "implementationRefs": [
+        "settings-catalog:ios-locked-enrollment-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact pinned-snapshot Automated Device Enrollment definition and Yes option."
     },
     {
       "recommendationId": "3.10.2",
@@ -1218,11 +1230,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-host-pairing-blocked-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact typed Graph property hostPairingBlocked=true for supervised iOS/iPadOS devices."
     },
     {
       "recommendationId": "4.1",
@@ -1230,11 +1244,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-compliance-jailbreak-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact iOS compliance policy property securityBlockJailbrokenDevices=true."
     },
     {
       "recommendationId": "4.2",
@@ -1242,11 +1258,17 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-compliance-minimum-os-l1"
+      ],
+      "decisionRef": "ios-compliance-minimum-os-version",
+      "decisionRefs": [
+        "ios-compliance-minimum-os-version",
+        "ios-compliance-minimum-os-build"
+      ],
+      "notes": "The administrator explicitly supplies both the minimum OS version and build; no release value is guessed."
     },
     {
       "recommendationId": "4.3",
@@ -1254,11 +1276,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-compliance-jailbreak-l1"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Bundled with the jailbreak compliance policy because every compliance policy requires its noncompliance action; gracePeriodHours is explicitly 0."
     },
     {
       "recommendationId": "4.4",
@@ -1266,11 +1290,17 @@
         "L2"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:ios-compliance-email-l2"
+      ],
+      "decisionRef": "ios-compliance-email-grace-hours",
+      "decisionRefs": [
+        "ios-compliance-email-grace-hours",
+        "ios-compliance-notification-template-id"
+      ],
+      "notes": "The administrator chooses 0-72 hours and supplies an existing Intune notification template ID."
     },
     {
       "recommendationId": "4.5",
@@ -1278,11 +1308,11 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
+      "mappingStatus": "manual",
+      "implementationType": "manual",
       "implementationRefs": [],
       "decisionRef": null,
-      "notes": null
+      "notes": "This is a human remediation and monitoring task for devices already reporting noncompliant, not a policy setting. No JSON is emitted."
     },
     {
       "recommendationId": "4.6",
@@ -1290,11 +1320,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
+      "mappingStatus": "mapped",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:intune-compliance-secure-by-default"
+      ],
       "decisionRef": null,
-      "notes": null
+      "notes": "Exact tenant deviceManagementSettings property secureByDefault=true."
     },
     {
       "recommendationId": "4.7",
@@ -1302,11 +1334,13 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "unresolved",
-      "implementationType": null,
-      "implementationRefs": [],
-      "decisionRef": null,
-      "notes": null
+      "mappingStatus": "requires-input",
+      "implementationType": "graph-object",
+      "implementationRefs": [
+        "graph-object:intune-compliance-validity-period"
+      ],
+      "decisionRef": "ios-compliance-validity-days",
+      "notes": "CIS permits 1 through 7 days; the administrator must choose explicitly."
     }
   ],
   "administratorInputs": [
@@ -1317,6 +1351,54 @@
       "valueType": "integer",
       "minimum": 6,
       "maximum": 14
+    },
+    {
+      "id": "ios-passcode-screen-timeout-minutes",
+      "recommendationId": "2.7.6",
+      "prompt": "Choose the maximum iOS/iPadOS inactivity time before the screen locks. CIS requires 2 minutes or less.",
+      "valueType": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    {
+      "id": "ios-lock-screen-message",
+      "recommendationId": "3.9.1",
+      "prompt": "Enter the organization-approved If Lost, Return to lock-screen message.",
+      "valueType": "string"
+    },
+    {
+      "id": "ios-compliance-minimum-os-version",
+      "recommendationId": "4.2",
+      "prompt": "Enter the organization-approved minimum iOS/iPadOS version for compliance, for example 26.0.",
+      "valueType": "string"
+    },
+    {
+      "id": "ios-compliance-minimum-os-build",
+      "recommendationId": "4.2",
+      "prompt": "Enter the organization-approved minimum iOS/iPadOS build for compliance.",
+      "valueType": "string"
+    },
+    {
+      "id": "ios-compliance-email-grace-hours",
+      "recommendationId": "4.4",
+      "prompt": "Choose when Intune sends the noncompliance email. CIS requires 72 hours (3 days) or less.",
+      "valueType": "integer",
+      "minimum": 0,
+      "maximum": 72
+    },
+    {
+      "id": "ios-compliance-notification-template-id",
+      "recommendationId": "4.4",
+      "prompt": "Enter the exact ID of an existing Intune compliance notification template.",
+      "valueType": "string"
+    },
+    {
+      "id": "ios-compliance-validity-days",
+      "recommendationId": "4.7",
+      "prompt": "Choose the compliance status validity period. CIS requires 7 days or less.",
+      "valueType": "integer",
+      "minimum": 1,
+      "maximum": 7
     }
   ],
   "settingsCatalogPolicies": [
@@ -1391,6 +1473,19 @@
       "description": "Strict exact-name, exact-value mappings validated against a pinned Microsoft Graph Settings Catalog snapshot.",
       "platforms": "iOS",
       "technologies": "mdm",
+      "profiles": [
+        "L1"
+      ],
+      "roleScopeTagIds": [
+        "0"
+      ]
+    },
+    {
+      "id": "ios-locked-enrollment-l1",
+      "name": "CIS - iOS/iPadOS 26 Locked Enrollment [L1] - v1.0.0",
+      "description": "Exact CIS Automated Device Enrollment setting. Unassigned by design.",
+      "platforms": "iOS",
+      "technologies": "enrollment",
       "profiles": [
         "L1"
       ],
@@ -1615,6 +1710,24 @@
           }
         ]
       }
+    },
+    {
+      "recommendationId": "3.10.1",
+      "policyId": "ios-locked-enrollment-l1",
+      "displayName": "Locked enrollment",
+      "profiles": [
+        "L1"
+      ],
+      "resolve": {
+        "definitionId": "ade_lockedenrollment",
+        "baseUri": "./enrollment/ade",
+        "offsetUri": "/lockedEnrollment",
+        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
+      },
+      "value": {
+        "kind": "choice",
+        "optionId": "ade_lockedenrollment_1"
+      }
     }
   ],
   "graphObjects": [
@@ -1631,6 +1744,8 @@
         "3.3.3",
         "2.3.4",
         "3.3.4",
+        "2.3.5",
+        "3.3.5",
         "2.3.6",
         "3.3.6",
         "2.3.7",
@@ -1693,6 +1808,49 @@
       "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
       "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
       "nameProperty": "displayName",
+      "propertyMappings": [
+        { "propertyName": "siriBlockedWhenLocked", "recommendationIds": ["2.2.1", "3.2.1"] },
+        { "propertyName": "safariRequireFraudWarning", "recommendationIds": ["2.2.2", "3.2.2"] },
+        { "propertyName": "iCloudBlockManagedAppsSync", "recommendationIds": ["2.3.2", "3.3.2"] },
+        { "propertyName": "enterpriseBookBlockBackup", "recommendationIds": ["2.3.3", "3.3.3"] },
+        { "propertyName": "enterpriseBookBlockMetadataSync", "recommendationIds": ["2.3.4", "3.3.4"] },
+        { "propertyName": "iCloudBlockPhotoLibrary", "recommendationIds": ["2.3.5", "2.3.6", "3.3.5", "3.3.6"] },
+        { "propertyName": "iCloudBlockPhotoStreamSync", "recommendationIds": ["2.3.7", "3.3.7"] },
+        { "propertyName": "iCloudBlockActivityContinuation", "recommendationIds": ["2.3.8", "3.3.8"] },
+        { "propertyName": "appleWatchForceWristDetection", "recommendationIds": ["2.4.1", "3.4.1"] },
+        { "propertyName": "airPlayForcePairingPasswordForOutgoingRequests", "recommendationIds": ["2.4.2", "3.4.2"] },
+        { "propertyName": "autoUnlockBlocked", "recommendationIds": ["2.4.3", "3.4.3"] },
+        { "propertyName": "diagnosticDataBlockSubmission", "recommendationIds": ["2.5.1", "3.5.1"] },
+        { "propertyName": "screenCaptureBlocked", "recommendationIds": ["2.5.2", "3.5.2"] },
+        { "propertyName": "privacyForceLimitAdTracking", "recommendationIds": ["2.5.4", "3.5.4"] },
+        { "propertyName": "enterpriseAppBlockTrust", "recommendationIds": ["2.5.5", "3.5.5"] },
+        { "propertyName": "applePersonalizedAdsBlocked", "recommendationIds": ["2.5.6", "3.5.6"] },
+        { "propertyName": "lockScreenBlockControlCenter", "recommendationIds": ["2.6.1", "3.6.1"] },
+        { "propertyName": "lockScreenBlockTodayView", "recommendationIds": ["2.6.3", "3.6.3"] },
+        { "propertyName": "lockScreenBlockPassbook", "recommendationIds": ["2.6.4", "3.6.4"] },
+        { "propertyName": "passcodeRequired", "recommendationIds": ["2.7.1", "3.7.1"] },
+        { "propertyName": "passcodeBlockSimple", "recommendationIds": ["2.7.2", "3.7.2"] },
+        { "propertyName": "passcodeMinutesOfInactivityBeforeLock", "recommendationIds": ["2.7.5", "3.7.5"] },
+        { "propertyName": "voiceDialingBlocked", "recommendationIds": ["2.8.1", "3.8.1"] },
+        { "propertyName": "documentsBlockManagedDocumentsInUnmanagedApps", "recommendationIds": ["3.1.1"] },
+        { "propertyName": "airDropForceUnmanagedDropTarget", "recommendationIds": ["3.1.2"] },
+        { "propertyName": "managedPasteboardRequired", "recommendationIds": ["3.1.3"] },
+        { "propertyName": "appStoreBlocked", "recommendationIds": ["3.1.4"] },
+        { "propertyName": "filesNetworkDriveAccessBlocked", "recommendationIds": ["3.1.5"] },
+        { "propertyName": "iCloudBlockBackup", "recommendationIds": ["3.3.9"] },
+        { "propertyName": "iCloudBlockDocumentSync", "recommendationIds": ["3.3.10"] },
+        { "propertyName": "keychainBlockCloudSync", "recommendationIds": ["3.3.11"] },
+        { "propertyName": "airPrintBlockiBeaconDiscovery", "recommendationIds": ["3.4.4"] },
+        { "propertyName": "filesUsbDriveAccessBlocked", "recommendationIds": ["3.4.5"] },
+        { "propertyName": "deviceBlockEraseContentAndSettings", "recommendationIds": ["3.5.7"] },
+        { "propertyName": "deviceBlockNameModification", "recommendationIds": ["3.5.8"] },
+        { "propertyName": "configurationProfileBlockChanges", "recommendationIds": ["3.5.9"] },
+        { "propertyName": "activationLockAllowWhenSupervised", "recommendationIds": ["3.5.10"] },
+        { "propertyName": "vpnBlockCreation", "recommendationIds": ["3.5.12"] },
+        { "propertyName": "passwordBlockProximityRequests", "recommendationIds": ["3.7.8"] },
+        { "propertyName": "passwordBlockAirDropSharing", "recommendationIds": ["3.7.9"] },
+        { "propertyName": "autoFillForceAuthentication", "recommendationIds": ["3.7.10"] }
+      ],
       "payload": {
         "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
         "displayName": "CIS - iOS and iPadOS 26 Device Restrictions [L1] - 1.0.0",
@@ -1759,6 +1917,12 @@
       "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
       "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
       "nameProperty": "displayName",
+      "propertyMappings": [
+        { "propertyName": "certificatesBlockUntrustedTlsCertificates", "recommendationIds": ["2.5.3", "3.5.3"] },
+        { "propertyName": "lockScreenBlockNotificationView", "recommendationIds": ["2.6.2", "3.6.2"] },
+        { "propertyName": "passcodeRequiredType", "recommendationIds": ["2.7.3", "3.7.3"] },
+        { "propertyName": "passcodeBlockFingerprintUnlock", "recommendationIds": ["2.7.7", "3.7.7"] }
+      ],
       "payload": {
         "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
         "displayName": "CIS - iOS and iPadOS 26 Device Restrictions [L2] - 1.0.0",
@@ -1788,6 +1952,233 @@
         "description": "Administrator-selected CIS-compliant minimum password length. Unassigned by design.",
         "passcodeMinimumLength": {
           "$decision": "ios-passcode-minimum-length"
+        }
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Screen Lock Timeout [L1] - 1.0.0",
+      "recommendationIds": [
+        "2.7.6",
+        "3.7.6"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosGeneralDeviceConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Screen Lock Timeout [L1] - 1.0.0",
+        "description": "Administrator-selected CIS-compliant screen lock timeout. Unassigned by design.",
+        "passcodeMinutesOfInactivityBeforeScreenTimeout": {
+          "$decision": "ios-passcode-screen-timeout-minutes"
+        }
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Lock Screen Message [L1] - 1.0.0",
+      "recommendationIds": [
+        "3.9.1"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosDeviceFeaturesConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosDeviceFeaturesConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Lock Screen Message [L1] - 1.0.0",
+        "description": "Administrator-supplied If Lost, Return to message. Unassigned by design.",
+        "lockScreenFootnote": {
+          "$decision": "ios-lock-screen-message"
+        }
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Host Pairing [L1] - 1.0.0",
+      "recommendationIds": [
+        "3.10.2"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosGeneralDeviceConfiguration.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosGeneralDeviceConfiguration",
+        "displayName": "CIS - iOS and iPadOS 26 Host Pairing [L1] - 1.0.0",
+        "description": "Deterministic CIS host-pairing restriction. Unassigned by design.",
+        "hostPairingBlocked": true
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Jailbreak Compliance [L1] - 1.0.0",
+      "recommendationIds": [
+        "4.1",
+        "4.3"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosCompliancePolicy.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "nameProperty": "displayName",
+      "propertyMappings": [
+        { "propertyName": "securityBlockJailbrokenDevices", "bundleId": "jailbreak-compliance", "recommendationIds": ["4.1"] },
+        { "propertyName": "scheduledActionsForRule", "bundleId": "jailbreak-compliance", "recommendationIds": ["4.3"] }
+      ],
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosCompliancePolicy",
+        "displayName": "CIS - iOS and iPadOS 26 Jailbreak Compliance [L1] - 1.0.0",
+        "description": "Jailbroken devices are blocked and marked noncompliant immediately. Unassigned by design.",
+        "securityBlockJailbrokenDevices": true,
+        "scheduledActionsForRule": [
+          {
+            "@odata.type": "#microsoft.graph.deviceComplianceScheduledActionForRule",
+            "ruleName": "PasswordRequired",
+            "scheduledActionConfigurations": [
+              {
+                "@odata.type": "#microsoft.graph.deviceComplianceActionItem",
+                "gracePeriodHours": 0,
+                "actionType": "block",
+                "notificationTemplateId": "",
+                "notificationMessageCCList": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Minimum OS Compliance [L1] - 1.0.0",
+      "recommendationIds": [
+        "4.2"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.iosCompliancePolicy.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "nameProperty": "displayName",
+      "propertyMappings": [
+        { "propertyName": "osMinimumVersion", "bundleId": "minimum-os-compliance", "recommendationIds": ["4.2"] },
+        { "propertyName": "osMinimumBuildVersion", "bundleId": "minimum-os-compliance", "recommendationIds": ["4.2"] },
+        { "propertyName": "scheduledActionsForRule", "bundleId": "minimum-os-compliance", "recommendationIds": ["4.2"] }
+      ],
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosCompliancePolicy",
+        "displayName": "CIS - iOS and iPadOS 26 Minimum OS Compliance [L1] - 1.0.0",
+        "description": "Administrator-selected minimum OS version and build. Unassigned by design.",
+        "osMinimumVersion": {
+          "$decision": "ios-compliance-minimum-os-version"
+        },
+        "osMinimumBuildVersion": {
+          "$decision": "ios-compliance-minimum-os-build"
+        },
+        "scheduledActionsForRule": [
+          {
+            "@odata.type": "#microsoft.graph.deviceComplianceScheduledActionForRule",
+            "ruleName": "PasswordRequired",
+            "scheduledActionConfigurations": [
+              {
+                "@odata.type": "#microsoft.graph.deviceComplianceActionItem",
+                "gracePeriodHours": 0,
+                "actionType": "block",
+                "notificationTemplateId": "",
+                "notificationMessageCCList": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "CIS - iOS and iPadOS 26 Compliance Email [L2] - 1.0.0",
+      "recommendationIds": [
+        "4.4"
+      ],
+      "profiles": [
+        "L2"
+      ],
+      "contractId": "microsoft.graph.iosCompliancePolicy.beta",
+      "endpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "listEndpoint": "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies",
+      "nameProperty": "displayName",
+      "payload": {
+        "@odata.type": "#microsoft.graph.iosCompliancePolicy",
+        "displayName": "CIS - iOS and iPadOS 26 Compliance Email [L2] - 1.0.0",
+        "description": "Administrator-selected compliance email timing and existing notification template. Unassigned by design.",
+        "scheduledActionsForRule": [
+          {
+            "@odata.type": "#microsoft.graph.deviceComplianceScheduledActionForRule",
+            "ruleName": "PasswordRequired",
+            "scheduledActionConfigurations": [
+              {
+                "@odata.type": "#microsoft.graph.deviceComplianceActionItem",
+                "gracePeriodHours": 0,
+                "actionType": "block",
+                "notificationTemplateId": "",
+                "notificationMessageCCList": []
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceComplianceActionItem",
+                "gracePeriodHours": {
+                  "$decision": "ios-compliance-email-grace-hours"
+                },
+                "actionType": "notification",
+                "notificationTemplateId": {
+                  "$decision": "ios-compliance-notification-template-id"
+                },
+                "notificationMessageCCList": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "CIS - Intune Compliance Secure By Default [L1] - 1.0.0",
+      "recommendationIds": [
+        "4.6"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.deviceManagementSettings.v1.0",
+      "endpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+      "listEndpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+      "nameProperty": null,
+      "operation": "update-singleton",
+      "payload": {
+        "@odata.type": "#microsoft.graph.deviceManagementSettings",
+        "secureByDefault": true
+      }
+    },
+    {
+      "name": "CIS - Intune Compliance Validity Period [L1] - 1.0.0",
+      "recommendationIds": [
+        "4.7"
+      ],
+      "profiles": [
+        "L1"
+      ],
+      "contractId": "microsoft.graph.deviceManagementSettings.v1.0",
+      "endpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+      "listEndpoint": "https://graph.microsoft.com/v1.0/deviceManagement/settings",
+      "nameProperty": null,
+      "operation": "update-singleton",
+      "payload": {
+        "@odata.type": "#microsoft.graph.deviceManagementSettings",
+        "deviceComplianceCheckinThresholdDays": {
+          "$decision": "ios-compliance-validity-days"
         }
       }
     }

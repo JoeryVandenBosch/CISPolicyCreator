@@ -11,8 +11,9 @@
     "lastReviewed": { "type": "string", "format": "date" },
     "endpoint": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
     "listEndpoint": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
-    "itemEndpointTemplate": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/.+\\{id\\}$" },
-    "nameProperty": { "type": "string", "minLength": 1 },
+    "itemEndpointTemplate": { "type": "string", "pattern": "^https://graph\\.microsoft\\.com/(beta|v1\\.0)/deviceManagement/" },
+    "nameProperty": { "type": ["string", "null"], "minLength": 1 },
+    "operation": { "enum": ["create", "update-singleton"] },
     "odataType": { "type": "string", "pattern": "^#microsoft\\.graph\\." },
     "properties": {
       "type": "object",
@@ -21,7 +22,7 @@
         "type": "object",
         "required": ["type", "required"],
         "properties": {
-          "type": { "enum": ["boolean", "integer", "string"] },
+          "type": { "enum": ["boolean", "integer", "string", "array", "object"] },
           "required": { "type": "boolean" },
           "const": {},
           "enum": { "type": "array", "minItems": 1, "uniqueItems": true },

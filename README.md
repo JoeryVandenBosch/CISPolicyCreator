@@ -11,29 +11,32 @@ but importing or assigning policies is not required to use the policy-creation t
 The tool runs entirely from the scripts in this repository. ChatGPT, Codex, or another
 AI service is **not** required at runtime.
 
-## Important: these are partial policy packs
+## What is complete, and what is intentionally skipped
 
-The supported PDFs are recognized completely: every extracted CIS recommendation is
-recorded and classified. Only recommendations with an exact, evidence-backed Microsoft
-Graph setting and value are emitted as policy settings.
+The five newly completed Intune catalogs convert every recommendation that has a real,
+deterministic Intune implementation. Recommendations that tell a human to review,
+inspect, document, or run an operational process remain `manual` and produce no fake
+JSON. Organization-specific values remain `requires-input` until an administrator
+chooses them explicitly.
 
-| Supported CIS PDF | Version | Mapped recommendations | Requires input | Unresolved | Generated unassigned policy objects |
-|---|---:|---:|---:|---:|---:|
-| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 261 | 14 |
-| CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 121 | 0 | 237 | 8 |
-| CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 125 | 0 | 13 | 5 |
-| CIS Microsoft Intune for Office Benchmark | 1.1.0 | 203 | 0 | 35 | 29 |
-| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 57 | 0 | 43 | 39 |
-| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 78 | 2 | 14 | 8 |
+| Supported CIS PDF | Version | Mapped | Requires input | Manual | Unresolved | Policy JSON files with all inputs |
+|---|---:|---:|---:|---:|---:|---:|
+| CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 312 | 5 | 41 | 0 | 278 |
+| CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
+| CIS Microsoft Intune for Office Benchmark | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
+| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
+| CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 85 | 8 | 1 | 0 | 61 |
+| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 0 | 261 | 154 |
 
-All six current catalogs have been rebuilt from the exact real PDFs, pass offline pack
-validation, and pass a live read-only dry run against a test tenant. Earlier, smaller
-mapped subsets also passed real unassigned test-tenant imports. Always run Step 12
-against your own tenant before importing. No assignments are created by any pack.
+The five rows with zero unresolved recommendations are complete for policy creation:
+every actual Intune-configurable recommendation is either mapped or waiting for an
+explicit administrator value. Windows 11 is the older partial catalog and is clearly
+listed separately by its 261 unresolved recommendations.
 
-These numbers do **not** describe complete CIS baselines. Unresolved recommendations do
-not create settings. More exact mappings can be added later without weakening the
-fail-closed rules.
+The number of JSON files can be lower than the number of recommendations because some
+CIS recommendations are duplicates or must be bundled with required dependent settings.
+The JSON files are always unassigned. Live test-tenant dry runs and earlier import tests
+provide additional evidence, but every administrator must validate policies before use.
 
 ## What the tool will never do
 
@@ -182,90 +185,101 @@ This example uses Windows 10:
 ```powershell
 $Benchmark = 'Windows10-5.0.0'
 $PdfPath = '.\private\pdf\CIS_Microsoft_Intune_for_Windows_10_Benchmark_v5.0.0.pdf'
-$PackPath = '.\work\packs\windows10-v5-pack'
+$RunId = Get-Date -Format 'yyyyMMdd-HHmmss'
+$PackPath = ".\work\packs\windows10-v5-$RunId"
+$DecisionPath = $null
 ```
 
 For another PDF, copy its selector, filename, and suggested `$PackPath` from the table
 in Step 5. You may choose a different pack folder name if you prefer.
 
-## Step 9: build the validated policy pack
+## Step 9: answer any administrator questions
+
+Some CIS settings do not prescribe one universal value. For example, your organization
+must choose its own minimum operating-system version or login-window message. The tool
+will never invent those answers.
+
+| Selector | Catalog path | Questions |
+|---|---|---:|
+| `Windows10-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-10/5.0.0/mapping-catalog.json` | 6 |
+| `Edge-1.0.0` | `./benchmarks/edge-intune/1.0.0/mapping-catalog.json` | 3 |
+| `Office-1.1.0` | none | 0 |
+| `macOS26-Tahoe-1.0.0` | `./benchmarks/macos26-tahoe-intune/1.0.0/mapping-catalog.json` | 15 |
+| `iOS26-iPadOS26-1.0.0` | `./benchmarks/ios26-ipados26-intune/1.0.0/mapping-catalog.json` | 8 |
+| `Windows11-5.0.0` | none | 0 |
+
+If your selected row has questions, copy its catalog path and run:
 
 ```powershell
-.\scripts\Build-CISSupportedBenchmark.ps1 `
-  -Benchmark $Benchmark `
-  -PdfPath $PdfPath `
-  -SettingsCatalogSnapshotPath .\private\graph\settings-catalog-snapshot.json `
-  -OutputPath $PackPath
-```
+$CatalogPath = '.\benchmarks\edge-intune\1.0.0\mapping-catalog.json'
+$DecisionPath = ".\private\$Benchmark-decisions.json"
 
-The command checks the PDF title and version, extracts its recommendations locally,
-validates the exact mappings against the snapshot, creates the unassigned policy
-payloads, and validates the finished pack.
-
-The output folder must not already exist. Use a new output name when rebuilding.
-
-The iOS/iPadOS catalog has one organization-controlled password-length choice shared by
-two duplicate CIS recommendations. Without a decision file, both remain
-`requires-input` and no password-length policy is emitted. To include that policy,
-first create a private decision template:
-
-```powershell
-$DecisionPath = '.\private\ios26-ipados26-decisions.json'
 .\scripts\New-CISAdministratorDecisions.ps1 `
-  -MappingCatalogPath .\benchmarks\ios26-ipados26-intune\1.0.0\mapping-catalog.json `
+  -MappingCatalogPath $CatalogPath `
   -OutputPath $DecisionPath
+
 notepad $DecisionPath
 ```
 
-Choose an integer from `6` through `14`, change `acknowledged` to `true`, and write a
-short justification. Then rebuild to a new `$PackPath` and add this line to the build
-command before `-OutputPath`:
+For every question, enter an allowed `value`, change `acknowledged` to `true`, and add a
+short `justification`. Keep this file private and never commit it. If the benchmark has
+zero questions, do not set `$DecisionPath`.
+
+## Step 10: create the validated pack and policy JSON ZIP
 
 ```powershell
-  -AdministratorDecisionsPath $DecisionPath `
+$BundlePath = ".\work\$Benchmark-policies.zip"
+$BuildArguments = @{
+  Benchmark                   = $Benchmark
+  PdfPath                     = $PdfPath
+  SettingsCatalogSnapshotPath = '.\private\graph\settings-catalog-snapshot.json'
+  OutputPath                  = $PackPath
+  PolicyJsonBundlePath        = $BundlePath
+  PolicyJsonBundleName        = "$Benchmark-policies"
+  Profile                     = 'ALL'
+}
+
+if ($DecisionPath) {
+  $BuildArguments.AdministratorDecisionsPath = $DecisionPath
+}
+
+.\scripts\Build-CISSupportedBenchmark.ps1 @BuildArguments
 ```
 
-Never commit the private decision file.
+The command checks the PDF title and version, extracts its recommendations locally,
+validates the exact mappings against the snapshot, creates the unassigned policy JSON
+files, validates the pack and ZIP, and deletes the temporary raw CIS extraction.
 
-## Step 10: inspect the result
+The pack folder and ZIP must not already exist. Use new output names when rebuilding.
+The ZIP contains one JSON policy for each actual configurable setting, except where
+duplicate or dependent settings must be bundled together. Human-only recommendations
+produce no JSON. No assignments are included.
+
+## Step 11: inspect and validate the result
 
 ```powershell
 .\scripts\Test-CISPolicyPack.ps1 -PackRoot $PackPath
 .\scripts\Get-CISMappingReport.ps1 -PackRoot $PackPath
+.\scripts\Test-CISWindowsStylePolicyBundle.ps1 -BundlePath $BundlePath
 ```
 
 The report shows which recommendations are mapped, unresolved, require administrator
-input, remain manual, or are not applicable.
-
-## Step 11: create the portable Intune policy JSON ZIP
-
-```powershell
-$BundlePath = ".\work\exports\$Benchmark-portable.zip"
-
-.\scripts\Export-CISPortablePolicyBundle.ps1 `
-  -PackRoot $PackPath `
-  -SettingsCatalogSnapshotPath .\private\graph\settings-catalog-snapshot.json `
-  -OutputPath $BundlePath `
-  -Profile ALL
-
-.\scripts\Test-CISPortablePolicyBundle.ps1 -BundlePath $BundlePath
-```
 
 The ZIP contains:
 
-- `SettingsCatalog\*.json`: request-ready Settings Catalog policy JSON with settings;
-- `DeviceConfigurations\*.json`, when required: request-ready typed configuration JSON;
-- `mapping-report.json`: every recommendation and its mapping status;
-- `bundle-manifest.json`: source/pack hashes, file hashes, counts, and endpoints.
+- `SettingsCatalog\*.json`: importable Settings Catalog policies with exact settings;
+- `DeviceConfigurations\*.json`, `CompliancePolicies\*.json`, or `GraphObjects\*.json`
+  when a setting uses another typed Intune policy API.
 
 The ZIP contains no CIS PDF, raw benchmark prose, credentials, assignments, tenant IDs,
-server-generated object IDs, timestamps, or Graph navigation links. The JSON represents
-Microsoft Graph create-request bodies, not a raw export copied from a tenant.
+or raw CIS recommendation text. It uses the same one-policy-per-setting naming and JSON
+shape as the proven Windows reference export. Generated IDs exist only to preserve the
+portable export shape and are deterministic.
 
 The output path must end in lowercase `.zip` and must not already exist. Repeating the
 same export with the same pack, snapshot, and profile produces the same ZIP bytes.
 
-If you only want CISPolicyCreator to create portable policy JSON files, you are finished.
+If you only want CISPolicyCreator to create importable policy JSON files, you are finished.
 The remaining steps are optional tenant validation and import steps.
 
 ## Step 12: optionally perform a read-only Intune dry run
