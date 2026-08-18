@@ -672,6 +672,9 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $contractHashFailed=$false
     try { Get-CpcGraphObjectContract -ContractId 'microsoft.graph.windows10CompliancePolicy.beta' -RepoRoot $repoRoot -ExpectedSha256 ('0'*64) | Out-Null } catch {$contractHashFailed=$true}
     Assert-True $contractHashFailed 'A Graph contract hash mismatch must fail closed.'
+    $unknownExportTypeFailed=$false
+    try { Get-CpcGraphObjectContractByOdataType -OdataType '#microsoft.graph.unreviewedPolicyType' -RepoRoot $repoRoot | Out-Null } catch {$unknownExportTypeFailed=$true}
+    Assert-True $unknownExportTypeFailed 'An exported Graph type without exactly one pinned contract must fail closed.'
     Assert-True ((Get-CpcGraphObjectItemUri -Contract $genericContractInfo.Contract -Id 'id with spaces') -ceq 'https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/id%20with%20spaces') 'Graph item lookup must use the pinned contract template and URL-encode the object ID.'
     $cpcModule=Get-Module CISPolicyCreator
     $pagingResult=& $cpcModule {
@@ -752,6 +755,9 @@ throw 'Synthetic extractor failure after another process claimed both outputs.'
     $groupChildren=@($groupBody.settingInstance.groupSettingCollectionValue[0].children)
     Assert-True ([string]$groupBody.settingInstance.'@odata.type' -ceq '#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance' -and $groupChildren.Count -eq 2) 'Group collection must emit the exact Graph group instance tree.'
     Assert-True ([int64]$groupChildren[1].simpleSettingValue.value -eq 90) 'Nested group integer must preserve its reviewed value.'
+    $roundTripGroupSpec=ConvertTo-CpcSettingSpecFromExportInstance -Instance $groupBody.settingInstance -Context 'Exported synthetic group'
+    $roundTripGroupBody=New-CpcConfigurationSettingBody -Definition $groupDefinition -Spec $roundTripGroupSpec -Definitions @() -DefinitionCache $definitionCache
+    Assert-True (@($roundTripGroupBody.settingInstance.groupSettingCollectionValue[0].children).Count -eq 2) 'An exported group collection must round-trip into a live request body without losing its child array shape.'
     $parentDefinition=@($snapshotFixture.definitions | Where-Object id -eq 'synthetic_parent_choice')[0]
     $parentBody=New-CpcConfigurationSettingBody -Definition $parentDefinition -Spec $nestedChoiceSpec -Definitions @() -DefinitionCache $definitionCache
     $nestedGroupInstance=@($parentBody.settingInstance.choiceSettingValue.children)[0]

@@ -282,42 +282,64 @@ same export with the same pack, snapshot, and profile produces the same ZIP byte
 If you only want CISPolicyCreator to create importable policy JSON files, you are finished.
 The remaining steps are optional tenant validation and import steps.
 
-## Step 12: optionally perform a read-only Intune dry run
+## Step 12: optionally validate the ZIP for import
+
+If you want to use the optional importer, first prepare and validate the complete ZIP
+without signing in:
 
 ```powershell
-.\scripts\Import-CISPolicyPack.ps1 `
-  -PackRoot $PackPath `
-  -Profile ALL `
+.\scripts\Import-CISWindowsStylePolicyBundle.ps1 `
+  -BundlePath $BundlePath `
+  -ValidateOnly
+```
+
+This reads every JSON file directly from the ZIP, checks its exact supported policy
+type and pinned contract, and rejects assignments or unexpected properties. It does
+not contact Microsoft Graph or change Intune.
+
+## Step 13: optionally perform a read-only Intune dry run
+
+```powershell
+.\scripts\Import-CISWindowsStylePolicyBundle.ps1 `
+  -BundlePath $BundlePath `
   -TenantId $TenantId `
   -UseDeviceCode `
   -DryRun
 ```
 
 The dry run signs in to Microsoft Graph, verifies the live setting definitions and
-values, checks for same-name policies, and shows what would be created. It does not
-write or assign anything.
+values, checks for same-name policies or objects, and shows what would be created. It
+does not write or assign anything. Depending on the bundle size, this can take several
+minutes.
 
-## Step 13: optionally import the unassigned policies
+## Step 14: optionally import the unassigned policies
 
 Only continue after the dry run succeeds:
 
 ```powershell
-.\scripts\Import-CISPolicyPack.ps1 `
-  -PackRoot $PackPath `
-  -Profile ALL `
+.\scripts\Import-CISWindowsStylePolicyBundle.ps1 `
+  -BundlePath $BundlePath `
   -TenantId $TenantId `
   -UseDeviceCode `
-  -ConfirmUnassignedImport `
-  -ConfirmPartialPack
+  -ConfirmUnassignedImport
 ```
 
-`-ConfirmPartialPack` means you understand that only the mapped subset is imported.
-Unresolved recommendations remain absent.
+The importer validates the entire ZIP before signing in, validates every exact live
+Graph definition and value before its first write, and refuses a different same-name
+policy. An exactly matching policy is left unchanged. Creation stops on the first
+Graph error unless you explicitly add `-ContinueOnError`.
+
+The iOS/iPadOS bundle also contains two tenant-wide Intune settings. They are not
+assignable policies. For the safest policy-only import, add `-SkipTenantWideSettings`.
+To apply those two settings instead, review them and explicitly add
+`-ConfirmTenantWideSettingsUpdate`. The importer refuses to choose between these two
+options for you.
 
 The policies are created without assignments. CISPolicyCreator does not select users,
-devices, or groups. Assignments and production rollout remain administrator actions.
+devices, or groups, and the importer contains no assignment operation. Assignments and
+production rollout remain administrator actions.
 
-## Step 14: check Intune
+## Step 15: check Intune
 
 1. Open the Microsoft Intune admin center.
 2. Go to **Devices**.
@@ -328,7 +350,7 @@ devices, or groups. Assignments and production rollout remain administrator acti
 
 ## Build the other supported PDFs
 
-Repeat Steps 8 through 14 for each PDF. Always use the matching selector, exact PDF
+Repeat Steps 8 through 15 for each PDF. Always use the matching selector, exact PDF
 version, and a different pack output folder.
 
 ## Common problems

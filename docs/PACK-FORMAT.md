@@ -64,7 +64,9 @@ The split-policy ZIP contains importable export-shaped JSON:
 - `SettingsCatalog/*.json` contains complete Settings Catalog policies with one top-level setting and any required nested dependencies;
 - `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or `GraphObjects/*.json` contains typed policy objects split by reviewed property mapping when present.
 
-The bundle never includes assignments, tenant IDs, credentials, the source PDF, or raw benchmark prose. Export-shaped IDs and navigation fields are generated deterministically rather than copied from a tenant. ZIP entry names, JSON ordering, UTF-8 encoding, timestamps, and compression order are deterministic. A compatible consumer must still apply its own authentication, current-tenant validation, collision handling, and assignment decisions.
+The bundle never includes assignments, tenant IDs, credentials, the source PDF, or raw benchmark prose. Export-shaped IDs and navigation fields are generated deterministically rather than copied from a tenant. ZIP entry names, JSON ordering, UTF-8 encoding, timestamps, and compression order are deterministic.
+
+`Import-CISWindowsStylePolicyBundle.ps1` is the repository's optional compatible consumer. `-ValidateOnly` performs complete offline preparation, `-DryRun` adds read-only live Graph validation, and an actual write additionally requires a pinned tenant ID plus `-ConfirmUnassignedImport`. It creates only objects that do not already exist, skips an exactly matching same-name object, and aborts before writing if a same-name object differs or is ambiguous. It never creates assignments. A tenant-wide singleton update is not an assignable policy and requires the separate `-ConfirmTenantWideSettingsUpdate` acknowledgement; `-SkipTenantWideSettings` omits such updates while importing the ordinary policies.
 
 ## Recommendation inventory
 

@@ -178,8 +178,18 @@ necessary to form one valid Intune policy.
 
 `Get-CISMappingReport.ps1` first runs complete pack validation and writes nothing when the pack is invalid. Repeated reports from identical packs are byte-identical, existing output files are never overwritten, and `CatalogComplete` is false while a final recommendation remains `unresolved` or `requires-input`.
 
-## 10. Validate live, then import explicitly
+## 10. Validate the policy JSON ZIP, then optionally import
 
-Run `-DryRun` with a pinned tenant. It uses read-only Graph scope and validates current definitions/options before any write. Add `-UseDeviceCode` in embedded or headless terminals. A temporary write-path test requires `-ProbeOnly -ConfirmTemporaryWriteProbe` and an explicit `-TenantId`. Final unassigned creation requires `-ConfirmUnassignedImport` and an explicit `-TenantId`; omission of `-DryRun` alone never authorizes a write. If any final recommendation is still `unresolved` or `requires-input`, import also requires `-ConfirmPartialPack` before Graph authentication and reports both counts.
+Run `Import-CISWindowsStylePolicyBundle.ps1 -BundlePath <path> -ValidateOnly` first. It
+validates and prepares every JSON object offline without authenticating. Then run the
+same script with `-DryRun`, a pinned `-TenantId`, and optionally `-UseDeviceCode`. The
+dry run uses read-only Graph scope and validates current definitions, values,
+dependencies, object contracts, and same-name collisions before reporting what would
+be created.
 
-Assignments remain a separate administrator-controlled operation outside this repository's importer.
+Final unassigned creation requires both an explicit `-TenantId` and
+`-ConfirmUnassignedImport`; omission of `-DryRun` alone never authorizes a write.
+Tenant-wide singleton settings require the separate
+`-ConfirmTenantWideSettingsUpdate` acknowledgement or can be explicitly omitted with
+`-SkipTenantWideSettings`. The importer never calls assignment endpoints. Assignments
+remain a separate administrator-controlled operation outside this repository.
