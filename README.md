@@ -26,17 +26,15 @@ tell a human to review, inspect, document, or run an operational process remain
 | CIS Microsoft Intune for Office Benchmark | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
 | CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
 | CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
-| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 0 | 261 | 154 |
+| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 371 | 8 | 36 | 0 | 326 |
 
-The four non-Windows-11 rows with zero unresolved recommendations are complete for
-policy creation: every actual Intune-configurable recommendation is either mapped or
-waiting for an explicit administrator value. iOS/iPadOS has one intentionally
+The five rows with zero unresolved recommendations are complete for policy creation:
+every actual Intune-configurable recommendation is either mapped or waiting for an
+explicit administrator value. iOS/iPadOS has one intentionally
 unresolved recommendation: 3.10.1, Locked enrollment. Its exact Intune setting is
 known, but Microsoft requires 40 settings in the ADE enrollment policy. The required
 companion settings include organization-specific choices without template defaults, so
-the tool does not invent them or emit a JSON policy that Intune would reject. Windows
-11 is the older partial catalog and is clearly listed separately by its 261 unresolved
-recommendations.
+the tool does not invent them or emit a JSON policy that Intune would reject.
 
 The number of JSON files can be lower than the number of recommendations because some
 CIS recommendations are duplicates or must be bundled with required dependent settings.
@@ -211,7 +209,7 @@ will never invent those answers.
 | `Office-1.1.0` | none | 0 |
 | `macOS26-Tahoe-1.0.0` | `./benchmarks/macos26-tahoe-intune/1.0.0/mapping-catalog.json` | 15 |
 | `iOS26-iPadOS26-1.0.0` | `./benchmarks/ios26-ipados26-intune/1.0.0/mapping-catalog.json` | 8 |
-| `Windows11-5.0.0` | none | 0 |
+| `Windows11-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-11/5.0.0/mapping-catalog.json` | 9 |
 
 If your selected row has questions, copy its catalog path and run:
 
@@ -356,7 +354,8 @@ production rollout remain administrator actions.
 1. Open the Microsoft Intune admin center.
 2. Go to **Devices**.
 3. Open **Configuration**.
-4. Search for policy names beginning with `CIS -`.
+4. Search for policy names beginning with `V5-CIS-` for the Windows 10 or Windows 11
+   v5 benchmarks. Other benchmark versions use the same `V<major>-CIS-` convention.
 5. Open a policy and verify its settings.
 6. Leave it unassigned until your organization has reviewed and tested it.
 
