@@ -8,8 +8,9 @@ and none remain unresolved. `cisAssessmentMethod` remains independent: seven
 recommendations assessed manually by CIS still have deterministic Windows compliance
 policy mappings.
 
-With all nine administrator decisions supplied, the real PDF compiles into 325 Settings
-Catalog JSON policies and one Windows compliance JSON policy. Required dependent
+With all nine administrator decision fields supplied for the eight recommendations that
+require input, the real PDF compiles into 325 Settings Catalog JSON policies and one
+Windows compliance JSON policy. Required dependent
 settings and duplicate CIS rows are bundled where necessary, every filename starts
 with `V5-`, and no assignments are present. Pack validation, split-policy ZIP
 validation, offline importer validation, and repeated-build byte reproducibility pass

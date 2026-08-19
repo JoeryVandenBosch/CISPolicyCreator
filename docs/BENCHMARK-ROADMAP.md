@@ -9,8 +9,9 @@ All benchmark catalog work is gated on the reproducible offline pipeline, schema
 The repository includes a public-safe, fully classified catalog for all 415 Windows 11
 v5.0.0 recommendations: 371 deterministic mappings, 8 administrator-input gates, 36
 non-policy/manual controls, and zero unresolved recommendations. With all nine explicit
-administrator decisions supplied, the real PDF compiles reproducibly into 325 Settings
-Catalog policy JSON files and one Windows compliance policy JSON file. Every filename
+administrator decision fields supplied for the eight recommendations that require
+input, the real PDF compiles reproducibly into 325 Settings Catalog policy JSON files
+and one Windows compliance policy JSON file. Every filename
 uses the Windows benchmark convention beginning with `V5-`; all files are unassigned.
 The complete build, pack, ZIP, and offline importer validations pass, and a repeated
 build produces identical ZIP bytes. Administrators must still dry-run and test policies

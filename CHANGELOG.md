@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+## 1.1.0 - 2026-08-19
+
 - Complete the Windows 11 Intune v5.0.0 catalog: 371 deterministic mappings, 8
-  administrator-input recommendations, 36 non-policy/manual controls, and zero
-  unresolved recommendations across all 415 CIS rows.
+  administrator-input recommendations with 9 answer fields, 36 non-policy/manual
+  controls, and zero unresolved recommendations across all 415 CIS rows.
 - Reuse 227 Windows 10 v5 classifications only where private source extraction proves
   an exact title, remediation, and assessment-method match; independently map the 34
   Windows 11-specific rows from explicit snapshot definition and value IDs.
@@ -13,6 +15,8 @@
 - Emit 325 Settings Catalog files plus one Windows compliance policy using the required
   `V5-` naming convention, with no assignments. Real-PDF pack/ZIP validation, offline
   importer preparation, and repeated-build byte reproducibility pass.
+- Clarify the difference between a recommendation requiring input and the number of
+  administrator answer fields: one Windows 11 recommendation requires two values.
 
 ## 0.5.0 - 2026-08-18
 

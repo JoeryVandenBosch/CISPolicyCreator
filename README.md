@@ -228,14 +228,19 @@ Some CIS settings do not prescribe one universal value. For example, your organi
 must choose its own minimum operating-system version or login-window message. The tool
 will never invent those answers.
 
-| Selector | Catalog path | Questions |
-|---|---|---:|
-| `Windows10-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-10/5.0.0/mapping-catalog.json` | 6 |
-| `Edge-1.0.0` | `./benchmarks/edge-intune/1.0.0/mapping-catalog.json` | 3 |
-| `Office-1.1.0` | none | 0 |
-| `macOS26-Tahoe-1.0.0` | `./benchmarks/macos26-tahoe-intune/1.0.0/mapping-catalog.json` | 15 |
-| `iOS26-iPadOS26-1.0.0` | `./benchmarks/ios26-ipados26-intune/1.0.0/mapping-catalog.json` | 8 |
-| `Windows11-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-11/5.0.0/mapping-catalog.json` | 9 |
+A single recommendation can need more than one value. Therefore, the number of answer
+fields can be higher than the number of recommendations marked `Requires input`. For
+Windows 11, eight recommendations need administrator input, but one of them needs two
+values, so the generated decision file contains nine answer fields.
+
+| Selector | Catalog path | Recommendations needing input | Answer fields |
+|---|---|---:|---:|
+| `Windows10-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-10/5.0.0/mapping-catalog.json` | 5 | 6 |
+| `Edge-1.0.0` | `./benchmarks/edge-intune/1.0.0/mapping-catalog.json` | 3 | 3 |
+| `Office-1.1.0` | none | 0 | 0 |
+| `macOS26-Tahoe-1.0.0` | `./benchmarks/macos26-tahoe-intune/1.0.0/mapping-catalog.json` | 14 | 15 |
+| `iOS26-iPadOS26-1.0.0` | `./benchmarks/ios26-ipados26-intune/1.0.0/mapping-catalog.json` | 8 | 8 |
+| `Windows11-5.0.0` | `./benchmarks/cis-microsoft-intune-for-windows-11/5.0.0/mapping-catalog.json` | 8 | 9 |
 
 If your selected row has questions, copy its catalog path and run:
 
