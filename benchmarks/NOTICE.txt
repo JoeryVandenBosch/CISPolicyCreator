@@ -1,0 +1,32 @@
+LICENSING, ATTRIBUTION, AND INDEPENDENCE NOTICE
+
+This bundle uses mapping data prepared for a CIS Benchmark source document. The
+licensed source PDF and its text are not included.
+
+To the extent that copyright or similar rights held by the CISPolicyCreator
+contributors apply, their original benchmark-catalog contributions and this generated
+arrangement are offered under the Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International License:
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The project maps recommendation identifiers and profiles to independently reviewed
+Microsoft Intune and Microsoft Graph settings, values, policy types, and dependencies.
+It omits the source PDF and raw benchmark prose.
+
+This notice cannot grant rights owned by the Center for Internet Security, Inc. Users
+remain responsible for the terms attached to their source material, including the CIS
+Terms of Use for Non-Member CIS Products and the CIS Logos, Trademark, and Intellectual
+Property Use Policy:
+https://www.cisecurity.org/terms-of-use-for-non-member-cis-products
+https://www.cisecurity.org/cis-logos-and-trademark-use-policy
+
+CIS, CIS Benchmarks, and CIS SecureSuite are trademarks or service marks of the Center
+for Internet Security, Inc.
+
+CISPolicyCreator is an independent publication and has not been authorized, sponsored,
+or otherwise approved by CIS. This bundle is not an official CIS Build Kit and makes no
+claim of CIS certification, endorsement, compliance, or a particular level of
+consistency with a CIS Benchmark.
+
+Public, redistributed, or commercial use may require separate permission from CIS.
+Obtain written permission or qualified legal advice when in doubt.

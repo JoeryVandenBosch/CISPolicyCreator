@@ -402,6 +402,13 @@ foreach($file in @(Get-ChildItem -LiteralPath $policyDirectory -Filter '*.json' 
 
 $entries=[System.Collections.Generic.List[object]]::new()
 $entryPaths=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+$noticeSourcePath=Join-Path $repoRoot 'benchmarks\NOTICE.txt'
+if(-not (Test-Path -LiteralPath $noticeSourcePath -PathType Leaf)){throw "Bundle licensing notice is missing: $noticeSourcePath"}
+$noticeText=[IO.File]::ReadAllText($noticeSourcePath) -replace "`r`n?","`n"
+$noticeText=$noticeText.TrimEnd()+"`n"
+$noticeEntryPath="$BundleName/NOTICE.txt"
+if(-not $entryPaths.Add($noticeEntryPath)){throw "Bundle licensing notice path collision: $noticeEntryPath"}
+$entries.Add([pscustomobject]@{Path=$noticeEntryPath;Bytes=[Text.UTF8Encoding]::new($false).GetBytes($noticeText)}) | Out-Null
 function Add-Entry([string]$Folder,[string]$Name,$Value,[string]$Seed) {
     $finalName=Limit-PolicyName $Name $Seed
     $path="$BundleName/$Folder/$finalName.json"
@@ -544,3 +551,4 @@ Write-Host "Settings Catalog policies: $settingsCount"
 Write-Host "Typed Graph policies     : $graphCount"
 Write-Host 'Top-level settings/object: one per JSON file'
 Write-Host 'Assignments              : none'
+Write-Host 'Licensing notice         : NOTICE.txt included'

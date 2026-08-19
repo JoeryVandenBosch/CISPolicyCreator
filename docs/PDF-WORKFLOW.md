@@ -164,6 +164,10 @@ finished pack into place, and removes staging data. It refuses to overwrite an e
 output path. `-KeepPrivateExtraction` retains raw text outside the pack only when
 explicitly requested; creating the JSON ZIP does not retain raw benchmark text.
 
+The ZIP includes `NOTICE.txt` with the repository's licensing, attribution, trademark,
+and independent-project notice. The validator requires its exact contents and the
+importer skips it after validation; it is never sent to Microsoft Graph.
+
 `-PolicyJsonBundlePath` is optional for low-level catalog-development workflows but is
 the normal end-user output. Human/process-only recommendations emit no JSON. Duplicate
 recommendations and settings with required dependent children are bundled only when

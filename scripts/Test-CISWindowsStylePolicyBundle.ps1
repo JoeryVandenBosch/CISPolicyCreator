@@ -9,6 +9,20 @@ Set-StrictMode -Version Latest
 Add-Type -AssemblyName System.IO.Compression
 $issues=[System.Collections.Generic.List[string]]::new()
 $BundlePath=(Resolve-Path -LiteralPath $BundlePath).Path
+$repoRoot=Split-Path -Parent $PSScriptRoot
+
+function Read-EntryText($Entry) {
+    $stream=$Entry.Open()
+    $reader=[IO.StreamReader]::new($stream,[Text.UTF8Encoding]::new($false,$true),$true)
+    try {return $reader.ReadToEnd()}
+    catch {$issues.Add("Invalid UTF-8 text '$($Entry.FullName)': $($_.Exception.Message)");return $null}
+    finally {$reader.Dispose();$stream.Dispose()}
+}
+
+function Normalize-NoticeText([string]$Text) {
+    if($null -eq $Text){return $null}
+    return (($Text -replace "`r`n?","`n").TrimEnd()+"`n")
+}
 
 function Read-EntryJson($Entry) {
     $stream=$Entry.Open()
@@ -65,6 +79,7 @@ if([IO.Path]::GetExtension($BundlePath) -cne '.zip'){$issues.Add('Bundle must us
 $archive=$null
 $settingsCount=0
 $graphCount=0
+$noticeCount=0
 $rootName=$null
 try {
     $archive=[IO.Compression.ZipFile]::OpenRead($BundlePath)
@@ -73,6 +88,18 @@ try {
     $paths=[System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
     foreach($entry in $entries){
         $path=[string]$entry.FullName
+        if($path -cmatch '^[^/]+/NOTICE\.txt$'){
+            if(-not $paths.Add($path)){$issues.Add("Duplicate case-insensitive entry path: $path")}
+            $segments=$path.Split('/')
+            if($null -eq $rootName){$rootName=$segments[0]}elseif($rootName -cne $segments[0]){$issues.Add("Bundle contains multiple root folders: $path")}
+            $noticeCount++
+            $expectedNoticePath=Join-Path $repoRoot 'benchmarks\NOTICE.txt'
+            if(-not (Test-Path -LiteralPath $expectedNoticePath -PathType Leaf)){$issues.Add("Repository licensing notice is missing: $expectedNoticePath");continue}
+            $actualNotice=Normalize-NoticeText (Read-EntryText $entry)
+            $expectedNotice=Normalize-NoticeText ([IO.File]::ReadAllText($expectedNoticePath))
+            if($null -ne $actualNotice -and $actualNotice -cne $expectedNotice){$issues.Add("Bundle licensing notice differs from the repository notice: $path")}
+            continue
+        }
         if(-not (Test-SafeEntryPath $path)){$issues.Add("Entry does not use '<root>/<policy-type>/<file>.json': $path");continue}
         if(-not $paths.Add($path)){$issues.Add("Duplicate case-insensitive entry path: $path")}
         $segments=$path.Split('/')
@@ -125,15 +152,18 @@ try {
             default {$issues.Add("Unsupported policy folder '$($segments[1])': $path")}
         }
     }
+    if($noticeCount -ne 1){$issues.Add("Bundle must contain exactly one '<root>/NOTICE.txt' licensing notice; found $noticeCount.")}
+    if(($settingsCount+$graphCount) -eq 0){$issues.Add('Bundle contains no policy JSON files.')}
 } catch {$issues.Add("Could not validate Windows-style policy bundle: $($_.Exception.Message)")}
 finally {if($archive){$archive.Dispose()}}
 
-$result=[pscustomobject]@{IsValid=($issues.Count -eq 0);Issues=@($issues);RootName=$rootName;SettingsCatalogPolicyCount=$settingsCount;GraphPolicyCount=$graphCount;PolicyCount=$settingsCount+$graphCount}
+$result=[pscustomobject]@{IsValid=($issues.Count -eq 0);Issues=@($issues);RootName=$rootName;SettingsCatalogPolicyCount=$settingsCount;GraphPolicyCount=$graphCount;PolicyCount=$settingsCount+$graphCount;NoticeCount=$noticeCount}
 if($PassThru){return $result}
 if(-not $result.IsValid){throw ($result.Issues -join [Environment]::NewLine)}
 Write-Host 'PASS: Windows-style split-policy ZIP validation succeeded.'
 Write-Host "Root folder              : $($result.RootName)"
 Write-Host "Settings Catalog policies: $settingsCount"
+Write-Host "Licensing notices        : $noticeCount"
 Write-Host "Typed Graph policies     : $graphCount"
 Write-Host 'Top-level settings/object: one per JSON file'
 Write-Host 'Assignments              : none'

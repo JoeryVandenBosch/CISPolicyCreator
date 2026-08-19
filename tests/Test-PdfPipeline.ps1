@@ -33,8 +33,18 @@ try{
     $validation=& (Join-Path $repoRoot 'scripts\Test-CISPolicyPack.ps1') -PackRoot $pack -PassThru
     if(-not $validation.IsValid){ throw 'PDF-to-pack result failed validation.' }
     $bundleValidation=& (Join-Path $repoRoot 'scripts\Test-CISWindowsStylePolicyBundle.ps1') -BundlePath $bundle -PassThru
-    if(-not $bundleValidation.IsValid){ throw 'One-command PDF-to-policy-JSON result failed validation.' }
+    if(-not $bundleValidation.IsValid -or $bundleValidation.NoticeCount -ne 1){ throw 'One-command PDF-to-policy-JSON result failed validation or omitted its licensing notice.' }
     & (Join-Path $repoRoot 'scripts\Import-CISWindowsStylePolicyBundle.ps1') -BundlePath $bundle -ValidateOnly
+    $withoutNotice=Join-Path $testRoot 'synthetic-policies-without-notice.zip'
+    Copy-Item -LiteralPath $bundle -Destination $withoutNotice
+    $noticeArchive=[IO.Compression.ZipFile]::Open($withoutNotice,[IO.Compression.ZipArchiveMode]::Update)
+    try {
+        $noticeEntry=@($noticeArchive.Entries|Where-Object FullName -ceq 'synthetic-policies/NOTICE.txt')
+        if($noticeEntry.Count -ne 1){throw 'Synthetic bundle did not contain exactly one expected licensing notice.'}
+        $noticeEntry[0].Delete()
+    } finally {$noticeArchive.Dispose()}
+    $missingNoticeValidation=& (Join-Path $repoRoot 'scripts\Test-CISWindowsStylePolicyBundle.ps1') -BundlePath $withoutNotice -PassThru
+    if($missingNoticeValidation.IsValid -or ($missingNoticeValidation.Issues -join ' ') -notmatch 'NOTICE\.txt'){throw 'Bundle validation did not fail closed when the licensing notice was removed.'}
     if(Test-Path -LiteralPath "$pack.private-extraction.json"){throw 'Policy JSON export retained private benchmark text without explicit authorization.'}
     $manifest=Get-Content -LiteralPath (Join-Path $pack 'manifest.json') -Raw | ConvertFrom-Json -Depth 100
     $actualHash=(Get-FileHash -LiteralPath $pdf -Algorithm SHA256).Hash.ToLowerInvariant()
