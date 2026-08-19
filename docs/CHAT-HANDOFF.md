@@ -17,11 +17,11 @@ PDF-to-JSON product. It creates policies without assignments. Assignment creatio
 intentionally outside this repository.
 
 Do not describe every supported benchmark as an automatically enforced CIS baseline.
-Windows 10, Windows 11, Edge, Office, and macOS are complete **for policy creation** because every recommendation
-has a final mapping state and every actual deterministic Intune setting can produce JSON
-after required administrator input. iOS/iPadOS has one intentionally unresolved ADE
-recommendation described below. Human/process recommendations correctly produce no fake
-policy JSON.
+Windows 10, Windows 11, Edge, and Office are complete **for policy creation** because
+every recommendation has a final mapping state and every actual deterministic Intune
+setting can produce JSON after required administrator input. macOS and iOS/iPadOS each
+have one intentionally unresolved ADE recommendation described below. Human/process
+recommendations correctly produce no fake policy JSON.
 
 ## Non-negotiable safety invariants
 
@@ -69,7 +69,7 @@ enrollment-template release hardening:
 | CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 312 | 5 | 41 | 0 | 278 |
 | CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
 | CIS Microsoft Intune for Office Benchmark | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
-| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
+| CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 84 | 14 | 1 | 1 | 82 |
 | CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
 | CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 371 | 8 | 36 | 0 | 326 |
 
@@ -78,7 +78,8 @@ recommendations can share one implementation and settings with required dependen
 must be bundled into one valid policy. It may be higher in other cases when one
 recommendation requires more than one policy object.
 
-iOS/iPadOS recommendation 3.10.1, Locked enrollment, is intentionally `unresolved`.
+macOS recommendation 2.13.1 and iOS/iPadOS recommendation 3.10.1, both Locked
+enrollment, are intentionally `unresolved`.
 The exact `ade_lockedenrollment` definition, Yes option, ADE policy template, setting
 instance template, and setting value template were proven live. A real create then
 proved that Microsoft requires 40 settings in every ADE profile. Read-only inspection
@@ -160,6 +161,8 @@ $BuildArguments = @{
 
 The ZIP root contains supported folders such as:
 
+- `NOTICE.txt`: required licensing, attribution, trademark, and independent-project
+  notice; the importer validates and skips it rather than treating it as a policy;
 - `SettingsCatalog/*.json`: complete Settings Catalog policy exports with one top-level
   setting and every required nested dependency;
 - `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or

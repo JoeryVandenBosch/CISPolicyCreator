@@ -9,15 +9,19 @@ CISPolicyCreator intentionally supports only CIS benchmarks whose remediation gu
 | CIS Microsoft Intune for Windows 10 | 5.0.0 | 312 | 5 | 41 | 0 | 278 |
 | CIS Microsoft Intune for Edge | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
 | CIS Microsoft Intune for Office | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
-| CIS Apple macOS 26 Tahoe Intune | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
+| CIS Apple macOS 26 Tahoe Intune | 1.0.0 | 84 | 14 | 1 | 1 | 82 |
 | CIS Apple iOS 26 and iPadOS 26 Intune | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
 | CIS Microsoft Intune for Windows 11 | 5.0.0 | 371 | 8 | 36 | 0 | 326 |
 
-The five zero-unresolved catalogs have passed extraction-bound real-PDF compilation,
+The four zero-unresolved catalogs have passed extraction-bound real-PDF compilation,
 offline pack validation, and deterministic split-policy ZIP validation. The Edge
 catalog has also passed the complete one-command PDF-to-ZIP path. Earlier mapped subsets
 passed live dry runs and unassigned test-tenant creation. A fresh dry run against the
 administrator's own tenant remains required before import.
+
+macOS and iOS/iPadOS each deliberately leave Locked enrollment unresolved. Microsoft
+requires a complete ADE enrollment profile with organization-specific companion
+settings, so the tool does not emit an incomplete standalone policy.
 
 “Supported for policy creation” means the exact PDF version is recognized, every
 extracted recommendation is explicitly classified, and every actual Intune-configurable

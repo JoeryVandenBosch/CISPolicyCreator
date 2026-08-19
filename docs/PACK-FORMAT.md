@@ -61,6 +61,8 @@ When a pack contains a mapped top-level `choice`, `integer`, or `string` setting
 
 The split-policy ZIP contains importable export-shaped JSON:
 
+- `NOTICE.txt` contains the licensing, attribution, trademark, and
+  independent-project notice and is not sent to Microsoft Graph;
 - `SettingsCatalog/*.json` contains complete Settings Catalog policies with one top-level setting and any required nested dependencies;
 - `DeviceConfigurations/*.json`, `CompliancePolicies/*.json`, or `GraphObjects/*.json` contains typed policy objects split by reviewed property mapping when present.
 

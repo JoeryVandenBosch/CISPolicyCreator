@@ -20,10 +20,10 @@ against their own tenant before production rollout.
 ## 2. Selected additional Intune benchmarks
 
 The repository also contains fully classified policy-creation catalogs for Windows 10
-v5.0.0, Microsoft Edge v1.0.0, Microsoft Office v1.1.0, and Apple macOS 26 Tahoe
-Intune v1.0.0. Apple iOS 26 / iPadOS 26 Intune v1.0.0 has one deliberately unresolved
-ADE enrollment recommendation because Microsoft requires a complete 40-setting
-organization-specific profile. Each real supplied PDF builds successfully into
+v5.0.0, Microsoft Edge v1.0.0, Microsoft Office v1.1.0, Apple macOS 26 Tahoe Intune
+v1.0.0, and Apple iOS 26 / iPadOS 26 Intune v1.0.0. Both Apple catalogs have one
+deliberately unresolved Locked enrollment recommendation because Microsoft requires a
+complete organization-specific ADE profile. Each real supplied PDF builds successfully into
 offline-validated unassigned policies. iOS/iPadOS combines Settings Catalog with
 contract-bound typed Graph objects. Administrators must still dry-run against their own
 tenant and must not describe the deliberately omitted ADE policy as implemented.

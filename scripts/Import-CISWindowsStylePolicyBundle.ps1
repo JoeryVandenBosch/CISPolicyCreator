@@ -127,6 +127,7 @@ $preparedGraph=[System.Collections.Generic.List[object]]::new()
 $archive=[IO.Compression.ZipFile]::OpenRead($BundlePath)
 try{
     foreach($entry in @($archive.Entries|Where-Object{-not [string]::IsNullOrEmpty($_.Name)}|Sort-Object FullName)){
+        if([string]$entry.FullName -cmatch '^[^/]+/NOTICE\.txt$'){continue}
         $segments=$entry.FullName.Split('/')
         $folder=[string]$segments[1]
         $raw=Read-CpcZipJson $entry

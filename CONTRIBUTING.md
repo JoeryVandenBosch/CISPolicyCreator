@@ -2,6 +2,12 @@
 
 Contributions are welcome, with one non-negotiable rule: **fail closed**.
 
+By contributing original material under `benchmarks`, you agree that your contribution
+is offered under CC BY-NC-SA 4.0 to the extent your copyright or similar rights apply.
+Other original repository contributions remain under the MIT License unless a file says
+otherwise. Do not submit third-party text or material you are not authorized to share;
+see [LICENSING.md](LICENSING.md).
+
 ## Benchmark scope
 
 Supported benchmark packs must be based on a CIS benchmark explicitly authored for Microsoft Intune.

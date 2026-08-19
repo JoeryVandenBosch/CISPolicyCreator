@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Clarify the repository's license boundary: original software remains MIT, while
+  original contributor rights in `benchmarks` are offered under CC BY-NC-SA 4.0 to the
+  extent applicable, without claiming rights in CIS-owned material or overriding CIS's
+  additional terms.
+- Add licensing, attribution, trademark, non-endorsement, and commercial-use warnings;
+  every newly exported split-policy ZIP now carries an exact validated `NOTICE.txt`
+  that the importer recognizes as metadata and never sends to Graph.
+- Treat macOS recommendation 2.13.1, Locked enrollment, as unresolved instead of
+  emitting an incomplete standalone ADE policy; the validated macOS output is now 82
+  unassigned policy JSON files.
+
 ## 1.1.0 - 2026-08-19
 
 - Complete the Windows 11 Intune v5.0.0 catalog: 371 deterministic mappings, 8

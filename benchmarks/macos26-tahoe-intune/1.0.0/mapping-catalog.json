@@ -1232,13 +1232,11 @@
         "L1"
       ],
       "cisAssessmentMethod": "Manual",
-      "mappingStatus": "mapped",
-      "implementationType": "settings-catalog",
-      "implementationRefs": [
-        "settings-catalog:macos-reviewed-2-13-1"
-      ],
+      "mappingStatus": "unresolved",
+      "implementationType": null,
+      "implementationRefs": [],
       "decisionRef": null,
-      "notes": "Reviewed Intune remediation path with exact pinned-snapshot definition and value IDs."
+      "notes": "The Locked enrollment definition and Yes option are exact, but Microsoft requires a complete ADE enrollment policy with organization-specific companion settings. A safe standalone policy cannot be emitted without an explicit complete decision model."
     },
     {
       "recommendationId": "2.14.1.1",
@@ -2358,19 +2356,6 @@
       "technologies": "mdm",
       "profiles": [
         "L2"
-      ],
-      "roleScopeTagIds": [
-        "0"
-      ]
-    },
-    {
-      "id": "macos-reviewed-2-13-1",
-      "name": "CIS - macOS Reviewed 2-13-1 [L1] - v1.0.0",
-      "description": "Reviewed deterministic macOS mapping with explicit administrator decisions where required.",
-      "platforms": "macOS",
-      "technologies": "enrollment",
-      "profiles": [
-        "L1"
       ],
       "roleScopeTagIds": [
         "0"
@@ -5868,24 +5853,6 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "recommendationId": "2.13.1",
-      "policyId": "macos-reviewed-2-13-1",
-      "displayName": "Locked enrollment",
-      "profiles": [
-        "L1"
-      ],
-      "resolve": {
-        "definitionId": "ade_lockedenrollment",
-        "baseUri": "./enrollment/ade",
-        "offsetUri": "/lockedEnrollment",
-        "expectedType": "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition"
-      },
-      "value": {
-        "kind": "choice",
-        "optionId": "ade_lockedenrollment_1"
       }
     },
     {
