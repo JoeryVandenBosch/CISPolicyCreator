@@ -1,7 +1,7 @@
 # CISPolicyCreator chat handoff
 
-**Updated:** 2026-08-18
-**Current delivery:** post-PR #10 release hardening for enrollment-template fail-closed behavior
+**Updated:** 2026-08-19
+**Current delivery:** complete Windows 11 v5.0.0 policy-creation catalog
 **Architecture:** reproducible PDF-to-pack pipeline, pack schema v2, deterministic split-policy JSON ZIP export, optional fail-closed ZIP importer
 
 ## Read this first
@@ -16,12 +16,12 @@ The optional importer is now included, but it is not required to use the main
 PDF-to-JSON product. It creates policies without assignments. Assignment creation is
 intentionally outside this repository.
 
-Do not describe every supported benchmark as a complete CIS baseline. Windows 10,
-Edge, Office, and macOS are complete **for policy creation** because every recommendation
+Do not describe every supported benchmark as an automatically enforced CIS baseline.
+Windows 10, Windows 11, Edge, Office, and macOS are complete **for policy creation** because every recommendation
 has a final mapping state and every actual deterministic Intune setting can produce JSON
 after required administrator input. iOS/iPadOS has one intentionally unresolved ADE
-recommendation described below. Windows 11 v5.0.0 remains a clearly identified partial
-catalog. Human/process recommendations correctly produce no fake policy JSON.
+recommendation described below. Human/process recommendations correctly produce no fake
+policy JSON.
 
 ## Non-negotiable safety invariants
 
@@ -71,7 +71,7 @@ enrollment-template release hardening:
 | CIS Microsoft Intune for Office Benchmark | 1.1.0 | 238 | 0 | 0 | 0 | 234 |
 | CIS Apple macOS 26 Tahoe Intune Benchmark | 1.0.0 | 85 | 14 | 1 | 0 | 83 |
 | CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
-| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 154 | 0 | 0 | 261 | 154 |
+| CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 371 | 8 | 36 | 0 | 326 |
 
 The JSON-file count may be lower than the mapped-recommendation count because duplicate
 recommendations can share one implementation and settings with required dependencies
@@ -86,8 +86,8 @@ showed that the required companion settings include organization-specific enroll
 and Setup Assistant choices, most without template defaults. The repository therefore
 does not guess those values and no longer emits the rejected one-setting ADE JSON.
 
-The four catalogs with organizational questions (Windows 10, Edge, macOS, and
-iOS/iPadOS) require private administrator-decision files. Any ZIPs under ignored local
+The five catalogs with organizational questions (Windows 10, Windows 11, Edge, macOS,
+and iOS/iPadOS) require private administrator-decision files. Any ZIPs under ignored local
 `work` folders that were built with test decisions are validation artifacts, not
 production defaults and not release inputs. Office has no administrator questions.
 
@@ -303,10 +303,12 @@ Finished:
 
 - reproducible local PDF extraction and exact source/version eligibility checks;
 - fail-closed mapping, decision, compilation, schema, and semantic validation;
-- completed policy-creation catalogs for Windows 10, Edge, Office, and macOS;
+- completed policy-creation catalogs for Windows 10, Windows 11, Edge, Office, and macOS;
 - iOS/iPadOS policy creation with one clearly documented, intentionally unresolved ADE
   recommendation instead of an invalid or guessed enrollment profile;
-- clearly labeled partial Windows 11 catalog;
+- Windows 11 real-PDF compilation into 325 Settings Catalog JSON policies plus one
+  compliance policy, all named with `V5-`, unassigned, offline-import validated, and
+  byte-reproducible;
 - deterministic Windows-style split-policy JSON ZIP creation;
 - optional fail-closed ZIP import with no assignments;
 - beginner install/build/validate/dry-run/import documentation;

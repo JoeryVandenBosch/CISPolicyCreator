@@ -6,19 +6,26 @@ All benchmark catalog work is gated on the reproducible offline pipeline, schema
 
 ## 1. Windows 11 Intune
 
-The repository includes a public-safe catalog for all 415 Windows 11 v5.0.0 recommendation identifiers. It now contains 154 exact definition and option/value mappings validated against a pinned Settings Catalog snapshot and compiles reproducibly into 14 unassigned policies; 261 recommendations remain unresolved and emit no implementation. The expanded catalog passes live tenant resolution. Hardened read-only verification previously proved that name equality alone was insufficient by detecting a different same-name policy before writes. Continue administrator-controlled test-device behavior validation before describing it as complete.
+The repository includes a public-safe, fully classified catalog for all 415 Windows 11
+v5.0.0 recommendations: 371 deterministic mappings, 8 administrator-input gates, 36
+non-policy/manual controls, and zero unresolved recommendations. With all nine explicit
+administrator decisions supplied, the real PDF compiles reproducibly into 325 Settings
+Catalog policy JSON files and one Windows compliance policy JSON file. Every filename
+uses the Windows benchmark convention beginning with `V5-`; all files are unassigned.
+The complete build, pack, ZIP, and offline importer validations pass, and a repeated
+build produces identical ZIP bytes. Administrators must still dry-run and test policies
+against their own tenant before production rollout.
 
 ## 2. Selected additional Intune benchmarks
 
-The repository contains partial, fail-closed catalogs for Windows 10 v5.0.0 (121
-mapped), Microsoft Edge v1.0.0 (125 mapped), Microsoft Office v1.1.0 (203 mapped),
-Apple macOS 26 Tahoe Intune v1.0.0 (57 mapped), and Apple iOS 26 / iPadOS 26
-Intune v1.0.0 (78 mapped plus 2 explicit administrator-input recommendations). Each
-real supplied PDF builds successfully into offline-validated unassigned policies.
-iOS/iPadOS combines Settings Catalog with contract-bound typed Graph objects. Earlier
-smaller subsets passed unassigned import, and all expanded catalogs pass a live
-read-only test-tenant dry run. Administrators must still dry-run against their own
-tenant. Do not represent any partial catalog as a complete CIS baseline.
+The repository also contains fully classified policy-creation catalogs for Windows 10
+v5.0.0, Microsoft Edge v1.0.0, Microsoft Office v1.1.0, and Apple macOS 26 Tahoe
+Intune v1.0.0. Apple iOS 26 / iPadOS 26 Intune v1.0.0 has one deliberately unresolved
+ADE enrollment recommendation because Microsoft requires a complete 40-setting
+organization-specific profile. Each real supplied PDF builds successfully into
+offline-validated unassigned policies. iOS/iPadOS combines Settings Catalog with
+contract-bound typed Graph objects. Administrators must still dry-run against their own
+tenant and must not describe the deliberately omitted ADE policy as implemented.
 
 ## 3. iOS 17 / iPadOS 17 Intune
 

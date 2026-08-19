@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- Complete the Windows 11 Intune v5.0.0 catalog: 371 deterministic mappings, 8
+  administrator-input recommendations, 36 non-policy/manual controls, and zero
+  unresolved recommendations across all 415 CIS rows.
+- Reuse 227 Windows 10 v5 classifications only where private source extraction proves
+  an exact title, remediation, and assessment-method match; independently map the 34
+  Windows 11-specific rows from explicit snapshot definition and value IDs.
+- Bundle required printer, firewall, Config Refresh, and Windows Hello dependent
+  settings so every emitted policy is independently deployable without invented values.
+- Emit 325 Settings Catalog files plus one Windows compliance policy using the required
+  `V5-` naming convention, with no assignments. Real-PDF pack/ZIP validation, offline
+  importer preparation, and repeated-build byte reproducibility pass.
+
 ## 0.5.0 - 2026-08-18
 
 - Add deterministic offline export of a validated policy pack to portable, request-ready Intune JSON ZIP files.
