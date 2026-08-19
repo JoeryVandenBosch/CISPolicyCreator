@@ -11,15 +11,31 @@ but importing or assigning policies is not required to use the policy-creation t
 The tool runs entirely from the scripts in this repository. ChatGPT, Codex, or another
 AI service is **not** required at runtime.
 
-## What is complete, and what is intentionally skipped
+## What the status numbers mean
 
-The supported Intune catalogs convert every recommendation that has a real,
-deterministic and independently deployable Intune implementation. Recommendations that
-tell a human to review, inspect, document, or run an operational process remain
-`manual` and produce no fake JSON. Organization-specific values remain
-`requires-input` until an administrator chooses them explicitly.
+Each CIS benchmark contains a list of security recommendations. This project reviews
+every recommendation and puts it into one of four groups. The status describes what
+this tool can safely do; it is not a score and it does not mean that recommendations
+outside `Mapped` are unimportant.
 
-| Supported CIS PDF | Version | Mapped | Requires input | Manual | Unresolved | Policy JSON files with all inputs |
+| Status | Plain-English meaning | Does this tool create policy JSON? | What you need to do |
+|---|---|---|---|
+| **Mapped** | The exact Intune setting and the exact required value are known and validated. The tool does not need to guess. | **Yes.** A mapped recommendation is included in the generated policies. | Review and test the generated policy before assigning it. |
+| **Requires input** | The Intune setting is known, but the correct value depends on your organization. CIS does not provide one universal answer. Examples include a firewall log path, telemetry choice, or session timeout. | **Yes, after you provide the requested value.** No policy is generated from a guessed value. | Choose and supply the value when building the pack. |
+| **Manual** | This recommendation needs a person, a documented process, or custom work that this tool cannot honestly represent as a normal Intune policy. For example, it may require an inspection or custom PowerShell handling. | **No.** The tool does not create a fake policy just to increase the count. | Complete and record the action outside this policy pack. |
+| **Unresolved** | A safe, complete Intune implementation has not yet been proven. The recommendation is tracked, but the tool does not have enough evidence or required companion settings to create a deployable policy. | **No.** Nothing is generated until the implementation can be proven. | Treat it as not implemented by this tool and handle it separately. |
+
+`Manual` and `Unresolved` are different. `Manual` means we know the recommendation
+belongs in a human, process, or custom workflow. `Unresolved` means an automated
+implementation may be possible, but this project cannot yet produce it safely and
+completely.
+
+## Current benchmark coverage
+
+For each row, `Mapped + Requires input + Manual + Unresolved` equals the total number
+of CIS recommendations reviewed in that benchmark.
+
+| Supported CIS PDF | Version | Mapped (ready) | Requires input (you choose) | Manual (human/custom work) | Unresolved (not safely implemented) | Policy JSON files after all inputs |
 |---|---:|---:|---:|---:|---:|---:|
 | CIS Microsoft Intune for Windows 10 Benchmark | 5.0.0 | 312 | 5 | 41 | 0 | 278 |
 | CIS Microsoft Intune for Edge Benchmark | 1.0.0 | 135 | 3 | 0 | 0 | 138 |
@@ -28,18 +44,26 @@ tell a human to review, inspect, document, or run an operational process remain
 | CIS Apple iOS 26 and iPadOS 26 Intune Benchmark | 1.0.0 | 84 | 8 | 1 | 1 | 60 |
 | CIS Microsoft Intune for Windows 11 Benchmark | 5.0.0 | 371 | 8 | 36 | 0 | 326 |
 
-The five rows with zero unresolved recommendations are complete for policy creation:
-every actual Intune-configurable recommendation is either mapped or waiting for an
-explicit administrator value. iOS/iPadOS has one intentionally
-unresolved recommendation: 3.10.1, Locked enrollment. Its exact Intune setting is
-known, but Microsoft requires 40 settings in the ADE enrollment policy. The required
-companion settings include organization-specific choices without template defaults, so
-the tool does not invent them or emit a JSON policy that Intune would reject.
+For example, the Windows 11 row covers all 415 recommendations:
+`371 + 8 + 36 + 0 = 415`. After the required organization-specific choices are
+provided, the tool creates 326 policy JSON files. The file count is lower because
+manual and unresolved recommendations create no JSON, duplicate recommendations can
+share one implementation, and settings that depend on each other may be bundled into
+one policy.
 
-The number of JSON files can be lower than the number of recommendations because some
-CIS recommendations are duplicates or must be bundled with required dependent settings.
-The JSON files are always unassigned. Live test-tenant dry runs and earlier import tests
-provide additional evidence, but every administrator must validate policies before use.
+A benchmark with zero unresolved recommendations is complete **for this tool's policy
+creation scope**. It does not mean that every recommendation becomes JSON. It means
+that every recommendation has been deliberately classified as mapped, waiting for an
+administrator choice, or requiring human/custom work.
+
+iOS/iPadOS has one intentionally unresolved recommendation: 3.10.1, Locked enrollment.
+The relevant Intune setting is known, but Microsoft requires 40 settings in the ADE
+enrollment policy. Several companion settings need organization-specific choices and
+have no safe default. The tool therefore refuses to invent those choices or create JSON
+that Intune would reject.
+
+All generated JSON files are unassigned. Always review and test them before production
+use.
 
 ## What the tool will never do
 
@@ -52,9 +76,11 @@ provide additional evidence, but every administrator must validate policies befo
 - It never uploads or commits your CIS PDF.
 - It never overwrites a different same-name Intune policy.
 
-`cisAssessmentMethod` and `mappingStatus` mean different things. A CIS recommendation
-marked `Manual` can still have an exact Intune policy mapping. `mappingStatus` records
-whether this project can safely produce that mapping.
+One final terminology note: CIS also labels how a recommendation is assessed as
+`Automated` or `Manual`. That is separate from the project status explained above. A
+recommendation that CIS says must be checked manually can still be `Mapped` here when
+the exact Intune configuration is known. The table reports this project's implementation
+status, not the CIS assessment method.
 
 ## Before you begin
 
